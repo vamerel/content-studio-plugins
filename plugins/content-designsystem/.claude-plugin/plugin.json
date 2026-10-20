@@ -1,0 +1,17 @@
+{
+  "name": "content-designsystem",
+  "version": "1.0.0",
+  "description": "Content Design System: één skill voor Claude Code, @designsystem. Bouwt de map Content Studio/Design System die je in Claude Design uploadt, afgeleid uit je eigen carrousels, reelomslagen en brandfoto's. Hoort bij de plugin content-studio. Installeer hem alleen in Claude Code, niet in Chat & Cowork.",
+  "author": {
+    "name": "VA-Merel"
+  },
+  "keywords": [
+    "content studio",
+    "design system",
+    "claude design",
+    "huisstijl",
+    "carrousel",
+    "reel",
+    "instagram"
+  ]
+}
