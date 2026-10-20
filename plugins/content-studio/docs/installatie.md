@@ -9,7 +9,7 @@ Claude-app heeft voor Chat & Cowork en voor Claude Code elk een eigen lijst:
 
 | Plugin | Marketplace | Installeren in |
 |---|---|---|
-| `businessdna` | `vamerel/claude-plugins` | **Chat & Cowork** (heb je waarschijnlijk al) |
+| `businessdna` | `vamerel/businessdna` | **Chat & Cowork** (heb je waarschijnlijk al) |
 | `content-studio` | `vamerel/content-studio-plugins` | **Chat & Cowork** |
 | `content-designsystem` | `vamerel/content-studio-plugins` | **alleen Claude Code**, zie de aparte installatie-instructie |
 
@@ -32,7 +32,7 @@ Verwijder dan eerst de oude. Anders heb je straks twee keer dezelfde skills.
 5. Zet bij deze marketplace **automatisch synchroniseren** (Sync automatically) aan.
 6. Installeer uit de marketplace **content-studio**.
 7. Staat **businessdna** nog niet in je lijst? Voeg dan ook de marketplace
-   `vamerel/claude-plugins` toe, op dezelfde manier, en installeer daaruit **businessdna**.
+   `vamerel/businessdna` toe, op dezelfde manier, en installeer daaruit **businessdna**.
 8. Start een nieuw gesprek en typ `@content-studio-setup`. Reageert de skill, dan is de
    installatie gelukt.
 
