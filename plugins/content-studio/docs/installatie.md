@@ -1,17 +1,17 @@
 # Plugin content-studio installeren
 
-Je installeert de plugins niet meer uit een bestand, maar uit de marketplace van VA-Merel:
-`vamerel/claude-plugins`. Een marketplace is een vaste plek waar de plugins staan. Voeg je hem
-één keer toe en zet je automatisch synchroniseren aan, dan krijg je elke nieuwe versie vanzelf.
+Je installeert de plugins niet meer uit een bestand, maar uit een marketplace van VA-Merel.
+Een marketplace is een vaste plek waar de plugins staan. Voeg je hem één keer toe en zet je
+automatisch synchroniseren aan, dan krijg je elke nieuwe versie vanzelf.
 
-In de marketplace staan drie plugins. De plek waar je ze installeert doet ertoe, want de
+Er zijn twee marketplaces. De plek waar je de plugins installeert doet ertoe, want de
 Claude-app heeft voor Chat & Cowork en voor Claude Code elk een eigen lijst:
 
-| Plugin | Installeren in |
-|---|---|
-| `businessdna` | **Chat & Cowork** (heb je waarschijnlijk al) |
-| `content-studio` | **Chat & Cowork** |
-| `content-designsystem` | **alleen Claude Code**, zie de aparte installatie-instructie |
+| Plugin | Marketplace | Installeren in |
+|---|---|---|
+| `businessdna` | `vamerel/claude-plugins` | **Chat & Cowork** (heb je waarschijnlijk al) |
+| `content-studio` | `vamerel/content-studio-plugins` | **Chat & Cowork** |
+| `content-designsystem` | `vamerel/content-studio-plugins` | **alleen Claude Code**, zie de aparte installatie-instructie |
 
 ## Had je de plugin al uit een bestand geïnstalleerd?
 
@@ -28,11 +28,12 @@ Verwijder dan eerst de oude. Anders heb je straks twee keer dezelfde skills.
 2. Ga naar Aanpassen (Customize) en dan Plugins. De precieze namen kunnen per versie van de
    app iets verschillen.
 3. Kies **Toevoegen** (Add) en dan de optie om een marketplace toe te voegen vanaf GitHub.
-4. Vul in: `vamerel/claude-plugins` en bevestig.
+4. Vul in: `vamerel/content-studio-plugins` en bevestig.
 5. Zet bij deze marketplace **automatisch synchroniseren** (Sync automatically) aan.
-6. Installeer uit de marketplace **content-studio**, en **businessdna** als die nog niet in
-   je lijst staat.
-7. Start een nieuw gesprek en typ `@content-studio-setup`. Reageert de skill, dan is de
+6. Installeer uit de marketplace **content-studio**.
+7. Staat **businessdna** nog niet in je lijst? Voeg dan ook de marketplace
+   `vamerel/claude-plugins` toe, op dezelfde manier, en installeer daaruit **businessdna**.
+8. Start een nieuw gesprek en typ `@content-studio-setup`. Reageert de skill, dan is de
    installatie gelukt.
 
 Content Studio bouwt voort op de plugin `businessdna`. De twee plugins werken naast elkaar;
@@ -59,7 +60,7 @@ vanzelf binnen. Start daarna een nieuw gesprek, want lopende gesprekken gebruike
 oude versie.
 
 Staat het uit, of wil je een update meteen hebben: ga naar Aanpassen (Customize), Plugins,
-kies de marketplace van VA-Merel en klik op **Controleren op updates** (Check for updates).
+kies de marketplace van VA-Merel (per marketplace) en klik op **Controleren op updates** (Check for updates).
 
 Je mappen op het bureaublad en je Notion-databases blijven bij een update staan.
 
