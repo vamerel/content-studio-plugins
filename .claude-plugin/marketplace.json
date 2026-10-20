@@ -1,0 +1,21 @@
+{
+  "name": "va-merel-content-studio",
+  "owner": {
+    "name": "VA-Merel"
+  },
+  "metadata": {
+    "description": "Claude Content Studio van VA-Merel: de plugin Content Studio en het Content Design System."
+  },
+  "plugins": [
+    {
+      "name": "content-studio",
+      "source": "./plugins/content-studio",
+      "description": "Claude Content Studio: haakjes, captions, ideeën bewaren en automatisch publiceren, op basis van je Business DNA. Installeren in Chat & Cowork."
+    },
+    {
+      "name": "content-designsystem",
+      "source": "./plugins/content-designsystem",
+      "description": "Content Design System: de skill @designsystem voor Claude Content Studio. Alleen installeren in Claude Code."
+    }
+  ]
+}
