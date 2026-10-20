@@ -8,7 +8,7 @@ Deze marketplace bevat twee plugins:
 | `content-designsystem` | De skill `@designsystem` voor Claude Content Studio | **alleen** Claude Code |
 
 Content Studio werkt op basis van je Business DNA. Die plugin staat in een eigen marketplace:
-`vamerel/claude-plugins`.
+`vamerel/businessdna`.
 
 De installatie-instructies en de uitleg vind je in de leeromgeving van de training.
 
