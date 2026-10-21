@@ -11,7 +11,7 @@ Instagram. De cijfers van je posts staan in de feedplanner en in de Content Cale
 |---|---|---|
 | `content-studio-setup` | `@content-studio-setup` | controleert Notion en de Social Media Planner, maakt de map Content Studio, vult de Content Pillars uit Business DNA, levert de projectinstructies |
 | `hookgenerator` | `@haakjes` | vijf haakjes voor één probleem, één per fase van de klantreis, opslaan als Idee |
-| `content-caption` | `@caption` | caption en slidetekst, toetsen aan de pillars, opslaan als Concept, plakblok voor Claude Design |
+| `content-caption` | `@caption` | caption en slidetekst, toetsen aan de pillars, opslaan als Concept, bij een carrousel de slide-indeling in een zijscherm dat je zelf aanpast, plakblok voor Claude Design |
 | `content-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify; daarna bewaren met `@save` |
 | `content-save` | `@save` | een idee uit het gesprek of een opgehaalde post bewaren als Idee |
 | `content-publiceren-metricool` | `@publiceren-metricool` | route A, met Metricool: als geplande taak elke ochtend de carrousels en posts van vandaag in Metricool zetten op de tijd uit Notion (Notion, Canva, Metricool), 's avonds geplaatste posts op Live zetten met de Instagram-link; mailt wat is ingepland en wat live staat; reels plaats je zelf |
@@ -65,6 +65,7 @@ content-studio/
 ├── references/                    gedeeld door de skills
 │   ├── notion-schema.md           de twee databases, naamvarianten, pillar-kopjes
 │   ├── pagina-opbouw.md           de body van een kalenderpagina: alleen de caption
+│   ├── slide-indeling.html        het zijscherm voor de slide-indeling van een carrousel
 │   ├── memory-regels.md           MEMORY.md: secties, grens van tien regels, wel en niet
 │   ├── schrijfkwaliteit.md        zwarte lijst, test tegen generiek, stemcheck, stemcorrecties
 │   └── omgevingscheck.md          de startcontrole en de meldingen per skill

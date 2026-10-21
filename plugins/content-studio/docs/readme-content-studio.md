@@ -20,11 +20,14 @@ hier zelf niets neer te zetten; de skills vullen de map.
   voorbeelden: die zijn de norm, dit
   is hoe je het nu doet.
 
-## Drie bestanden
+## Vier bestanden
 
 - **fotogebruik.md** - bijgehouden door @caption: welke brandfoto op welke post kwam. Zo
   komt dezelfde foto niet terug op een cover of reelomslag binnen negen posts, en niet op een
   tussenslide binnen drie. Haal er niets uit, anders klopt de telling niet meer.
+- **slide-indeling.html** - het zijscherm waarin je bij een carrousel de tekst per slide
+  aanpast. De caption-skill zet het klaar en publiceert het één keer; de link staat onderaan
+  dit bestand, bij Slide-indeling. Pas het bestand niet zelf aan.
 - **MEMORY.md** - het geheugen van dit project, met drie secties: Hookgenerator, Caption,
   Design System. Elke skill leest en schrijft alleen zijn eigen sectie, maximaal
   tien regels, en alleen na jouw akkoord. Wil je een regel weg, haal hem er dan gewoon uit.

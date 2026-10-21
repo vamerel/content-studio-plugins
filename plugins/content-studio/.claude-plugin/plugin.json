@@ -1,7 +1,7 @@
 {
   "name": "content-studio",
-  "version": "0.17.0",
-  "description": "Claude Content Studio: zeven Cowork-skills voor je Instagram- en LinkedIn-content, op basis van je Business DNA. Setup, haakjes per fase van de klantreis, captions met slidetekst en een prompt voor Claude Design, posts ophalen via Apify en ideeën bewaren, geplande posts automatisch live zetten via Notion en Canva (route A met Metricool, route B met Composio). Het design system zit in de aparte skill content-designsystem, voor Claude Code.",
+  "version": "0.18.0",
+  "description": "Claude Content Studio: zeven Cowork-skills voor je Instagram- en LinkedIn-content, op basis van je Business DNA. Setup, haakjes per fase van de klantreis, captions met slidetekst (bij een carrousel in een zijscherm dat je zelf aanpast) en een prompt voor Claude Design, posts ophalen via Apify en ideeën bewaren, geplande posts automatisch live zetten via Notion en Canva (route A met Metricool, route B met Composio). Het design system zit in de aparte skill content-designsystem, voor Claude Code.",
   "author": {
     "name": "VA-Merel"
   },

@@ -20,11 +20,12 @@ CONTEXT
 - Mijn pillars staan in Notion, database Content Pillars. De uitleg per pillar staat in de body van de pagina. Wat onder "Wat past hier niet in" staat, is een harde grens.
 - Mijn content staat in Notion, database Content Calendar. Een haakje krijgt status Idee, een caption status Concept. De skills vullen de Pillar in op basis van het haakje of het gesprek; ik kan hem aanpassen. In de body van een pagina staat alleen de caption, verder niets.
 - Mijn design system staat in Content Studio/Design System/design-system.md: formaten, tekenlimieten, kleuren en fonts. De caption-skill leest het daar. Bestaat het nog niet, dan schrijf je wel captions maar geen prompt voor Claude Design.
+- Bij een carrousel zet de caption-skill de slide-indeling in een zijscherm. Daar pas ik de tekst per slide aan en sla ik op. Wat ik opsla, is leidend voor de prompt. De link naar het zijscherm staat in Content Studio/README.md.
 - Goedgekeurde captions bevat de laatste twintig captions die ik heb goedgekeurd. Lees die bij het schrijven naast de voorbeelden uit Tone of Voice - Social content - voorbeelden: die voorbeelden zijn de norm, de goedgekeurde captions laten zien hoe ik het nu doe.
 - Met @scrape haal ik een post op van Instagram, LinkedIn of YouTube (via Apify). Met @save bewaar ik hem daarna als Idee in de Content Calendar.
 
 EISEN
-- Schrijven mag alleen in de map Content Studio: Design System, Goedgekeurde haakjes, Goedgekeurde captions, fotogebruik.md en MEMORY.md. Business DNA, Business Copybank en Business Brand Guidelines lees je alleen. Wijzigingen in Business DNA lopen via mijn project WIJZIGINGEN BUSINESS DNA.
+- Schrijven mag alleen in de map Content Studio: Design System, Goedgekeurde haakjes, Goedgekeurde captions, fotogebruik.md, MEMORY.md, slide-indeling.html en in README.md de regel Slide-indeling. Business DNA, Business Copybank en Business Brand Guidelines lees je alleen. Wijzigingen in Business DNA lopen via mijn project WIJZIGINGEN BUSINESS DNA.
 - Elke caption volgt HVVA: Herkenning, Verlangen, Vertrouwen, Actie. In die volgorde, alle vier aanwezig.
 - Tot en met de fase Solution Aware geen aanbod in de afsluiter. Vanaf Product Aware wel.
 - Eén uitwerking waar ik om één vraag. Geen drie varianten.

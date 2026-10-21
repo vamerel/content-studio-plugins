@@ -17,8 +17,8 @@ properties: Hook, Status, Fase, Pillar, Soort, Kanaal.
 **Leeg, tenzij de gebruiker het vraagt.** Zegt de gebruiker bij `hookgenerator` of
 `content-save` specifiek "zet dit in de body", dan zet je precies dat erin en niets meer.
 
-**Slidetekst en het Claude Design-blok** komen alleen in het gesprek. Die schrijf je nergens
-in Notion weg.
+**Slidetekst en het Claude Design-blok** komen alleen in het gesprek en, bij een carrousel, in
+het zijscherm met de slide-indeling. Die schrijf je nergens in Notion weg.
 
 ---
 
