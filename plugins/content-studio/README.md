@@ -1,9 +1,9 @@
 # Content Studio
 
-Zes Cowork-skills waarmee je je Instagram- en LinkedIn-content systematiseert op basis van je
+Zeven Cowork-skills waarmee je je Instagram- en LinkedIn-content systematiseert op basis van je
 Business DNA. Het design system is een aparte skill, `content-designsystem`, omdat die
 in Claude Code draait en Claude Code een eigen lijst heeft. Haakjes en captions in Notion, visuals via Claude Design, automatisch publiceren op
-Instagram. De cijfers van je posts staan in de feedplanner.
+Instagram. De cijfers van je posts staan in de feedplanner en in de Content Calendar.
 
 ## Wat zit erin
 
@@ -12,16 +12,19 @@ Instagram. De cijfers van je posts staan in de feedplanner.
 | `content-studio-setup` | `@content-studio-setup` | controleert Notion en de Social Media Planner, maakt de map Content Studio, vult de Content Pillars uit Business DNA, levert de projectinstructies |
 | `hookgenerator` | `@haakjes` | vijf haakjes voor één probleem, één per fase van de klantreis, opslaan als Idee |
 | `content-caption` | `@caption` | caption en slidetekst, toetsen aan de pillars, opslaan als Concept, plakblok voor Claude Design |
-| `content-save` | `@save` | een idee uit het gesprek bewaren als Idee |
-| `content-publiceren` | `@publiceren` | route zonder Metricool: als geplande taak op je eigen postmomenten de carrousel of post van vandaag op Instagram zetten (Notion, Canva, Composio) en mailen met de link, 's avonds een mail met de posts van morgen; reels plaats je zelf |
-| `content-publiceren-metricool` | `@publiceren-metricool` | route met Metricool: als geplande taak elke ochtend de carrousels en posts van vandaag in Metricool zetten op de tijd uit Notion (Notion, Canva, Metricool), 's avonds geplaatste posts op Live zetten met de Instagram-link; mailt wat is ingepland en wat live staat; reels plaats je zelf |
+| `content-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify; daarna bewaren met `@save` |
+| `content-save` | `@save` | een idee uit het gesprek of een opgehaalde post bewaren als Idee |
+| `content-publiceren-metricool` | `@publiceren-metricool` | route A, met Metricool: als geplande taak elke ochtend de carrousels en posts van vandaag in Metricool zetten op de tijd uit Notion (Notion, Canva, Metricool), 's avonds geplaatste posts op Live zetten met de Instagram-link; mailt wat is ingepland en wat live staat; reels plaats je zelf |
+| `content-publiceren` | `@publiceren` | route B, met Composio: als geplande taak op je eigen postmomenten de carrousel of post van vandaag op Instagram zetten (Notion, Canva, Composio) en mailen met de link, 's avonds een mail met de posts van morgen; reels plaats je zelf |
 
 ## Hoe het samenhangt
 
-- **Notion is de bron van waarheid voor content:** haakjes, captions, status, publicatiedatum
-  en de Instagram-link staan in de Content Calendar. De cijfers komen uit Instagram, via
-  Composio. De uitleg per pillar staat in de body van de pillarpagina's in
-  Content Pillars.
+- **Notion is de bron van waarheid voor content:** haakjes, captions, status, publicatiedatum,
+  de Instagram-link en de cijfers (Views, Likes, Comments, Opgeslagen, Gedeeld) staan in de
+  Content Calendar. De uitleg per pillar staat in de body van de pillarpagina's in Content
+  Pillars.
+- **De pagina van een post** bevat alleen de caption, in één codeblok. Publiceren en de
+  feedplanner lezen hem daar.
 - **`Content Studio/Design System/design-system.md` is de bron van waarheid voor het design
   system:** tekenlimieten, slides per format, cover en CTA. `content-caption` leest het daar.
 - **MEMORY.md in de map Content Studio** heeft één sectie per skill. Elke skill leest en
@@ -30,7 +33,8 @@ Instagram. De cijfers van je posts staan in de feedplanner.
   Business Copybank; `content-studio-setup` maakt Business Brand Guidelines en Content Studio.
 - **Elke skill controleert bij de start** of de omgeving er is, en zegt anders precies wat
   ontbreekt en wat je moet doen. Skills noemen geen lesnamen, zodat de leeromgeving kan
-  veranderen zonder de plugin te herbouwen.
+  veranderen zonder de plugin te herbouwen. Het menu voor connectors heet overal
+  Aanpassingen (Customize) > Connectors.
 
 ## Mappen bij de gebruiker
 
@@ -57,7 +61,7 @@ alleen-lezen.
 ```
 content-studio/
 ├── .claude-plugin/plugin.json
-├── skills/<skill>/SKILL.md        zes skills
+├── skills/<skill>/SKILL.md        zeven skills
 ├── references/                    gedeeld door de skills
 │   ├── notion-schema.md           de twee databases, naamvarianten, pillar-kopjes
 │   ├── pagina-opbouw.md           de body van een kalenderpagina: alleen de caption
@@ -68,8 +72,8 @@ content-studio/
     ├── installatie.md
     ├── projectinstructies-content-studio.md
     ├── readme-content-studio.md
-    ├── geplande-taken.md          prompt om de taken van content-publiceren in te stellen (Composio)
-    ├── geplande-taken-metricool.md  prompt om de taken van content-publiceren-metricool in te stellen
+    ├── geplande-taken-metricool.md  prompt om de taken van route A in te stellen (Metricool)
+    ├── geplande-taken.md          prompt om de taken van route B in te stellen (Composio)
     └── prompt-haakjesmail.md      prompt voor de taak Elke week haakjes in je inbox
 ```
 

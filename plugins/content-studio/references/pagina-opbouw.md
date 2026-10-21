@@ -11,7 +11,7 @@ properties: Hook, Status, Fase, Pillar, Soort, Kanaal.
 | Skill | Body |
 |---|---|
 | `hookgenerator` | leeg |
-| `content-save` | leeg |
+| `content-save` | leeg; bij een post van `@scrape` één regel Bron en de opgehaalde tekst als citaat, nooit in een codeblok |
 | `content-caption` | de caption, letterlijk, in één codeblok |
 
 **Leeg, tenzij de gebruiker het vraagt.** Zegt de gebruiker bij `hookgenerator` of

@@ -57,7 +57,7 @@ Probeer een zoekopdracht in Notion. Foutmelding of geen connector:
 > dus zonder die verbinding kan ik niets controleren.
 >
 > Zo koppel je Notion aan Claude:
-> 1. Open de instellingen van Claude en ga naar Connectors.
+> 1. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors.
 > 2. Zoek Notion en klik op Verbinden.
 > 3. Log in bij Notion en geef Claude toegang tot de plek waar je Social Media Planner
 >    staat. Twijfel je: geef toegang tot je hele workspace.
@@ -177,8 +177,8 @@ waar de caption-skill uit schrijft. Meld het precies zo en ga door:
 
 > "Je Tone of Voice heeft nog geen document voor social content. De caption-skill leest dat
 > document; zonder schrijft hij op je algemene stem en mist hij je vijf stijlvoorbeelden.
-> Roep de Tone of Voice-skill aan voor social content: typ `@businessdna-tone-of-voice` in een
-> gewoon Cowork-gesprek en kies bij de eerste vraag het kanaal social content."
+> Roep de Tone of Voice-skill aan: typ `@businessdna-tone-of-voice` in een gewoon
+> Cowork-gesprek en kies social content."
 
 **Alleen Tone of Voice - Social content - voorbeelden.md ontbreekt:** dat is het document met
 de vijf stijlvoorbeelden die de caption-skill leest vóór hij schrijft. Meld het precies zo en
@@ -186,9 +186,8 @@ ga door:
 
 > "Je Tone of Voice voor social content staat er, maar het document met je vijf
 > stijlvoorbeelden nog niet. De caption-skill leest die posts voor hij schrijft; zonder klinkt
-> het minder als jij. Roep de Tone of Voice-skill aan voor social content: typ
-> `@businessdna-tone-of-voice` in een gewoon Cowork-gesprek, kies het kanaal social content en
-> wijs daar je vijf sterkste posts aan."
+> het minder als jij. Roep de Tone of Voice-skill aan: typ `@businessdna-tone-of-voice` in
+> een gewoon Cowork-gesprek, kies social content en wijs daar je vijf sterkste posts aan."
 
 Zet het in beide gevallen ook op de afvinklijst onder NOG NIET.
 
@@ -421,9 +420,9 @@ KLAAR
 ✓ Projectinstructies geleverd
 
 NOG NIET
-○ Project Content Studio aanmaken → project aanmaken, map CLAUDE koppelen, het blok hierboven plakken in projectinstructies
-○ Beeldmateriaal verzamelen in Business Brand Guidelines → carrousels, reelomslagen, brandfoto's, Brand Kit, lettertypes en logo in de submappen zetten; de checklist staat in de leeromgeving
-○ [alleen als het ontbreekt] Tone of Voice voor social content maken → @businessdna-tone-of-voice aanroepen en het kanaal social content kiezen
+○ Een project in Claude maken met de naam Content Studio → map CLAUDE koppelen, het blok hierboven plakken in projectinstructies
+○ Je beeldmateriaal in Business Brand Guidelines zetten → carrousels, reelomslagen, brandfoto's, Brand Kit, lettertypes en logo in de submappen zetten; de checklist staat in de leeromgeving
+○ [alleen als het ontbreekt] Tone of Voice voor social content maken → @businessdna-tone-of-voice aanroepen en social content kiezen
 ○ [alles wat in deze sessie is blijven liggen, met de reden]
 ```
 
@@ -442,8 +441,8 @@ pillars die al zijn weggeschreven staan er; ga bij een nieuwe poging verder waar
 rechtenkwestie:
 
 > "Volgens jou staat de Social Media Planner er, maar ik zie hem niet. Dat betekent meestal
-> dat de Notion-connector geen toegang heeft tot die plek. Ga in Claude naar Connectors,
-> open de instellingen van Notion en controleer welke pagina's gedeeld zijn."
+> dat Notion Claude geen toegang geeft tot die plek. Ga in de Claude-app naar Aanpassingen
+> (Customize) > Connectors, open Notion en controleer welke pagina's gedeeld zijn."
 
 **Business DNA is er, maar dun.** Ga door en zeg per pillar wat je niet kon afleiden. Verzin
 niets over de doelgroep dat er niet staat.
@@ -466,7 +465,7 @@ keuze, niet iets wat jij hebt laten liggen.
 ## DOET NIET
 
 - Connectors instellen. Alleen controleren en uitleggen.
-- Het design system maken. Dat is `@designsystem`, in Claude Code.
+- Het design system bouwen. Dat doet `@designsystem`, in Claude Code.
 - Business Brand Guidelines vullen. Dat doet de gebruiker zelf.
 - Iets aanmaken, hernoemen of verplaatsen in Notion buiten de body en properties van de
   pillarpagina's.

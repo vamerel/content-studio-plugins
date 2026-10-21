@@ -21,15 +21,16 @@ CONTEXT
 - Mijn content staat in Notion, database Content Calendar. Een haakje krijgt status Idee, een caption status Concept. De skills vullen de Pillar in op basis van het haakje of het gesprek; ik kan hem aanpassen. In de body van een pagina staat alleen de caption, verder niets.
 - Mijn design system staat in Content Studio/Design System/design-system.md: formaten, tekenlimieten, kleuren en fonts. De caption-skill leest het daar. Bestaat het nog niet, dan schrijf je wel captions maar geen prompt voor Claude Design.
 - Goedgekeurde captions bevat de laatste twintig captions die ik heb goedgekeurd. Lees die bij het schrijven naast de voorbeelden uit Tone of Voice - Social content - voorbeelden: die voorbeelden zijn de norm, de goedgekeurde captions laten zien hoe ik het nu doe.
+- Met @scrape haal ik een post op van Instagram, LinkedIn of YouTube (via Apify). Met @save bewaar ik hem daarna als Idee in de Content Calendar.
 
 EISEN
 - Schrijven mag alleen in de map Content Studio: Design System, Goedgekeurde haakjes, Goedgekeurde captions, fotogebruik.md en MEMORY.md. Business DNA, Business Copybank en Business Brand Guidelines lees je alleen. Wijzigingen in Business DNA lopen via mijn project WIJZIGINGEN BUSINESS DNA.
 - Elke caption volgt HVVA: Herkenning, Verlangen, Vertrouwen, Actie. In die volgorde, alle vier aanwezig.
 - Tot en met de fase Solution Aware geen aanbod in de afsluiter. Vanaf Product Aware wel.
 - Eén uitwerking waar ik om één vraag. Geen drie varianten.
-- Geen em-dashes. Niet "nooit meer". Niet "eerlijk". Verboden woorden uit Tone of Voice niet gebruiken.
+- Geen em-dashes. Gebruik de woorden en zinsbouw niet die Tone of Voice verbiedt.
 - Geen aannames over mijn doelgroep die niet uit Business DNA komen.
-- Notion: zoek databases op naam, haal het live schema op, maak nooit een optie of veld aan.
+- Notion: zoek databases en pagina's op naam, haal het live schema op, maak nooit een optie of veld aan.
 - Niets wegschrijven zonder mijn ja: niet naar Notion, niet naar MEMORY.md, niet naar een bestand. Eerst tonen, dan vragen, dan schrijven.
 - Lever ik zelf een caption aan, dan is die af. Niet herschrijven, niet aanvullen, geen ander haakje. Slide 1 is altijd de eerste regel van de caption.
 - Slidetekst bestaat uit letterlijke zinnen uit de caption. Een kop is een zin uit de caption; niet elke slide heeft er een. Verzin nooit een kop. Emoji's blijven op hun plek, ook in de prompt voor Claude Design.

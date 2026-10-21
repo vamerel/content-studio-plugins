@@ -52,7 +52,7 @@ optie of property aan.
 | Kanaal | Select | Instagram, LinkedIn, Emailmarketing, Facebook |
 | Status | Status | Idee (to-do) → Concept → Designen → Klaar → Gepland → Bezig → Fout (in progress) → Live (complete) |
 | Publicatiedatum | Date | met tijd (Tijd opnemen aan) als je een vrij tijdstip per post wilt; `content-publiceren-metricool` plant op die tijd in |
-| Likes, Views, Comments | Number | staan in de template, maar geen skill of taak vult of leest ze. De cijfers komen uit Instagram, via Composio |
+| Views, Likes, Comments, Opgeslagen, Gedeeld | Number | de cijfers van een geplaatste post. De feedplanner haalt ze uit Instagram (via Composio) en schrijft ze terug bij openen en Vernieuwen, voor posts uit de laatste 60 dagen. Skills mogen ze lezen; geen skill schrijft ze. Op de pagina staan ze in het blok Cijfers, als kolom alleen in de weergave Live |
 | URL | URL | in de API heet dit veld `userDefined:URL`. De Canva-link van het ontwerp; blijft staan na publicatie |
 | Instagram | URL | de link naar de post op Instagram, gezet zodra hij live staat |
 
@@ -61,7 +61,7 @@ optie of property aan.
 | Skill | Schrijft | Status |
 |---|---|---|
 | hookgenerator | Hook, Fase, Pillar | Idee |
-| content-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar | Idee |
+| content-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar; bij een post van `@scrape` de bron in de body | Idee |
 | content-caption | Soort, Kanaal, body (alleen de caption); bij een nieuwe pagina ook Hook, Fase en Pillar | Concept |
 | content-publiceren | Status, en na publicatie Instagram | Gepland → Bezig → Live, of Fout |
 | content-publiceren-metricool | Status, en zodra Metricool geplaatst heeft Instagram | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
@@ -76,7 +76,7 @@ specifiek noemt wat erin moet. Anders blijven ze leeg. `content-caption` vraagt 
 vult ze dus wel in.
 
 **Body:** zie `pagina-opbouw.md`. Bij `hookgenerator` en `content-save` blijft hij leeg, tenzij
-de gebruiker specifiek zegt dat er iets in moet.
+de gebruiker specifiek zegt dat er iets in moet of het een opgehaalde post is.
 
 **Fase-namen mappen** op de live opties door spaties weg te halen en hoofdletters te negeren:
 "Problem Aware" wordt `Problemaware`. Bestaat de optie niet, laat het veld leeg en meld het

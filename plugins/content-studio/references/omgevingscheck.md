@@ -1,8 +1,10 @@
 # Omgevingscheck
 
-Elke skill behalve `content-studio-setup`, `content-publiceren` en `content-publiceren-metricool` begint hiermee, vóór hij iets anders doet.
-`content-publiceren` en `content-publiceren-metricool` draaien als geplande taak zonder lokale bestanden en heeft een eigen
-check, die bij een fout mailt in plaats van een melding in het gesprek te geven. Eén
+Elke skill behalve `content-studio-setup`, `content-publiceren` en `content-publiceren-metricool`
+begint hiermee, vóór hij iets anders doet. De twee publiceerskills draaien als geplande taak
+zonder lokale bestanden en hebben een eigen check, die bij een fout mailt in plaats van een
+melding in het gesprek te geven. `content-scrape` doet alleen de
+Apify-controle uit stap 4. Eén
 controle, één melding als er iets mist, en dan stoppen. Nooit doorwerken met een halve
 omgeving, want dan loopt het gesprek halverwege vast op een fout die de gebruiker niet
 begrijpt.
@@ -18,8 +20,8 @@ algemene "er ging iets mis".
 Probeer een zoekopdracht in Notion. Foutmelding of geen Notion-connector:
 
 > "Ik heb geen verbinding met Notion, en daar staan je Content Calendar en je Content
-> Pillars in. Koppel eerst de Notion-connector: Instellingen, Connectors, Notion. Roep me
-> daarna opnieuw aan."
+> Pillars in. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors en verbind
+> Notion. Roep me daarna opnieuw aan."
 
 Stop.
 
@@ -54,6 +56,7 @@ Stop.
 | content-caption | map `Content Studio/Goedgekeurde captions` | "De map Goedgekeurde captions ontbreekt in Content Studio. Draai `@content-studio-setup` opnieuw; die vult aan wat mist." |
 | content-caption | `Content Studio/Design System/design-system.md`, **pas bij stap 7** | zie de skill zelf; stap 1 tot 6 werken zonder |
 | content-save | niets extra | |
+| content-scrape | Apify-connector | "Ik heb geen verbinding met Apify, en die heb ik nodig om de post op te halen. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors, zoek Apify en klik op Verbinden. Roep me daarna opnieuw aan." |
 
 Faalt een controle, dan stop je. Geen enkele skill behalve de twee setup-skills maakt een map
 aan.

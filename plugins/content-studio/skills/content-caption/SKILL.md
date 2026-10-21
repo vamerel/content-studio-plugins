@@ -23,7 +23,8 @@ volgens HVVA: Herkenning, Verlangen, Vertrouwen, Actie.
 
 Doe dit vóór alles, volgens `references/omgevingscheck.md`:
 
-1. Notion gekoppeld? Anders: melding: koppel de Notion-connector (Instellingen, Connectors, Notion), stop.
+1. Notion gekoppeld? Anders: melding: koppel Notion in de Claude-app via Aanpassingen
+   (Customize) > Connectors, stop.
 2. Content Calendar en Content Pillars gevonden? Anders: `@content-studio-setup`
    aanroepen, stop.
 3. Map Content Studio met `MEMORY.md`? Anders: `@content-studio-setup`, stop.

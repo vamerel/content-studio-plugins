@@ -35,7 +35,7 @@ de voorbeelden nooit. Teken nooit zelf slides of onderdelen voor haar: een nabou
 resultaat slechter dan haar eigen werk.
 
 De scope is **carrousels en reels** op Instagram. LinkedIn-carrousels alleen als er
-LinkedIn-materiaal is. Geen websites, geen decks, geen mails: daar gaat deze cursus niet
+LinkedIn-materiaal is. Geen websites, geen decks, geen mails: daar gaat Content Studio niet
 over, en een design system dat alles wil dekken is voor niets scherp.
 
 ---

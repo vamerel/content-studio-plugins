@@ -1,4 +1,4 @@
-# Prompt: automatisch inplannen via Metricool
+# Prompt: automatisch inplannen via Metricool (route A)
 
 De skill `content-publiceren-metricool` draait als twee geplande taken in Claude: elke ochtend
 plant hij de posts van vandaag in Metricool in, en elke avond controleert hij wat er live
@@ -31,14 +31,14 @@ De taken gebruiken de skill content-publiceren-metricool uit de plugin Content S
 
 Controleer eerst, voordat je iets vraagt:
 1. De plugin Content Studio is geïnstalleerd: de skill content-publiceren-metricool staat in je lijst.
-2. De koppelingen: Notion, Gmail, Canva en Metricool. Metricool koppel ik via Instellingen, Connectors en dan Metricool; ik heb daarvoor een eigen Metricool-account nodig, dat maak ik zelf aan op metricool.com. In Metricool moet mijn Instagram-account gekoppeld zijn (zakelijk, Business of Creator). Haal met de Metricool-koppeling mijn merken op en controleer dat Instagram eraan gekoppeld is. Heb ik meer dan één merk, laat me dan kiezen welk merk het is en onthoud de naam.
+2. De koppelingen: Notion, Gmail, Canva en Metricool. Metricool koppel ik in de Claude-app via Aanpassingen (Customize) > Connectors en dan Metricool; ik heb daarvoor een eigen Metricool-account nodig, dat maak ik zelf aan op metricool.com. In Metricool moet mijn Instagram-account gekoppeld zijn (zakelijk, Business of Creator). Haal met de Metricool-koppeling mijn merken op en controleer dat Instagram eraan gekoppeld is. Heb ik meer dan één merk, laat me dan kiezen welk merk het is en onthoud de naam.
 3. In Notion, de database Content Calendar (zoek op naam). Vind je er meer dan één, sla dan de databases over met "template" in de naam of in het pad (de pagina's erboven). Blijft er meer dan één over, laat me dan kiezen welke de goede is: toon ze met het pad. Onthoud mijn keuze als een korte omschrijving, bijvoorbeeld "de database onder de pagina [naam]".
 4. In die Content Calendar:
    - het veld Status met de opties Gepland, Bezig, Fout en Live;
    - een datumveld Publicatiedatum, waar ik ook een tijd in kan zetten (in Notion: klik op de datum en zet Tijd opnemen aan);
    - een URL-veld URL, voor de Canva-link;
    - een URL-veld Instagram, voor de link naar de geplaatste post.
-Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling via Instellingen, Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
+Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling in de Claude-app via Aanpassingen (Customize) > Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
 
 Vraag daarna in één bericht:
 1. Hoe laat moet de ochtendtaak draaien? Standaard 07:00. Leg uit: de ochtendtaak plant de posts van vandaag in, dus een post kan pas een half uur na de ochtendtaak live. Een post die vroeger moet, plant de avondtaak de dag ervoor in.

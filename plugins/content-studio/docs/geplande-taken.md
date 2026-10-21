@@ -1,4 +1,4 @@
-# Prompt: automatisch inplannen
+# Prompt: automatisch inplannen via Composio (route B)
 
 De skill `content-publiceren` draait als geplande taken in Claude: één taak per postmoment
 dat je zelf kiest (kies uit 08:00, 11:00, 14:00, 17:00 en 20:00, of een eigen tijd), plus een avondcheck. Ze draaien in
@@ -30,7 +30,7 @@ Controleer eerst, voordat je iets vraagt:
    - een datumveld Publicatiedatum;
    - een URL-veld URL, voor de Canva-link;
    - een URL-veld Instagram, voor de link naar de geplaatste post.
-Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling via Instellingen, Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
+Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling in de Claude-app via Aanpassingen (Customize) > Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
 
 Vraag daarna in één bericht:
 1. Op welke vaste momenten wil ik posten? Geef deze keuzes, waarvan ik er één of meer kies: 08:00, 11:00, 14:00, 17:00 en 20:00. Zeg erbij dat ik ook een ander tijdstip mag noemen, op een heel of half uur. Leg erbij uit: elk moment wordt een eigen taak die elke dag één keer kijkt; meer momenten betekent meer runs en dus meer gebruik van je Claude-abonnement. De meeste mensen hebben genoeg aan één of twee.

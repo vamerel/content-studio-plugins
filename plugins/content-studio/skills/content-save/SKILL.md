@@ -2,11 +2,12 @@
 name: content-save
 description: >
   Slaat een idee, haakje of stuk tekst uit het gesprek op als Idee in je Content Calendar in
-  Notion. Eén bestemming, één status. Vult Hook en Pillar in, laat Soort, Kanaal en de body
-  leeg tenzij je die noemt, en toont de rij vóór het wegschrijven. TRIGGERS op @save, @content-save, "sla dit
-  op", "bewaar dit idee", "bewaar dit", "zet dit in mijn contentkalender", "zet dit in
-  Notion", of elke variant van iets uit het gesprek willen bewaren als contentidee binnen
-  Claude Content Studio.
+  Notion, ook een post die je met @scrape hebt opgehaald. Eén bestemming, één status. Vult
+  Hook en Pillar in, laat Soort, Kanaal en de body leeg tenzij je die noemt (bij een opgehaalde
+  post staat de bron in de body), en toont de rij vóór het wegschrijven. Haalt zelf geen links
+  op: dat doet @scrape. TRIGGERS op @save, @content-save, "sla dit op", "bewaar dit idee",
+  "bewaar dit", "zet dit in mijn contentkalender", "zet dit in Notion", of elke variant van
+  iets uit het gesprek willen bewaren als contentidee binnen Claude Content Studio.
 ---
 
 # Save - Claude Content Studio
@@ -14,13 +15,18 @@ description: >
 Iets uit het gesprek bewaren als Idee in de Content Calendar. Meer doet deze skill niet.
 Geen routering naar andere databases, geen classificatie, geen uitwerking.
 
+**Een link ophalen doet deze skill niet.** Plakt de gebruiker een link van Instagram, LinkedIn
+of YouTube en is die post nog niet opgehaald, roep dan eerst `content-scrape` (`@scrape`) aan.
+Die haalt de post op en geeft hem daarna aan deze skill om te bewaren.
+
 ---
 
 ## Omgevingscheck
 
 Doe dit vóór alles, volgens `references/omgevingscheck.md`:
 
-1. Notion gekoppeld? Anders: melding: koppel de Notion-connector (Instellingen, Connectors, Notion), stop.
+1. Notion gekoppeld? Anders: melding: koppel Notion in de Claude-app via Aanpassingen
+   (Customize) > Connectors, stop.
 2. Content Calendar en Content Pillars gevonden? Anders: `@content-studio-setup`
    aanroepen, stop.
 3. Map Content Studio met `MEMORY.md`? Anders: `@content-studio-setup`, stop.
@@ -40,6 +46,11 @@ Bepaal uit het gesprek wat het item is:
 - **Een stuk tekst** (een alinea, een uitgewerkte gedachte): de eerste regel of een korte
   titel wordt de Hook. De tekst zelf gaat alleen in de body als de gebruiker specifiek zegt:
   zet dit in de body.
+
+- **Een opgehaalde post** (van `@scrape`): een korte, concrete werktitel over waar de post
+  over gaat wordt de Hook (maximaal twaalf woorden, in de woorden van de gebruiker als ze die
+  gaf). Neem niet de eerste zin van iemand anders over als haakje. In de body komt de bron,
+  zie stap 4.
 
 Is niet duidelijk wat bewaard moet worden (bijvoorbeeld "sla dit op" na een lang gesprek),
 vraag dan in één zin welk deel: "Bedoel je het haakje over [x], of het hele idee over [y]?"
@@ -74,6 +85,7 @@ Fase:    [alleen als bekend, anders weglaten]
 Soort:   [alleen als genoemd, anders leeg]
 Kanaal:  [alleen als genoemd, anders leeg]
 Body:    leeg [of, als de gebruiker erom vroeg: de eerste regel van wat erin komt]
+         [bij een opgehaalde post: Bron: [platform] · [van wie] · [link]]
 ```
 
 Vraag: "Zal ik dit zo opslaan?" Wacht op ja. Bij een aanpassing: toon de rij opnieuw.
@@ -91,6 +103,9 @@ Vraag: "Zal ik dit zo opslaan?" Wacht op ja. Bij een aanpassing: toon de rij opn
 3. Maak de pagina aan.
 4. **Body: leeg.** Zegt de gebruiker specifiek "zet dit in de body", dan zet je precies dat
    erin, letterlijk en zonder kopje, en niets meer. Verzin geen samenvatting.
+   **Bij een opgehaalde post** zet je in de body één regel `Bron: [platform] · [van wie] ·
+   [link]` en daaronder de opgehaalde tekst als citaat, ingekort tot hooguit 600 tekens. Geen
+   codeblok: een codeblok is op deze pagina's alleen voor je eigen caption.
 
 5. Deel de directe link uit de API-response. Construeer of gok geen URL's. Geeft de API geen
    url terug, gebruik dan het page-id: `https://www.notion.so/{id-zonder-streepjes}`.
@@ -114,6 +129,7 @@ terug.
   al af is. Dan Concept, en de body volgens `references/pagina-opbouw.md`.
 - Soort, Kanaal of de body invullen zonder dat de gebruiker daar specifiek om vraagt.
 - Een haakje herschrijven of verbeteren. Bewaren is bewaren.
+- Zelf een link ophalen via Apify of een andere tool. Dat doet `@scrape`.
 - Wegschrijven zonder dat de rij is getoond en goedgekeurd.
 - Een map aanmaken of in MEMORY.md schrijven. Deze skill leert niet.
 - Bestanden uit `references/` bij naam noemen in je antwoorden.
