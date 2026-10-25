@@ -90,8 +90,8 @@ carrousel. Schrijf altijd de optienaam zoals die in het live schema staat.
 | hookgenerator | Hook, Fase, Pillar | Idee |
 | content-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar; bij een post van `@scrape` de bron in de body | Idee |
 | content-caption | Soort, Kanaal, body (alleen de caption); bij een nieuwe pagina ook Hook, Fase en Pillar | Concept |
-| content-publiceren (plugin content-publiceren-composio) | Status, en na publicatie de postlink | Gepland → Bezig → Live, of Fout |
-| content-publiceren-metricool (plugin content-publiceren-metricool) | Status, en zodra Metricool geplaatst heeft de postlink | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
+| content-publiceren | Status, en na publicatie de postlink | Gepland → Bezig → Live, of Fout |
+| content-publiceren-metricool | Status, en zodra Metricool geplaatst heeft de postlink | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
 
 **Pillar leidt de skill zelf af** uit het haakje of het gesprek, door het naast de body van de
 pillarpagina's te leggen (Wat past hier wel in, Wat past hier niet in). Toon de pillar vóór het

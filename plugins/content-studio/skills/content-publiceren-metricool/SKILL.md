@@ -29,8 +29,7 @@ gebruiker een mail.
 
 **Gebruik één route.** Draait ook de skill `content-publiceren` (Composio) voor dezelfde
 Content Calendar, dan staat elke post er twee keer. Zeg dat bij de proefrun, als je beide
-skills ziet. Elke route is een eigen plugin: `content-publiceren-metricool` (deze) en
-`content-publiceren-composio`.
+skills ziet.
 
 ---
 

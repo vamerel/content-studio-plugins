@@ -1,7 +1,7 @@
 {
   "name": "content-studio",
-  "version": "0.19.0",
-  "description": "Claude Content Studio: vijf Cowork-skills voor je Instagram- en LinkedIn-content, op basis van je Business DNA. Setup, haakjes per fase van de klantreis, captions met slidetekst (bij een carrousel in een zijscherm dat je zelf aanpast) en de prompt voor Claude Design, ook voor meerdere posts tegelijk, posts ophalen via Apify en ideeën bewaren. Automatisch publiceren zit in de losse plugins content-publiceren-metricool (route A) en content-publiceren-composio (route B).",
+  "version": "0.19.1",
+  "description": "Claude Content Studio: zeven Cowork-skills voor je Instagram- en LinkedIn-content, op basis van je Business DNA. Setup, haakjes per fase van de klantreis, captions met slidetekst (bij een carrousel in een zijscherm) en de prompt voor Claude Design, ook voor meerdere posts tegelijk, posts ophalen via Apify, ideeën bewaren, geplande posts automatisch live zetten via Notion en Canva (route A Metricool, route B Composio). Design system: aparte plugin content-designsystem, voor Claude Code.",
   "author": {
     "name": "VA-Merel"
   },
@@ -18,7 +18,11 @@
     "instagram",
     "linkedin",
     "notion",
+    "publiceren",
+    "inplannen",
     "canva",
+    "composio",
+    "metricool",
     "apify"
   ]
 }

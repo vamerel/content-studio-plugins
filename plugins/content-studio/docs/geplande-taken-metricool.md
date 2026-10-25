@@ -1,7 +1,6 @@
 # Prompt: automatisch inplannen via Metricool (route A)
 
-De skill `content-publiceren-metricool` uit de gelijknamige plugin draait als twee geplande
-taken in Claude: elke ochtend
+De skill `content-publiceren-metricool` draait als twee geplande taken in Claude: elke ochtend
 plant hij de posts van vandaag in Metricool in, en elke avond controleert hij wat er live
 staat. Metricool plaatst de post zelf, op de minuut die jij in Notion kiest (bijvoorbeeld
 14:30). De taken draaien in de cloud, dus ook als je laptop dicht is. Ze hebben de
@@ -11,11 +10,8 @@ Metricool is een aparte tool met een eigen account. Het gratis plan plaatst 20 b
 maand: carrousels, posts en stories tellen allemaal mee, en het gaat om gepubliceerde
 berichten. Wil je meer, dan heb je een betaald plan nodig (de goedkoopste beginnen rond € 16
 per maand bij jaarbetaling, exclusief btw; kijk op metricool.com voor de actuele prijzen).
-Zonder Metricool kun je de andere route kiezen: de plugin `content-publiceren-composio`, die
-op vaste postmomenten via Composio plaatst. Kies één van de twee, niet allebei.
-
-Installeer eerst de plugin van je route: `content-publiceren-metricool`, uit de marketplace
-`vamerel/content-studio-plugins` (Aanpassen > Plugins, onder Chat & Cowork).
+Zonder Metricool kun je de andere route kiezen: de skill `content-publiceren`, die op vaste
+postmomenten via Composio plaatst. Kies één van de twee, niet allebei.
 
 Plak deze prompt in een nieuw gesprek, nooit terwijl een skill loopt. Gebruik een gewoon
 gesprek zonder map of project eraan: een taak die lokale bestanden nodig heeft, draait alleen
@@ -31,10 +27,10 @@ EINDGEBRUIKER
 Ik ben coach of online dienstverlener. Ik ben niet technisch en heb nog nooit een geplande taak gemaakt. Ik ben bang dat er per ongeluk iets live gaat wat nog niet af is. Zeg kort wat je doet en waarom, zonder jargon.
 
 CONTEXT
-De taken gebruiken de skill content-publiceren-metricool uit de plugin content-publiceren-metricool. Die leest per post de caption uit Notion en de slides uit Canva, en zet de post in Metricool met de datum en tijd uit Notion. Metricool plaatst hem zelf op Instagram.
+De taken gebruiken de skill content-publiceren-metricool uit de plugin Content Studio. Die leest per post de caption uit Notion en de slides uit Canva, en zet de post in Metricool met de datum en tijd uit Notion. Metricool plaatst hem zelf op Instagram.
 
 Controleer eerst, voordat je iets vraagt:
-1. De plugin content-publiceren-metricool is geïnstalleerd: de skill content-publiceren-metricool staat in je lijst. Staat hij er niet, zeg dan dat ik eerst die plugin installeer uit de marketplace vamerel/content-studio-plugins (Aanpassen > Plugins, onder Chat & Cowork), en ga pas verder als hij er staat.
+1. De plugin Content Studio is geïnstalleerd: de skill content-publiceren-metricool staat in je lijst.
 2. De koppelingen: Notion, Gmail, Canva en Metricool. Metricool koppel ik in de Claude-app via Aanpassingen (Customize) > Connectors en dan Metricool; ik heb daarvoor een eigen Metricool-account nodig, dat maak ik zelf aan op metricool.com. In Metricool moet mijn Instagram-account gekoppeld zijn (zakelijk, Business of Creator). Haal met de Metricool-koppeling mijn merken op en controleer dat Instagram eraan gekoppeld is. Heb ik meer dan één merk, laat me dan kiezen welk merk het is en onthoud de naam.
 3. In Notion, de database Content Calendar (zoek op naam). Vind je er meer dan één, sla dan de databases over met "template" in de naam of in het pad (de pagina's erboven). Blijft er meer dan één over, laat me dan kiezen welke de goede is: toon ze met het pad. Onthoud mijn keuze als een korte omschrijving, bijvoorbeeld "de database onder de pagina [naam]".
 4. In die Content Calendar:

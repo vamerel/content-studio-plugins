@@ -4,28 +4,18 @@
     "name": "VA-Merel"
   },
   "metadata": {
-    "description": "Claude Content Studio van VA-Merel: de plugin Content Studio, het Content Design System en de twee publiceerplugins (route A Metricool, route B Composio)."
+    "description": "Claude Content Studio van VA-Merel: de plugin Content Studio en het Content Design System."
   },
   "plugins": [
     {
       "name": "content-studio",
       "source": "./plugins/content-studio",
-      "description": "Claude Content Studio: haakjes, captions, prompts voor Claude Design en ideeën bewaren, op basis van je Business DNA. Installeren in Chat & Cowork."
+      "description": "Claude Content Studio: haakjes, captions, prompts voor Claude Design, ideeën bewaren en automatisch publiceren, op basis van je Business DNA. Installeren in Chat & Cowork."
     },
     {
       "name": "content-designsystem",
       "source": "./plugins/content-designsystem",
       "description": "Content Design System: de skill @designsystem voor Claude Content Studio. Alleen installeren in Claude Code."
-    },
-    {
-      "name": "content-publiceren-metricool",
-      "source": "./plugins/content-publiceren-metricool",
-      "description": "Route A: je geplande Instagram-posts uit Notion inplannen via Metricool, op de minuut die je kiest. Alleen installeren als je via Metricool inplant. Installeren in Chat & Cowork."
-    },
-    {
-      "name": "content-publiceren-composio",
-      "source": "./plugins/content-publiceren-composio",
-      "description": "Route B: je geplande Instagram-posts uit Notion op vaste postmomenten live zetten via Composio. Alleen installeren als je via Composio inplant. Installeren in Chat & Cowork."
     }
   ]
 }

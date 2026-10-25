@@ -1,9 +1,8 @@
 # Omgevingscheck
 
-Elke skill van deze plugin behalve `content-studio-setup` begint hiermee, vóór hij iets anders
-doet. De twee publiceerskills (`content-publiceren` en `content-publiceren-metricool`) zitten
-in hun eigen plugin, draaien als geplande taak zonder lokale bestanden en hebben een eigen
-check, die bij een fout mailt in plaats van een
+Elke skill behalve `content-studio-setup`, `content-publiceren` en `content-publiceren-metricool`
+begint hiermee, vóór hij iets anders doet. De twee publiceerskills draaien als geplande taak
+zonder lokale bestanden en hebben een eigen check, die bij een fout mailt in plaats van een
 melding in het gesprek te geven. `content-scrape` doet alleen de
 Apify-controle uit stap 4. Eén
 controle, één melding als er iets mist, en dan stoppen. Nooit doorwerken met een halve

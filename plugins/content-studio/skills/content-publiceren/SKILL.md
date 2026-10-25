@@ -69,7 +69,7 @@ vragen en wacht nergens op akkoord. Alles wat niet klopt, gaat in de mail.
 - **Geen opties of properties aanmaken** in Notion. Ontbreekt er een status, dan stop je en
   meld je het.
 - **Niet naast Metricool draaien.** Gebruikt de gebruiker Metricool om in te plannen, dan
-  hoort daar de skill `content-publiceren-metricool` bij, uit de gelijknamige plugin. Draaien allebei voor dezelfde
+  hoort daar de skill `content-publiceren-metricool` bij. Draaien allebei voor dezelfde
   Content Calendar, dan staat elke post er twee keer.
 
 ---
