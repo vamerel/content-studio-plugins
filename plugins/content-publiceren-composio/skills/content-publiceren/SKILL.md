@@ -5,7 +5,7 @@ description: >
   Draait als geplande taak, zonder dat jij iets hoeft te doen: op je vaste postmomenten (zelf
   te kiezen, bijvoorbeeld 08:00 en 19:00) gaat de carrousel of post live (caption uit Notion,
   slides uit Canva, posten via Composio), daarna staat hij in Notion op Live met de
-  Instagram-link in een eigen veld en krijg je een mail met die link. Reels plaats je zelf.
+  link naar de post en krijg je een mail met die link. Reels plaats je zelf.
   's Avonds krijg je een mail met de posts van morgen. Kent drie modi: publiceren, avondcheck
   en proefrun. TRIGGERS op @publiceren,
   @content-publiceren, "publiceer de post van vandaag", "avondcheck", "proefrun publiceren",
@@ -69,7 +69,7 @@ vragen en wacht nergens op akkoord. Alles wat niet klopt, gaat in de mail.
 - **Geen opties of properties aanmaken** in Notion. Ontbreekt er een status, dan stop je en
   meld je het.
 - **Niet naast Metricool draaien.** Gebruikt de gebruiker Metricool om in te plannen, dan
-  hoort daar de skill `content-publiceren-metricool` bij. Draaien allebei voor dezelfde
+  hoort daar de skill `content-publiceren-metricool` bij, uit de gelijknamige plugin. Draaien allebei voor dezelfde
   Content Calendar, dan staat elke post er twee keer.
 
 ---
@@ -96,9 +96,13 @@ ontbreekt, en stop. Publiceer nooit met een halve omgeving.
 
    Haal daarna het live schema op.
 2. **Statussen en velden:** de Status-property moet de opties `Gepland`, `Bezig`, `Live` en
-   `Fout` hebben, en er moet een URL-property `Instagram` zijn. Mist er iets: noem het bij
-   naam en zeg dat het met de hand in Notion toegevoegd moet worden (Bezig en Fout in de
-   groep In progress, Live in Complete).
+   `Fout` hebben. Bepaal welk veld de Canva-link is en welk de postlink, volgens **Welk veld
+   is de Canva-link, welk de postlink?** in `references/notion-schema.md`: met een
+   URL-property `Canva` is dat `Canva` en `URL`, zonder `Canva` is het `URL` en `Instagram`.
+   Lees `URL` nooit als Canva-link zonder deze controle. Mist er iets: noem het bij naam en
+   zeg dat het met de hand in Notion toegevoegd moet worden (Bezig en Fout in de groep In
+   progress, Live in Complete; ontbreekt het postlinkveld, dan een URL-property Canva voor de
+   Canva-links, zodat de postlink in URL komt).
 3. **Canva-connector** beschikbaar (`resolve-shortlink`, `get-export-formats`,
    `export-design`).
 4. **Composio met een actieve Instagram-koppeling.** Zoek de Instagram-tools via
@@ -161,7 +165,8 @@ de gebruiker die na publicatie toevoegen via Bewerken in de Instagram-app.
 
 Doe deze controles in deze volgorde. Faalt er één, dan gaat de post niet live.
 
-1. **Canva-link.** Het URL-veld bevat een link naar canva.link of canva.com/design. Een
+1. **Canva-link.** Het Canva-linkveld (`Canva`, of `URL` in een oudere kalender, zie de
+   Omgevingscheck) bevat een link naar canva.link of canva.com/design. Een
    shortlink (`canva.link/<id>`) zet je om met `resolve-shortlink`; het ontwerp-ID begint
    met `D` en staat na `/design/`.
 2. **Caption.** Haal de pagina op met `notion-fetch`. De caption is de tekst binnen het
@@ -179,7 +184,7 @@ Doe deze controles in deze volgorde. Faalt er één, dan gaat de post niet live.
    - **Reel:** de skill publiceert hem niet, dus deze controle en de exportcontrole
      vervallen. Controle 2 en 3 (caption en lengte) gelden in de avondcheck wel, want de
      gebruiker plakt die caption straks zelf.
-5. **Nog niet live.** Het veld Instagram is leeg, en het URL-veld bevat geen
+5. **Nog niet live.** Het postlinkveld is leeg, en ook het Canva-linkveld bevat geen
    instagram.com-link (oudere rijen). Staat er al een Instagram-link, dan is de post al
    geplaatst: zet de status op Live en sla hem over.
 
@@ -192,12 +197,12 @@ de gebruiker zelf plaatste (reels uit Edits, posts met Instagram-muziek) op Live
 
 1. Haal de posts van de laatste drie dagen op met `INSTAGRAM_GET_IG_USER_MEDIA` (velden
    `id,caption,permalink,timestamp,media_product_type`).
-2. Sla posts over waarvan de permalink al in het veld Instagram van een rij staat.
+2. Sla posts over waarvan de permalink al in het postlinkveld van een rij staat.
 3. Zoek voor elke overgebleven post een rij met Kanaal Instagram en Status Gepland of Klaar
    waarvan de caption (de tekst in het codeblok) met dezelfde eerste zestig tekens begint,
    of waarvan de Hook gelijk is aan de eerste regel van de caption. Vergelijk
    hoofdletterongevoelig, zonder emoji's en zonder leestekens aan het eind.
-4. **Precies één match:** zet die rij op Live en vul Instagram met de permalink. Wijkt de
+4. **Precies één match:** zet die rij op Live en zet de permalink in het postlinkveld. Wijkt de
    datum van de post af van de Publicatiedatum, zet dan de datum van de post erin.
 5. **Geen match of meer dan één:** niets wijzigen. Noem de post in de avondmail onder
    Aandacht nodig, met de link, zodat de gebruiker hem zelf kan koppelen.
@@ -271,8 +276,10 @@ de foutmelding van Instagram letterlijk mee.
 
 1. Haal de gepubliceerde post op met `INSTAGRAM_GET_IG_MEDIA` (velden
    `id,permalink,timestamp`).
-2. Werk de rij in Notion bij: Status `Live`, Instagram = de permalink. De Canva-link in URL
-   blijft staan, zodat het ontwerp vanuit de feedplanner te openen blijft. Publicatiedatum
+2. Werk de rij in Notion bij: Status `Live`, en de permalink in het postlinkveld (`URL`, in
+   de API `userDefined:URL`; in een oudere kalender `Instagram`). De Canva-link blijft staan,
+   zodat het ontwerp vanuit de feedplanner te openen blijft. Schrijf de permalink nooit in
+   het Canva-linkveld. Publicatiedatum
    blijft staan. Andere velden ongewijzigd.
 
 Lukt het bijwerken in Notion niet, maar staat de post wel live: mail dat met de permalink,
@@ -450,6 +457,8 @@ Schrijfregels: geen em-dashes, geen jargon zonder uitleg, geen "Helaas".
 - Bestanden uit `references/` bij naam noemen in mails of antwoorden.
 - Een kale URL in de HTML-versie van een mail, of de caption in de avondmail.
 - Een database met "template" in de naam of het pad als Content Calendar gebruiken.
+- `URL` lezen als Canva-link of `Instagram` als postlink zonder te kijken of er een property
+  `Canva` is.
 
 ## Referentiebestanden
 

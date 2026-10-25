@@ -12,6 +12,11 @@ Claude-app heeft voor Chat & Cowork en voor Claude Code elk een eigen lijst:
 | `businessdna` | `vamerel/businessdna` | **Chat & Cowork** (heb je waarschijnlijk al) |
 | `content-studio` | `vamerel/content-studio-plugins` | **Chat & Cowork** |
 | `content-designsystem` | `vamerel/content-studio-plugins` | **alleen Claude Code**, zie de aparte installatie-instructie |
+| `content-publiceren-metricool` | `vamerel/content-studio-plugins` | **Chat & Cowork**, alleen als je inplant via Metricool (route A) |
+| `content-publiceren-composio` | `vamerel/content-studio-plugins` | **Chat & Cowork**, alleen als je inplant via Composio (route B) |
+
+Van de twee publiceerplugins installeer je er één: die van de route die je kiest. Dat doe je
+pas als je gaat inplannen. Installeer je ze allebei, dan staat elke post er twee keer.
 
 ## Had je de plugin al uit een bestand geïnstalleerd?
 
@@ -49,9 +54,16 @@ hoef je niets voor te doen.
 | `@content-studio-setup` | omgeving controleren, map Content Studio maken, pillars vullen, projectinstructies leveren |
 | `@haakjes` | vijf haakjes voor één probleem, één per fase, opslaan als Idee |
 | `@caption` | caption en slidetekst, opslaan als Concept, plakblok voor Claude Design |
+| "maak de prompts voor Claude Design" | de prompts voor meerdere posts tegelijk, uit captions die al in Notion staan |
 | `@save` | een idee uit het gesprek bewaren als Idee |
-| `@publiceren` | je geplande posts op vaste momenten via Composio op Instagram zetten, met een avondmail |
-| `@publiceren-metricool` | je geplande posts in Metricool inplannen op de tijd uit Notion, en 's avonds op Live zetten |
+| `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
+
+Uit de publiceerplugin van je route:
+
+| Plugin | Aanroepen met | Wat hij doet |
+|---|---|---|
+| `content-publiceren-metricool` (route A) | `@publiceren-metricool` | je geplande posts in Metricool inplannen op de tijd uit Notion, en 's avonds op Live zetten; "plan ze ook in Metricool" plant posts van later in de week meteen in |
+| `content-publiceren-composio` (route B) | `@publiceren` | je geplande posts op vaste momenten via Composio op Instagram zetten, met een avondmail |
 
 ## Nieuwe versies
 

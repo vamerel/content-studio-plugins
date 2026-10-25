@@ -1,9 +1,13 @@
 # Content Studio
 
-Zeven Cowork-skills waarmee je je Instagram- en LinkedIn-content systematiseert op basis van je
-Business DNA. Het design system is een aparte skill, `content-designsystem`, omdat die
-in Claude Code draait en Claude Code een eigen lijst heeft. Haakjes en captions in Notion, visuals via Claude Design, automatisch publiceren op
-Instagram. De cijfers van je posts staan in de feedplanner en in de Content Calendar.
+Vijf Cowork-skills waarmee je je Instagram- en LinkedIn-content systematiseert op basis van je
+Business DNA. Haakjes en captions in Notion, visuals via Claude Design. Het design system is
+een aparte plugin, `content-designsystem`, omdat die in Claude Code draait en Claude Code een
+eigen lijst heeft. Automatisch publiceren op Instagram zit in twee losse plugins in dezelfde
+marketplace, één per route: `content-publiceren-metricool` (route A) en
+`content-publiceren-composio` (route B). De koper installeert alleen die van haar route.
+De cijfers van je posts haalt de feedplanner via Composio uit Instagram; ze staan niet in
+Notion.
 
 ## Wat zit erin
 
@@ -11,18 +15,27 @@ Instagram. De cijfers van je posts staan in de feedplanner en in de Content Cale
 |---|---|---|
 | `content-studio-setup` | `@content-studio-setup` | controleert Notion en de Social Media Planner, maakt de map Content Studio, vult de Content Pillars uit Business DNA, levert de projectinstructies |
 | `hookgenerator` | `@haakjes` | vijf haakjes voor één probleem, één per fase van de klantreis, opslaan als Idee |
-| `content-caption` | `@caption` | caption en slidetekst, toetsen aan de pillars, opslaan als Concept, bij een carrousel de slide-indeling in een zijscherm dat je zelf aanpast, plakblok voor Claude Design |
+| `content-caption` | `@caption` | caption en slidetekst, toetsen aan de pillars, opslaan als Concept, bij een carrousel de slide-indeling in een zijscherm dat je zelf aanpast, plakblok voor Claude Design. Met "maak de prompts voor Claude Design" de prompts voor meerdere posts tegelijk, uit captions die al in Notion staan |
 | `content-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify; daarna bewaren met `@save` |
 | `content-save` | `@save` | een idee uit het gesprek of een opgehaalde post bewaren als Idee |
-| `content-publiceren-metricool` | `@publiceren-metricool` | route A, met Metricool: als geplande taak elke ochtend de carrousels en posts van vandaag in Metricool zetten op de tijd uit Notion (Notion, Canva, Metricool), 's avonds geplaatste posts op Live zetten met de Instagram-link; mailt wat is ingepland en wat live staat; reels plaats je zelf |
-| `content-publiceren` | `@publiceren` | route B, met Composio: als geplande taak op je eigen postmomenten de carrousel of post van vandaag op Instagram zetten (Notion, Canva, Composio) en mailen met de link, 's avonds een mail met de posts van morgen; reels plaats je zelf |
+
+In de losse publiceerplugins, uit dezelfde marketplace:
+
+| Plugin | Skill | Aanroepen met | Doet |
+|---|---|---|---|
+| `content-publiceren-metricool` | `content-publiceren-metricool` | `@publiceren-metricool` | route A, met Metricool: als geplande taak elke ochtend de carrousels en posts van vandaag in Metricool zetten op de tijd uit Notion (Notion, Canva, Metricool), 's avonds geplaatste posts op Live zetten met de link naar de post; in een gesprek ook vooruit inplannen; reels plaats je zelf |
+| `content-publiceren-composio` | `content-publiceren` | `@publiceren` | route B, met Composio: als geplande taak op je eigen postmomenten de carrousel of post van vandaag op Instagram zetten (Notion, Canva, Composio) en mailen met de link, 's avonds een mail met de posts van morgen; reels plaats je zelf |
+
+De skillnamen en triggers van de publiceerskills zijn gelijk gebleven toen ze uit deze plugin
+gingen, zodat bestaande geplande taken blijven werken.
 
 ## Hoe het samenhangt
 
 - **Notion is de bron van waarheid voor content:** haakjes, captions, status, publicatiedatum,
-  de Instagram-link en de cijfers (Views, Likes, Comments, Opgeslagen, Gedeeld) staan in de
-  Content Calendar. De uitleg per pillar staat in de body van de pillarpagina's in Content
-  Pillars.
+  de Canva-link (veld Canva) en de link naar de post op Instagram (veld URL) staan in de
+  Content Calendar. Een oudere kopie van de template met de Canva-link in URL en de postlink
+  in Instagram werkt ook. Cijfers staan niet in Notion. De uitleg per pillar staat in de body
+  van de pillarpagina's in Content Pillars.
 - **De pagina van een post** bevat alleen de caption, in één codeblok. Publiceren en de
   feedplanner lezen hem daar.
 - **`Content Studio/Design System/design-system.md` is de bron van waarheid voor het design
@@ -61,7 +74,7 @@ alleen-lezen.
 ```
 content-studio/
 ├── .claude-plugin/plugin.json
-├── skills/<skill>/SKILL.md        zeven skills
+├── skills/<skill>/SKILL.md        vijf skills
 ├── references/                    gedeeld door de skills
 │   ├── notion-schema.md           de twee databases, naamvarianten, pillar-kopjes
 │   ├── pagina-opbouw.md           de body van een kalenderpagina: alleen de caption
@@ -73,9 +86,19 @@ content-studio/
     ├── installatie.md
     ├── projectinstructies-content-studio.md
     ├── readme-content-studio.md
-    ├── geplande-taken-metricool.md  prompt om de taken van route A in te stellen (Metricool)
-    ├── geplande-taken.md          prompt om de taken van route B in te stellen (Composio)
-    └── prompt-haakjesmail.md      prompt voor de taak Elke week haakjes in je inbox
+    ├── prompt-haakjesmail.md      prompt voor de taak Elke week haakjes in je inbox
+    ├── prompt-contentmedewerker.md  prompt voor de taak Je contentmedewerker
+    └── prompt-canva-links.md      prompt om de Canva-links in Notion te zetten
+```
+
+In deze bronmap staan ook de twee publiceerplugins. `publiceer-marketplace.ps1` zet ze als
+losse plugins in de marketplace, met een kopie van `references/notion-schema.md` en
+`references/pagina-opbouw.md`:
+
+```
+publiceren/
+├── metricool/    plugin content-publiceren-metricool (route A), met docs/geplande-taken-metricool.md
+└── composio/     plugin content-publiceren-composio (route B), met docs/geplande-taken.md
 ```
 
 ## Installeren

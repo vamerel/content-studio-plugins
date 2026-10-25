@@ -1,9 +1,13 @@
 # Prompt: automatisch inplannen via Composio (route B)
 
-De skill `content-publiceren` draait als geplande taken in Claude: één taak per postmoment
+De skill `content-publiceren` uit de plugin `content-publiceren-composio` draait als geplande taken in Claude: één taak per postmoment
 dat je zelf kiest (kies uit 08:00, 11:00, 14:00, 17:00 en 20:00, of een eigen tijd), plus een avondcheck. Ze draaien in
 de cloud, dus ook als je laptop dicht is. De taken hebben de koppelingen Notion, Gmail,
 Composio (met je Instagram) en Canva nodig.
+
+Installeer eerst de plugin van je route: `content-publiceren-composio`, uit de marketplace
+`vamerel/content-studio-plugins` (Aanpassen > Plugins, onder Chat & Cowork). Kies één route:
+installeer niet ook `content-publiceren-metricool`.
 
 Plak deze prompt in een nieuw gesprek, nooit terwijl een skill loopt. Gebruik een gewoon
 gesprek zonder map of project eraan: een taak die lokale bestanden nodig heeft, draait alleen
@@ -19,17 +23,18 @@ EINDGEBRUIKER
 Ik ben coach of online dienstverlener. Ik ben niet technisch en heb nog nooit een geplande taak gemaakt. Ik ben bang dat er per ongeluk iets live gaat wat nog niet af is. Zeg kort wat je doet en waarom, zonder jargon.
 
 CONTEXT
-De taken gebruiken de skill content-publiceren uit de plugin Content Studio. Die leest per post de caption uit Notion en de slides uit Canva, en post via Composio op Instagram.
+De taken gebruiken de skill content-publiceren uit de plugin content-publiceren-composio. Die leest per post de caption uit Notion en de slides uit Canva, en post via Composio op Instagram.
 
 Controleer eerst, voordat je iets vraagt:
-1. De plugin Content Studio is geïnstalleerd: de skill content-publiceren staat in je lijst.
+1. De plugin content-publiceren-composio is geïnstalleerd: de skill content-publiceren staat in je lijst. Staat hij er niet, zeg dan dat ik eerst die plugin installeer uit de marketplace vamerel/content-studio-plugins (Aanpassen > Plugins, onder Chat & Cowork), en ga pas verder als hij er staat.
 2. De koppelingen: Notion, Gmail, Canva en Composio. In Composio moet een actieve koppeling met mijn Instagram-account staan, en dat moet een zakelijk account zijn (Business of Creator).
 3. In Notion, de database Content Calendar (zoek op naam). Vind je er meer dan één, sla dan de databases over met "template" in de naam of in het pad (de pagina's erboven). Blijft er meer dan één over, laat me dan kiezen welke de goede is: toon ze met het pad. Onthoud mijn keuze als een korte omschrijving, bijvoorbeeld "de database onder de pagina [naam]".
 4. In die Content Calendar:
    - het veld Status met de opties Gepland, Bezig, Fout en Live;
    - een datumveld Publicatiedatum;
-   - een URL-veld URL, voor de Canva-link;
-   - een URL-veld Instagram, voor de link naar de geplaatste post.
+   - een URL-veld Canva, voor de Canva-link;
+   - een URL-veld URL, voor de link naar de geplaatste post.
+   Heb ik een oudere kalender zonder het veld Canva, met de Canva-link in URL en een URL-veld Instagram voor de link naar de post, dan is dat ook goed.
 Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling in de Claude-app via Aanpassingen (Customize) > Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
 
 Vraag daarna in één bericht:
@@ -43,7 +48,7 @@ De avondcheck draait om 20:00. Ligt een postmoment om 20:00 of later, zet de avo
 
 Leg daarna in maximaal zes korte punten uit wat er gaat gebeuren:
 - Carrousels en posts met status Gepland gaan live op de Publicatiedatum, op het postmoment dat ik in Notion als tijd bij de Publicatiedatum zet. Zonder tijd gaat de post op mijn eerste postmoment. Zet ik een tijd die geen postmoment is, dan gaat hij op het eerstvolgende postmoment.
-- Een post moet de Canva-link in het veld URL en de caption in een codeblok op de pagina hebben. Zodra hij live staat, krijg ik een mail met de link naar de post op Instagram.
+- Een post moet de Canva-link in het veld Canva en de caption in een codeblok op de pagina hebben. Zodra hij live staat, komt de link naar de post in het veld URL en krijg ik een mail met die link.
 - Reels plaats ik zelf in Instagram of Edits. De avondmail zet de links naar Notion en Canva klaar, met de stappen.
 - Eén post per postmoment. Gemiste posts gaan niet alsnog live; die zie ik in de avondmail.
 - Plan ik daarnaast ook met de hand in Instagram of Meta Business Suite, dan staat de post er twee keer.
@@ -91,6 +96,7 @@ EISEN
 - In elke taak staat dezelfde regel Postmomenten, met alle momenten die ik koos.
 - Elke publicatietaak start 5 minuten vóór zijn postmoment; de regel Dit postmoment is het echte postmoment.
 - Moest ik een Content Calendar kiezen, dan staat in elke taak dezelfde regel Content Calendar.
+- Draait er al een taak van de skill content-publiceren-metricool voor dezelfde Content Calendar, zeg dan dat die uit moet, anders staat elke post er twee keer.
 - Kun je de taken niet zelf aanmaken, geef dan per taak de opdracht in één kopieerblok, plus genummerde stappen om ze zelf aan te maken onder Scheduled in de zijbalk van de Claude-app: geen map kiezen (dan draait hij in de cloud), dagelijks, 5 minuten vóór het postmoment (de avondcheck op zijn eigen tijd).
 - Zeg na het aanmaken welke post als eerstvolgende live gaat, op welke datum en op welk postmoment, zodat ik weet wanneer de eerste echte run is.
 - Schrijf kort en zonder jargon.

@@ -1,26 +1,27 @@
 <title>Slide-indeling</title>
-<meta name="slide-indeling-versie" content="1">
+<meta name="slide-indeling-versie" content="2">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Zijscherm van content-caption: één smalle kolom met slides onder elkaar, vaste opslaanbalk onderaan.
    Neutrale opmaak: de koper heeft haar eigen huisstijl. Publiceren met capabilities {"db": {}}.
-   Leest en schrijft één document: posts/huidig. */
+   Leest reeks/huidig (welke posts, in welke volgorde) en per post posts/<id>.
+   Bij meer dan één post: doorklikken met Vorige en Volgende; opslaan geldt per post. */
 :root{
   --bg:#f3f4f6; --surface:#ffffff; --fg:#1b1f24; --muted:#5d6670; --line:#d9dde2;
-  --accent:#2c5b6e; --accent-fg:#ffffff; --ok:#2f6b45;
+  --accent:#2c5b6e; --accent-fg:#ffffff; --ok:#2f6b45; --ok-bg:#e3f1e7;
   --bad:#b3261e; --bad-bg:#fbe9e7; --chip:#e8ecef;
   --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#15181c; --surface:#1e2227; --fg:#e8eaed; --muted:#9aa3ad; --line:#323840;
-  --accent:#7fb3c8; --accent-fg:#0f1418; --ok:#8fd0a5;
+  --accent:#7fb3c8; --accent-fg:#0f1418; --ok:#8fd0a5; --ok-bg:#1d3326;
   --bad:#ff8a80; --bad-bg:#3a1f1d; --chip:#2a3037; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#15181c; --surface:#1e2227; --fg:#e8eaed; --muted:#9aa3ad; --line:#323840;
-  --accent:#7fb3c8; --accent-fg:#0f1418; --ok:#8fd0a5;
+  --accent:#7fb3c8; --accent-fg:#0f1418; --ok:#8fd0a5; --ok-bg:#1d3326;
   --bad:#ff8a80; --bad-bg:#3a1f1d; --chip:#2a3037; color-scheme:dark}
 html,body{background:var(--bg);color:var(--fg)}
 [hidden]{display:none!important}
@@ -33,8 +34,21 @@ h1{font-size:1.45rem;margin:0;font-weight:700;text-wrap:balance}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
 .chip{background:var(--chip);color:var(--fg);border-radius:999px;padding:2px 10px;font-size:.8rem;font-weight:500}
 .chip.bad{background:var(--bad-bg);color:var(--bad)}
+.chip.ok{background:var(--ok-bg);color:var(--ok)}
 .hint{color:var(--muted);font-size:.9rem;margin:0}
 .banner{background:var(--surface);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.nav{background:var(--surface);border-radius:10px;padding:10px 12px;display:grid;gap:10px}
+.nav-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav-top strong{font-variant-numeric:tabular-nums}
+.posts{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.posts button{display:flex;align-items:center;gap:6px;max-width:100%;background:none;border:1px solid var(--line);
+  color:var(--fg);padding:4px 10px;font-size:.85rem;text-align:left}
+.posts button[aria-current="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.posts .nr{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.posts .tk{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:22ch}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--line)}
+.dot.saved{background:var(--ok)}
+.dot.dirty{background:var(--bad)}
 .list{display:grid;gap:14px}
 .slide{background:var(--surface);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
 .slide.over{background:var(--bad-bg)}
@@ -50,7 +64,7 @@ textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .actions{display:flex;gap:6px;flex-wrap:wrap}
 button{font:inherit;cursor:pointer;border-radius:8px}
 .ghost{background:none;border:1px solid var(--line);color:var(--fg);padding:4px 10px;font-size:.85rem}
-.ghost:hover{border-color:var(--accent)}
+.ghost:hover,.posts button:hover{border-color:var(--accent)}
 .ghost:disabled{opacity:.45;cursor:default}
 button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);
@@ -60,6 +74,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .status{font-size:.9rem;color:var(--muted)}
 .status.saved{color:var(--ok)}
 .status.warn{color:var(--bad)}
+.bar-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tally{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .primary{background:var(--accent);color:var(--accent-fg);border:0;padding:10px 20px;font-weight:600}
 .primary:disabled{opacity:.5;cursor:default}
 .empty{background:var(--surface);border-radius:10px;padding:28px 20px;text-align:center;color:var(--muted)}
@@ -70,10 +86,18 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <header>
     <h1 id="titel">Slide-indeling</h1>
     <div class="meta" id="meta"></div>
-    <p class="hint">Pas de tekst per slide aan. Verplaats een zin door hem te knippen en in een andere slide te plakken. Klopt het? Druk op Opslaan en typ <strong>akkoord</strong> in de chat.</p>
+    <p class="hint" id="hint">Pas de tekst per slide aan. Verplaats een zin door hem te knippen en in een andere slide te plakken. Klopt het? Druk op Opslaan en typ <strong>akkoord</strong> in de chat.</p>
   </header>
+  <nav class="nav" id="nav" aria-label="Posts" hidden>
+    <div class="nav-top">
+      <button class="ghost" id="vorige">Vorige</button>
+      <strong id="positie"></strong>
+      <button class="ghost" id="volgende">Volgende</button>
+    </div>
+    <ul class="posts" id="posts"></ul>
+  </nav>
   <div id="banner" class="banner" hidden>
-    <span>In de chat is een nieuwe indeling klaargezet.</span>
+    <span id="banner-tekst">In de chat is een nieuwe indeling klaargezet.</span>
     <button class="ghost" id="laad">Nieuwe indeling laden</button>
   </div>
   <div class="list" id="list">
@@ -84,16 +108,27 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <div class="bar">
   <div class="bar-in">
     <span class="status" id="status">De indeling wordt geladen</span>
-    <button class="primary" id="opslaan" disabled>Opslaan</button>
+    <div class="bar-right">
+      <span class="tally" id="tally"></span>
+      <button class="primary" id="opslaan" disabled>Opslaan</button>
+    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var state = null;        // {haakje, soort, limieten, maxSlides, slides:[{rol,tekst}], versie, status}
-  var dirty = false;
-  var pending = null;      // nieuwere versie uit de database terwijl er hier nog niet opgeslagen is
-  var docRef = null;
+  // volgorde: de ids uit reeks/huidig. server: wat er in de database staat, per id.
+  // draft: wat hier op het scherm staat, per id ({slides, dirty}). pending: nieuwere versie uit de database
+  // voor een post die hier nog niet is opgeslagen.
+  var volgorde = [];
+  var reeksVersie = null;
+  var server = {};
+  var draft = {};
+  var pending = {};
+  var pendingReeks = null;
+  var huidig = 0;
+  var db = null;
+  var bezig = {};          // id -> true tijdens het opslaan
   var listEl = document.getElementById('list');
   var statusEl = document.getElementById('status');
   var saveBtn = document.getElementById('opslaan');
@@ -107,32 +142,89 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     parts.forEach(function(p){ n += pict.test(p) ? 2 : 1; });
     return n;
   }
-  function limiet(rol){
-    var l = (state && state.limieten) || {};
+  function idNu(){ return volgorde[huidig]; }
+  function post(id){ return server[id] || null; }
+  function slidesVan(id){ return draft[id] ? draft[id].slides : (server[id] ? server[id].slides : []); }
+  function isDirty(id){ return !!(draft[id] && draft[id].dirty); }
+  function isOpgeslagen(id){ return !!(server[id] && server[id].status === 'opgeslagen' && !isDirty(id)); }
+  function limiet(id, rol){
+    var l = (post(id) && post(id).limieten) || {};
     return l[rol] != null ? l[rol] : (l['Tekstslide'] != null ? l['Tekstslide'] : null);
   }
-  function max(){ return state && state.maxSlides ? state.maxSlides : null; }
+  function max(id){ return post(id) && post(id).maxSlides ? post(id).maxSlides : null; }
+  // Het nummer van de post zoals in de chat (nr); zonder nr de plek in dit scherm
+  function nummer(i){ var p = post(volgorde[i]); return p && p.nr ? p.nr : i + 1; }
   function setStatus(txt, cls){ statusEl.textContent = txt; statusEl.className = 'status' + (cls ? ' ' + cls : ''); }
   function grow(ta){ ta.style.height = 'auto'; ta.style.height = (ta.scrollHeight + 2) + 'px'; }
-  // Opslaan kan bij een wijziging, en ook zonder wijziging zolang de indeling nog niet is opgeslagen
-  function updateSave(){ saveBtn.disabled = !docRef || !state || !state.slides.length || !(dirty || state.status !== 'opgeslagen'); }
+  function zekerDraft(id){
+    if (!draft[id]) draft[id] = {slides: slidesVan(id).map(function(s){ return {rol: s.rol, tekst: s.tekst}; }), dirty: false};
+    return draft[id];
+  }
+
+  // Opslaan kan bij een wijziging, en ook zonder wijziging zolang de post nog niet is opgeslagen
+  function updateSave(){
+    var id = idNu();
+    saveBtn.disabled = !db || !id || !post(id) || bezig[id] || !slidesVan(id).length || isOpgeslagen(id);
+  }
 
   function renderMeta(){
     var m = document.getElementById('meta'); m.textContent = '';
-    if (!state) return;
-    if (state.voorbeeld){ var v = document.createElement('span'); v.className = 'chip'; v.textContent = 'Voorbeeld'; m.appendChild(v); }
-    if (state.soort){ var s = document.createElement('span'); s.className = 'chip'; s.textContent = state.soort; m.appendChild(s); }
+    var id = idNu(); var p = post(id);
+    document.getElementById('titel').textContent = (p && p.haakje) || 'Slide-indeling';
+    if (!p) return;
+    if (p.voorbeeld){ var v = document.createElement('span'); v.className = 'chip'; v.textContent = 'Voorbeeld'; m.appendChild(v); }
+    if (p.soort){ var s = document.createElement('span'); s.className = 'chip'; s.textContent = p.soort; m.appendChild(s); }
     var n = document.createElement('span');
-    var mx = max(); var aantal = state.slides.length;
+    var mx = max(id); var aantal = slidesVan(id).length;
     if (mx && aantal > mx){ n.className = 'chip bad'; n.textContent = aantal + ' slides · maximaal ' + mx + ', haal er ' + (aantal - mx) + ' weg'; }
     else { n.textContent = aantal + ' slides' + (mx ? ' · maximaal ' + mx : ''); }
     m.appendChild(n);
-    document.getElementById('titel').textContent = state.haakje || 'Slide-indeling';
+    var st = document.createElement('span');
+    if (isOpgeslagen(id)){ st.className = 'chip ok'; st.textContent = 'Opgeslagen'; }
+    else { st.className = 'chip'; st.textContent = isDirty(id) ? 'Gewijzigd, nog niet opgeslagen' : 'Nog niet opgeslagen'; }
+    m.appendChild(st);
+  }
+
+  function renderNav(){
+    var nav = document.getElementById('nav');
+    var meer = volgorde.length > 1;
+    nav.hidden = !meer;
+    document.getElementById('hint').innerHTML = meer
+      ? 'Klik door met Vorige en Volgende. Pas per post de tekst per slide aan en druk op Opslaan. Typ daarna in de chat <strong>akkoord</strong> voor alle posts, of bijvoorbeeld <strong>akkoord ' + nummer(1) + '</strong> voor alleen post ' + nummer(1) + '.'
+      : 'Pas de tekst per slide aan. Verplaats een zin door hem te knippen en in een andere slide te plakken. Klopt het? Druk op Opslaan en typ <strong>akkoord</strong> in de chat.';
+    var tally = document.getElementById('tally');
+    if (!meer){ tally.textContent = ''; return; }
+    var eigen = volgorde.every(function(id, i){ return nummer(i) === i + 1; });
+    document.getElementById('positie').textContent = eigen
+      ? 'Post ' + (huidig + 1) + ' van ' + volgorde.length
+      : 'Post ' + nummer(huidig) + ' · ' + (huidig + 1) + ' van ' + volgorde.length + ' carrousels';
+    document.getElementById('vorige').disabled = huidig === 0;
+    document.getElementById('volgende').disabled = huidig === volgorde.length - 1;
+    var ul = document.getElementById('posts'); ul.textContent = '';
+    var klaar = 0;
+    volgorde.forEach(function(id, i){
+      var li = document.createElement('li');
+      var b = document.createElement('button');
+      var p = post(id);
+      var dot = document.createElement('span');
+      var opg = isOpgeslagen(id);
+      if (opg) klaar++;
+      dot.className = 'dot' + (opg ? ' saved' : (isDirty(id) ? ' dirty' : ''));
+      var nr = document.createElement('span'); nr.className = 'nr'; nr.textContent = String(nummer(i));
+      var tk = document.createElement('span'); tk.className = 'tk'; tk.textContent = (p && p.haakje) || 'Post ' + (i + 1);
+      b.appendChild(dot); b.appendChild(nr); b.appendChild(tk);
+      b.setAttribute('aria-current', i === huidig ? 'true' : 'false');
+      b.setAttribute('aria-label', 'Post ' + nummer(i) + ': ' + ((p && p.haakje) || '') + (opg ? ', opgeslagen' : ', nog niet opgeslagen'));
+      b.addEventListener('click', function(){ ga(i); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+    tally.textContent = klaar + ' van ' + volgorde.length + ' opgeslagen';
   }
 
   function updateCount(i){
+    var id = idNu();
     var card = listEl.children[i]; if (!card) return;
-    var s = state.slides[i]; var mx = limiet(s.rol); var n = tel(s.tekst);
+    var s = slidesVan(id)[i]; var mx = limiet(id, s.rol); var n = tel(s.tekst);
     var c = card.querySelector('.count');
     var over = mx != null && n > mx;
     c.textContent = mx != null ? (over ? n + ' / ' + mx + ' tekens · ' + (n - mx) + ' te veel' : n + ' / ' + mx + ' tekens') : n + ' tekens';
@@ -140,17 +232,18 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
     card.className = 'slide' + (over ? ' over' : '');
   }
 
-  function render(){
+  function renderSlides(){
     listEl.textContent = '';
-    renderMeta();
-    if (!state || !state.slides || !state.slides.length){
+    var id = idNu();
+    var slides = slidesVan(id);
+    if (!id || !post(id) || !slides.length){
       var e = document.createElement('div'); e.className = 'empty';
-      e.textContent = 'Nog geen slide-indeling. Maak in de chat een carrousel met @caption, dan verschijnt de indeling hier.';
-      listEl.appendChild(e); updateSave(); return;
+      e.textContent = 'Nog geen slide-indeling. Maak in de chat een carrousel met @caption, of zeg: maak de prompts voor Claude Design. Dan verschijnt de indeling hier.';
+      listEl.appendChild(e); return;
     }
-    var last = state.slides.length - 1;
-    var vol = max() && state.slides.length >= max();
-    state.slides.forEach(function(s, i){
+    var last = slides.length - 1;
+    var vol = max(id) && slides.length >= max(id);
+    slides.forEach(function(s, i){
       var card = document.createElement('section'); card.className = 'slide';
       var head = document.createElement('div'); head.className = 'slide-head';
       var h = document.createElement('div');
@@ -159,19 +252,19 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       h.appendChild(st); h.appendChild(rol); head.appendChild(h);
       var ta = document.createElement('textarea');
       ta.id = 'slide-' + i; ta.value = s.tekst; ta.setAttribute('aria-label', 'Tekst slide ' + (i + 1));
-      ta.addEventListener('input', function(){ state.slides[i].tekst = ta.value; grow(ta); updateCount(i); markDirty(); });
+      ta.addEventListener('input', function(){ zekerDraft(id).slides[i].tekst = ta.value; grow(ta); updateCount(i); markDirty(id); });
       var foot = document.createElement('div'); foot.className = 'slide-foot';
       var c = document.createElement('span'); c.className = 'count';
       var acts = document.createElement('div'); acts.className = 'actions';
       if (i < last){
         var add = document.createElement('button'); add.className = 'ghost'; add.textContent = '+ Slide eronder';
         if (vol){ add.disabled = true; add.title = 'Je zit op het maximum aantal slides'; }
-        add.addEventListener('click', function(){ state.slides.splice(i + 1, 0, {rol:'Tekstslide', tekst:''}); markDirty(); render(); var t = document.getElementById('slide-' + (i + 1)); if (t) t.focus(); });
+        add.addEventListener('click', function(){ zekerDraft(id).slides.splice(i + 1, 0, {rol:'Tekstslide', tekst:''}); markDirty(id); render(); var t = document.getElementById('slide-' + (i + 1)); if (t) t.focus(); });
         acts.appendChild(add);
       }
       if (i > 0 && i < last){
         var del = document.createElement('button'); del.className = 'ghost'; del.textContent = 'Slide weghalen';
-        del.addEventListener('click', function(){ state.slides.splice(i, 1); markDirty(); render(); });
+        del.addEventListener('click', function(){ zekerDraft(id).slides.splice(i, 1); markDirty(id); render(); });
         acts.appendChild(del);
       }
       foot.appendChild(c); foot.appendChild(acts);
@@ -180,66 +273,141 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
       requestAnimationFrame(function(){ grow(ta); });
       updateCount(i);
     });
-    updateSave();
   }
 
-  function markDirty(){
-    dirty = true; updateSave();
-    setStatus(docRef ? 'Nog niet opgeslagen' : 'Opslaan is hier niet beschikbaar', docRef ? '' : 'warn');
-    renderMeta();
+  function renderBanner(){
+    var b = document.getElementById('banner');
+    var id = idNu();
+    if (pendingReeks){ document.getElementById('banner-tekst').textContent = 'In de chat zijn nieuwe posts klaargezet.'; b.hidden = false; }
+    else if (id && pending[id]){ document.getElementById('banner-tekst').textContent = 'In de chat is een nieuwe indeling voor deze post klaargezet.'; b.hidden = false; }
+    else b.hidden = true;
   }
 
-  function fromSnap(snap){
-    if (!snap.exists) return null;
-    var d = snap.data() || {};
+  function renderStatus(){
+    var id = idNu();
+    if (!db){ return; }
+    if (!id || !post(id)) setStatus('Nog geen indeling');
+    else if (bezig[id]) setStatus('Bezig met opslaan…');
+    else if (isOpgeslagen(id)) setStatus(volgorde.length > 1 ? 'Deze post is opgeslagen.' : 'Opgeslagen. Typ akkoord in de chat.', 'saved');
+    else if (isDirty(id)) setStatus('Nog niet opgeslagen');
+    else setStatus('Kijk de indeling na. Klopt het, druk dan op Opslaan.');
+  }
+
+  function render(){
+    if (huidig > volgorde.length - 1) huidig = Math.max(0, volgorde.length - 1);
+    renderMeta(); renderNav(); renderBanner(); renderSlides(); renderStatus(); updateSave();
+  }
+
+  function markDirty(id){
+    zekerDraft(id).dirty = true;
+    renderMeta(); renderNav(); renderStatus(); updateSave();
+    if (!db) setStatus('Opslaan is hier niet beschikbaar', 'warn');
+  }
+
+  function ga(i){
+    if (i < 0 || i > volgorde.length - 1 || i === huidig) return;
+    huidig = i; render(); window.scrollTo(0, 0);
+  }
+  document.getElementById('vorige').addEventListener('click', function(){ ga(huidig - 1); });
+  document.getElementById('volgende').addEventListener('click', function(){ ga(huidig + 1); });
+
+  function fromData(d){
+    d = d || {};
     return {
-      haakje: d.haakje || '', soort: d.soort || '', voorbeeld: !!d.voorbeeld,
+      haakje: d.haakje || '', notion: d.notion || '', nr: d.nr || null, soort: d.soort || '', voorbeeld: !!d.voorbeeld,
       limieten: d.limieten || {}, maxSlides: d.maxSlides || null, versie: d.versie || 0,
       slides: Array.isArray(d.slides) ? d.slides.map(function(s){ return {rol: String(s.rol || 'Tekstslide'), tekst: String(s.tekst || '')}; }) : [],
       status: d.status || 'concept', opgeslagenOp: d.opgeslagenOp || null
     };
   }
 
-  function showState(){
-    render();
-    if (!state) setStatus('Nog geen indeling');
-    else if (state.status === 'opgeslagen') setStatus('Opgeslagen. Typ akkoord in de chat.', 'saved');
-    else setStatus('Kijk de indeling na. Klopt het, druk dan op Opslaan.');
-  }
-
   saveBtn.addEventListener('click', function(){
-    if (!docRef || !state) return;
-    saveBtn.disabled = true; setStatus('Bezig met opslaan…');
+    var id = idNu(); var p = post(id);
+    if (!db || !p) return;
+    var slides = slidesVan(id);
+    bezig[id] = true; updateSave(); setStatus('Bezig met opslaan…');
     var body = {
-      haakje: state.haakje, soort: state.soort, voorbeeld: state.voorbeeld, limieten: state.limieten,
-      versie: (state.versie || 0) + 1,
-      slides: state.slides.map(function(s){ return {rol: s.rol, tekst: s.tekst}; }),
+      haakje: p.haakje, soort: p.soort, voorbeeld: p.voorbeeld, limieten: p.limieten,
+      versie: (p.versie || 0) + 1,
+      slides: slides.map(function(s){ return {rol: s.rol, tekst: s.tekst}; }),
       status: 'opgeslagen', opgeslagenOp: new Date().toISOString()
     };
-    if (state.maxSlides) body.maxSlides = state.maxSlides;
-    docRef.set(body).then(function(){
-      dirty = false; state.versie = body.versie; state.status = 'opgeslagen'; pending = null;
-      document.getElementById('banner').hidden = true;
-      setStatus('Opgeslagen. Typ akkoord in de chat.', 'saved'); updateSave();
+    if (p.notion) body.notion = p.notion;
+    if (p.nr) body.nr = p.nr;
+    if (p.maxSlides) body.maxSlides = p.maxSlides;
+    db.doc('posts/' + id).set(body).then(function(){
+      bezig[id] = false;
+      server[id] = fromData(body); delete draft[id]; delete pending[id];
+      render();
     }).catch(function(e){
-      updateSave();
+      bezig[id] = false; updateSave();
       setStatus(e && e.code === 'invalid_argument' ? 'Je kunt deze indeling bekijken, maar niet opslaan.' : 'Opslaan lukte niet. Probeer het zo nog eens.', 'warn');
     });
   });
 
   document.getElementById('laad').addEventListener('click', function(){
-    if (pending){ state = pending; pending = null; dirty = false; document.getElementById('banner').hidden = true; showState(); }
+    if (pendingReeks){
+      volgorde = pendingReeks.posts; reeksVersie = pendingReeks.versie; pendingReeks = null;
+      draft = {}; pending = {}; huidig = 0; render(); return;
+    }
+    var id = idNu();
+    if (id && pending[id]){ server[id] = pending[id]; delete pending[id]; delete draft[id]; render(); }
   });
+
+  // Nieuwe volgorde uit de database. Gaat meteen in, behalve als er hier nog iets niet is opgeslagen.
+  function nieuweReeks(posts, versie){
+    var zelfde = posts.length === volgorde.length && posts.every(function(p, i){ return p === volgorde[i]; });
+    if (zelfde){ reeksVersie = versie; return; }
+    var open = volgorde.some(function(id){ return isDirty(id); });
+    if (open && volgorde.length){ pendingReeks = {posts: posts, versie: versie}; renderBanner(); return; }
+    var was = idNu();
+    volgorde = posts; reeksVersie = versie; draft = {}; pending = {};
+    var terug = volgorde.indexOf(was); huidig = terug >= 0 ? terug : 0;
+    render();
+  }
 
   var c = window.claude;
   if (!c || !c.use){ render(); setStatus('Opslaan is hier niet beschikbaar', 'warn'); return; }
-  c.use('db').then(function(db){
-    if (!db){ state = null; render(); setStatus('Opslaan is hier niet beschikbaar', 'warn'); return; }
-    docRef = db.doc('posts/huidig');
-    docRef.onSnapshot(function(snap){
-      var next = fromSnap(snap);
-      if (!state || !dirty){ state = next; showState(); }
-      else if (next && next.versie !== state.versie){ pending = next; document.getElementById('banner').hidden = false; }
+  c.use('db').then(function(d){
+    if (!d){ render(); setStatus('Opslaan is hier niet beschikbaar', 'warn'); return; }
+    db = d;
+    var reeksGeladen = false, postsGeladen = false, heeftReeks = false;
+    function klaar(){
+      if (!reeksGeladen || !postsGeladen) return;
+      // Een indeling van versie 1 van dit zijscherm staat in posts/huidig, zonder reeks
+      if (!heeftReeks && !volgorde.length && server.huidig){ volgorde = ['huidig']; }
+      render();
+    }
+    db.doc('reeks/huidig').onSnapshot(function(snap){
+      reeksGeladen = true;
+      if (snap.exists){
+        var r = snap.data() || {};
+        heeftReeks = true;
+        var posts = Array.isArray(r.posts) ? r.posts.map(String) : [];
+        if (!postsGeladen) { volgorde = posts; reeksVersie = r.versie || 0; }
+        else nieuweReeks(posts, r.versie || 0);
+      }
+      klaar();
+    }, function(){ setStatus('De verbinding is weggevallen. Ververs de pagina.', 'warn'); });
+    db.collection('posts').onSnapshot(function(q){
+      var huidigeGewijzigd = false;
+      q.docChanges().forEach(function(ch){
+        var id = ch.doc.id;
+        if (ch.type === 'removed' || bezig[id]) return;
+        var next = fromData(ch.doc.data());
+        if (isDirty(id)){
+          if (server[id] && next.versie !== server[id].versie){ pending[id] = next; }
+          return;
+        }
+        server[id] = next; delete draft[id]; delete pending[id];
+        if (id === idNu()) huidigeGewijzigd = true;
+      });
+      var first = !postsGeladen;
+      postsGeladen = true;
+      if (first) { klaar(); return; }
+      // Alleen de slides opnieuw opbouwen als deze post zelf veranderde: anders verlies je je cursor tijdens het typen
+      if (huidigeGewijzigd) render();
+      else { renderMeta(); renderNav(); renderBanner(); renderStatus(); updateSave(); }
     }, function(){ setStatus('De verbinding is weggevallen. Ververs de pagina.', 'warn'); });
   });
 })();

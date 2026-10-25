@@ -50,11 +50,38 @@ optie of property aan.
 | Pillar | Select | Persoonlijk, Autoriteit, Expertise, Aanbod, Social Proof |
 | Soort | Select | Carrousel, Reel, Post, Email |
 | Kanaal | Select | Instagram, LinkedIn, Emailmarketing, Facebook |
-| Status | Status | Idee (to-do) → Concept → Designen → Klaar → Gepland → Bezig → Fout (in progress) → Live (complete) |
+| Status | Status | Idee (to-do) → Concept → Klaar → Gepland → Bezig → Fout (in progress) → Live (complete). Sommige kalenders hebben ook Designen |
 | Publicatiedatum | Date | met tijd (Tijd opnemen aan) als je een vrij tijdstip per post wilt; `content-publiceren-metricool` plant op die tijd in |
-| Views, Likes, Comments, Opgeslagen, Gedeeld | Number | de cijfers van een geplaatste post. De feedplanner haalt ze uit Instagram (via Composio) en schrijft ze terug bij openen en Vernieuwen, voor posts uit de laatste 60 dagen. Skills mogen ze lezen; geen skill schrijft ze. Op de pagina staan ze in het blok Cijfers, als kolom alleen in de weergave Live |
-| URL | URL | in de API heet dit veld `userDefined:URL`. De Canva-link van het ontwerp; blijft staan na publicatie |
-| Instagram | URL | de link naar de post op Instagram, gezet zodra hij live staat |
+| Canva | URL | de Canva-link van het ontwerp; blijft staan na publicatie |
+| URL | URL | in de API heet dit veld `userDefined:URL`. De link naar de post op Instagram, gezet zodra hij live staat |
+
+Cijfers (views, likes, reacties, opgeslagen, gedeeld) staan niet in Notion. De feedplanner en
+de geplande taken halen ze via Composio uit Instagram.
+
+### Welk veld is de Canva-link, welk de postlink?
+
+De template had eerst andere namen: de Canva-link stond in `URL` en de link naar de post in
+`Instagram`. Een koper met die oudere kopie moet blijven werken. Kijk daarom in het live schema
+welke properties er zijn, en lees **nooit** zonder deze controle `URL` als Canva-link:
+
+| Staat er een URL-property `Canva`? | Canva-link | Postlink (Instagram) |
+|---|---|---|
+| Ja (huidige template) | `Canva` | `URL` |
+| Nee (oudere kopie) | `URL` | `Instagram` |
+
+- Bestaat `Canva`, dan gelden de nieuwe namen, ook als er nog een property `Instagram` staat.
+  Die laat je dan met rust.
+- Bestaat `Canva` niet en ontbreekt ook `Instagram`, dan is er geen veld voor de postlink.
+  Noem dat en zeg wat de gebruiker toevoegt: een URL-property **Canva**, waar de Canva-links
+  in komen; de link naar de post komt dan in `URL`. Maak hem nooit zelf aan.
+- Een link naar instagram.com in het Canva-linkveld is geen Canva-link. Een post met een
+  instagram.com-link in het Canva-linkveld of het postlinkveld is al geplaatst.
+- Noem in meldingen en mails het veld bij de naam die het in de kalender van de gebruiker
+  heeft.
+
+**Soort lees je uit het live schema.** De template heeft `Carrousel`; in een eigen kalender kan
+de optie anders gespeld zijn, bijvoorbeeld `Carroussel`. Een optie die met `Carr` begint, is de
+carrousel. Schrijf altijd de optienaam zoals die in het live schema staat.
 
 **Wie vult wat:**
 
@@ -63,8 +90,8 @@ optie of property aan.
 | hookgenerator | Hook, Fase, Pillar | Idee |
 | content-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar; bij een post van `@scrape` de bron in de body | Idee |
 | content-caption | Soort, Kanaal, body (alleen de caption); bij een nieuwe pagina ook Hook, Fase en Pillar | Concept |
-| content-publiceren | Status, en na publicatie Instagram | Gepland → Bezig → Live, of Fout |
-| content-publiceren-metricool | Status, en zodra Metricool geplaatst heeft Instagram | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
+| content-publiceren (plugin content-publiceren-composio) | Status, en na publicatie de postlink | Gepland → Bezig → Live, of Fout |
+| content-publiceren-metricool (plugin content-publiceren-metricool) | Status, en zodra Metricool geplaatst heeft de postlink | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
 
 **Pillar leidt de skill zelf af** uit het haakje of het gesprek, door het naast de body van de
 pillarpagina's te leggen (Wat past hier wel in, Wat past hier niet in). Toon de pillar vóór het

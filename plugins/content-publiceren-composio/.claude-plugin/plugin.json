@@ -1,0 +1,17 @@
+{
+  "name": "content-publiceren-composio",
+  "version": "1.0.0",
+  "description": "Route B van Claude Content Studio: zet je geplande Instagram-carrousels en -posts uit je Content Calendar in Notion automatisch live op vaste postmomenten, via Canva en Composio. Draait als geplande taak in de cloud, zet de post daarna op Live met de link en mailt je. 's Avonds een mail met de posts van morgen. Reels plaats je zelf. Skill: content-publiceren (@publiceren). Installeer alleen deze route of route A, niet allebei.",
+  "author": {
+    "name": "VA-Merel"
+  },
+  "keywords": [
+    "content studio",
+    "publiceren",
+    "inplannen",
+    "instagram",
+    "notion",
+    "canva",
+    "composio"
+  ]
+}

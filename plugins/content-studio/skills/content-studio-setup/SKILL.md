@@ -106,7 +106,14 @@ Hernoem nooit zelf iets in de workspace.
 Haal van beide databases het live schema op en vergelijk met `references/notion-schema.md`.
 
 **Content Calendar** moet hebben: Hook (title), Fase (select), Pillar (select), Soort
-(select), Kanaal (select), Status (status), Publicatiedatum (date), URL (url), Instagram (url).
+(select), Kanaal (select), Status (status), Publicatiedatum (date), Canva (url) voor de
+Canva-link en URL (url) voor de link naar de post op Instagram.
+
+**Oudere kopie van de template:** staat er geen Canva maar wel URL en Instagram (beide url),
+dan is dat de oudere indeling: de Canva-link staat in URL, de postlink in Instagram. Dat werkt
+ook; meld het niet als fout. Zie **Welk veld is de Canva-link, welk de postlink?** in
+`references/notion-schema.md`. Ontbreken Canva én Instagram, noem dan alleen Canva (url) als
+ontbrekend veld.
 
 **Content Pillars** moet hebben: Content Pillar (title), Status (select), Laatst bijgewerkt
 (date), Gewenst % (number).
@@ -128,7 +135,7 @@ zonder gewenste verdeling werkt.
 > template. Zodra ze er staan, roep je me opnieuw aan."
 
 Stop bij een ontbrekend veld dat een skill nodig heeft om te schrijven: Hook, Status, Fase,
-Soort, Kanaal, Content Pillar. Bij URL, Instagram of Publicatiedatum meld je het
+Soort, Kanaal, Content Pillar. Bij Canva, URL of Publicatiedatum meld je het
 en ga je door; die zijn pas nodig voor de feedplanner en automatisch inplannen.
 
 **Verkeerd type** (bijvoorbeeld Publicatiedatum als tekst in plaats van datum): noem het, met wat het

@@ -6,11 +6,13 @@ description: >
   iets hoeft te doen: elke ochtend gaan de carrousels en posts van vandaag naar Metricool
   (caption uit Notion, slides uit Canva), Metricool plaatst ze zelf op het tijdstip, en een
   tweede run 's avonds zet geplaatste posts in Notion op Live met de Instagram-link. Je
-  krijgt mails over wat is ingepland en wat live staat. Reels plaats je zelf. Kent drie
-  modi: inplannen, avondcheck en proefrun. Voor wie Metricool gebruikt; zonder Metricool is
-  er de skill content-publiceren. TRIGGERS op @publiceren-metricool,
-  @content-publiceren-metricool, "plan mijn posts in via Metricool", "avondcheck Metricool",
-  "proefrun Metricool", "pas aan in Metricool", of een geplande taak die deze skill aanroept.
+  krijgt mails over wat is ingepland en wat live staat. Reels plaats je zelf. In een gesprek
+  plant hij op verzoek ook posts van later in de week meteen in. Kent vier modi: inplannen,
+  avondcheck, proefrun en vooruit. Voor wie Metricool gebruikt; zonder Metricool is er de
+  skill content-publiceren. TRIGGERS op @publiceren-metricool,
+  @content-publiceren-metricool, "plan mijn posts in via Metricool", "plan ze ook in
+  Metricool", "avondcheck Metricool", "proefrun Metricool", "pas aan in Metricool", of een
+  geplande taak die deze skill aanroept.
 ---
 
 # Publiceren via Metricool - Claude Content Studio
@@ -18,7 +20,8 @@ description: >
 De Content Calendar in Notion is de planning. Metricool is de klok: de skill zet de post met
 datum en tijd in Metricool, en Metricool plaatst hem zelf via Instagram op dat moment. Er
 draait op het postmoment dus geen Claude-taak. De skill draait twee keer per dag: 's ochtends
-om in te plannen, 's avonds om te controleren wat er live staat.
+om in te plannen, 's avonds om te controleren wat er live staat. In een gesprek kan de
+gebruiker posts ook eerder laten inplannen (Modus vooruit).
 
 Een post in Metricool plaatsen is openbaar en niet terug te draaien zodra hij live is.
 Daarom zijn de controles hieronder hard: bij twijfel wordt er niets ingepland en krijgt de
@@ -26,7 +29,8 @@ gebruiker een mail.
 
 **Gebruik één route.** Draait ook de skill `content-publiceren` (Composio) voor dezelfde
 Content Calendar, dan staat elke post er twee keer. Zeg dat bij de proefrun, als je beide
-skills ziet.
+skills ziet. Elke route is een eigen plugin: `content-publiceren-metricool` (deze) en
+`content-publiceren-composio`.
 
 ---
 
@@ -46,8 +50,8 @@ Lees uit de aanroep:
 
 | Instelling | Waarden | Standaard |
 |---|---|---|
-| Modus | `inplannen`, `avondcheck`, `proefrun` | geen: vraag het, of stop bij een geplande taak |
-| Mail naar | een e-mailadres | geen: zonder adres stop je, want fouten moeten iemand bereiken |
+| Modus | `inplannen`, `avondcheck`, `proefrun`, `vooruit` | geen: vraag het, of stop bij een geplande taak. "Plan ze ook in Metricool" in een gesprek is `vooruit` |
+| Mail naar | een e-mailadres | geen: zonder adres stop je, want fouten moeten iemand bereiken. In modus `vooruit` niet nodig: je meldt in het gesprek |
 | Tijdzone | een IANA-tijdzone | `Europe/Amsterdam` |
 | Standaardtijd | `UU:MM`: het tijdstip voor een post waarbij in Notion alleen een datum staat | `12:00` |
 | Ochtendrun | `UU:MM`: de starttijd van de ochtendtaak; alleen de avondcheck gebruikt hem | `07:00` |
@@ -105,9 +109,14 @@ ontbreekt, en stop. Plan nooit in met een halve omgeving.
 
    Haal daarna het live schema op.
 2. **Statussen en velden:** de Status-property moet de opties `Gepland`, `Bezig`, `Live` en
-   `Fout` hebben, er moet een URL-property `Instagram` zijn, en Publicatiedatum moet een
-   datumveld zijn. Mist er iets: noem het bij naam en zeg dat het met de hand in Notion
-   toegevoegd moet worden (Bezig en Fout in de groep In progress, Live in Complete).
+   `Fout` hebben, en Publicatiedatum moet een datumveld zijn. Bepaal welk veld de Canva-link
+   is en welk de postlink, volgens **Welk veld is de Canva-link, welk de postlink?** in
+   `references/notion-schema.md`: met een URL-property `Canva` is dat `Canva` en `URL`,
+   zonder `Canva` is het `URL` en `Instagram`. Lees `URL` nooit als Canva-link zonder deze
+   controle. Mist er iets: noem het bij naam en zeg dat het met de hand in Notion toegevoegd
+   moet worden (Bezig en Fout in de groep In progress, Live in Complete; ontbreekt het
+   postlinkveld, dan een URL-property Canva voor de Canva-links, zodat de postlink in URL
+   komt).
 3. **Metricool-connector** beschikbaar. Haal met `getBrandSettings` de merken op. Kies het
    merk waar Instagram aan gekoppeld is (`networksData.instagramData` is gevuld). Is dat er
    precies één, gebruik dat. Zijn het er meer: gebruik het merk uit de instelling
@@ -170,7 +179,8 @@ afmaakt. Plan alleen stories in die een afbeelding zijn, zonder stickers.
 
 Doe deze controles in deze volgorde. Faalt er één, dan wordt de post niet ingepland.
 
-1. **Canva-link.** Het URL-veld bevat een link naar canva.link of canva.com/design. Een
+1. **Canva-link.** Het Canva-linkveld (`Canva`, of `URL` in een oudere kalender, zie de
+   Omgevingscheck) bevat een link naar canva.link of canva.com/design. Een
    shortlink (`canva.link/<id>`) zet je om met `resolve-shortlink`; het ontwerp-ID begint
    met `D` en staat na `/design/`.
 2. **Caption** (niet bij een Story). Haal de pagina op met `notion-fetch`. De caption is de
@@ -185,7 +195,7 @@ Doe deze controles in deze volgorde. Faalt er één, dan wordt de post niet inge
      beschikbaar zijn. 2 tot en met 10 pagina's.
    - **Post** met één pagina: `jpg` moet beschikbaar zijn.
    - **Story:** `jpg` moet beschikbaar zijn, één pagina.
-5. **Nog niet gepubliceerd.** Het veld Instagram is leeg, en het URL-veld bevat geen
+5. **Nog niet gepubliceerd.** Het postlinkveld is leeg, en ook het Canva-linkveld bevat geen
    instagram.com-link (oudere rijen). Staat er al een Instagram-link, dan is de post al
    geplaatst: zet de status op Live en sla hem over.
 6. **Tijd in de toekomst.** Het tijdstip van de post ligt minstens 10 minuten na het moment
@@ -204,22 +214,26 @@ Doe deze controles in deze volgorde. Faalt er één, dan wordt de post niet inge
 ## Bevestigen wat Metricool plaatste
 
 Doe dit aan het begin van elke run, in alle modi behalve proefrun (die rapporteert alleen).
-Zo komen posts op Live in Notion, ook als de run van gisteren al klaar was.
+Zo komen posts op Live in Notion, ook als de run van gisteren al klaar was. Het geldt voor
+elke rij op `Bezig`, welke dag hij ook heeft: ook posts die met Modus vooruit voor later in de
+week zijn ingepland.
 
 1. Zoek alle rijen met Kanaal Instagram en Status `Bezig`. Geen rijen: sla deze stap over.
 2. Haal met `getScheduledPosts` de posts op van de oudste datum van die rijen min één dag tot
-   morgen (merk, tijdzone uit de aanroep). De lijst bevat ook posts die al gepubliceerd zijn.
+   de nieuwste datum plus één dag, en minstens tot morgen (merk, tijdzone uit de aanroep). De
+   lijst bevat ook posts die al gepubliceerd zijn. Een post die vooruit is ingepland voor
+   vrijdag, staat er zo ook tussen.
 3. Zoek per rij de bijbehorende post: caption met dezelfde eerste zestig tekens (bij een
    Story: dezelfde tijd en type STORY). Kijk naar de provider met `network` gelijk aan
    `instagram`.
 
 | Metricool zegt | Wat jij doet |
 |---|---|
-| `PUBLISHED`, met een `publicUrl` | Status `Live`, Instagram = `publicUrl`. De Canva-link in URL en de Publicatiedatum blijven staan. Voeg de post toe aan de Live-mail. |
+| `PUBLISHED`, met een `publicUrl` | Status `Live`, `publicUrl` in het postlinkveld (`URL`, in de API `userDefined:URL`; in een oudere kalender `Instagram`). De Canva-link en de Publicatiedatum blijven staan. Voeg de post toe aan de Live-mail. |
 | `PENDING` of `PUBLISHING`, en het tijdstip ligt in de toekomst of minder dan 15 minuten geleden | Niets. Hij komt nog. |
 | `PENDING` of `PUBLISHING`, maar het tijdstip is meer dan 15 minuten geleden | Status blijft `Bezig`. Noem de post in de mail onder Aandacht nodig, met de link naar Metricool. |
 | Een andere status (een fout) | Status `Fout`. Mail de `detailedStatus` letterlijk onder Technische melding. Voeg toe: zit je op je maandlimiet? Het gratis plan van Metricool plaatst 20 berichten per maand. |
-| De post staat er niet (meer) en het tijdstip ligt in de toekomst | De rij wordt weer een kandidaat; de controles beslissen. Doordat Controle 7 dubbel plaatsen voorkomt, is dit veilig. |
+| De post staat er niet (meer) en het tijdstip ligt in de toekomst | Zet de status terug op `Gepland`: de rij wordt weer een kandidaat en de controles beslissen. Doordat Controle 7 dubbel plaatsen voorkomt, is dit veilig. |
 | De post staat er niet (meer) en het tijdstip is voorbij | Status `Fout`. Mail dat de post niet in Metricool staat en dus mogelijk niet geplaatst is, met `Open in Notion`. Laat de gebruiker in Instagram kijken. |
 
 Lukt het bijwerken van Notion niet, maar staat de post wel live: mail dat met de link, zodat
@@ -237,9 +251,11 @@ Doe eerst het onderdeel Bevestigen hierboven.
 
 ### 2. Kandidaten
 
-Zoek de kandidaten met Publicatiedatum = vandaag. Kandidaten met een datum vóór vandaag zijn
-**gemist** (een run viel uit, of ze zijn te laat op Gepland gezet): zet ze op `Fout` met een
-mail, zie Controle 6. Kandidaten met een datum later dan vandaag laat je met rust.
+Zoek de kandidaten met Publicatiedatum = vandaag. Alleen rijen op `Gepland` zijn kandidaat:
+een rij op `Bezig` staat al in Metricool (bijvoorbeeld via Modus vooruit) en wordt alleen
+bevestigd, nooit opnieuw ingepland. Kandidaten met een datum vóór vandaag zijn **gemist** (een
+run viel uit, of ze zijn te laat op Gepland gezet): zet ze op `Fout` met een mail, zie
+Controle 6. Kandidaten met een datum later dan vandaag laat je met rust.
 
 Geen kandidaten, niets bevestigd en niets dat aandacht nodig heeft: stop zonder mail.
 
@@ -350,6 +366,47 @@ hetzelfde verslag ook in het gesprek.
 
 ---
 
+## Modus vooruit
+
+In een gesprek, als de gebruiker zegt "plan ze ook in Metricool" (bijvoorbeeld nadat de
+Canva-links in Notion zijn gezet), of "plan [deze posts] nu in Metricool". Dan wacht je niet
+op de ochtendtaak: je zet de genoemde posts nu in Metricool, ook als ze pas later in de week
+live gaan. Er is iemand om vragen aan te stellen; mailen hoeft niet.
+
+1. **Omgevingscheck**, stap 1 tot en met 3. Canva is ook nodig. Zonder `Mail naar` in de
+   aanroep is Gmail niet nodig. Tijdzone `Europe/Amsterdam`, tenzij de gebruiker een andere
+   noemt. Meer dan één merk met Instagram: vraag welk.
+2. **Bevestigen** (zie boven), zodat posts die al live staan op Live komen.
+3. **Welke posts.** Precies de posts die de gebruiker noemt, of die net in dit gesprek zijn
+   klaargezet (bijvoorbeeld de posts waar zojuist de Canva-link bij kwam). Noemt de gebruiker
+   geen posts, vraag dan welke. Een post doet mee als:
+   - Status `Gepland`;
+   - een Canva-link in het Canva-linkveld;
+   - een Publicatiedatum **met tijd**, minstens 10 minuten na nu. Staat er alleen een datum,
+     plan hem dan niet vooruit in: zeg dat er een tijd bij moet, of dat de ochtendtaak hem op
+     die dag oppakt op de Standaardtijd;
+   - Kanaal Instagram en Soort Carrousel (ook `Carroussel`) of Post. Een reel plant de
+     gebruiker zelf in.
+   Een post die niet meedoet, noem je met de reden. Een post op `Bezig` staat al in Metricool;
+   die plan je niet nog een keer in.
+4. **Controles** 1 tot en met 7 per post, met de datum en tijd van die post.
+5. **Akkoord.** Heeft de gebruiker in dit gesprek al akkoord gegeven op precies deze posts,
+   met hun dag en tijd (bijvoorbeeld in het overzicht van de Canva-links), ga dan door. Anders
+   toon je eerst één lijst: per post het haakje, de dag en de tijd, en vraag je één keer om
+   akkoord. Inplannen is openbaar zodra het tijdstip komt.
+6. **Inplannen** zoals in Modus inplannen, stap 3 en 4: per post eerst de status op `Bezig`,
+   dan exporteren uit Canva, `createScheduledPost` met de datum en tijd van die post, en
+   controleren met `getScheduledPosts`. Een post die faalt: status `Fout` en de reden in het
+   gesprek.
+7. **Melden** in het gesprek, kort: per post het haakje, de dag en tijd, en de links `Open in
+   Metricool` en `Open in Notion`. Daaronder wat niet is ingepland, met de reden.
+
+De ochtendtaak pakt alleen posts op `Gepland`, dus een post die nu op `Bezig` staat wordt niet
+nog een keer ingepland. De avondcheck en de volgende ochtendtaak zetten hem op `Live` zodra
+Metricool hem heeft geplaatst, ook als dat later in de week is.
+
+---
+
 ## Aanpassen in een gesprek
 
 Zegt de gebruiker in een gesprek "pas aan in Metricool" of "verzet die post", dan werk je de
@@ -429,7 +486,7 @@ Open in Notion | Open in Canva
 3. Plaats je video in Instagram of Edits.
 4. Voeg de reelomslag toe.
 5. Plak je caption.
-6. Zet de status in Notion daarna op Live en plak de link van de reel in het veld Instagram.
+6. Zet de status in Notion daarna op Live en plak de link van de reel in het veld [naam van het postlinkveld, meestal URL].
 ```
 
 Ontbreekt de Canva-link, laat dan `Open in Canva` en stap 2 weg en zeg dat er geen omslag in
@@ -478,7 +535,7 @@ toegevoegd (de skill maakt hem niet aan).
 - Een Story heeft Controle 2 en 3 niet. Controle 1, 4 tot en met 7 wel.
 - Match een Story in Metricool op tijdstip en type, niet op caption.
 - De Instagram-link van een Story werkt zolang de Story zichtbaar is (24 uur). Zet hem toch
-  in het veld Instagram.
+  in het postlinkveld.
 - Stories tellen mee in het maximum van het gratis plan van Metricool (20 gepubliceerde
   berichten per maand, alle formaten bij elkaar).
 
@@ -498,6 +555,10 @@ toegevoegd (de skill maakt hem niet aan).
 - Bestanden uit `references/` bij naam noemen in mails of antwoorden.
 - Een kale URL in de HTML-versie van een mail, of de caption in een mail.
 - Een database met "template" in de naam of het pad als Content Calendar gebruiken.
+- `URL` lezen als Canva-link of `Instagram` als postlink zonder te kijken of er een property
+  `Canva` is.
+- In Modus vooruit een post inplannen zonder tijd in de Publicatiedatum, of een post die niet
+  op `Gepland` staat.
 
 ## Referentiebestanden
 
