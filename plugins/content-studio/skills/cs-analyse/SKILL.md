@@ -3,11 +3,12 @@ name: cs-analyse
 description: >
   Ruby, de analist van Claude Content Studio. Haalt via Composio de cijfers van je eigen
   Instagram-posts op, koppelt ze aan je Content Calendar via de eerste regel van de caption, en
-  laat zien wat werkte per pillar, per fase van de klantreis (met Persoonlijk apart) en per
-  soort post, gerekend per 1.000 weergaven. Geeft wat werkte in hetzelfde gesprek door aan
-  Hanna, voor de haakjes van volgende week. Schrijft niets in Notion. TRIGGERS op @analyse,
-  @ruby, @cs-analyse, "hoe deden mijn posts het", "wat werkte er", "welke posts scoorden",
-  "analyseer mijn Instagram", of een geplande taak die deze skill aanroept.
+  laat zien wat werkte: de afgelopen week post voor post, de lijn van de afgelopen maand per
+  pillar, fase (met Persoonlijk apart) en soort, gerekend per 1.000 weergaven, en twee of drie
+  focuspunten voor deze week. Geeft dat in hetzelfde gesprek door aan Hanna, en levert het blok
+  Ruby in de zondagmail. Schrijft niets in Notion. TRIGGERS op @analyse, @ruby, @cs-analyse,
+  "hoe deden mijn posts het", "wat werkte er", "welke posts scoorden", "waar moet ik deze week
+  op focussen", "analyseer mijn Instagram", of een geplande taak die deze skill aanroept.
 ---
 
 # Ruby - Claude Content Studio
@@ -34,8 +35,14 @@ zondagtaak.
 
 ## Stap 1 - Welke periode?
 
-Standaard de **afgelopen 8 weken**. In de zondagtaak: de afgelopen 8 weken, met de posts van
-vorige week apart genoemd. De gebruiker kan een andere periode noemen.
+Ruby kijkt altijd naar drie lagen:
+
+- **De afgelopen week:** de posts van de afgelopen zeven dagen, één voor één.
+- **De afgelopen maand:** de lijn over vier weken, kort: wat stijgt, wat zakt.
+- **De basis:** de afgelopen 8 weken, om te vergelijken. Een week met twee posts zegt weinig;
+  de basis laat zien of het een uitschieter is.
+
+De gebruiker kan een andere periode noemen.
 
 ## Stap 2 - Cijfers ophalen
 
@@ -67,23 +74,35 @@ totaal maar niet per pillar of fase.
 ## Stap 5 - Tonen
 
 ```
-Wat werkte, [periode] ([aantal] posts)
-Pillar:  [beste] scoort [x] per 1.000 weergaven, [zwakste] [y]
-Fase:    [beste klantreisfase] ... · Persoonlijk: [score]
-Soort:   [Carrousel / Reel / Post] ...
-Haakje:  [vorm die het best werkte, met één voorbeeld uit de eigen posts]
-Topposts: [hook] · [score] · [link]  (hooguit drie)
-Vorige week: [de posts van vorige week in één regel per post, alleen in de zondagtaak]
+Afgelopen week ([aantal] posts)
+[per post één regel: hook · soort · score per 1.000 weergaven · opgeslagen · gedeeld · link]
+Beste van de week: [hook], omdat [één zin]
+
+Afgelopen maand
+[twee of drie zinnen: welke pillar, fase en soort het best werkten, en wat stijgt of zakt
+tegenover de 8 weken ervoor. Persoonlijk apart.]
+Haakje: [de vorm die het best werkte, met één voorbeeld uit de eigen posts]
+
+Focus voor deze week
+1. [concreet en uitvoerbaar, bijvoorbeeld: "Twee posts in Problemaware: die scoorden deze
+   maand het hoogst op opgeslagen."]
+2. [...]
+3. [hooguit drie]
 ```
 
-Daaronder hooguit drie zinnen: wat Hanna volgende week meer en minder kan doen. Leun op wat
-werkt, zonder de andere pillars en fases te laten vallen.
+**Focuspunten** zijn concreet: een fase, pillar, soort of vorm van haakje, met de reden uit de
+cijfers. Leun op wat werkt, zonder de andere pillars en fases te laten vallen: is een pillar
+of fase de afgelopen maand niet aan bod gekomen, dan mag dat ook een focuspunt zijn. Geen
+focuspunt zonder reden uit de cijfers. Zijn er te weinig posts met cijfers (minder dan 5),
+zeg dat dan en geef hooguit één focuspunt, op grond van wat er in de Content Calendar
+ontbreekt.
 
 ## Stap 6 - Doorgeven aan Hanna
 
-Vraag: "Zal ik dit aan Hanna geven voor de haakjes van volgende week?" Na ja: roep
-`cs-hookgenerator` aan in hetzelfde gesprek en geef stap 5 mee als aangeleverde input. In de
-zondagtaak gaat het zonder vraag door naar Hanna.
+Vraag: "Zal ik dit aan Hanna geven voor de haakjes van deze week?" Na ja: roep
+`cs-hookgenerator` aan in hetzelfde gesprek en geef stap 5 mee als aangeleverde input, met de
+focuspunten voorop. In de zondagtaak gaat het zonder vraag door naar Hanna, en staat stap 5 in
+de mail onder Ruby.
 
 ---
 
@@ -91,7 +110,7 @@ zondagtaak gaat het zonder vraag door naar Hanna.
 
 ```
 Voer @analyse uit in modus gepland.
-Periode: 8 weken
+Periode: week, maand en 8 weken
 ```
 
 In modus gepland: geen vragen, stap 1 tot en met 5, en de uitkomst gaat in dezelfde run naar
