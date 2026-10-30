@@ -1,5 +1,5 @@
 ---
-name: content-studio-setup
+name: cs-setup
 description: >
   Zet de omgeving van Claude Content Studio klaar en controleert of alles er is: Notion
   gekoppeld, de Social Media Planner met Content Calendar en Content Pillars gedupliceerd,
@@ -9,12 +9,13 @@ description: >
   Guidelines voor beeldmateriaal, vult de Content Pillars
   pillar voor pillar uit Business DNA en levert de projectinstructies als plakblok. Wordt ook
   aangeroepen door de andere Content Studio-skills als de omgeving ontbreekt. TRIGGERS op
-  @content-studio-setup, "content studio opzetten", "content studio controleren", "content
+  @setup, @cs-setup, de oude naam @content-studio-setup of content-studio-setup,
+  "content studio opzetten", "content studio controleren", "content
   studio omgeving", "content pillars vullen", "social media planner controleren", of elke
   vraag over het klaarzetten of nakijken van de Content Studio-omgeving.
 ---
 
-# Content Studio Setup - De omgeving klaarzetten
+# Setup - De omgeving van Content Studio klaarzetten
 
 ## JOUW ROL
 
@@ -36,7 +37,7 @@ Geen aannames over de doelgroep die niet uit Business DNA komen.
 2. **Een andere skill vond de omgeving niet** en verwees naar jou. Die skill heeft al gemeld
    wat er mist. Herhaal dat niet, houd het kort, en geef de beurt terug zodra het gat gedicht
    is. Zijn de pillars al gevuld en staat bij elke pillar een Gewenst %, sla Fase 6 dan over.
-3. **"Content studio controleren."** Doorloop Fase 1 tot 5 en Fase 8, sla het vullen van de
+3. **"Content studio controleren."** Doorloop Fase 1 tot 5B en Fase 8, sla het vullen van de
    pillars over als ze al gevuld zijn. Maak alleen aan wat ontbreekt. Ontbreekt de gewenste
    verdeling, doe dan alleen het deel Gewenste verdeling van Fase 6.
 
@@ -151,6 +152,16 @@ pillar in Content Pillars (of andersom), meld dat dan:
 Vergelijk op het eerste woord, hoofdletterongevoelig. "Autoriteit / Inspiratie" en
 "Autoriteit" zijn een match; "Authoriteit" en "Autoriteit" niet.
 
+**Fase Persoonlijk.** Kijk of het Fase-veld van de Content Calendar de optie `Persoonlijk`
+heeft. Die zit sinds 29 oktober 2026 in de template; oudere kopieën missen hem. Ontbreekt hij,
+meld het dan en ga door:
+
+> "In je Content Calendar ontbreekt de optie Persoonlijk bij Fase. Die gebruiken Hanna en Cato
+> voor persoonlijke verhalen. Voeg hem toe in Notion: klik in de Content Calendar op het veld
+> Fase, kies Nieuwe optie en typ Persoonlijk."
+
+Maak de optie niet zelf aan.
+
 ---
 
 ## FASE 4: IS BUSINESS DNA ER?
@@ -225,7 +236,7 @@ CLAUDE/
 
 **Business Brand Guidelines** is de plek voor beeldmateriaal: voorbeelden van carrousels en
 reelomslagen, brandfoto's, een screenshot van de Canva Brand Kit, lettertypes, logo's en
-screenshots van websitepagina's. De gebruiker vult hem zelf; `content-designsystem` leidt er daarna het design system uit af. De mapnamen
+screenshots van websitepagina's. De gebruiker vult hem zelf; `cs-designsystem` leidt er daarna het design system uit af. De mapnamen
 liggen vast, want die skill zoekt erop. Jij maakt alleen de lege map met de zeven submappen
 aan. Bestaat de map al (bijvoorbeeld uit een oudere versie van Business DNA, of omdat de
 gebruiker al beeld heeft verzameld), vul dan alleen de ontbrekende submappen aan en laat de
@@ -274,25 +285,56 @@ Verwijder of overschrijf nooit iets.
 **MEMORY.md** krijgt precies dit, en verder niets:
 
 ```markdown
-# MEMORY — Content Studio
+# MEMORY - Content Studio
 
 ## Hookgenerator
 
 ## Caption
 
 ## Design System
+
+## Sam
 ```
 
 **README.md** krijgt de tekst uit `docs/readme-content-studio.md` van deze plugin.
 
-De drie submappen blijven leeg. `content-designsystem` bouwt later de map `Design System/`,
-`hookgenerator` maakt
-`Goedgekeurde haakjes/goedgekeurde-haakjes.md` aan bij de eerste opgeslagen haakjes, en
-`content-caption` maakt `Goedgekeurde captions/goedgekeurde-captions.md` en `fotogebruik.md`
-aan bij de eerste caption die de gebruiker goedkeurt.
+De drie submappen blijven leeg. `cs-designsystem` bouwt later de map `Design System/`,
+`cs-hookgenerator` maakt
+`Goedgekeurde haakjes/goedgekeurde-haakjes.md` aan bij de eerste opgeslagen haakjes,
+`cs-caption` maakt `Goedgekeurde captions/goedgekeurde-captions.md` aan bij de eerste caption
+die de gebruiker goedkeurt, en `cs-design` maakt `fotogebruik.md` aan bij het eerste design.
 
-Kan een map niet worden aangemaakt (rechten): meld het, ga door met Fase 6, en zet de map op
-de afvinklijst als openstaand.
+Kan een map niet worden aangemaakt (rechten): meld het, ga door met Fase 5B, en zet de map
+op de afvinklijst als openstaand.
+
+---
+
+## FASE 5B: DESIGNROUTE EN MAPPEN IN CANVA
+
+**De designroute.** Daan (`cs-design`) maakt het design van een post op een van twee manieren.
+Vraag welke de gebruiker wil, met een voorstel:
+
+> "Hoe wil je je designs maken?
+> 1. **In Claude Design.** Daan maakt per post een prompt; jij plakt die in Claude Design en
+>    exporteert het design naar Canva. Werkt ook met Canva Gratis.
+> 2. **Daan maakt ze in Canva.** Daan bouwt elk design zelf uit een bibliotheek met je eigen
+>    layouts in Canva; jij kijkt de previews na en geeft akkoord. Daarvoor heb je Canva Pro
+>    nodig en één keer een bibliotheek, die je maakt met @designsystem.
+> Weet je het nog niet, begin dan met 1. Je kunt later wisselen."
+
+Zet het antwoord onderaan `Content Studio/README.md` als regel `Designroute: Claude Design` of
+`Designroute: Canva`. Staat er al een regel `Designroute:`, vraag dan alleen of die nog klopt.
+
+**Mappen in Canva.** Is de Canva-connector gekoppeld, kijk dan of er in Canva een map
+`Content Studio` staat met daarin `Bibliotheek`, `Carrousels` en `Reelomslagen`. Ontbreekt er
+een, vraag dan:
+
+> "Zal ik in je Canva een map Content Studio maken, met Bibliotheek, Carrousels en
+> Reelomslagen? Dan staan je designs bij elkaar, en zoekt Puk alleen daar naar het design bij
+> een post."
+
+Maak alleen na ja aan wat ontbreekt. Verplaats geen bestaande designs zonder dat de gebruiker
+daar apart om vraagt. Is Canva niet gekoppeld, sla dit over en zet het op de afvinklijst.
 
 ---
 
@@ -337,7 +379,7 @@ Vraag daarna **alleen naar de gaten**. Wat je hebt afgeleid hoeft de gebruiker a
 bevestigen of te corrigeren.
 
 **Vraag altijd expliciet naar "Wat past hier niet in".** Dat veld wordt overgeslagen als je er
-niet naar vraagt, en het is het veld dat `content-caption` het meest gebruikt om te toetsen
+niet naar vraagt, en het is het veld dat `cs-caption` het meest gebruikt om te toetsen
 of een caption in de pillar past. Stel de vraag concreet:
 
 > "Wat hoort volgens jou juist níet in [pillar]? Denk aan onderwerpen die je bewust vermijdt,
@@ -422,6 +464,8 @@ KLAAR
 ✓ Business DNA gevonden
 ✓ Map Business Brand Guidelines aangemaakt met zeven submappen
 ✓ Map Content Studio aangemaakt (Design System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md)
+✓ Designroute: [Claude Design / Canva]
+✓ Mappen in Canva: Content Studio met Bibliotheek, Carrousels en Reelomslagen
 ✓ Content Pillars gevuld: [namen]
 ✓ Gewenste verdeling ingevuld: [pillar %, pillar %, ...]
 ✓ Projectinstructies geleverd
@@ -430,6 +474,8 @@ NOG NIET
 ○ Een project in Claude maken met de naam Content Studio → map CLAUDE koppelen, het blok hierboven plakken in projectinstructies
 ○ Je beeldmateriaal in Business Brand Guidelines zetten → carrousels, reelomslagen, brandfoto's, Brand Kit, lettertypes en logo in de submappen zetten; de checklist staat in de leeromgeving
 ○ [alleen als het ontbreekt] Tone of Voice voor social content maken → @businessdna-tone-of-voice aanroepen en social content kiezen
+○ [alleen als het ontbreekt] Optie Persoonlijk bij Fase → in de Content Calendar op het veld Fase klikken, Nieuwe optie, Persoonlijk
+○ [alleen als Canva niet gekoppeld is] Canva koppelen → Aanpassingen (Customize) > Connectors, Canva, Verbinden; daarna @setup opnieuw voor de mappen in Canva
 ○ [alles wat in deze sessie is blijven liggen, met de reden]
 ```
 

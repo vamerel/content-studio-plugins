@@ -1,16 +1,17 @@
 ---
-name: content-designsystem
+name: cs-designsystem
 description: >
-  Bouwt in Claude Code de map Content Studio/Design System die je in Claude Design uploadt,
-  afgeleid uit je eigen carrousels, reelomslagen en brandfoto's in Business Brand Guidelines.
-  Je echte posts gaan mee als voorbeeld; daarnaast kleuren, fonts, de compositie per
-  layouttype, tekenlimieten als richtlijn, en een fotobibliotheek met wat er op elke
-  brandfoto staat. Werkt zonder iets te installeren. Levert design-system.md en fotos.md
-  voor de caption-skill en de twee teksten voor het instelscherm van Claude Design. Voor
-  Instagram-carrousels en reels. TRIGGERS op @designsystem, @content-designsystem, "design
-  system maken", "mijn huisstijl vastleggen", "tekenlimieten bepalen", "layout van mijn
-  carrousels", of elke vraag over het vastleggen van je visuele stijl voor Claude Content
-  Studio.
+  Daan in Claude Code. Bouwt de map Content Studio/Design System die je in Claude Design
+  uploadt, afgeleid uit je eigen carrousels, reelomslagen en brandfoto's in Business Brand
+  Guidelines. Je echte posts gaan mee als voorbeeld; daarnaast kleuren, fonts, de compositie
+  per layouttype, tekenlimieten als richtlijn, en een fotobibliotheek met wat er op elke
+  brandfoto staat. Werkt zonder iets te installeren. Levert design-system.md en fotos.md voor
+  Daan (cs-design), de twee teksten voor het instelscherm van Claude Design, en als je wilt de
+  prompt voor je bibliotheek in Canva. Voor Instagram-carrousels en reels. TRIGGERS op
+  @designsystem, @cs-designsystem, @daan, de oude naam @content-designsystem, "design system
+  maken", "werk mijn design system bij", "mijn huisstijl vastleggen", "tekenlimieten
+  bepalen", "layout van mijn carrousels", "maak mijn bibliotheek", of elke vraag over het
+  vastleggen van je visuele stijl voor Claude Content Studio.
 ---
 
 # Design System - Claude Content Studio
@@ -24,8 +25,8 @@ design dat daar gemaakt wordt op zijn echte posts lijkt. Eén bestand in die map
 
 Waarom dit ertoe doet: zonder design system in Claude Design krijgt de gebruiker generieke
 slides in een willekeurige stijl. En schrijf je eerst en ontwerp je daarna, dan past de tekst
-niet in de slide. Met deze map ontwerpt Claude Design in zijn huisstijl en schrijft de
-caption-skill tegen een bekende limiet.
+niet in de slide. Met deze map ontwerpt Claude Design in zijn huisstijl en verdeelt Daan
+de tekst tegen een bekende limiet.
 
 De gebruiker is geen ontwerper en gaat niet zelf bijsturen. Wat uit Claude Design komt, moet
 dus in één keer lijken op haar eigen posts. Dat lukt alleen als Claude Design haar **echte
@@ -106,7 +107,7 @@ en bekijk de beelden.
 |---|---|---|
 | `carrousels/` | layouttypes, tekst per slide, aantal slides, cover- en CTA-positie | geen tekenlimieten af te leiden; je stelt een startwaarde voor en zegt dat die na de eerste carrousel bijgesteld moet worden |
 | `reelomslagen/` | de omslaglayout, hoeveel tekst erop past, waar de tekst staat | limiet voor de reelomslag wordt een startwaarde |
-| `brandfotos/` | alle bruikbare foto's: wat erop staat, waar de persoon staat, welke ruimte ze laten voor tekst. Ze worden de fotobibliotheek (`fotos.md`) | geen fotobibliotheek; de caption-skill vraagt dan per post om een eigen foto |
+| `brandfotos/` | alle bruikbare foto's: wat erop staat, waar de persoon staat, welke ruimte ze laten voor tekst. Ze worden de fotobibliotheek (`fotos.md`) | geen fotobibliotheek; Daan vraagt dan per post om een eigen foto |
 | `canva-brandkit/` | kleuren met hexcodes, fontnamen | kleuren en fonts uit de website-extractie (stap 2) |
 | `lettertypes/` | de exacte fontbestanden en -namen | fontnamen uit de website-extractie of de Brand Kit |
 | `logo/` | logo-varianten en waar het staat op de slides | logo-URL uit de website-extractie; download hem dan naar `logo/` |
@@ -128,7 +129,7 @@ Guidelines zet.
 
 Brandfoto's hoeven in Brand Guidelines geen bijzondere bestandsnamen te hebben. Je hernoemt
 daar niets: in stap 8 kopieer je ze, verkleind, onder een vaste naam naar de map Design
-System. Tel ze wel. De caption-skill gebruikt een foto op de cover of omslag niet opnieuw
+System. Tel ze wel. Daan gebruikt een foto op de cover of omslag niet opnieuw
 binnen negen posts; met minder dan vijftien brandfoto's loopt hij daar snel tegenaan. Zeg dat
 in het bericht hieronder, met het advies om meer foto's toe te voegen.
 
@@ -325,7 +326,7 @@ Kies per layouttype één echte post die dit het best laat zien. Die wordt het v
 Bij het swipen leest de tekst prettig als hij op elke slide op dezelfde ooghoogte begint: de
 lezer hoeft niet te zoeken en haakt minder snel af. Maar niet elke slide heeft evenveel tekst.
 Een slide met weinig tekst die op die hoogte begint, houdt onderin veel lege ruimte over. Dat
-lost de caption-skill op door slides tot ongeveer de limiet te vullen, niet Claude Design door
+lost Daan op door slides tot ongeveer de limiet te vullen, niet Claude Design door
 tekst op te rekken. Wat je hier meet, zorgt dat beide dezelfde maat aanhouden.
 Meet over alle tussenslides (niet de cover en de CTA):
 
@@ -339,7 +340,7 @@ Meet over alle tussenslides (niet de cover en de CTA):
 - **Lettergrootte van de lopende tekst:** is die binnen één carrousel op alle tussenslides
   gelijk? Bijna altijd wel. Leg de grootte vast als deel van de slidehoogte.
 - **Waar ze witregels zet:** tussen twee gedachten, na de kop, voor de accentzin. Een witregel
-  is altijd één lege regel, nooit meer. Noteer welke van deze plekken ze gebruikt.
+  is altijd één lege regel, niet meer. Noteer welke van deze plekken ze gebruikt.
 - **Hoe vol een tekstslide is:** hoeveel regels lopende tekst er op haar volste tekstslide
   staan die er nog goed uitziet, en hoeveel tekens per regel passen. Daar komt de limiet in
   stap 4 uit.
@@ -359,7 +360,7 @@ gebruikt, maal het aantal tekens per regel (stap 3). Neem de laagste van de twee
 beneden af op een vijftal. Vier tekstslides met 132, 118, 241 en 125 tekens, waarvan de
 volste er goed uitziet en de ruimte zo'n 260 tekens toelaat, geven een limiet van 240.
 
-Waarom de volste en niet de krapste: de caption-skill vult elke slide tot ongeveer de limiet.
+Waarom de volste en niet de krapste: Daan vult elke slide tot ongeveer de limiet.
 Met de krapste waarde wordt elke slide zo leeg als de leegste die de gebruiker ooit maakte,
 en krijgt een carrousel te veel, te lege slides.
 
@@ -466,7 +467,7 @@ Pas aan op wat de gebruiker zegt. Ga pas naar stap 8 als hij akkoord is.
 Het resultaat van deze skill is een **map**, geen tekstblok. Claude Design heeft in het
 instelscherm voor een design system een uploadveld waar je een hele map in zet; alles wat
 erin staat leest hij mee bij elk design dat hij daarna maakt. Deze map is dus het design
-system zelf. De caption-skill leest er één bestand uit, `design-system.md`.
+system zelf. Daan leest er één bestand uit, `design-system.md`.
 
 Bouw hem in `Content Studio/Design System/`, precies zo. Laat weg wat tussen haken als
 optioneel staat en er niet is; maak nooit een leeg bestand om de boom compleet te maken.
@@ -690,7 +691,7 @@ smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een ko
    Is de pagina om de slides heen neutraal, en is elk gekleurd vlak een textuur uit
    assets/templates/achtergronden (als die map er is)?
 
-**`fotos.md`**: de fotobibliotheek. De caption-skill kiest hieruit per post de foto's, op
+**`fotos.md`**: de fotobibliotheek. Daan (`cs-design`) kiest hieruit per post de foto's, op
 onderwerp en op de ruimte die de tekst nodig heeft; Claude Design leest erin wat er op een
 foto staat. Bekijk elke foto en schrijf per foto één blok, in dit format:
 
@@ -706,9 +707,13 @@ Persoon: [links / midden / rechts], [van top tot teen / tot het middel / alleen 
 Vrij voor tekst: [boven / onder / links / rechts / geen]
 Staand of liggend: [staand / liggend]
 Past bij: [de pillars of onderwerpen waar hij bij past, uit SAMENVATTING.md of de Content Pillars]
+Canva-id: [leeg laten; Daan vult hem in als de foto in Canva staat]
 ```
 
-Wees concreet: de caption-skill kiest hierop, en "mooie foto" helpt hem niet. Een foto zonder
+Staat er in een bestaande `fotos.md` al een regel `Canva-id:` met een waarde, neem die dan
+over bij een nieuwe bouw.
+
+Wees concreet: Daan kiest hierop, en "mooie foto" helpt hem niet. Een foto zonder
 vrije ruimte voor tekst is alleen bruikbaar voor een tussenslide met een vlak.
 
 **`BRAND-SUMMARY.md`**: één pagina uit `Business DNA/SAMENVATTING.md`: wie dit is, voor wie, wat ze
@@ -735,7 +740,7 @@ elke foto. Uploadt de gebruiker zelf een foto bij een prompt, dan gebruikt Claud
 
 **`foundations/voice.md`**: geen kopie van Tone of Voice. Vijf tot tien regels: aanspreekvorm,
 de verboden woorden volledig, twee signature-uitdrukkingen, en de zin dat de tekst altijd uit
-de caption-skill komt en letterlijk overgenomen wordt. Verwijs naar Tone of Voice als bron.
+Daan komt en letterlijk overgenomen wordt. Verwijs naar Tone of Voice als bron.
 
 **`tokens/tokens.json`** en **`tokens/tokens.css`**: de kleuren, fonts en formaten uit blok A
 als data. In de CSS in deze vorm:
@@ -777,7 +782,7 @@ met de limieten en het minimum en maximum van de gebruiker ingevuld:
 ```
 ## Verdeling van de tekst over de slides
 
-Komt de tekst niet kant-en-klaar per slide uit de caption-skill, verdeel hem dan zo:
+Komt de tekst niet kant-en-klaar per slide uit Daan, verdeel hem dan zo:
 
 - **Eerst blokken, dan slides.** Deel de tekst eerst in blokken op betekenis: een opsomming
   (twee of meer regels achter elkaar die met hetzelfde teken of dezelfde aanhef beginnen), een
@@ -807,14 +812,14 @@ Komt de tekst niet kant-en-klaar per slide uit de caption-skill, verdeel hem dan
 - Alles letterlijk. Herschrijven of samenvatten mag niet; weglaten alleen met melding.
 ```
 
-Sluit af met: "De tekst per slide komt kant-en-klaar uit de caption-skill. Neem hem letterlijk
+Sluit af met: "De tekst per slide komt kant-en-klaar uit Daan. Neem hem letterlijk
 over, herschrijf niets."
 
 **`applications/reels.md`**: de reelomslag. Formaat 1080 x 1920, de veilige zone met maten,
 waar de tekst staat, de limiet, de standaard uit stap 5 (op de brandfoto die de prompt noemt),
 de regel dat tekst de persoon niet bedekt, en hoe de omslag zich verhoudt tot de
 cover van een carrousel (zelfde haakje, ander formaat). Verwijs naar de echte omslagen in
-`assets/templates/reelomslagen/`. Sluit af met dezelfde zin over de caption-skill.
+`assets/templates/reelomslagen/`. Sluit af met dezelfde zin over Daan.
 
 **`applications/linkedin.md`**: alleen als er LinkedIn-materiaal in Brand Guidelines staat.
 Zelfde opbouw als carrousels.md. Is er niets, dan maak je dit bestand niet en zeg je dat in
@@ -856,7 +861,7 @@ Uit `Business Brand Guidelines/`:
 
   **Vaste namen.** Bestaat er al een `fotos.md` van een eerdere bouw, houd dan voor elke foto
   met dezelfde bron dezelfde naam, en geef nieuwe foto's het volgende vrije nummer. Een naam
-  wordt nooit hergebruikt voor een andere foto: de caption-skill houdt in een logboek bij welke
+  wordt nooit hergebruikt voor een andere foto: Daan houdt in een logboek bij welke
   foto wanneer gebruikt is, en dat klopt alleen als de namen blijven.
 - `logo/` volledig naar `logo/`.
 - Uit `lettertypes/` alleen de bestanden van fonts die niet op Google Fonts staan, naar
@@ -907,7 +912,7 @@ Neem altijd deze regels op: "Toon carrousels naast elkaar van links naar rechts,
 Instagram.", "De pagina om de slides heen is neutraal lichtgrijs, zonder huisstijlkleuren; de
 kleur- en fontregels gelden alleen binnen de slides.", "Tussenslides: de tekst begint altijd op de
 startlijn, nooit verticaal gecentreerd; de lopende tekst is op alle tussenslides even groot;
-tussen twee gedachten precies één witregel, nooit meer en nooit tekst oprekken; een slide
+tussen twee gedachten precies één witregel, niet meer, en tekst nooit oprekken; een slide
 die de prompt Grote vorm noemt zet je groot zoals op mijn posts.", "Cover: de kop op hooguit
 twee regels, met ruimte rondom binnen de band; past hij niet, dan kleiner.", "Tekst nooit kleiner dan op mijn posts; tot tien
 tekens boven de limiet moet passen.", "Een opsomming staat altijd heel op één slide.",
@@ -919,7 +924,7 @@ bedekt nooit het gezicht of lichaam van de persoon."
 Zijn er texturen in `assets/templates/achtergronden`, dan ook: "Een gekleurd vlak is altijd een
 PNG uit assets/templates/achtergronden als paginavullende achtergrondafbeelding, nooit een
 effen kleurvlak."
-Sluit af met: "De tekst per slide komt uit mijn caption-skill. Neem die letterlijk over."
+Sluit af met: "De tekst per slide komt letterlijk uit mijn caption. Neem die letterlijk over."
 
 **Fontregel:** staat een font (kop, tekst of handschrift) niet op Google Fonts, zeg dan dat de
 fontbestanden in `assets/templates/lettertypes/` zitten en apart in het fontveld van Claude
@@ -929,6 +934,58 @@ Canva ook niet: dat komt als aparte stap in de handleiding van stap 10.
 
 Lever de twee blokken elk in een eigen codeblok, met erboven alleen "Veld 1" en "Veld 3".
 De uitleg wat ermee te doen komt in de slotmelding van stap 10, niet hier.
+
+---
+
+## Stap 9b - De bibliotheek voor Canva (alleen als de gebruiker dat wil)
+
+Daan kan in Cowork de designs ook zelf in Canva maken (designroute Canva). Daarvoor is in
+Canva één **bibliotheek** nodig: een design met per layouttype een pagina, waar Daan per post
+pagina's uit kopieert en invult. Staat in `Content Studio/README.md` de regel
+`Designroute: Canva`, of vraagt de gebruiker om de bibliotheek, lever dan deze stap. Anders
+noem je hem alleen in één regel in de slotmelding.
+
+**Heeft de gebruiker al carrousels in Canva** die uit Claude Design komen (met echte
+tekstlagen), dan is een nieuwe bibliotheek niet nodig: Daan stelt hem in Cowork samen uit
+pagina's van die designs ("@daan, maak mijn bibliotheek uit mijn bestaande carrousels"). Zeg
+dat, en lever de prompt hieronder alleen voor de layouttypes of kleurvarianten die nog
+ontbreken, of als de gebruiker hem toch wil.
+
+**De prompt**, in één codeblok, voor Claude Design:
+
+```
+Naam: Bibliotheek - Content Studio
+Exporteer het design onder precies deze naam naar Canva, als bewerkbaar ontwerp.
+
+Maak met mijn design system één bibliotheek voor mijn carrousels: een design van [breedte x
+hoogte] px met per layouttype één pagina, in elke kleurvariant. Lees eerst CLAUDE.md en
+applications/carrousels.md. Bouw elke pagina op het voorbeeld van dat layouttype uit mijn
+eigen posts.
+
+Pagina's, in deze volgorde:
+[per layouttype uit het design system, per kleurvariant of achtergrond één regel:
+"[n]. [layouttype] · [variant]"; bijvoorbeeld "1. Cover op foto · groen",
+"2. Cover met handschriftregel · oranje", "3. Tekstslide · groen", ... "[n]. CTA · zwart"]
+
+Regels:
+- Elke tekst is een aparte, bewerkbare tekstlaag: kop, lopende tekst, handschriftregel,
+  afzender. Nooit tekst in een afbeelding.
+- Zet in elke laag voorbeeldtekst van ongeveer de lengte van de limiet uit mijn design
+  system, zodat de lettergrootte klopt.
+- Een accentwoord in de lopende tekst staat als apart gekleurd tekstdeel in dezelfde laag.
+- Een foto is een vervangbare afbeelding, met de brandfoto uit het voorbeeld.
+- De afzender staat op elke pagina waar mijn posts hem hebben.
+- Geef elke pagina als titel het nummer, het layouttype en de variant, zoals hierboven.
+```
+
+Maakt de gebruiker ook reels, lever dan een tweede prompt op dezelfde manier, met de naam
+`Bibliotheek reelomslagen - Content Studio`, het formaat van de reelomslag en de
+omslagvarianten uit `applications/reels.md`.
+
+Zeg erbij: "Zet de bibliotheek in Canva daarna in de map Content Studio > Bibliotheek. De eerste
+keer dat Daan in Cowork een design maakt, leest hij de bibliotheek en maakt hij de lijst met
+pagina's. Je brandfoto's moeten ook in Canva staan; Daan vult dan de Canva-id's in fotos.md
+in."
 
 ---
 
@@ -963,7 +1020,7 @@ en stap 7 dan weg en hernummer.
 >
 > **Testen voordat je hem echt gebruikt**
 >
-> 8. **Maak één proefcarrousel.** Neem een caption die je al hebt en laat de caption-skill de
+> 8. **Maak één proefcarrousel.** Neem een caption die je al hebt en laat Daan (@design) de
 >    slides en de prompt maken. Plak de prompt in Claude Design.
 > 9. **Leg hem naast je eigen carrousel.** Open een van je eigen carrousels ernaast en check:
 >    is de tekst even groot? Begint hij op elke tussenslide op dezelfde hoogte? Staat er
@@ -974,6 +1031,11 @@ en stap 7 dan weg en hernummer.
 >
 > Pas je later je layout aan, zet dan de nieuwe posts in Brand Guidelines en roep me opnieuw
 > aan in Claude Code. Ik bouw de map dan opnieuw en jij uploadt hem opnieuw in Claude Design.
+>
+> Wil je dat Daan je designs zelf in Canva maakt? Dan heb je een bibliotheek in Canva nodig.
+> Zeg "maak mijn bibliotheek", dan geef ik je de prompt.
+
+Laat die laatste alinea weg als je stap 9b al leverde.
 
 ---
 
@@ -1002,6 +1064,11 @@ ontbreekt uit de posts en markeer het als geschat.
 Volgens `references/memory-regels.md`, sectie `## Design System`. Maximaal drie regels, alleen
 over layoutkeuzes die terugkomen ("quote-slide altijd op slide 3", "reeltekst altijd
 bovenin"). Voorleggen, wegschrijven na akkoord. Weinig feedback: overslaan.
+
+In dezelfde sectie zet Daan (`cs-design`) in Cowork na ja van de gebruiker de voorstellen van
+Koen uit de designcheck. Bouw je het design system opnieuw, verwerk die regels dan in de
+bestanden waar ze horen (bijvoorbeeld `applications/carrousels.md`) en laat ze in MEMORY.md
+staan.
 
 ---
 

@@ -1,8 +1,9 @@
 # Prompt: elke week haakjes in je inbox
 
 Een geplande taak die in de cloud draait en je elke week haakjes en content-ideeën mailt, op
-basis van je Business DNA en je Content Calendar. Hij leert van wat je met @save bewaart en
-van de cijfers van je posts op Instagram, die hij via Composio ophaalt. De taak heeft de
+basis van je Business DNA en je Content Calendar. Ruby leest de cijfers van je posts op
+Instagram (via Composio) en geeft door wat werkte, Hanna maakt de haakjes, en Koen kijkt ze
+na voordat ze in je mail komen. Hij leert ook van wat je met @save bewaart. De taak heeft de
 koppelingen Notion en Gmail nodig, en Composio met je Instagram voor de cijfers. Zonder
 Composio werkt hij ook, maar dan zonder cijfers.
 
@@ -43,17 +44,17 @@ Zoek pagina's en databases op naam en haal het actuele schema op; gebruik geen v
 - Business DNA: Tone of Voice, Tone of Voice - Social content (met de Stijlvoorbeelden), Ideal Client (angsten, verlangens, bezwaren, klanttaal), Product Ladder en Brand Positioning.
 - Social Media Planner: Content Pillars (de opties en de uitleg per pillar) en de Content Calendar. Uit de Content Calendar haal je: welke haakjes er al staan (geen dubbele maken), welke plekken nog open staan, welke ideeën ik bewaard heb (status Idee), en per geplaatste post (status Live) de Hook, Pillar, Fase en Soort. In de Content Calendar staan geen cijfers.
 
-STAP 2: LEER VAN WAT IK BEWAAR EN VAN MIJN CIJFERS (alleen lezen)
+STAP 2: RUBY, WAT IK BEWAAR EN MIJN CIJFERS (alleen lezen)
 - Wat ik bewaard heb, laat zien wat mij aanspreekt. Gebruik het als stijlvoorbeeld en als richting, niet om te kopiëren.
 - De cijfers haal je via Composio uit Instagram. Zoek in Composio de Instagram-tools en controleer of de koppeling actief is.
 - Haal de posts van de afgelopen 8 weken op met INSTAGRAM_GET_IG_USER_MEDIA (ig_user_id "me"), met in fields minstens: id, caption, media_type, permalink, timestamp, like_count, comments_count, view_count, saved_count, shares_count. Ontbreken views, saves of shares, probeer dan INSTAGRAM_GET_IG_MEDIA_INSIGHTS per post.
 - Koppel een post aan zijn rij in de Content Calendar via de eerste regel van de caption (het haakje).
-- Kijk welke pillar, fase, soort en vorm van haakje het best scoorden, per 1.000 weergaven, zodat een post met veel bereik niet vanzelf wint. Opgeslagen en Gedeeld wegen het zwaarst. Minder dan 5 posts met cijfers, of lukt dit niet (bijvoorbeeld zonder Composio): sla de vergelijking over, ga door zonder cijfers en zet onderaan de mail waarom.
+- Kijk welke pillar, fase, soort en vorm van haakje het best scoorden, per 1.000 weergaven, zodat een post met veel bereik niet vanzelf wint. Opgeslagen en Gedeeld wegen het zwaarst. Tel de Fase Persoonlijk apart, niet mee in de klantreis. Dit is wat Ruby aan Hanna doorgeeft. Minder dan 5 posts met cijfers, of lukt dit niet (bijvoorbeeld zonder Composio): sla de vergelijking over, ga door zonder cijfers en zet onderaan de mail waarom.
 
 STAP 3: NIEUWS [alleen opnemen als ik nieuws wil]
 Zoek het belangrijkste nieuws over [onderwerp] van de afgelopen 7 dagen, alleen uit [bronnen]. Gebruik het voor 1 à 2 haakjes. Is er niets wat mijn doelgroep raakt, sla deze stap over.
 
-STAP 4: HAAKJES
+STAP 4: HANNA, DE HAAKJES
 Maak [aantal] haakjes per onderdeel van mijn weekstructuur:
 [weekstructuur, één regel per onderdeel met een korte omschrijving]
 Verdeel de haakjes over de fases van de klantreis:
@@ -66,6 +67,9 @@ Leun iets meer op wat volgens stap 2 goed werkt, zonder de andere pillars en fas
 [Mijn regels voor haakjes: ... Geen regels genoemd, dan deze regel weglaten.]
 [Hier post ik niet over: ... Niets genoemd, dan deze regel weglaten.]
 
+STAP 5: KOEN, DE CONTROLE
+Laat Koen elk haakje controleren voordat het in de mail komt, als aparte stap, met alleen de haakjes en de bronnen voor je. Per haakje drie checks, GOED of AFGEKEURD met een reden: haakje (sterk volgens de regels hieronder en niet gelijk of bijna gelijk aan een Hook in de Content Calendar), uniek (niet iets wat elke ondernemer in mijn branche zo kan posten) en klantreis (past bij de fase en de pillar; aanbod alleen bij Product aware en Fully aware). Een afgekeurd haakje vervangt Hanna door een nieuw; Koen kijkt nog één keer.
+
 KWALITEIT VAN EEN HAAKJE
 - Elk haakje gebruikt minstens één trigger: nieuwsgierigheid (een open lus, een onverwachte hoek), herkenning (een scenario waarin de doelgroep zichzelf letterlijk ziet) of concreetheid (een cijfer, termijn of specifieke situatie). De sterkste combineren er twee.
 - Verklap de clou niet: het haakje opent de lus, de post sluit hem.
@@ -77,11 +81,12 @@ KWALITEIT VAN EEN HAAKJE
 
 OPBOUW VAN DE MAIL
 Onderwerp: Content-ideeën week [weeknummer]
-Bovenaan 2 à 3 zinnen: wat de afgelopen 8 weken het best werkte (pillar, fase, soort), met de cijfers uit Instagram erbij. Zonder cijfers laat je dit weg.
+Bovenaan, onder het kopje Ruby, 2 à 3 zinnen: wat de afgelopen 8 weken het best werkte (pillar, fase, soort), met de cijfers uit Instagram erbij. Zonder cijfers laat je dit weg.
 Per onderdeel van mijn weekstructuur de haakjes. Per haakje:
 - het haakje zelf (de openingszin)
 - pillar (uit Content Pillars), klantreisfase en trigger
 - invalshoek in 1 zin: waar de post over gaat
+- Koen: goedgekeurd, of de reden als hij na twee rondes nog twijfelde
 Haakjes die op nieuws leunen markeer je met [nieuws], met de bronlink erbij.
 Daarna 1 alinea: het sterkste haakje van deze week en waarom. Eén keuze.
 Onderaan 1 regel: "Wat je goed vindt, bewaar je met @save."

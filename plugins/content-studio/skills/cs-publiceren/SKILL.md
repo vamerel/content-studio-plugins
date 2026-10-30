@@ -1,18 +1,19 @@
 ---
-name: content-publiceren
+name: cs-publiceren
 description: >
-  Publiceert je geplande Instagram-posts automatisch vanuit je Content Calendar in Notion.
-  Draait als geplande taak, zonder dat jij iets hoeft te doen: op je vaste postmomenten (zelf
-  te kiezen, bijvoorbeeld 08:00 en 19:00) gaat de carrousel of post live (caption uit Notion,
-  slides uit Canva, posten via Composio), daarna staat hij in Notion op Live met de
-  link naar de post en krijg je een mail met die link. Reels plaats je zelf.
-  's Avonds krijg je een mail met de posts van morgen. Kent drie modi: publiceren, avondcheck
-  en proefrun. TRIGGERS op @publiceren,
-  @content-publiceren, "publiceer de post van vandaag", "avondcheck", "proefrun publiceren",
-  of een geplande taak die deze skill aanroept.
+  Puk via Composio. Publiceert je geplande Instagram-posts automatisch vanuit je Content
+  Calendar in Notion. Draait als geplande taak, zonder dat jij iets hoeft te doen: op je vaste
+  postmomenten (zelf te kiezen, bijvoorbeeld 08:00 en 19:00) gaat de carrousel of post live
+  (caption uit Notion, slides uit Canva, posten via Composio), daarna staat hij in Notion
+  meteen op Live met de link naar de post en krijg je een mail met die link. Reels plaats je
+  zelf. Vooruit plannen kan op deze route niet; de Canva-links koppelt Puk elke ochtend met
+  cs-canva-links. Kent drie modi: publiceren, avondcheck (optioneel) en proefrun. TRIGGERS op
+  @publiceren, @cs-publiceren, de oude naam @content-publiceren of content-publiceren,
+  "publiceer de post van vandaag", "avondcheck", "proefrun publiceren", of een geplande taak
+  die deze skill aanroept.
 ---
 
-# Publiceren - Claude Content Studio
+# Puk via Composio - Claude Content Studio
 
 De Content Calendar in Notion is de planning. Instagram kan via de koppeling niet inplannen,
 alleen direct publiceren. Deze skill doet dat op het geplande moment: hij leest Notion op dat
@@ -28,7 +29,7 @@ twijfel gaat er niets live en krijgt de gebruiker een mail.
 Meestal door een geplande taak, met een prompt als:
 
 ```
-Voer @content-publiceren uit in modus publiceren.
+Voer @cs-publiceren uit in modus publiceren.
 Postmomenten: 08:00, 19:00
 Dit postmoment: 19:00
 Mail naar: naam@domein.nl
@@ -69,7 +70,7 @@ vragen en wacht nergens op akkoord. Alles wat niet klopt, gaat in de mail.
 - **Geen opties of properties aanmaken** in Notion. Ontbreekt er een status, dan stop je en
   meld je het.
 - **Niet naast Metricool draaien.** Gebruikt de gebruiker Metricool om in te plannen, dan
-  hoort daar de skill `content-publiceren-metricool` bij. Draaien allebei voor dezelfde
+  hoort daar de skill `cs-publiceren-metricool` bij. Draaien allebei voor dezelfde
   Content Calendar, dan staat elke post er twee keer.
 
 ---

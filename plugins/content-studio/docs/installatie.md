@@ -11,7 +11,7 @@ Claude-app heeft voor Chat & Cowork en voor Claude Code elk een eigen lijst:
 |---|---|---|
 | `businessdna` | `vamerel/businessdna` | **Chat & Cowork** (heb je waarschijnlijk al) |
 | `content-studio` | `vamerel/content-studio-plugins` | **Chat & Cowork** |
-| `content-designsystem` | `vamerel/content-studio-plugins` | **alleen Claude Code**, zie de aparte installatie-instructie |
+| `content-designsystem` (skill `cs-designsystem`) | `vamerel/content-studio-plugins` | **alleen Claude Code**, zie de aparte installatie-instructie |
 
 ## Had je de plugin al uit een bestand geïnstalleerd?
 
@@ -33,7 +33,7 @@ Verwijder dan eerst de oude. Anders heb je straks twee keer dezelfde skills.
 6. Installeer uit de marketplace **content-studio**.
 7. Staat **businessdna** nog niet in je lijst? Voeg dan ook de marketplace
    `vamerel/businessdna` toe, op dezelfde manier, en installeer daaruit **businessdna**.
-8. Start een nieuw gesprek en typ `@content-studio-setup`. Reageert de skill, dan is de
+8. Start een nieuw gesprek en typ `@setup`. Reageert de skill, dan is de
    installatie gelukt.
 
 Content Studio bouwt voort op de plugin `businessdna`. De twee plugins werken naast elkaar;
@@ -42,20 +42,26 @@ Content Studio leest wat Business DNA maakt.
 Plugins die je in Chat & Cowork installeert, verschijnen vanzelf ook in Claude Code. Daar
 hoef je niets voor te doen.
 
-## De skills die je krijgt
+## Je team: de skills die je krijgt
 
-| Aanroepen met | Wat hij doet |
-|---|---|
-| `@content-studio-setup` | omgeving controleren, map Content Studio maken, pillars vullen, projectinstructies leveren |
-| `@haakjes` | vijf haakjes voor één probleem, één per fase, opslaan als Idee |
-| `@caption` | caption en slidetekst, opslaan als Concept, plakblok voor Claude Design |
-| "maak de prompts voor Claude Design" | de prompts voor meerdere posts tegelijk, uit captions die al in Notion staan |
-| `@save` | een idee uit het gesprek bewaren als Idee |
-| `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
-| `@publiceren-metricool` | route A: je geplande posts in Metricool inplannen op de tijd uit Notion, en 's avonds op Live zetten; "plan ze ook in Metricool" plant posts van later in de week meteen in |
-| `@publiceren` | route B: je geplande posts op vaste momenten via Composio op Instagram zetten, met een avondmail |
+| Wie | Skill | Zo roep je hem aan | Wat hij doet |
+|---|---|---|---|
+| Viggo | `cs-verhalen` | `@viggo`, `@verhalen` | vraagt naar je verhalen van de week en geeft ze door aan Hanna |
+| Sam | `cs-speuren` | `@sam`, `@speuren` | zoekt via Apify wat werkt in je niche en geeft patronen door aan Hanna |
+| Ruby | `cs-analyse` | `@ruby`, `@analyse` | leest de cijfers van je posts en geeft door wat werkte |
+| Hanna | `cs-hookgenerator` | `@hanna`, `@haakjes` | haakjes, gecontroleerd door Koen, na je akkoord op Idee |
+| Cato | `cs-caption` | `@cato`, `@caption` | de caption, gecontroleerd door Koen, na je akkoord op Concept |
+| Koen | `cs-controle` | `@koen`, `@controle` | controleert haakjes, captions en designs; jij geeft akkoord |
+| Daan | `cs-design` | `@daan`, `@design` | de slide-indeling, layout, foto's en de prompt voor Claude Design, of het design in Canva |
+| Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt je designs uit Canva aan je posts en zet ze op Gepland |
+| Puk | `cs-publiceren-metricool` | `@publiceren-metricool` | route A: elke ochtend alles op Gepland in Metricool inplannen en gelijk houden aan Notion |
+| Puk | `cs-publiceren` | `@publiceren` | route B: je posts op vaste momenten via Composio op Instagram zetten |
+| | `cs-setup` | `@setup` | omgeving controleren, map Content Studio maken, pillars vullen, projectinstructies leveren |
+| | `cs-save` | `@save` | een idee uit het gesprek bewaren als Idee |
+| | `cs-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
 
-Je gebruikt één van de twee publiceerskills: die van de route die je kiest.
+Je gebruikt één van de twee publiceerskills: die van de route die je kiest. De oude namen
+(zoals @content-caption of @hookgenerator) werken ook nog.
 
 ## Nieuwe versies
 

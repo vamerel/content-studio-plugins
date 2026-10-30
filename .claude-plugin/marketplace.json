@@ -10,12 +10,12 @@
     {
       "name": "content-studio",
       "source": "./plugins/content-studio",
-      "description": "Claude Content Studio: haakjes, captions, prompts voor Claude Design, ideeën bewaren en automatisch publiceren, op basis van je Business DNA. Installeren in Chat & Cowork."
+      "description": "Claude Content Studio: je contentteam (Viggo, Sam, Ruby, Hanna, Cato, Koen, Daan en Puk) voor haakjes, captions, designs via Claude Design of Canva en automatisch publiceren, op basis van je Business DNA. Installeren in Chat & Cowork."
     },
     {
       "name": "content-designsystem",
       "source": "./plugins/content-designsystem",
-      "description": "Content Design System: de skill @designsystem voor Claude Content Studio. Alleen installeren in Claude Code."
+      "description": "Content Design System: de skill cs-designsystem (@designsystem) voor Claude Content Studio. Alleen installeren in Claude Code."
     }
   ]
 }

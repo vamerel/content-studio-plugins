@@ -1,11 +1,11 @@
 ---
-name: content-scrape
+name: cs-scrape
 description: >
   Haalt binnen Claude Content Studio een post op van Instagram, LinkedIn of YouTube via de
   Apify-connector: de caption of tekst, bij een reel of video ook wat er gezegd wordt, en de
   cijfers. Herkent het platform aan de link en gebruikt de juiste Apify Actor. Daarna kun je
   de post met @save bewaren als Idee in je Content Calendar. Haalt alleen op en bewaart zelf
-  niets. TRIGGERS op @scrape, @content-scrape, of wanneer de gebruiker een link van
+  niets. TRIGGERS op @scrape, @cs-scrape, de oude naam @content-scrape, of wanneer de gebruiker een link van
   instagram.com, linkedin.com, youtube.com of youtu.be plakt en vraagt die op te halen, uit te
   lezen of te bewaren als idee.
 ---
@@ -13,7 +13,7 @@ description: >
 # Scrape - Claude Content Studio
 
 Een link erin, de post eruit. Deze skill haalt een post op via Apify en laat zien wat erin
-staat. Bewaren doet `content-save` (`@save`), op het moment dat de gebruiker dat wil.
+staat. Bewaren doet `cs-save` (`@save`), op het moment dat de gebruiker dat wil.
 
 ---
 
@@ -29,7 +29,7 @@ Doe dit vóór alles, volgens `references/omgevingscheck.md`:
 
 Stop.
 
-Notion heb je pas nodig bij het bewaren; dat controleert `content-save`.
+Notion heb je pas nodig bij het bewaren; dat controleert `cs-save`.
 
 Is alles er, meld dat dan niet. Ga door.
 
@@ -138,8 +138,8 @@ Sluit af met één vraag:
 
 > "Wil je hem bewaren als Idee in je Content Calendar? Dan zet ik hem erin met @save."
 
-Bij ja: roep `content-save` aan en geef mee: de link van de post, het platform, van wie hij is
-en de tekst die je ophaalde. `content-save` toont de rij en vraagt zelf om akkoord. Je schrijft
+Bij ja: roep `cs-save` aan en geef mee: de link van de post, het platform, van wie hij is
+en de tekst die je ophaalde. `cs-save` toont de rij en vraagt zelf om akkoord. Je schrijft
 in deze skill zelf niets weg.
 
 ---

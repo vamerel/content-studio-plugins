@@ -1,23 +1,25 @@
 # MEMORY-regels
 
-`Content Studio/MEMORY.md` is het geheugen van het project. Drie skills schrijven erin, elk in
-een eigen sectie. De regels hieronder gelden voor allemaal.
+`Content Studio/MEMORY.md` is het geheugen van het project. Een paar skills schrijven erin,
+elk in een eigen sectie. De regels hieronder gelden voor allemaal.
 
 ---
 
 ## Opbouw
 
 ```
-# MEMORY — Content Studio
+# MEMORY - Content Studio
 
 ## Hookgenerator
 
 ## Caption
 
 ## Design System
+
+## Sam
 ```
 
-`content-studio-setup` maakt dit bestand aan met de drie lege secties. Ontbreekt een sectie
+`cs-setup` maakt dit bestand aan met de vier lege secties. Ontbreekt een sectie
 later, dan voegt de skill die hem nodig heeft hem toe op de juiste plek; de rest blijft
 staan.
 
@@ -27,9 +29,17 @@ staan.
 
 | Skill | Sectie | Voorbeeld van een regel |
 |---|---|---|
-| hookgenerator | Hookgenerator | "Maximaal tien woorden per haakje." |
-| content-caption | Caption | "Afsluiten met één vraag, nooit met twee." |
-| content-designsystem | Design System | "Quote-slide altijd op slide 3 of 4, nooit als tweede." |
+| cs-hookgenerator | Hookgenerator | "Maximaal tien woorden per haakje." |
+| cs-caption | Caption | "Afsluiten met één vraag, nooit met twee." |
+| cs-designsystem, cs-design | Design System | "Quote-slide altijd op slide 3 of 4, nooit als tweede." |
+| cs-speuren | Sam | "- zoekterm: administratie zzp" of "- account: https://www.instagram.com/..." |
+
+`cs-design` schrijft in de sectie Design System alleen na ja van de gebruiker: een voorstel van
+Koen uit de designcheck, of een correctie die steeds terugkomt. `cs-designsystem` leest de
+sectie als het design system opnieuw wordt opgebouwd.
+
+De sectie Sam is een lijst, geen set leerregels: zoektermen en accounts, één per regel,
+hooguit tien. Regel 4 en 5 hieronder gelden er niet voor.
 
 Elke skill leest en schrijft **alleen zijn eigen sectie**. Een skill die iets ziet dat in een
 andere sectie hoort, meldt dat als voorstel en schrijft het niet zelf weg.

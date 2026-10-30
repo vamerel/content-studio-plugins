@@ -27,7 +27,7 @@ dus die kies je ook niet als hij als enige overblijft. Blijft er precies één o
 die. Blijven er meer over:
 
 - **In een gesprek:** toon de opties, met het pad, en laat de gebruiker kiezen.
-- **In een geplande taak** (`content-publiceren`): er is niemand om te vragen. Staat in de
+- **In een geplande taak** (`cs-publiceren`): er is niemand om te vragen. Staat in de
   aanroep de instelling `Content Calendar`, kies dan de treffer die bij die omschrijving past.
   Zonder die instelling, of als er niet precies één past: publiceer niets en mail de gevonden
   databases (zie de skill).
@@ -46,12 +46,12 @@ optie of property aan.
 | Property | Type | Opties in de template |
 |---|---|---|
 | Hook | Title | het haakje, de eerste regel van de post |
-| Fase | Select | Unaware, Problemaware, Solutionaware, Productaware, Fullyaware |
+| Fase | Select | Unaware, Problemaware, Solutionaware, Productaware, Fullyaware, Persoonlijk |
 | Pillar | Select | Persoonlijk, Autoriteit, Expertise, Aanbod, Social Proof |
 | Soort | Select | Carrousel, Reel, Post, Email |
 | Kanaal | Select | Instagram, LinkedIn, Emailmarketing, Facebook |
 | Status | Status | Idee (to-do) → Concept → Klaar → Gepland → Bezig → Fout (in progress) → Live (complete). Sommige kalenders hebben ook Designen |
-| Publicatiedatum | Date | met tijd (Tijd opnemen aan) als je een vrij tijdstip per post wilt; `content-publiceren-metricool` plant op die tijd in |
+| Publicatiedatum | Date | met tijd (Tijd opnemen aan) als je een vrij tijdstip per post wilt; `cs-publiceren-metricool` plant op die tijd in |
 | Canva | URL | de Canva-link van het ontwerp; blijft staan na publicatie |
 | URL | URL | in de API heet dit veld `userDefined:URL`. De link naar de post op Instagram, gezet zodra hij live staat |
 
@@ -87,38 +87,50 @@ carrousel. Schrijf altijd de optienaam zoals die in het live schema staat.
 
 | Skill | Schrijft | Status |
 |---|---|---|
-| hookgenerator | Hook, Fase, Pillar | Idee |
-| content-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar; bij een post van `@scrape` de bron in de body | Idee |
-| content-caption | Soort, Kanaal, body (alleen de caption); bij een nieuwe pagina ook Hook, Fase en Pillar | Concept |
-| content-publiceren | Status, en na publicatie de postlink | Gepland → Bezig → Live, of Fout |
-| content-publiceren-metricool | Status, en zodra Metricool geplaatst heeft de postlink | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
+| cs-hookgenerator | Hook, Fase, Pillar; bij een verhaal van Viggo het blok Verhaal | Idee |
+| cs-save | Hook, Pillar, Fase als die genoemd is of onmiskenbaar; bij een post van `@scrape` de bron in de body | Idee |
+| cs-caption | Soort, Kanaal, body (de caption en het Rapport van Koen); bij een nieuwe pagina ook Hook, Fase en Pillar | Concept |
+| cs-design | het blok Slidetekst in de body | (laat de status staan) |
+| cs-canva-links | het Canva-linkveld | Gepland, of Klaar zonder Publicatiedatum |
+| cs-controle | alleen na ja: het blok Rapport van Koen | (laat de status staan) |
+| cs-publiceren | Status, en na publicatie de postlink | Gepland → Bezig → Live, of Fout |
+| cs-publiceren-metricool | Status, en zodra Metricool geplaatst heeft de postlink | Gepland → Bezig (staat in Metricool) → Live (Metricool bevestigt), of Fout |
 
 **Pillar leidt de skill zelf af** uit het haakje of het gesprek, door het naast de body van de
 pillarpagina's te leggen (Wat past hier wel in, Wat past hier niet in). Toon de pillar vóór het
 wegschrijven, zodat de gebruiker hem kan corrigeren. Past er geen, laat het veld dan leeg en
 meld het. Een pillar die al op een pagina staat, overschrijf je niet.
 
-**Soort en Kanaal** vullen `hookgenerator` en `content-save` alleen in als de gebruiker
-specifiek noemt wat erin moet. Anders blijven ze leeg. `content-caption` vraagt ze in stap 1 en
+**Soort en Kanaal** vullen `cs-hookgenerator` en `cs-save` alleen in als de gebruiker
+specifiek noemt wat erin moet. Anders blijven ze leeg. `cs-caption` vraagt ze in stap 1 en
 vult ze dus wel in.
 
-**Body:** zie `pagina-opbouw.md`. Bij `hookgenerator` en `content-save` blijft hij leeg, tenzij
+**Body:** zie `pagina-opbouw.md`. Bij `cs-hookgenerator` en `cs-save` blijft hij leeg, tenzij
 de gebruiker specifiek zegt dat er iets in moet of het een opgehaalde post is.
 
 **Fase-namen mappen** op de live opties door spaties weg te halen en hoofdletters te negeren:
 "Problem Aware" wordt `Problemaware`. Bestaat de optie niet, laat het veld leeg en meld het
 één keer.
 
+**Fase Persoonlijk** is voor een persoonlijk verhaal dat niet over de klantreis gaat, meestal
+van Viggo. Het is een zesde optie naast de vijf klantreisfases. Ruby en de feedplanner tellen
+hem apart, niet mee in de klantreis. Let op: er is ook een **Pillar** Persoonlijk. Dat zijn twee
+velden; een post kan Pillar Persoonlijk hebben met een klantreisfase, of Fase Persoonlijk met
+een andere pillar. Ontbreekt de optie Persoonlijk bij Fase in het live schema (een oudere
+kopie van de template), laat de fase dan leeg en meld: "In je Content Calendar ontbreekt de
+optie Persoonlijk bij Fase. Voeg hem toe in Notion: klik op het veld Fase en kies een nieuwe
+optie." Maak hem nooit zelf aan.
+
 **Status:** bestaat `Idee` of `Concept` niet, gebruik dan de eerste optie in dezelfde groep
 (to-do of in progress) en meld dat kort.
 
-**Statussen voor publiceren:** `content-publiceren` en `content-publiceren-metricool` hebben `Gepland`, `Bezig`, `Live` en
+**Statussen voor publiceren:** `cs-publiceren` en `cs-publiceren-metricool` hebben `Gepland`, `Bezig`, `Live` en
 `Fout` nodig en hebben geen terugvaloptie. `Bezig` voorkomt dat een post twee keer geplaatst
 wordt. Ontbreekt er één, dan publiceert de skill niets en meldt hij welke status in Notion
 toegevoegd moet worden.
 
 **Soort Story:** de optie `Story` staat niet in de template. Heeft de gebruiker hem zelf
-toegevoegd, dan plant `content-publiceren-metricool` stories in. Zonder die optie slaat hij
+toegevoegd, dan plant `cs-publiceren-metricool` stories in. Zonder die optie slaat hij
 stories over; hij maakt de optie nooit aan.
 
 ---
@@ -148,15 +160,15 @@ volgorde:
 ## Don'ts
 ```
 
-`content-studio-setup` vult de body en zet Status op Compleet en Laatst bijgewerkt op
+`cs-setup` vult de body en zet Status op Compleet en Laatst bijgewerkt op
 vandaag. De andere skills lezen de body alleen. Een pillar met Status Leeg of zonder de vijf
-kopjes telt als niet gevuld: meld dat en verwijs naar `@content-studio-setup`.
+kopjes telt als niet gevuld: meld dat en verwijs naar `@setup`.
 
 ---
 
 ## Wanneer iets ontbreekt
 
-- **Database niet gevonden:** verwijs naar `@content-studio-setup`. Die geeft de
+- **Database niet gevonden:** verwijs naar `@setup`. Die geeft de
   duplicatielink en controleert de template.
 - **Property ontbreekt:** noem de property bij naam en zeg dat hij in de template hoort te
   staan. Maak hem niet zelf aan; dat is de template van de gebruiker.

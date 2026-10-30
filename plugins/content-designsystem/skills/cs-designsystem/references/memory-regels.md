@@ -8,7 +8,7 @@ een eigen sectie. De regels hieronder gelden voor allemaal.
 ## Opbouw
 
 ```
-# MEMORY — Content Studio
+# MEMORY - Content Studio
 
 ## Hookgenerator
 
@@ -29,7 +29,7 @@ staan.
 |---|---|---|
 | hookgenerator | Hookgenerator | "Maximaal tien woorden per haakje." |
 | content-caption | Caption | "Afsluiten met één vraag, nooit met twee." |
-| content-designsystem | Design System | "Quote-slide altijd op slide 3 of 4, nooit als tweede." |
+| cs-designsystem, cs-design | Design System | "Quote-slide altijd op slide 3 of 4, nooit als tweede." |
 
 Elke skill leest en schrijft **alleen zijn eigen sectie**. Een skill die iets ziet dat in een
 andere sectie hoort, meldt dat als voorstel en schrijft het niet zelf weg.

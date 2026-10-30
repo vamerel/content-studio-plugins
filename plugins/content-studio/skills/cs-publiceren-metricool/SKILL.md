@@ -1,33 +1,36 @@
 ---
-name: content-publiceren-metricool
+name: cs-publiceren-metricool
 description: >
-  Zet je geplande Instagram-posts vanuit je Content Calendar in Notion in via Metricool, op de
-  minuut die jij in Notion kiest (bijvoorbeeld 14:30). Draait als geplande taak, zonder dat jij
-  iets hoeft te doen: elke ochtend gaan de carrousels en posts van vandaag naar Metricool
-  (caption uit Notion, slides uit Canva), Metricool plaatst ze zelf op het tijdstip, en een
-  tweede run 's avonds zet geplaatste posts in Notion op Live met de Instagram-link. Je
-  krijgt mails over wat is ingepland en wat live staat. Reels plaats je zelf. In een gesprek
-  plant hij op verzoek ook posts van later in de week meteen in. Kent vier modi: inplannen,
-  avondcheck, proefrun en vooruit. Voor wie Metricool gebruikt; zonder Metricool is er de
-  skill content-publiceren. TRIGGERS op @publiceren-metricool,
-  @content-publiceren-metricool, "plan mijn posts in via Metricool", "plan ze ook in
+  Puk via Metricool. Zet je geplande Instagram-posts vanuit je Content Calendar in Notion in
+  Metricool, op de minuut die jij in Notion kiest (bijvoorbeeld 14:30). Draait als geplande
+  taak in de ochtendronde van Puk, zonder dat jij iets hoeft te doen: wat gisteren live ging
+  komt op Live met de Instagram-link, alles wat nieuw op Gepland staat gaat meteen naar
+  Metricool (ook voor de dagen erna, caption uit Notion, slides uit Canva), en als je in Notion
+  een tijdstip of caption verandert, past hij het in Metricool aan. Metricool plaatst zelf op
+  het tijdstip. Je krijgt alleen een mail als er iets veranderd is of iets ontbreekt. Reels
+  plaats je zelf. Kent vier modi: inplannen, avondcheck, proefrun en vooruit. Voor wie
+  Metricool gebruikt; zonder Metricool is er de skill cs-publiceren. TRIGGERS op
+  @publiceren-metricool, @cs-publiceren-metricool, de oude naam @content-publiceren-metricool
+  of content-publiceren-metricool, "plan mijn posts in via Metricool", "plan ze ook in
   Metricool", "avondcheck Metricool", "proefrun Metricool", "pas aan in Metricool", of een
   geplande taak die deze skill aanroept.
 ---
 
-# Publiceren via Metricool - Claude Content Studio
+# Puk via Metricool - Claude Content Studio
 
 De Content Calendar in Notion is de planning. Metricool is de klok: de skill zet de post met
 datum en tijd in Metricool, en Metricool plaatst hem zelf via Instagram op dat moment. Er
-draait op het postmoment dus geen Claude-taak. De skill draait twee keer per dag: 's ochtends
-om in te plannen, 's avonds om te controleren wat er live staat. In een gesprek kan de
-gebruiker posts ook eerder laten inplannen (Modus vooruit).
+draait op het postmoment dus geen Claude-taak. De skill draait één keer per dag, in de
+ochtendronde van Puk: hij zet wat gisteren live ging op Live, plant alles wat nieuw op Gepland
+staat meteen in (ook voor de dagen erna), en houdt Metricool gelijk aan Notion. In een gesprek
+kan de gebruiker posts ook direct laten inplannen (Modus vooruit). De avondcheck is er nog,
+maar is niet meer nodig.
 
 Een post in Metricool plaatsen is openbaar en niet terug te draaien zodra hij live is.
 Daarom zijn de controles hieronder hard: bij twijfel wordt er niets ingepland en krijgt de
 gebruiker een mail.
 
-**Gebruik één route.** Draait ook de skill `content-publiceren` (Composio) voor dezelfde
+**Gebruik één route.** Draait ook de skill `cs-publiceren` (Composio) voor dezelfde
 Content Calendar, dan staat elke post er twee keer. Zeg dat bij de proefrun, als je beide
 skills ziet.
 
@@ -38,7 +41,7 @@ skills ziet.
 Meestal door een geplande taak, met een prompt als:
 
 ```
-Voer @content-publiceren-metricool uit in modus inplannen.
+Voer @cs-publiceren-metricool uit in modus inplannen.
 Mail naar: naam@domein.nl
 Tijdzone: Europe/Amsterdam
 Standaardtijd: 12:00
@@ -242,31 +245,60 @@ de gebruiker de rij zelf op Live kan zetten. Zet hem niet terug op Gepland of Be
 
 ## Modus inplannen
 
-Bedoeld voor de ochtendtaak (standaard 07:00).
+Bedoeld voor de ochtendronde van Puk (standaard 07:00). Notion is leidend: na deze run staat
+in Metricool precies wat er in Notion op Gepland en Bezig staat, ook voor de dagen erna.
 
 ### 1. Bevestigen
 
-Doe eerst het onderdeel Bevestigen hierboven.
+Doe eerst het onderdeel Bevestigen hierboven. Zo komen de posts die gisteren live gingen op
+Live, met de Instagram-link.
 
-### 2. Kandidaten
+### 2. Kandidaten: alles wat nieuw op Gepland staat
 
-Zoek de kandidaten met Publicatiedatum = vandaag. Alleen rijen op `Gepland` zijn kandidaat:
-een rij op `Bezig` staat al in Metricool (bijvoorbeeld via Modus vooruit) en wordt alleen
-bevestigd, nooit opnieuw ingepland. Kandidaten met een datum vóór vandaag zijn **gemist** (een
-run viel uit, of ze zijn te laat op Gepland gezet): zet ze op `Fout` met een mail, zie
-Controle 6. Kandidaten met een datum later dan vandaag laat je met rust.
+Zoek alle kandidaten met een Publicatiedatum van vandaag of later. Alleen rijen op `Gepland`
+zijn kandidaat: een rij op `Bezig` staat al in Metricool en wordt bevestigd en gelijk
+gehouden (stap 3), nooit opnieuw ingepland. Kandidaten met een datum vóór vandaag zijn
+**gemist** (een run viel uit, of ze zijn te laat op Gepland gezet): zet ze op `Fout` met een
+mail, zie Controle 6.
 
-Geen kandidaten, niets bevestigd en niets dat aandacht nodig heeft: stop zonder mail.
+### 3. Gelijk houden met Notion
 
-### 3. Controleren en klaarzetten
+Voor elke rij op `Bezig` die nog niet live is: zoek de post in Metricool (zie Bevestigen,
+stap 3) en vergelijk.
 
-Doe de controles per post. Faalt er een: status `Fout`, vermeld de reden in de mail, ga door
-met de volgende post.
+**Een post terugvinden als de caption veranderd is.** Vind je hem niet op de eerste zestig
+tekens, zoek dan een Instagram-post in Metricool met status `PENDING` die bij geen enkele
+andere rij hoort: eerst op precies het tijdstip uit Notion, dan op dezelfde dag. Is er precies
+één, dan is dat hem. Zijn er meer, of geen, raak dan niets aan en zet de rij onder Aandacht
+nodig.
+
+| Wat anders is | Wat jij doet |
+|---|---|
+| Het tijdstip (datum of tijd in de Publicatiedatum) | Pas het aan in Metricool met `updateScheduledPost`, volgens **Aanpassen in een gesprek** stap 4, maar zonder te vragen. Het nieuwe tijdstip moet minstens 10 minuten in de toekomst liggen (Controle 6); anders status `Fout` en mail. |
+| De caption | Pas de tekst aan in Metricool, letterlijk zoals in Notion. Controle 3 (lengte) geldt. |
+| Niets | Niets. |
+
+Zet elke aanpassing in de mail onder **Aangepast in Metricool**, oud tegenover nieuw.
+
+**Staat er in Metricool een post die in Notion niet meer gepland is** (een `PENDING`
+Instagram-post die bij geen rij op `Bezig` hoort, en wel bij een rij met een andere status, of
+bij geen enkele rij): verwijderen kan niet via de koppeling. Raak hem niet aan en zet hem in de
+mail onder Aandacht nodig: "Deze post staat nog in Metricool op [tijdstip], maar niet meer op
+Gepland in Notion. Haal hem zelf uit Metricool als hij niet moet plaatsen."
+
+**Een nieuw design in Canva** ziet de skill niet: Metricool heeft de slides van het moment van
+inplannen. Noem dat niet in elke mail; het staat in de les en de gebruiker zegt dan in een
+gesprek "pas aan in Metricool".
+
+### 4. Controleren en klaarzetten
+
+Doe de controles per kandidaat. Faalt er een: status `Fout`, vermeld de reden in de mail, ga
+door met de volgende post.
 
 Slaagt alles: zet de status op **`Bezig`**, vóór je iets naar Metricool stuurt. Zo kan een
 tweede run dezelfde post nooit nog een keer inplannen.
 
-### 4. Exporteren en inplannen
+### 5. Exporteren en inplannen
 
 Exporteer pas nu, zodat de laatste versie uit Canva meegaat. Metricool haalt de afbeeldingen
 zelf op en bewaart ze, dus de verlopende downloadlinks van Canva zijn geen probleem, maar
@@ -311,14 +343,17 @@ roep `createScheduledPost` meteen na het exporteren aan.
 
 **De caption** geef je letterlijk door, zoals hij in Notion staat, met dezelfde witregels.
 
-### 5. Zelf plaatsen
+### 6. Zelf plaatsen
 
 Zoek de reels met Status Gepland en Publicatiedatum = vandaag. Ze komen in de mail onder
 Zelf plaatsen, met de stappen. Zet niets in Metricool en wijzig de status niet.
 
-### 6. Mail
+### 7. Mail
 
-Stuur één mail met alles van deze run (zie Mails). Geen mail als er niets te melden is.
+Stuur één mail met alles van deze run (zie Mails). Kreeg je in dezelfde taak het verslag van
+de Canva-links mee (`cs-canva-links`, modus ochtend), zet dat bovenaan de mail. Geen mail als
+er niets te melden is: niets ingepland, niets aangepast, niets bevestigd en niets dat aandacht
+nodig heeft.
 
 ---
 
@@ -330,7 +365,7 @@ plant vroege posts van morgen in.
 1. Doe **Bevestigen**. Dit zet de posts die overdag live gingen op Live, met de Instagram-link.
 2. **Vroege posts van morgen.** De ochtendtaak start om `Ochtendrun` (standaard 07:00). Een
    post van morgen met een tijdstip eerder dan Ochtendrun plus 30 minuten haalt die taak niet
-   meer. Plan die posts nu in, op dezelfde manier als in Modus inplannen (stap 3 en 4), met
+   meer. Plan die posts nu in, op dezelfde manier als in Modus inplannen (stap 4 en 5), met
    datum morgen. Alles later dan dat blijft voor de ochtendtaak.
 3. **Aandacht nodig:** zoek rijen op `Fout`, rijen op `Bezig` met een tijdstip van vandaag
    dat al ruim voorbij is (komt uit Bevestigen), en rijen op Gepland met een datum vóór
@@ -357,7 +392,7 @@ niet te verwijderen.
    het zou zijn, op welke dag en tijd, de uitkomst van elke controle, het aantal geëxporteerde
    bestanden, en een voorbeeld van de ingepland-mail zoals die bij een echte run verstuurd zou
    worden (zonder link naar Metricool, want de post bestaat nog niet).
-6. Staat ook de skill `content-publiceren` in je lijst met geplande taken of skills? Zeg dan
+6. Staat ook de skill `cs-publiceren` in je lijst met geplande taken of skills? Zeg dan
    dat je één van de twee routes moet kiezen.
 
 Wordt de proefrun in een gesprek gestart in plaats van door een geplande taak, toon dan
@@ -453,7 +488,7 @@ Eén mail per run. Per post die is ingepland:
 
 ```
 <b>[haakje]</b>
-Ingepland voor vandaag om [tijd] via Metricool
+Ingepland voor [dag en datum, of: vandaag] om [tijd] via Metricool
 [Soort], [n] slides
 Open in Metricool | Open in Notion | Open in Canva
 Aanpassen? Zeg in een gesprek met Claude: "pas aan in Metricool".
@@ -471,8 +506,14 @@ Daarna alleen de kopjes die inhoud hebben, vetgedrukt:
   gewone taal en wat de gebruiker moet doen ("de caption is 2.340 tekens, haal er 140 af in
   Notion", "de tijd 07:30 was al voorbij; kies een nieuwe tijd en zet de status terug op
   Gepland").
+- **Aangepast in Metricool:** posts waarvan het tijdstip of de caption in Notion veranderde,
+  oud tegenover nieuw.
 - **Zelf plaatsen:** de reels van vandaag, met de stappen hieronder.
-- **Aandacht nodig:** Fout, en Bezig dat blijft hangen, met per rij wat er aan de hand is.
+- **Aandacht nodig:** Fout, Bezig dat blijft hangen, en posts die nog in Metricool staan maar
+  niet meer op Gepland in Notion, met per rij wat er aan de hand is.
+
+Het verslag van de Canva-links (als dat meekwam) staat bovenaan, vóór de ingeplande posts,
+onder het kopje **Canva-links**.
 
 Bij **Zelf plaatsen** krijgt elke reel deze stappen:
 

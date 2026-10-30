@@ -1,11 +1,11 @@
 ---
-name: content-save
+name: cs-save
 description: >
   Slaat een idee, haakje of stuk tekst uit het gesprek op als Idee in je Content Calendar in
   Notion, ook een post die je met @scrape hebt opgehaald. Eén bestemming, één status. Vult
   Hook en Pillar in, laat Soort, Kanaal en de body leeg tenzij je die noemt (bij een opgehaalde
   post staat de bron in de body), en toont de rij vóór het wegschrijven. Haalt zelf geen links
-  op: dat doet @scrape. TRIGGERS op @save, @content-save, "sla dit op", "bewaar dit idee",
+  op: dat doet @scrape. TRIGGERS op @save, @cs-save, de oude naam @content-save, "sla dit op", "bewaar dit idee",
   "bewaar dit", "zet dit in mijn contentkalender", "zet dit in Notion", of elke variant van
   iets uit het gesprek willen bewaren als contentidee binnen Claude Content Studio.
 ---
@@ -16,7 +16,7 @@ Iets uit het gesprek bewaren als Idee in de Content Calendar. Meer doet deze ski
 Geen routering naar andere databases, geen classificatie, geen uitwerking.
 
 **Een link ophalen doet deze skill niet.** Plakt de gebruiker een link van Instagram, LinkedIn
-of YouTube en is die post nog niet opgehaald, roep dan eerst `content-scrape` (`@scrape`) aan.
+of YouTube en is die post nog niet opgehaald, roep dan eerst `cs-scrape` (`@scrape`) aan.
 Die haalt de post op en geeft hem daarna aan deze skill om te bewaren.
 
 ---
@@ -27,9 +27,9 @@ Doe dit vóór alles, volgens `references/omgevingscheck.md`:
 
 1. Notion gekoppeld? Anders: melding: koppel Notion in de Claude-app via Aanpassingen
    (Customize) > Connectors, stop.
-2. Content Calendar en Content Pillars gevonden? Anders: `@content-studio-setup`
+2. Content Calendar en Content Pillars gevonden? Anders: `@setup`
    aanroepen, stop.
-3. Map Content Studio met `MEMORY.md`? Anders: `@content-studio-setup`, stop.
+3. Map Content Studio met `MEMORY.md`? Anders: `@setup`, stop.
 
 Niets extra. Is alles er, meld dat dan niet.
 
@@ -41,7 +41,7 @@ Bepaal uit het gesprek wat het item is:
 
 - **Een haakje of invalshoek:** één zin die de post opent. Dat wordt de Hook.
 - **Een idee zonder haakje:** een onderwerp of gedachte. Maak er één korte, concrete titel
-  van (maximaal twaalf woorden) als Hook. Verzin geen haakje in de stijl van `hookgenerator`;
+  van (maximaal twaalf woorden) als Hook. Verzin geen haakje in de stijl van `cs-hookgenerator`;
   een werktitel is genoeg. Wil de gebruiker een echt haakje, verwijs dan naar `@haakjes`.
 - **Een stuk tekst** (een alinea, een uitgewerkte gedachte): de eerste regel of een korte
   titel wordt de Hook. De tekst zelf gaat alleen in de body als de gebruiker specifiek zegt:
@@ -65,7 +65,9 @@ gesprek. Twijfel je tussen twee, kies de meest waarschijnlijke en noem de andere
 Past er geen, laat het veld leeg en meld het.
 
 **Fase** vul je alleen in als de gebruiker die noemt of als het onmiskenbaar is (een haakje
-uit een `hookgenerator`-sessie heeft er een). Anders leeg laten, niet vragen.
+uit een `cs-hookgenerator`-sessie heeft er een). Anders leeg laten, niet vragen. Een
+persoonlijk verhaal of moment uit het eigen leven van de gebruiker krijgt Fase `Persoonlijk`,
+als die optie in het live schema staat; dat is een ander veld dan de Pillar Persoonlijk.
 
 **Soort en Kanaal** blijven leeg, tenzij de gebruiker specifiek noemt wat erin moet. Vraag er
 niet naar.

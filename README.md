@@ -4,8 +4,8 @@ Deze marketplace bevat twee plugins:
 
 | Plugin | Wat | Installeren in |
 |---|---|---|
-| `content-studio` | Claude Content Studio: haakjes, captions, prompts voor Claude Design, ideeën bewaren, automatisch publiceren (route A met Metricool, route B met Composio) | Chat & Cowork |
-| `content-designsystem` | De skill `@designsystem` voor Claude Content Studio | **alleen** Claude Code |
+| `content-studio` | Claude Content Studio: je contentteam. Viggo (verhalen), Sam (speuren), Ruby (cijfers), Hanna (haakjes), Cato (captions), Koen (controle), Daan (designs via Claude Design of Canva) en Puk (Canva-links, inplannen via Metricool of publiceren via Composio) | Chat & Cowork |
+| `content-designsystem` | De skill `cs-designsystem` (`@designsystem`) voor Claude Content Studio | **alleen** Claude Code |
 
 Content Studio werkt op basis van je Business DNA. Die plugin staat in een eigen marketplace:
 `vamerel/businessdna`.

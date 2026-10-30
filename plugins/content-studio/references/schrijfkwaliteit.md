@@ -1,6 +1,6 @@
 # Schrijfkwaliteit
 
-Gedeeld door `hookgenerator` en `content-caption`. Vier dingen die elke tekst uit deze plugin
+Gedeeld door `cs-hookgenerator` en `cs-caption`. Vier dingen die elke tekst uit deze plugin
 doorloopt voor hij getoond wordt: de zwarte lijst, de test tegen generiek, de stemcheck en het
 teruggeven van stemcorrecties.
 
