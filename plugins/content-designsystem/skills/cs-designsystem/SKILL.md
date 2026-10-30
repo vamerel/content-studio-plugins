@@ -458,6 +458,13 @@ concreet:
 > "Klopt dit? Wil je ergens ruimer of krapper zitten? En zijn er slides in je materiaal die
 > ik verkeerd heb ingedeeld?"
 
+Vraag in hetzelfde bericht, met een voorstel:
+
+> "Ik kan er twee extra varianten bij zetten waarin elke tussenslide een grote kop en een korte
+> ondertitel heeft: een op je [primaire kleur] effen, en een op één verdonkerde foto die door de
+> hele carrousel loopt. Dat geeft afwisseling naast je eigen layouts. Zal ik ze erbij zetten?
+> Mijn voorstel: ja."
+
 Pas aan op wat de gebruiker zegt. Ga pas naar stap 8 als hij akkoord is.
 
 ---
@@ -590,8 +597,30 @@ afgeleid uit haar eigen posts en haar website op [datum]). Hoe je hem in Claude 
 **`CLAUDE.md`**: het eerste bestand dat Claude Design leest. Begin met deze regel, letterlijk:
 "Wat ik in het gesprek vraag, gaat altijd voor. Deze map is het startpunt, geen grens. Vraag
 ik iets wat er niet in staat, voer het dan uit in mijn fonts en kleuren; weiger nooit omdat
-iets niet in het design system past, en zeg in één zin wat je anders deed." Daarna zes
-onderdelen:
+iets niet in het design system past, en zeg in één zin wat je anders deed." Daarna een blok
+Speelruimte en zes onderdelen.
+
+**Speelruimte**, direct na de eerste regel, letterlijk zo, met de kleuren en het accent van de
+gebruiker ingevuld:
+
+```
+## Speelruimte
+
+Je mag binnen dit design system zelf ontwerpkeuzes maken, zodat niet elke carrousel een kopie
+van een voorbeeld is. De voorbeelden blijven de basis; wat hieronder vrij staat, mag je anders
+doen dan op het voorbeeld.
+
+- **Ligt vast:** de kleuren, de fonts, de texturen, de tekst (letterlijk, geen woord erbij of
+  eraf), de startlijn, de tekenlimieten, het logo, de foto's die de prompt noemt, en dat gezicht
+  en lichaam vrij blijven.
+- **Mag je zelf kiezen:** de compositie binnen een slide, waar en in welke vorm het [accent]
+  staat, een grafisch element toevoegen in de huisstijlkleuren (een lijn, een pijl, een groot
+  cijfer, een kader), een foto anders uitsnijden, en een decoratief element van het voorbeeld
+  weglaten.
+- Zeg na het ontwerp in één zin wat je zelf hebt toegevoegd of weggelaten.
+```
+
+De zes onderdelen:
 
 1. **Leesvolgorde**: BRAND-SUMMARY, dan foundations/color en typography, dan
    applications/carrousels of reels (welke van toepassing is), dan de echte voorbeelden in
@@ -689,7 +718,11 @@ smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een ko
    geen tekst of vlak het gezicht of lichaam van de persoon? Staat elke opsomming heel op één
    slide? Heet het design zoals de regel `Naam:`?
    Is de pagina om de slides heen neutraal, en is elk gekleurd vlak een textuur uit
-   assets/templates/achtergronden (als die map er is)?
+   assets/templates/achtergronden (als die map er is)? Is het herkenbaar als de posts in
+   assets/templates, ook waar je speelruimte gebruikte, en heb je in één zin gezegd wat je zelf
+   toevoegde of wegliet? [Alleen met de varianten met kop en ondertitel:] Heeft in die varianten
+   elke tussenslide een kop en een ondertitel, en is een foto zo verdonkerd dat de tekst goed
+   leesbaar is?
 
 **`fotos.md`**: de fotobibliotheek. Daan (`cs-design`) kiest hieruit per post de foto's, op
 onderwerp en op de ruimte die de tekst nodig heeft; Claude Design leest erin wat er op een
@@ -811,6 +844,34 @@ Komt de tekst niet kant-en-klaar per slide uit Daan, verdeel hem dan zo:
 - **Emoji's** blijven staan waar ze in de caption staan.
 - Alles letterlijk. Herschrijven of samenvatten mag niet; weglaten alleen met melding.
 ```
+
+**Varianten met kop en ondertitel** (alleen als de gebruiker ze in stap 7 koos). Zet ze in
+`applications/carrousels.md` bij de achtergronden, als twee extra varianten naast wat uit de
+posts komt:
+
+- **[Primaire kleur] effen, kop en ondertitel:** alle tussenslides en de CTA op een effen vlak in
+  de primaire kleur, zonder textuur. De cover is effen, een brandfoto of een foto die de
+  gebruiker aanlevert; de prompt zegt welke.
+- **Verdonkerde foto, kop en ondertitel:** één foto (een brandfoto of een foto die de gebruiker
+  aanlevert) op alle slides, paginavullend en verdonkerd, ook op de cover en de CTA. Witte tekst
+  in de vrije ruimte; het gezicht blijft vrij.
+
+Met in beide varianten een eigen layouttype **Kopslide**: een grote kop en daaronder één korte
+zin als ondertitel, verder niets. Kop in het kopfont zoals op de cover, ongeveer een twintigste
+van de slidehoogte, op hooguit drie regels; één witregel; dan de ondertitel in het tekstfont,
+ongeveer een veertigste. Links uitgelijnd, de kop begint op de startlijn, het accent zoals op
+de andere slides, de afzender zoals bij de andere carrousels. Limiet: kop 50, ondertitel 120
+(startwaarden; bijstellen na de eerste carrousel). Voorbeeld: er is nog geen echte post in deze
+stijl; verwijs naar de tekstslide die het best de marges, startlijn en afzender laat zien.
+In deze varianten komen geen opsomming, grote vorm of stapslide voor.
+
+Zet ook in `design-system.md` in het blok TEKENLIMIETEN de regel `Kopslide kop: 50` en
+`Kopslide ondertitel: 120`, en in CLAUDE.md bij de harde regels: "Een gekleurd vlak is altijd
+een textuur, behalve in de variant [primaire kleur] effen." en "In de varianten [primaire kleur]
+effen en Verdonkerde foto, kop en ondertitel heeft elke tussenslide een kop en een ondertitel;
+ook dan komen beide letterlijk uit de aanlevering." Voeg in de sectie Verdeling van de tekst
+over de slides deze regel toe: "In de varianten met kop en ondertitel is elke tussenslide een
+kopslide: een korte zin als kop en een zin als ondertitel, allebei letterlijk uit de caption."
 
 Sluit af met: "De tekst per slide komt kant-en-klaar uit Daan. Neem hem letterlijk
 over, herschrijf niets."

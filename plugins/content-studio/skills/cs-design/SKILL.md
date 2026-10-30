@@ -134,6 +134,13 @@ per post een nieuw zijscherm, anders loopt de artifactgalerij van de gebruiker v
 **De indeling klaarzetten.** Voor één carrousel, of voor alle carrousels uit **Meerdere posts**
 in één keer.
 
+0. **Kies eerst de achtergrond**, volgens **Layout afwisselen** in stap 4, en pas daarna de
+   verdeling. Sommige achtergronden bepalen hoe de tekst over de slides gaat. Heeft het design
+   system varianten met kop en ondertitel (een layouttype `Kopslide`), en kies je zo'n
+   variant, dan is elke tussenslide een kopslide: een korte zin als kop en één zin als
+   ondertitel, allebei letterlijk uit de caption, binnen de limieten `Kopslide kop` en
+   `Kopslide ondertitel`. In die varianten geen opsomming, grote vorm of stapslide. Heeft de
+   caption een opsomming, kies dan een andere achtergrond.
 1. Verdeel per carrousel de caption volgens **Regels bij een carrousel** en **Tekenlimieten**.
    Per slide een rol en een tekst. De rol is het layouttype: `Cover`, `Tekstslide`,
    `Opsomming`, `Quote`, `Grote vorm`, `CTA` (en de andere layouttypes die het design system
@@ -142,7 +149,8 @@ in één keer.
    de tekst samen.
 2. Limieten per rol, uit het blok TEKENLIMIETEN in het design system: Cover = `Cover`;
    Tekstslide = `Tekstslide tekst`; Opsomming = het aantal regels keer de lengte per regel;
-   Quote en Grote vorm = `Quote`; CTA = `CTA kop` plus `CTA actie`; een ander layouttype = zijn
+   Quote en Grote vorm = `Quote`; CTA = `CTA kop` plus `CTA actie`; Kopslide = `Kopslide kop` plus
+   `Kopslide ondertitel`; een ander layouttype = zijn
    kop plus zijn tekst. Ontbreekt een limiet, laat die rol dan weg uit de limieten.
 3. Lees wat er nu staat: ArtifactData, action `list`, `url` de link, collection `posts`, en
    action `get`, collection `reeks`, doc_id `huidig`. Onthoud van elk document de `version`.
@@ -555,6 +563,8 @@ je alleen de prompts die nog ontbraken.
 - **Koppen niet verzinnen.** Een kop is een zin uit de caption die je als kop markeert, omdat hij
   kort en stellig is. Leent geen zin zich daarvoor, dan heeft de slide geen kop en schrijf je
   "Geen kop". Nooit een kop bedenken die de slide samenvat; niet elke slide heeft een kop.
+  Uitzondering: in een variant met kop en ondertitel heeft elke tussenslide een kop (zie stap
+  3, punt 0); ook dan is de kop een zin uit de caption.
 - **Alleen de slidetekst wordt ingekort, nooit de caption.** Bij een carrousel kort de
   gebruiker zelf in, in het zijscherm. Jij zet de indeling klaar met hele, letterlijke zinnen;
   de teller laat zien waar het te lang is.
