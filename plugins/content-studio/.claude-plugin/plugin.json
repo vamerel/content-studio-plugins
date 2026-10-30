@@ -1,6 +1,6 @@
 {
   "name": "content-studio",
-  "version": "0.20.0",
+  "version": "0.20.1",
   "description": "Claude Content Studio: je contentteam in dertien Cowork-skills en één agent, op basis van je Business DNA. Viggo (verhalen), Sam (speuren), Ruby (cijfers), Hanna (haakjes), Cato (captions), Koen (controle), Daan (slides, Claude Design of Canva) en Puk (Canva-links, inplannen via Metricool of Composio), plus setup, bewaren en ophalen. Design system: aparte plugin content-designsystem, voor Claude Code.",
   "author": {
     "name": "VA-Merel"

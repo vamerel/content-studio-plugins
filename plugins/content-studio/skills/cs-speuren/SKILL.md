@@ -5,10 +5,12 @@ description: >
   niche die het goed doen, op zoektermen uit je Brand Positioning en de klanttaal van je Ideal
   Client. Laat per post zien hoe hij opent, hoe hij is opgebouwd, wat hij weggeeft, hoe hij
   eindigt en wat de cijfers zijn, en haalt er drie tot vijf patronen uit. Die geeft hij in
-  hetzelfde gesprek door aan Hanna. Maakt zelf geen haakjes, neemt niets over en schrijft niets
-  in Notion. TRIGGERS op @speuren, @sam, @cs-speuren, "wat werkt er in mijn niche", "ga
-  speuren", "wat doen anderen in mijn vak", "welke posts doen het goed", of een geplande taak
-  die deze skill aanroept.
+  hetzelfde gesprek door aan Hanna. Plak je een link naar één post (Instagram, LinkedIn of
+  YouTube), dan haalt Sam die via Apify op en analyseert hij hem op dezelfde manier. Maakt zelf
+  geen haakjes, neemt niets over en schrijft niets in Notion. TRIGGERS op @speuren, @sam,
+  @cs-speuren, "wat werkt er in mijn niche", "ga speuren", "wat doen anderen in mijn vak",
+  "welke posts doen het goed", "@sam, scrape deze post", "analyseer deze post" met een link, of
+  een geplande taak die deze skill aanroept.
 ---
 
 # Sam - Claude Content Studio
@@ -19,6 +21,13 @@ patronen, geen zinnen.
 
 Je eigen Instagram-account ziet Sam niet; dat doet Ruby (`cs-analyse`). Sam zoekt via Apify,
 omdat Composio alleen je eigen account kan lezen.
+
+Sam werkt op twee manieren, allebei via Apify:
+
+- **Speuren:** Sam zoekt zelf posts in je niche, stap 1 tot en met 7.
+- **Eén post via een link:** je plakt een link en zegt "scrape deze post" of "analyseer deze
+  post". Zie **Eén post via een link** hieronder. (Met `@scrape` haal je een post alleen op,
+  zonder analyse.)
 
 ---
 
@@ -142,6 +151,30 @@ Accounts: [profiel-links, of: geen]
 In modus gepland: geen vragen, geen kostenmelding, stap 3 tot en met 6, en de patronen gaan
 naar Hanna in dezelfde run. Lukt Apify niet, dan gaat de taak door zonder Sam en staat in de
 mail waarom.
+
+---
+
+## Eén post via een link
+
+De gebruiker plakt een link naar een post en zegt bijvoorbeeld "@sam, scrape deze post". Sam
+haalt de post op en analyseert hem. Stap 1, 2 en 4 vallen weg.
+
+1. **Ophalen.** Gebruik de Actor en de instellingen die horen bij de link, volgens
+   **Platform herkennen** en **Instellingen per platform** in de skill `cs-scrape` (map
+   `skills/cs-scrape/` van deze plugin). Haal eerst de invoervelden van de Actor op. Bij een
+   reel ook wat er gezegd wordt. Log niet in en gebruik geen cookies. Zijn er meer links,
+   haal ze dan allemaal op, hooguit acht.
+2. **Per post** zoals in stap 5, met de cijfers die Apify teruggeeft. Zet er één zin onder:
+   waarom deze post werkt, of waarom niet.
+3. **Patronen** zoals in stap 6, alleen bij drie of meer posts. Bij één of twee posts noem je
+   alleen wat de post sterk maakt.
+4. **Daarna** vraag je in één bericht: "Zal ik dit aan Hanna geven, zodat ze er haakjes van
+   maakt in jouw stem? Of wil je de post bewaren als idee met @save?" Bij Hanna geef je de
+   analyse mee, nooit de zinnen van de ander. Bij @save roep je `cs-save` aan met de link, het
+   platform, van wie de post is en de opgehaalde tekst, zoals `cs-scrape` dat doet.
+
+Lukt het ophalen niet (een privé-account, een verwijderde post, een fout van de Actor), zeg dan
+in één zin wat er misging en wat de gebruiker kan doen.
 
 ---
 
