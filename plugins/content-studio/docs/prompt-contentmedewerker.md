@@ -49,7 +49,7 @@ Lees daarna mijn Business DNA en stel in één bericht alleen de vragen waarvan 
 1. Welke stand wil ik: Ik denk mee (voorstel) of Doe maar?
 2. Mijn weekstructuur: welke soorten posts maak ik elke week? Per onderdeel komt er één haakje of post.
 3. Op welke dag en hoe laat wil ik de mail? Voorstel: zondag 08:00.
-4. Op welk mailadres?
+4. Op welk mailadres wil ik de mail, en vanaf welk account wordt hij verstuurd? Zijn er in Composio meer Gmail-accounts gekoppeld, noem ze dan en stel het zakelijke adres voor.
 5. Wil ik Sam erbij? Hij zoekt via Apify op drie zoektermen; dat kost ongeveer $0,25 per week van mijn Apify-tegoed. Stel drie zoektermen voor in de taal van mijn doelgroep, uit Brand Positioning en de klanttaal in Ideal Client.
 6. Is er een onderwerp waar ik niet over post?
 
@@ -112,7 +112,7 @@ STAP 8: STAND VAN DE WEEK (alleen lezen)
 Voor de posts met een Publicatiedatum in de komende week: wat er per dag gepland staat, wat er per post nog ontbreekt (Canva-link, caption, Soort, datum of status Gepland), en welke onderdelen van de weekstructuur nog leeg zijn, met de ideeën die daar klaarliggen.
 
 STAP 9: DE MAIL
-Verstuur de mail via Composio met de tool GMAIL_SEND_EMAIL, met is_html aan en include_signature uit, zodat de afbeeldingen blijven staan. Lukt dat niet (Gmail niet gekoppeld in Composio, of een fout), stuur hem dan via de Gmail-koppeling van Claude; de afbeeldingen vallen dan weg, de namen blijven staan.
+Verstuur de mail via Composio met de tool GMAIL_SEND_EMAIL, vanaf het Gmail-account [afzender] in Composio, met is_html aan en include_signature uit, zodat de afbeeldingen blijven staan. Lukt dat niet (Gmail niet gekoppeld in Composio, of een fout), stuur hem dan via de Gmail-koppeling van Claude; de afbeeldingen vallen dan weg, de namen blijven staan.
 Onderwerp: Je contentweek [weeknummer]
 In HTML, links als klikbare tekst (Open in Notion), geen kale URL's. De mail bestaat uit blokken, één per teamlid. Elk blok begint met een kleine afbeelding van het teamlid (56 pixels breed, links) met daarnaast de naam als titel in hoofdletters, vet. Gebruik daarvoor deze HTML, met de naam en het bestand van het teamlid:
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 8px"><tr><td style="width:64px;vertical-align:middle"><img src="https://tools.va-merel.nl/img/team/ruby.png" width="56" alt="Ruby" style="display:block;border:0"></td><td style="vertical-align:middle;font-size:18px;font-weight:bold;letter-spacing:1px">RUBY</td></tr></table>
