@@ -109,8 +109,8 @@ Wilde de gebruiker alleen vertellen, stop dan. Er wordt niets bewaard.
 
 ## In de zondagtaak
 
-In de stand "Ik denk mee" van de zondagtaak staat de vraag van Viggo in het gesprek en in de
-mail. De gebruiker antwoordt in dat gesprek. Daarna volg je stap 2 tot en met 5. Is er geen
+Zijn de persoonlijke ideeën op (minder dan twee op Idee met Fase Persoonlijk), dan staat de
+vraag van Viggo in de zondagmail. De gebruiker antwoordt in een gesprek met @viggo. Daarna volg je stap 2 tot en met 5. Is er geen
 gesprek van de zondagtaak, maar wel een zondagmail met de bevindingen van Ruby en Sam, lees die
 mail dan via Gmail en geef die bevindingen in stap 5 mee aan Hanna.
 

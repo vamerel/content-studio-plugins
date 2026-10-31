@@ -107,7 +107,7 @@ content-studio/
     ├── geplande-taken-metricool.md  prompt voor de ochtendronde van Puk, route A (Metricool)
     ├── geplande-taken.md          prompt voor de taken van route B (Composio)
     ├── prompt-haakjesmail.md      prompt voor de taak Elke week haakjes in je inbox
-    └── prompt-contentmedewerker.md  prompt voor de zondagtaak, met de standen Ik denk mee en Doe maar
+    └── prompt-contentmedewerker.md  prompt voor de zondagtaak: tien haakjes en een update van het team
 ```
 
 Let op bij publiceren: `publiceer-marketplace.ps1` neemt de map `agents/` mee.

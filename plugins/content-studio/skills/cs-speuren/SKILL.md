@@ -127,6 +127,23 @@ geen tekst:
 
 Per patroon: wat het is, in hoeveel posts, en welke pillar van de gebruiker erbij past.
 
+## Stap 6b - Drie voorbeelden
+
+Kies uit de acht de drie die het best scoren en het best passen bij wat de gebruiker nu nodig
+heeft: de focuspunten van Ruby als die er zijn (in hetzelfde gesprek of in de zondagtaak),
+anders de pillars. Per voorbeeld, in gewone zinnen:
+
+```
+[nummer]. [@account](link naar de post) · [Reel / Carrousel / Post] · [likes] likes · [reacties] reacties
+"[de eerste zin, letterlijk, hooguit 15 woorden]"
+Waarom hij werkt: [één of twee zinnen: opening, opbouw, wat hij weggeeft, hoe hij eindigt]
+Wat jij ermee kunt: [één zin, bij welk focuspunt of welke pillar]
+```
+
+Zo wel: "Wat jij ermee kunt: open je Problemaware-post net zo met een fout die je zelf maakte;
+dat past bij het eerste focuspunt van Ruby."
+Zo niet: "Wat jij ermee kunt: deze post namaken."
+
 ## Stap 7 - Doorgeven aan Hanna
 
 Vraag: "Zal ik deze patronen aan Hanna geven, zodat ze er haakjes van maakt in jouw stem?" Na
@@ -148,8 +165,9 @@ Zoektermen: [term 1], [term 2], [term 3]
 Accounts: [profiel-links, of: geen]
 ```
 
-In modus gepland: geen vragen, geen kostenmelding, stap 3 tot en met 6, en de patronen gaan
-naar Hanna in dezelfde run. Lukt Apify niet, dan gaat de taak door zonder Sam en staat in de
+In modus gepland: geen vragen, geen kostenmelding, stap 3 tot en met 6b. De patronen gaan
+naar Hanna in dezelfde run; de drie voorbeelden uit stap 6b staan in de mail onder Sam, met de
+link naar elke post. Lukt Apify niet, dan gaat de taak door zonder Sam en staat in de
 mail waarom.
 
 ---
