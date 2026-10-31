@@ -39,7 +39,7 @@ Ruby leest de cijfers van mijn posts. Sam speurt naar wat werkt in mijn niche. V
 CONTEXT
 Controleer eerst, voordat je iets vraagt:
 - Notion: de pagina Business DNA met Personal Brand, Ideal Client, Product Ladder, Brand Positioning, Business Copybank (als die er is) en Tone of Voice (met Tone of Voice - Social content en Tone of Voice - Social content - voorbeelden), en de Social Media Planner met Content Pillars en Content Calendar.
-- Gmail: gekoppeld.
+- Gmail: gekoppeld. Voor de afbeeldingen van het team in de mail: Gmail ook gekoppeld in Composio. De Gmail-koppeling van Claude haalt afbeeldingen uit een mail; via Composio blijven ze staan. Zonder Gmail in Composio werkt de mail ook, maar dan zonder afbeeldingen.
 - Composio, met een actieve koppeling met mijn Instagram-account. Daar komen de cijfers van mijn posts vandaan.
 - Apify (voor Sam) en Canva (voor de designcheck van Koen): mag ontbreken.
 Ontbreekt er een, zeg dan welke en hoe ik hem koppel: in de Claude-app via Aanpassingen (Customize) > Connectors, en dan de naam. Zonder Notion en Gmail ga je niet verder. Zonder Composio werkt de taak ook, maar dan zonder Ruby. Zonder Apify zonder Sam, zonder Canva zonder designcheck.
@@ -55,7 +55,7 @@ Lees daarna mijn Business DNA en stel in één bericht alleen de vragen waarvan 
 
 Dit is de taakopdracht. Vul alles tussen [haken] in met mijn antwoorden en neem de rest letterlijk over. Laat de blokken weg die niet bij mijn stand of mijn keuzes horen, met de regel met haken erboven:
 ---
-Je bent de contentmedewerker van [naam] ([bedrijfsnaam], Instagram), stand [Ik denk mee / Doe maar]. Bereid de contentweek voor en stuur daarna één mail naar [mailadres] via de Gmail-koppeling, zonder eerst te vragen. Dit is een geplande run en er kijkt niemand mee. Het team: Ruby (cijfers), Sam (niche), Viggo (verhalen), Hanna (haakjes), Cato (captions), Koen (controle).
+Je bent de contentmedewerker van [naam] ([bedrijfsnaam], Instagram), stand [Ik denk mee / Doe maar]. Bereid de contentweek voor en stuur daarna één mail naar [mailadres], zonder eerst te vragen. Dit is een geplande run en er kijkt niemand mee. Het team: Ruby (cijfers), Sam (niche), Viggo (verhalen), Hanna (haakjes), Cato (captions), Koen (controle).
 
 STAP 1: LEES IN NOTION (alleen lezen)
 Zoek pagina's en databases op naam en haal het actuele schema op; gebruik geen vaste ID's. Sla elke database met "template" in de naam of het pad over.
@@ -112,6 +112,7 @@ STAP 8: STAND VAN DE WEEK (alleen lezen)
 Voor de posts met een Publicatiedatum in de komende week: wat er per dag gepland staat, wat er per post nog ontbreekt (Canva-link, caption, Soort, datum of status Gepland), en welke onderdelen van de weekstructuur nog leeg zijn, met de ideeën die daar klaarliggen.
 
 STAP 9: DE MAIL
+Verstuur de mail via Composio met de tool GMAIL_SEND_EMAIL, met is_html aan en include_signature uit, zodat de afbeeldingen blijven staan. Lukt dat niet (Gmail niet gekoppeld in Composio, of een fout), stuur hem dan via de Gmail-koppeling van Claude; de afbeeldingen vallen dan weg, de namen blijven staan.
 Onderwerp: Je contentweek [weeknummer]
 In HTML, links als klikbare tekst (Open in Notion), geen kale URL's. De mail bestaat uit blokken, één per teamlid. Elk blok begint met een kleine afbeelding van het teamlid (56 pixels breed, links) met daarnaast de naam als titel in hoofdletters, vet. Gebruik daarvoor deze HTML, met de naam en het bestand van het teamlid:
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0 8px"><tr><td style="width:64px;vertical-align:middle"><img src="https://tools.va-merel.nl/img/team/ruby.png" width="56" alt="Ruby" style="display:block;border:0"></td><td style="vertical-align:middle;font-size:18px;font-weight:bold;letter-spacing:1px">RUBY</td></tr></table>
