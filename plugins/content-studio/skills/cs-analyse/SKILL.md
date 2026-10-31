@@ -143,11 +143,17 @@ In de zondagmail is het blok Ruby kort, zonder maandanalyse:
 [haakje van de beste post, als link] deed het het best: [het cijfer dat het draagt, naast het gemiddelde].
 [wat achterbleef, als dat iets zegt]
 Mijn focus deze week
-1. [één regel, met pillar en fase]
-2. [één regel]
-3. [hooguit drie]
+1. [titel en actie, één regel]
+2. [titel en actie]
+3. [titel en actie]
 Wil je de maandanalyse zien? Kijk in je feedplanner bij Analyse.
 ```
+
+In de zondagtaak geeft Ruby precies drie focuspunten, de belangrijkste eerst, elk met één
+teamlid, op weg naar het doel op de Notion-pagina Analyses van Ruby. De taak zet de analyse daar
+als subpagina neer; de feedplanner toont de nieuwste. De vorm staat in de prompt Je
+contentmedewerker. Vul nooit zelf cijfers in en schat niets; ontbreekt een cijfer, dan "niet
+beschikbaar".
 
 Acties staan niet bij Ruby: die staan in de mail bovenaan, onder Doe dit deze week.
 
