@@ -6,7 +6,7 @@ description: >
   vertelt wat werkte: de afgelopen week, de lijn van de afgelopen maand per pillar naast de
   gewenste verdeling, per fase (met Persoonlijk apart) en soort, gerekend per 1.000
   weergaven, en twee of drie focuspunten voor deze week. Geeft dat in hetzelfde gesprek door aan Hanna, en levert het blok
-  Ruby in de zondagmail. Schrijft niets in Notion. TRIGGERS op @analyse, @ruby, @cs-analyse,
+  Ruby in de zondagmail (alleen de afgelopen week; de maand staat in de feedplanner). Schrijft niets in Notion. TRIGGERS op @analyse, @ruby, @cs-analyse,
   "hoe deden mijn posts het", "wat werkte er", "welke posts scoorden", "waar moet ik deze week
   op focussen", "analyseer mijn Instagram", of een geplande taak die deze skill aanroept.
 ---
@@ -42,7 +42,9 @@ Ruby kijkt altijd naar drie lagen:
 - **De basis:** de afgelopen 8 weken, om te vergelijken. Een week met twee posts zegt weinig;
   de basis laat zien of het een uitschieter is.
 
-De gebruiker kan een andere periode noemen.
+De gebruiker kan een andere periode noemen. In modus gepland (de zondagtaak) valt de maand weg:
+Ruby kijkt dan alleen naar de afgelopen week, met de 8 weken als basis. De maandanalyse staat in
+de feedplanner bij Analyse.
 
 ## Stap 2 - Cijfers ophalen
 
@@ -128,12 +130,26 @@ de mail onder Ruby.
 
 ```
 Voer @analyse uit in modus gepland.
-Periode: week, maand en 8 weken
+Periode: de afgelopen week, met 8 weken als basis
 ```
 
-In modus gepland: geen vragen, stap 1 tot en met 5, en de uitkomst gaat in dezelfde run naar
-Hanna en in de mail. Lukt Composio niet, dan gaat de taak door zonder cijfers en staat in de
-mail waarom.
+In modus gepland: geen vragen, stap 1 tot en met 5, alleen de afgelopen week. De uitkomst gaat
+in dezelfde run naar Hanna en in de mail. Lukt Composio niet, dan gaat de taak door zonder
+cijfers en staat in de mail waarom, in één regel.
+
+In de zondagmail is het blok Ruby kort, zonder maandanalyse:
+
+```
+[haakje van de beste post, als link] deed het het best: [het cijfer dat het draagt, naast het gemiddelde].
+[wat achterbleef, als dat iets zegt]
+Mijn focus deze week
+1. [één regel, met pillar en fase]
+2. [één regel]
+3. [hooguit drie]
+Wil je de maandanalyse zien? Kijk in je feedplanner bij Analyse.
+```
+
+Acties staan niet bij Ruby: die staan in de mail bovenaan, onder Doe dit deze week.
 
 ---
 

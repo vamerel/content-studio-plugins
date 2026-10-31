@@ -166,9 +166,19 @@ Accounts: [profiel-links, of: geen]
 ```
 
 In modus gepland: geen vragen, geen kostenmelding, stap 3 tot en met 6b. De patronen gaan
-naar Hanna in dezelfde run; de drie voorbeelden uit stap 6b staan in de mail onder Sam, met de
-link naar elke post. Lukt Apify niet, dan gaat de taak door zonder Sam en staat in de
-mail waarom.
+naar Hanna in dezelfde run; de drie voorbeelden uit stap 6b staan in de mail onder Sam. Lukt
+Apify niet, dan gaat de taak door zonder Sam en staat in de mail waarom, in één regel.
+
+In de zondagmail is het blok Sam kort, zonder cijfers: één regel over waar hij zocht, en per
+voorbeeld twee regels.
+
+```
+Ik zocht op "[term 1]", "[term 2]" en "[term 3]".
+1. [@account](link naar de post): "[de eerste zin]"
+   [in één zin wat jij ermee kunt]
+```
+
+De cijfers gebruikt Sam alleen om te kiezen.
 
 ---
 

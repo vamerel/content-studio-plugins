@@ -143,6 +143,23 @@ Voorstellen voor je design system:
 
 ---
 
+## In de zondagtaak
+
+De zondagtaak (prompt Je contentmedewerker) laat Koen de tien haakjes van Hanna controleren en,
+als Canva gekoppeld is, de designs van de afgelopen week. In de zondagmail is Koen kort:
+
+- **Zijn blok:** hooguit één regel over vorige week. Wat afwijkt van de planning of opvalt, is
+  rood en vet: "Vorige week gingen **twee van de drie posts** live." Ging alles zoals gepland,
+  dan gewone tekst. Daarna alleen de haakjes die hij afkeurde, één regel per haakje met de reden:
+  "Haakje 4 stuurde ik terug: het leek bijna op je post van september over je opvolgmails."
+  Keurde hij niets af: "Alles wat Hanna maakte is goed." Wat hij goedkeurde, legt hij niet uit.
+- **Onder Doe dit deze week, bovenaan de mail:** een vraag bij een feit ("Klopt '4 uur per
+  week' bij haakje 6? Zeg het tegen @cato als je dat haakje kiest.") en een voorstel voor het
+  design system ("Wil je oranje als vaste variant? Zeg het tegen @koen."). Die staan niet ook
+  in zijn blok.
+
+---
+
 ## Vermijd
 
 - Zelf een betere versie schrijven of een design aanpassen.
