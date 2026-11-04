@@ -43,6 +43,10 @@ een link te vragen.
 **@daan zonder opdracht.** Vraag: "Zal ik het design maken voor een post? Noem het haakje, of
 zeg 'deze week'. Je design system zelf werk je bij in Claude Code met @designsystem."
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Omgevingscheck
@@ -193,27 +197,34 @@ in één keer.
    één keer.
 5. Open het zijscherm: Artifact-tool, action `open`, `url` de link.
 6. Zet in de chat alleen deze regel, bij één carrousel onder de link naar de Notion-pagina:
-   - één carrousel: "De indeling staat in het zijscherm. Pas aan, druk op Opslaan en typ
-     akkoord."
+   - één carrousel: "De indeling staat in het zijscherm. Pas aan en druk op Opslaan."
    - meerdere: "De indeling van je [n] carrousels staat in het zijscherm. Klik door met Vorige
-     en Volgende, druk per post op Opslaan en typ akkoord voor alles, of akkoord [nummer] voor
-     één post."
-   Bij designroute Canva eindigt de regel met: "dan maak ik hem in Canva en krijg je de
-   link." Dat akkoord geldt ook als akkoord om het nieuwe design in Canva op te slaan.
+     en Volgende en druk per post op Opslaan."
    Zijn er bij een post meer slides dan het maximum, zet er dan achter: "Post [nummer] heeft
    [n] slides, je design system staat er [max] toe: haal er [n min max] weg."
+7. Stel meteen daarna de vraag met knoppen (`references/vragen-met-knoppen.md`):
+   - één carrousel: "Heb je de indeling opgeslagen?" met de knoppen **Opgeslagen, maak het
+     design** en **Ik pas nog aan**;
+   - meerdere: "Heb je de indelingen opgeslagen?" met de knoppen **Alles opgeslagen, maak de
+     designs** en **Ik pas nog aan**. De gebruiker kan ook typen welke nummers klaar zijn.
+   Bij designroute Canva heet de eerste knop **Opgeslagen, maak het in Canva**; die klik geldt
+   ook als akkoord om het nieuwe design in Canva op te slaan.
+   Klikt de gebruiker **Ik pas nog aan**, stel dezelfde vraag dan opnieuw zodra de gebruiker
+   iets zegt, of zeg alleen: "Klik op Opgeslagen als je klaar bent." en stel de vraag opnieuw.
 
 Meer niet. Geen tellingen, geen voorstellen om in te korten of te verplaatsen. De teller in het
 zijscherm laat zien wat te lang is; de gebruiker beslist.
 
-**Na akkoord.** Typt de gebruiker "akkoord" (of iets wat daarop lijkt):
+**Na akkoord.** Klikt de gebruiker **Opgeslagen** (of typt hij "akkoord" of iets wat daarop
+lijkt):
 
-1. Welke posts: "akkoord" is elke carrousel in het zijscherm waarvan je de prompt nog niet gaf;
-   "akkoord 2" of "akkoord [haakje]" is alleen die post.
+1. Welke posts: de knop of "akkoord" is elke carrousel in het zijscherm waarvan je de prompt
+   nog niet gaf; "akkoord 2" of "akkoord [haakje]" is alleen die post.
 2. Lees per post het document in `posts` met ArtifactData, action `get` (of `list` voor
    allemaal).
 3. **Staat de status nog op `concept`**, zeg dan per post alleen: "Post [nummer] is nog niet
-   opgeslagen. Druk in het zijscherm op Opslaan en typ dan akkoord." Bij één post wacht je.
+   opgeslagen. Druk in het zijscherm op Opslaan." en stel de vraag uit punt 7 opnieuw. Bij één
+   post wacht je.
    Bij meerdere ga je door met de opgeslagen posts en noem je de andere onderaan.
 4. **Staat hij op `opgeslagen`**, dan is de opgeslagen indeling leidend. Neem de tekst per
    slide letterlijk over, in de volgorde waarin hij staat, met de slides die de gebruiker toevoegde of
@@ -222,10 +233,10 @@ zijscherm laat zien wat te lang is; de gebruiker beslist.
    staat.
 5. **Tel opnieuw**, inclusief spaties, met een emoji als twee tekens. Tot tien tekens boven de
    limiet: gewoon door. Gaat een slide er meer dan tien overheen, of zijn er meer slides dan het
-   maximum, stel dan vóór de prompt één vraag voor alles samen, bijvoorbeeld: "Slide 4 is 18
-   tekens te lang. Laat je hem zo, of pas je hem aan in het zijscherm?" Bij te veel slides: "Het
-   zijn 11 slides, je design system staat er 10 toe. Haal er in het zijscherm één weg en typ
-   akkoord." Het maximum is hard: met te veel slides maak je geen prompt. Zegt de gebruiker bij een te
+   maximum, stel dan vóór de prompt één vraag met knoppen voor alles samen, bijvoorbeeld:
+   "Slide 4 is 18 tekens te lang. Laat je hem zo?" met **Laat zo** en **Ik pas aan**. Bij te
+   veel slides: "Het zijn 11 slides, je design system staat er 10 toe. Haal er in het zijscherm
+   één weg." en daarna de vraag uit punt 7. Het maximum is hard: met te veel slides maak je geen prompt. Zegt de gebruiker bij een te
    lange slide "laat zo", ga dan door.
 6. **Maak nu pas de prompt** (zie **De prompt** in stap 4). Het layouttype per slide is de rol uit
    de indeling. Een slide die de gebruiker toevoegde heet `Tekstslide`; is die tekst een
@@ -255,10 +266,10 @@ nummer en het haakje):
 212 / 300 tekens
 ```
 
-Geen codeblok: gewone tekst, zodat de gebruiker hem leest in plaats van kopieert. Zet onder de
-laatste slide: "Wil je iets anders? Zeg welke slide en wat er moet staan. Klopt het, typ dan
-akkoord." Bij designroute Canva: "Klopt het, typ dan akkoord, dan maak ik hem in Canva en krijg
-je de link." Verwerk wat de gebruiker zegt letterlijk en toon daarna de hele
+Geen codeblok: gewone tekst, zodat de gebruiker hem leest in plaats van kopieert. Stel onder
+de laatste slide de vraag met knoppen: "Klopt de indeling?" met **Klopt, maak het design** en
+**Ik wil iets anders** (bij designroute Canva: **Klopt, maak het in Canva**). Wil de gebruiker
+iets anders, dan zegt die welke slide en wat er moet staan. Verwerk wat de gebruiker zegt letterlijk en toon daarna de hele
 indeling opnieuw. Doe zelf geen voorstellen om in te korten of te verplaatsen, ook niet bij een
 slide boven de limiet: de telling laat het zien. Na akkoord volg je stap 5 en 6 van **Na
 akkoord**, op de indeling zoals die nu in de chat staat.
@@ -386,9 +397,13 @@ bedekt nooit het gezicht of lichaam.
 Fonts, kleuren en hoofdlettergebruik: zoals in mijn design system. Tekst nooit kleiner dan
 op mijn posts; een tekst tot tien tekens boven de limiet hoort te passen.
 Een opsomming staat heel op één slide.
-Controleer voor je oplevert: is de tekst even groot als op het voorbeeld, is het haakje op
-staat de coverkop op hooguit twee regels met ruimte rondom, staat de tekst letterlijk zo, begint de tekst op elke tussenslide op de startlijn, staat elke foto op de genoemde slide,
-en heet het design zoals de regel Naam:.
+Controleer stil voor je oplevert: is de tekst even groot als op het voorbeeld, staat de
+coverkop op hooguit twee regels met ruimte rondom, staat de tekst letterlijk zo, begint de
+tekst op elke tussenslide op de startlijn, staat elke foto op de genoemde slide, en heet het
+design zoals de regel Naam:.
+Antwoord daarna in hooguit vier korte regels: "Klaar: [naam]", alleen wat niet lukte (met
+slidenummer), in één zin wat je zelf toevoegde of wegliet, en hoe het naar Canva gaat. Geen
+lijst van controles, geen maten, geen uitleg over je keuzes.
 ```
 
 **De naam.** Altijd `Carrousel - [Hook]` of `Reelomslag - [Hook]`. De Hook is de titel van de
@@ -499,8 +514,9 @@ te slaan. Antwoord alleen: "Aangepast: [link]", met dezelfde link. Gaat de wijzi
 tekst, werk dan ook het blok Slidetekst in Notion bij (stap 6). Een andere foto zet je in
 Canva volgens **Foto's naar Canva** en in het logboek.
 
-Puk koppelt het design de volgende ochtend aan de post in Notion. Wil de gebruiker het meteen:
-"Zeg @puk, dan koppel ik hem nu."
+Puk koppelt het design de volgende ochtend aan de post in Notion. Stel na de link de vraag
+"Zal ik het nu al aan je post koppelen?" met **Ja, koppel nu** en **Morgen is goed**. Bij ja
+roep je Puk (`cs-canva-links`) aan voor deze post.
 
 Daan maakt designs in een gesprek, niet in een geplande taak: opslaan in Canva vraagt een
 akkoord van de gebruiker.
@@ -518,6 +534,10 @@ Na de prompt (Claude Design) of na het opslaan in Canva:
    **Slidetekst** met per slide één regel `Slide [n] · [layouttype]: [tekst]`, als gewone
    tekst, zonder codeblok. Staat het blok er al, vervang het. Zie `references/pagina-opbouw.md`.
    Zo kan de slidetekst later opnieuw gebruikt worden zonder de indeling opnieuw te maken.
+4. **Bij designroute Claude Design**, als laatste: de vraag met knoppen "Staat het design in
+   Canva?" met **Staat in Canva, koppel het** en **Later**. Bij de eerste knop roep je Puk
+   (`cs-canva-links`) aan voor deze post. Bij **Later** koppelt Puk het de volgende ochtend.
+   Bij meerdere posts staat de vraag onder **Meerdere posts tegelijk**.
 
 ## Leren
 
@@ -570,10 +590,11 @@ zijn af. Eén losse post gaat zoals hierboven.
   post daaronder de zin met de telling; gaat hij meer dan tien tekens over de limiet, zet er
   dan één ingekorte versie bij, die bij akkoord geldt tenzij de gebruiker een andere zin
   geeft. Heeft het design system een handschriftregel op de cover, stel die per post voor.
-  Dan de overgeslagen posts met hun reden. Dan de regel over het zijscherm uit stap 3, punt 6.
-  Zonder carrousels: "Typ akkoord, dan maak ik de prompts."
+  Dan de overgeslagen posts met hun reden. Dan de regel over het zijscherm uit stap 3, punt 6,
+  en de vraag met knoppen uit punt 7. Zonder carrousels: de vraag "Zal ik de prompts maken?"
+  met **Ja, maak de prompts** en **Ik wil iets anders**.
 
-**4. Na akkoord.** "akkoord" geldt voor alle posts waarvan je de prompt nog niet gaf;
+**4. Na akkoord.** De knop (of "akkoord") geldt voor alle posts waarvan je de prompt nog niet gaf;
 "akkoord [nummer]" of "akkoord [haakje]" alleen voor die post. Werk per post, in de volgorde
 van de lijst:
 
@@ -607,8 +628,14 @@ Bij designroute Canva staat er per post in plaats van het codeblok één regel
 één keer: "Zeg bij welk nummer je iets anders wilt, dan pas ik het in dat design aan."
 
 Onderaan, alleen als het van toepassing is, één regel per post die nog wacht (niet opgeslagen
-in het zijscherm) of is overgeslagen. Typt de gebruiker later "akkoord" voor de rest, dan geef
-je alleen de prompts die nog ontbraken.
+in het zijscherm) of is overgeslagen. Wacht er nog een post, stel dan de vraag uit stap 3,
+punt 7 opnieuw; klikt de gebruiker later op Opgeslagen, dan geef je alleen de prompts die nog
+ontbraken.
+
+Daarna, bij designroute Claude Design, één vraag met knoppen: "Laat je weten als de designs in
+Canva staan?" met **Staan in Canva, koppel ze** en **Later**. Bij de eerste knop roep je Puk
+(`cs-canva-links`) aan voor precies deze posts. Bij één post: "Staat het design in Canva?" met
+**Staat in Canva, koppel het** en **Later**. Bij **Later** koppelt Puk het de volgende ochtend.
 
 ---
 

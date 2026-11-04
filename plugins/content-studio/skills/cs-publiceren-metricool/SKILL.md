@@ -34,6 +34,10 @@ gebruiker een mail.
 Content Calendar, dan staat elke post er twee keer. Zeg dat bij de proefrun, als je beide
 skills ziet.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Hoe de skill wordt aangeroepen

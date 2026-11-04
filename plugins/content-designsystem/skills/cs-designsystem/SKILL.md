@@ -739,7 +739,24 @@ smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een ko
    assets/templates, ook waar je speelruimte gebruikte, en heb je in één zin gezegd wat je zelf
    toevoegde of wegliet? [Alleen met de varianten met kop en ondertitel:] Heeft in die varianten
    elke tussenslide een kop en een ondertitel, en is een foto zo verdonkerd dat de tekst goed
-   leesbaar is?
+   leesbaar is? Sluit af met: "Deze controle doe je stil. Je meldt hem niet."
+7. **Na het maken: kort antwoorden**: altijd opnemen, letterlijk zo (met in de laatste regel
+   de exportroute naar Canva zoals die in Claude Design heet):
+
+   > Ik lees al veel tekst. Antwoord na het maken met hooguit vier korte regels, in deze vorm:
+   >
+   > ```
+   > Klaar: [naam van het design].
+   > [Alleen als een controle uit hoofdstuk 6 niet lukte: één regel per punt, met het slidenummer.]
+   > [Alleen als je zelf iets toevoegde of wegliet: één zin.]
+   > Naar Canva: Delen › Exporteren › Versturen naar › Canva.
+   > ```
+   >
+   > Geen lijst van wat je controleerde, geen maten in pixels, geen uitleg over je keuzes, geen
+   > opmerkingen over bestanden die je las of niet bijwerkte.
+
+   (Zonder deze regel meldt Claude Design elke controle met maten en elke keuze met uitleg: een
+   lap tekst die niemand leest.)
 
 **`fotos.md`**: de fotobibliotheek. Daan (`cs-design`) kiest hieruit per post de foto's, op
 onderwerp en op de ruimte die de tekst nodig heeft; Claude Design leest erin wat er op een
@@ -1004,7 +1021,8 @@ bedekt nooit het gezicht of lichaam van de persoon."
 Zijn er texturen in `assets/templates/achtergronden`, dan ook: "Een gekleurd vlak is altijd een
 PNG uit assets/templates/achtergronden als paginavullende achtergrondafbeelding, nooit een
 effen kleurvlak."
-Sluit af met: "De tekst per slide komt letterlijk uit mijn caption. Neem die letterlijk over."
+Sluit af met: "De tekst per slide komt letterlijk uit mijn caption. Neem die letterlijk over.
+Antwoord na het maken kort: de naam, alleen wat niet lukte, en hoe het naar Canva gaat."
 
 **Fontregel:** staat een font (kop, tekst of handschrift) niet op Google Fonts, zeg dan dat de
 fontbestanden in `assets/templates/lettertypes/` zitten en apart in het fontveld van Claude

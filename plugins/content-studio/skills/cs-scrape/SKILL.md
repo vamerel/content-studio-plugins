@@ -15,6 +15,10 @@ description: >
 Een link erin, de post eruit. Deze skill haalt een post op via Apify en laat zien wat erin
 staat. Bewaren doet `cs-save` (`@save`), op het moment dat de gebruiker dat wil.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Omgevingscheck

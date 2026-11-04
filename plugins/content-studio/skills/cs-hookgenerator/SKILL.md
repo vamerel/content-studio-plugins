@@ -14,6 +14,10 @@ persoonlijk verhaal van Viggo (`cs-verhalen`), patronen uit de niche van Sam (`c
 wat werkte volgens de cijfers van Ruby (`cs-analyse`). Dat telt als een aangeleverd probleem
 met een moment; zie Fase 1.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ## Kernprincipe
 
 **Haakjes gaan over het probleem, niet over het aanbod.** Het aanbod is de oplossing van dat

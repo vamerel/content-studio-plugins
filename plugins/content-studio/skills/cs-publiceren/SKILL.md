@@ -22,6 +22,10 @@ moment, dus de laatste versie van de caption en van het Canva-ontwerp gaat mee.
 Publiceren is openbaar en niet terug te draaien. Daarom zijn de controles hieronder hard: bij
 twijfel gaat er niets live en krijgt de gebruiker een mail.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Hoe de skill wordt aangeroepen

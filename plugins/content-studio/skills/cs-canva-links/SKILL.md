@@ -5,8 +5,8 @@ description: >
   Content Calendar (op de naam Carrousel - of Reelomslag - plus het haakje), zet de Canva-link
   in Notion en de post op Gepland, of op Klaar als er nog geen publicatiedatum is. Meldt posts
   op Gepland of Bezig zonder design. In een gesprek laat Puk eerst zien wat hij koppelt en
-  schrijft hij pas na je akkoord; als geplande taak koppelt hij elke ochtend alleen bij een
-  exacte naam. @puk vraagt eerst of je Canva-links wilt of wilt publiceren. TRIGGERS op
+  schrijft hij pas na je akkoord; als geplande taak koppelt hij elke ochtend wat duidelijk
+  past en zet hij twijfelgevallen in de ochtendmail. @puk vraagt eerst of je Canva-links wilt of wilt publiceren. TRIGGERS op
   @canva-links, @puk, @cs-canva-links, "de designs staan klaar", "zet de Canva-links erin",
   "koppel mijn designs", "Canva-links in Notion", of een geplande taak die deze skill aanroept.
 ---
@@ -18,9 +18,14 @@ Notion. Publiceren en inplannen doet Puk met twee andere skills: `cs-publiceren`
 en `cs-publiceren-metricool` (via Metricool).
 
 Het verband tussen design en post is de **naam**: een design heet `Carrousel - [Hook]` of
-`Reelomslag - [Hook]`, met de Hook van de Notion-pagina letterlijk. Daan en de prompt voor
-Claude Design geven die naam mee. Puk gokt niet: zonder passende naam koppelt hij niets
-automatisch.
+`Reelomslag - [Hook]`, met de Hook van de Notion-pagina. Daan en de prompt voor Claude Design
+geven die naam mee, maar Claude Design neemt hem niet altijd letterlijk over (aanhalingstekens
+erbij, een leesteken anders). De naam moet dus **passen**, niet exact gelijk zijn. Twijfelt Puk,
+dan koppelt hij niet en meldt hij het.
+
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
 
 ---
 
@@ -72,13 +77,19 @@ Canva-linkveld.
    post; sla die map over.
 2. Anders, of niets gevonden: zoek in heel Canva op de naam.
 3. **Vergelijken:** de naam van het design tegenover `Carrousel - [Hook]` (bij een carrousel) of
-   `Reelomslag - [Hook]` (bij een reel). Zonder hoofdletters, emoji's en dubbele spaties. Een
-   naam die begint met `PROEF` telt niet.
-4. **Exact:** precies één design met die naam. Zijn er meerdere met exact die naam, neem dan
-   het nieuwste en noem de andere.
-5. **Twijfel:** geen exacte naam, maar wel precies één design waarvan de eerste pagina het
-   haakje als tekst bevat. Lees daarvoor de tekst van de eerste pagina van de designs die bij
-   het zoeken op de eerste woorden van het haakje boven kwamen. Hooguit vijf designs per post.
+   `Reelomslag - [Hook]` (bij een reel). Maak beide namen eerst gelijk: geen hoofdletters,
+   emoji's, aanhalingstekens (" “ ” ' ‘ ’), leestekens of dubbele spaties, elk soort streepje
+   telt als hetzelfde, en `Carroussel` of `Carousel` telt als `Carrousel`, `Reelsomslag` als
+   `Reelomslag`. Een naam die begint met `PROEF` telt niet. Zoek in Canva op de eerste woorden
+   van het haakje, niet op de hele naam.
+4. **Past:** precies één design waarvan de naam na het gelijkmaken hetzelfde is. Of precies
+   één design waarvan de naam bijna hetzelfde is: een tikfout, een woord meer of minder aan het
+   eind, of het haakje zonder het voorvoegsel, terwijl geen ander design er even dicht bij zit.
+   Zijn er meerdere die precies passen, neem dan het nieuwste op aanmaakdatum en noem de andere.
+5. **Twijfel:** het past niet zo duidelijk. Bijvoorbeeld: twee designs die er allebei dicht bij
+   zitten, het voorvoegsel past niet bij de soort (een Reelomslag bij een carrousel), of de naam
+   wijkt meer af maar de eerste pagina bevat het haakje als tekst. Lees daarvoor de tekst van de
+   eerste pagina van de designs die bij het zoeken boven kwamen. Hooguit vijf designs per post.
 6. **Niet gevonden:** geen van beide.
 
 ## Nieuwe status
@@ -97,16 +108,14 @@ Canva-linkveld.
 ```
 [haakje]
   Gevonden: [naam design] · wordt: Gepland
-  Twijfel: [naam design] heeft je haakje op de eerste pagina, maar een andere naam
+  Twijfel: [naam design] lijkt erop, maar ik weet het niet zeker ([reden in een paar woorden])
   Niet gevonden: gezocht op "Carrousel - [Hook]"
 ```
 
-3. Vraag één keer akkoord. Bij twijfel vraag je erbij: "Zal ik dit design in Canva hernoemen
-   naar 'Carrousel - [Hook]' en koppelen?"
+3. Vraag één keer akkoord. Bij twijfel vraag je erbij: "Is dit het goede design? Dan koppel
+   ik het."
 4. Na ja:
    - zet per post de link in het Canva-linkveld en de status zoals getoond;
-   - hernoem bij een twijfelgeval het design in Canva (de titel aanpassen en opslaan), alleen
-     als de gebruiker daar ja op zei;
    - staat er een map `Content Studio/Carrousels` of `Reelomslagen` en staat het design er nog
      niet in, verplaats het dan naar de map die bij de soort past.
 5. Geef de lijst met links naar de Notion-pagina's.
@@ -122,16 +131,17 @@ Mail naar: [mailadres]
 
 Niemand kijkt mee, dus:
 
-1. **Exact:** zet de link en de status, en verplaats het design naar de juiste map als die er
-   is. Zonder vragen.
+1. **Past:** zet de link en de status, en verplaats het design naar de juiste map als die er
+   is. Zonder vragen. Was de naam niet na het gelijkmaken hetzelfde maar bijna (stap 4 van
+   Zoeken), zet dan in het verslag welk design je koppelde, zodat de gebruiker het kan nakijken.
 2. **Twijfel:** koppel niets en hernoem niets. Zet het in het verslag, met de naam van het
-   design en de naam die het moet krijgen.
+   design en de reden van je twijfel.
 3. **Ontbrekende designs:** posts op `Gepland` of `Bezig` zonder Canva-link, met een
    Publicatiedatum binnen drie dagen (vandaag meegeteld). Zet ze in het verslag. De status pas
    je niet aan: op de dag zelf zet de publiceerskill hem op `Fout`.
 4. **Gewijzigd haakje:** een post op `Gepland` of `Bezig` waarvan het gekoppelde design niet
-   meer `Carrousel - [Hook]` of `Reelomslag - [Hook]` heet, omdat de Hook in Notion veranderde.
-   Zet het in het verslag.
+   meer past bij `Carrousel - [Hook]` of `Reelomslag - [Hook]` (zie Vergelijken), omdat de Hook
+   in Notion veranderde. Zet het in het verslag.
 
 **Verslag.** Wordt in dezelfde taak daarna een publiceerskill aangeroepen, geef het verslag dan
 aan die skill mee; die zet het in zijn mail. Anders mail je het zelf, alleen als er iets in
@@ -139,7 +149,8 @@ staat. Onderwerp: `Puk: [aantal] gekoppeld, [aantal] vragen aandacht`.
 
 ```
 Gekoppeld: [haakje] → Gepland ([datum])
-Twijfel: [haakje]. Design "[naam]" heeft je haakje, maar een andere naam. Hernoem het in Canva naar "Carrousel - [Hook]", of zeg in een gesprek "@puk, koppel [haakje]".
+Gekoppeld, kijk even na: [haakje]. Het design heet "[naam]": [link]
+Twijfel: [haakje]. Design "[naam]" lijkt erop ([reden]): [link]. Klopt het, zeg dan in een gesprek "@puk, koppel [haakje]".
 Ontwerp ontbreekt: [haakje] gaat [datum] live en heeft nog geen design.
 Naam klopt niet meer: [haakje]. Het design heet "[naam]".
 ```
@@ -148,9 +159,11 @@ Naam klopt niet meer: [haakje]. Het design heet "[naam]".
 
 ## Vermijd
 
-- Een design koppelen dat er alleen op lijkt.
+- Een twijfelgeval koppelen zonder akkoord, of een design overslaan omdat de naam niet
+  letterlijk gelijk is terwijl hij wel duidelijk past.
+- Een design in Canva hernoemen.
 - Een post op Gepland zetten zonder Publicatiedatum of met een `[VUL AAN`-regel.
-- In een geplande taak iets hernoemen of een twijfelgeval koppelen.
+- In een geplande taak een twijfelgeval koppelen.
 - Iets anders wijzigen dan het Canva-linkveld en de status: geen Hook, geen caption, geen
   andere velden.
 - Een property, status of map aanmaken. De mappen in Canva maakt `cs-setup`.

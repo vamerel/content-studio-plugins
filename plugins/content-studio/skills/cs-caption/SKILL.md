@@ -12,6 +12,10 @@ Elke caption is opgebouwd volgens HVVA: Herkenning, Verlangen, Vertrouwen, Actie
 **Prompts of designs voor meerdere posts** ("maak de prompts voor Claude Design", "maak de
 designs voor deze week"): dat doet Daan. Roep `cs-design` aan.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ## Twee definities
 
 - **Caption:** de tekst onder de post. Haakje als eerste regel, dan het verhaal, dan de
@@ -388,16 +392,18 @@ API-response.
 
 ### 7c - Doorgeven aan Daan
 
-Het design maakt Daan (`cs-design`). Roep die skill aan in hetzelfde gesprek en geef de post
-mee: de link naar de Notion-pagina, de Soort en de caption. Daan neemt het vanaf hier over:
+Het design maakt Daan (`cs-design`). Stel na de link de vraag met knoppen "Verder met Daan
+voor het design?" met **Ja, maak het design** en **Later**. Bij ja roep je Daan aan in
+hetzelfde gesprek en geef je de post mee: de link naar de Notion-pagina, de Soort en de
+caption. Daan neemt het vanaf hier over:
 de slide-indeling in het zijscherm, de layout, de foto's en de prompt voor Claude Design, of
 het design in Canva.
 
 Schreef Cato meerdere captions na elkaar (de nummers uit de zondagmail), geef ze dan na de
 laatste in één keer aan Daan, met per post de link, de Soort en de caption.
 
-Zegt de gebruiker dat het design later komt, stop dan na de link. Daan is later los aan te
-roepen met `@design` of `@daan`.
+Klikt de gebruiker **Later**, stop dan. Daan is later los aan te roepen met `@design` of
+`@daan`.
 
 ---
 

@@ -20,7 +20,7 @@ Composio uit Instagram; ze staan niet in Notion.
 | Cato | `cs-caption` | `@cato`, `@caption` | de caption volgens HVVA, hoogstens drie vragen met voorstel, Koen controleert als laatste stap, na akkoord op Concept met het Rapport van Koen; geeft door aan Daan |
 | Koen | `cs-controle` + agent `koen` | `@koen`, `@controle` | vijf checks (haakje, uniek, feiten, klank, klantreis), keurt feiten nooit af; controleert ook designs en stelt aanvullingen voor het design system voor |
 | Daan | `cs-design` | `@daan`, `@design` | slide-indeling in het zijscherm, layout en foto's met afwisseling op basis van de feed, de prompt voor Claude Design of het design zelf in Canva; ook voor meerdere posts |
-| Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt designs uit Canva aan posts op naam en zet ze op Gepland; in de ochtendronde alleen bij een exacte naam |
+| Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt designs uit Canva aan posts op naam en zet ze op Gepland; in de ochtendronde wat duidelijk past, twijfel in de ochtendmail |
 | Puk | `cs-publiceren-metricool` | `@publiceren-metricool` | route A: elke ochtend alles op Gepland in Metricool, Metricool gelijk houden aan Notion, gisteren geplaatst op Live |
 | Puk | `cs-publiceren` | `@publiceren` | route B: op je postmomenten de post van dat moment via Composio op Instagram, meteen op Live |
 | | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Canva), Content Pillars vullen, projectinstructies |

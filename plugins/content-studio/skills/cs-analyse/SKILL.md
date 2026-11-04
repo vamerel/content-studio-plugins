@@ -20,6 +20,10 @@ bereik. Wat ze vindt, geeft ze aan Hanna.
 De feedplanner laat dezelfde cijfers zien als dashboard. Ruby is voor in een gesprek en in de
 zondagtaak.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Omgevingscheck

@@ -23,6 +23,10 @@ zei of deed, en wat jij dacht of voelde. "Ik had een drukke week" is geen moment
 half acht stond ik met mijn laptop op de bank omdat de opvolgmail van een klant niet was
 verstuurd" wel.
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ---
 
 ## Omgevingscheck

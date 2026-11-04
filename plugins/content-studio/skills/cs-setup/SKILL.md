@@ -17,6 +17,10 @@ description: >
 
 # Setup - De omgeving van Content Studio klaarzetten
 
+**Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
+stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
+Laat de gebruiker niet "akkoord" of "ja" typen.
+
 ## JOUW ROL
 
 Je controleert of alles klaarstaat voordat de gebruiker zijn eerste haakje maakt, je maakt de
