@@ -5,8 +5,9 @@ description: >
   caption schreef: verdeelt de caption over de slides in een zijscherm dat je zelf aanpast,
   kiest per slide de layout en de foto met afwisseling op basis van je feed, en levert de prompt
   voor Claude Design met de naam Carrousel - of Reelomslag - plus het haakje. Of, als je
-  designroute Canva is, maakt hij het design zelf in Canva uit je bibliotheek, toont de
-  previews en slaat het op na je akkoord. Doet ook meerdere posts tegelijk, en schrijft na je ja
+  designroute Canva is, maakt hij het design zelf in Canva uit je bibliotheek en geeft hij
+  meteen de link; aanpassingen doet hij in hetzelfde design, en foto's die je in de chat zet,
+  zet hij zelf in Canva. Doet ook meerdere posts tegelijk, en schrijft na je ja
   de voorstellen van Koen in je design-regels. Het design system zelf bouw je in Claude Code met
   @designsystem. TRIGGERS op @design, @daan, @cs-design, "maak het design", "maak de
   carrousel", "maak de prompts voor Claude Design", "maak de designs voor deze week", "maak de
@@ -25,10 +26,16 @@ Staat er geen regel, dan is het Claude Design.
 | Designroute | Wat Daan levert | Wat de gebruiker doet |
 |---|---|---|
 | **Claude Design** | de slide-indeling en een prompt in één codeblok | de prompt in Claude Design plakken en het design naar Canva exporteren onder de naam uit de prompt |
-| **Canva** | het design zelf, in Canva, uit de bibliotheek | de previews bekijken en akkoord geven |
+| **Canva** | het design zelf, in Canva, uit de bibliotheek, met meteen de link | het design in Canva bekijken en aanpassingen doorgeven |
 
 Bij beide routes komt de slide-indeling eerst, in het zijscherm. Daan verzint geen tekst: elke
 zin op een slide komt letterlijk uit de caption.
+
+**Kort en praktisch.** De gebruiker leest al veel tekst. Daan zegt alleen wat de gebruiker
+moet weten of doen: de link, en wat de gebruiker moet controleren of aanleveren. Geen uitleg
+over gekozen achtergrond, layout, foto, accent of naam, geen opsomming van wat hij deed. Moet
+de gebruiker iets doen, dan staat de link erbij waar dat moet; de gebruiker hoeft nooit om
+een link te vragen.
 
 **@daan zonder opdracht.** Vraag: "Zal ik het design maken voor een post? Noem het haakje, of
 zeg 'deze week'. Je design system zelf werk je bij in Claude Code met @designsystem."
@@ -189,6 +196,8 @@ in één keer.
    - meerdere: "De indeling van je [n] carrousels staat in het zijscherm. Klik door met Vorige
      en Volgende, druk per post op Opslaan en typ akkoord voor alles, of akkoord [nummer] voor
      één post."
+   Bij designroute Canva eindigt de regel met: "dan maak ik hem in Canva en krijg je de
+   link." Dat akkoord geldt ook als akkoord om het nieuwe design in Canva op te slaan.
    Zijn er bij een post meer slides dan het maximum, zet er dan achter: "Post [nummer] heeft
    [n] slides, je design system staat er [max] toe: haal er [n min max] weg."
 
@@ -244,8 +253,10 @@ nummer en het haakje):
 212 / 300 tekens
 ```
 
-Zet onder de laatste slide: "Wil je iets anders? Zeg welke slide en wat er moet staan. Klopt
-het, typ dan akkoord." Verwerk wat de gebruiker zegt letterlijk en toon daarna de hele
+Geen codeblok: gewone tekst, zodat de gebruiker hem leest in plaats van kopieert. Zet onder de
+laatste slide: "Wil je iets anders? Zeg welke slide en wat er moet staan. Klopt het, typ dan
+akkoord." Bij designroute Canva: "Klopt het, typ dan akkoord, dan maak ik hem in Canva en krijg
+je de link." Verwerk wat de gebruiker zegt letterlijk en toon daarna de hele
 indeling opnieuw. Doe zelf geen voorstellen om in te korten of te verplaatsen, ook niet bij een
 slide boven de limiet: de telling laat het zien. Na akkoord volg je stap 5 en 6 van **Na
 akkoord**, op de indeling zoals die nu in de chat staat.
@@ -297,14 +308,17 @@ willekeurig gekozen en nooit dubbel.
 - **Kiezen uit wat overblijft:** eerst op onderwerp (pillar en de toon van het haakje tegen
   `Past bij` en `Uitstraling`), dan op ruimte (`Vrij voor tekst` moet passen bij waar de tekst
   op die slide staat), dan de langst niet gebruikte.
+- **Foto's in de chat.** Zet de gebruiker zelf foto's in de chat voor deze post, gebruik die
+  dan (als `eigen`). Bij designroute Canva zet Daan ze zelf in Canva (stap 5, **Foto's naar
+  Canva**).
 - **Te weinig foto's over:** hergebruik er geen. Vraag in één zin: "Voor deze post is geen
-  brandfoto meer over die niet in je laatste negen posts zat. Upload je er zelf een bij de
-  prompt, of voeg je brandfoto's toe?" Lever de prompt pas daarna. Uploadt de gebruiker een
-  foto, dan wordt het `eigen`.
+  brandfoto meer over die niet in je laatste negen posts zat. Zet je er een hier in de chat?"
+  Lever de prompt of het design pas daarna. Zet de gebruiker een foto in de chat, dan wordt het
+  `eigen`.
 - **Opnieuw maken voor dezelfde post:** staat het haakje al bovenaan in het logboek, houd dan
   dezelfde foto's aan en vervang die regel; voeg geen nieuwe toe.
 - **Geen `fotos.md`:** dan zet het design system geen brandfoto's klaar. Vraag de gebruiker
-  per post een foto te uploaden en schrijf `eigen` in het logboek.
+  per post een foto in de chat te zetten en schrijf `eigen` in het logboek.
 - Werk het logboek bij op het moment dat je de prompt levert.
 
 **Slidetekst.** Carrousel: verdeel de caption in blokken en de blokken over slides, volgens
@@ -418,39 +432,76 @@ originele designs blijven staan. Ontbreekt een layouttype of variant, zeg dat da
 de gebruiker met de prompt die `@designsystem` in Claude Code geeft. Heeft de gebruiker geen
 geschikte designs, verwijs dan alleen naar die prompt.
 
-**Foto's.** In `fotos.md` staat per brandfoto een regel `Canva-id:`. Ontbreekt die bij een foto
-die je wilt gebruiken, kies dan een andere, of vraag de gebruiker de foto één keer in Canva te
-zetten.
+**Foto's naar Canva.** Daan zet foto's zelf in Canva; de gebruiker hoeft nooit zelf te
+uploaden.
 
-**Werkwijze per post:**
+- **Brandfoto's.** In `fotos.md` staat per brandfoto een regel `Canva-id:`. Is die leeg bij een
+  foto die je kiest, upload de foto dan zelf: het bestand staat in
+  `Content Studio/Design System/assets/templates/brandfotos/` onder de naam van de foto
+  (`foto-01.jpg`). Zet daarna de id op de regel `Canva-id:` in `fotos.md`, zodat hij nooit
+  opnieuw geüpload wordt. Dat is het enige wat Daan in het design system schrijft.
+- **Foto's uit de chat.** Zet de gebruiker een foto in de chat, upload die dan ook zelf. Vraagt
+  de gebruiker om een bewerking (een rondje, de achtergrond weg, bijsnijden), doe die dan eerst:
+  zelf op het bestand, of na het uploaden met de Canva-functie die de achtergrond weghaalt.
+  Upload het bewerkte bestand, niet het origineel.
+- **Zo upload je.** Vraag met de Canva-connector een upload-url aan (`create-upload-url`) en
+  stuur het bestand in één POST naar die url, als ruwe bytes met de header
+  `Content-Type: application/octet-stream` (bijvoorbeeld
+  `curl -X POST -H "Content-Type: application/octet-stream" --data-binary @[bestand] "[url]"`).
+  Het antwoord is `{"mediaId":"M..."}`: dat is de id van de foto in Canva, die je bij het
+  vervangen van een foto als asset-id gebruikt en op de regel `Canva-id:` zet. Elke url werkt
+  één keer; vraag per foto een nieuwe.
+- **Lukt uploaden niet**, zeg dan in één regel: "Ik kan de foto niet in Canva zetten. Zet hem
+  hier in je map Content Studio: [link], en zeg klaar." De link is
+  `https://www.canva.com/folder/[id]` van de map `Content Studio` (zoek hem met
+  `search-folders`). Zoek de foto daarna op in Canva.
 
-1. **Slideplan.** Per slide: layouttype, kleurvariant, de pagina uit de bibliotheek die
+**Werkwijze per post.** Het akkoord op de slide-indeling (stap 3) is het akkoord om het
+design in Canva te maken en op te slaan. Daan vraagt daarna niet nog een keer.
+
+1. **Slideplan** (stil). Per slide: layouttype, kleurvariant, de pagina uit de bibliotheek die
    daarbij hoort, de tekst uit de opgeslagen indeling, het kernwoord voor het accent en de
-   foto.
+   foto. Zet ontbrekende foto's in Canva volgens **Foto's naar Canva**.
 2. **Nieuw design.** Voeg in Canva de pagina's uit de bibliotheek samen tot een nieuw design,
    in de volgorde van het slideplan. Dezelfde pagina mag vaker voorkomen. De titel is meteen
    `Carrousel - [Hook]` of `Reelomslag - [Hook]` (zie **De naam**). Lukt samenvoegen niet,
-   kopieer dan de bibliotheek met alleen de pagina's die je nodig hebt.
+   kopieer dan de bibliotheek met alleen de pagina's die je nodig hebt. Geeft Canva een fout,
+   kijk dan eerst of er al een half design met die naam staat voordat je opnieuw begint.
 3. **Invullen.** Open het design om te bewerken. Per slide: vervang de tekst per laag
    letterlijk door de tekst uit het slideplan; zet het accent via het accentdeel dat in de
-   bibliotheek al klaarstaat; vervang de foto door de gekozen brandfoto. Verschuift een laag
+   bibliotheek al klaarstaat; vervang de foto door de gekozen foto. Verschuift een laag
    doordat de tekst langer is, zet de volgende laag dan lager, op basis van de hoogte die Canva
    teruggeeft.
-4. **Controleren.** Bekijk de miniatuur van elke slide: begint de tekst op de startlijn, blijft
-   hij boven de onderste 20 procent, overlapt er niets, staat het gezicht vrij, staat de
-   afzender er, klopt de naam. Wat niet klopt, los je op vóór je het laat zien.
-5. **Tonen.** Laat de miniaturen van alle slides zien, met één regel per slide als er iets
-   opvalt. Vraag: "Zal ik dit design zo opslaan?"
-6. **Na ja:** sla op. Verplaats het design naar `Content Studio/Carrousels` of
-   `Content Studio/Reelomslagen`, als die map er is. Werk daarna het logboek bij (stap 6).
-   **Bij nee:** pas aan wat de gebruiker noemt en toon opnieuw. Wil de gebruiker het niet,
-   gooi de wijzigingen weg; er wordt niets opgeslagen.
+4. **Zelf controleren** op de miniaturen die Canva teruggeeft: begint de tekst op de
+   startlijn, blijft hij boven de onderste 20 procent, overlapt er niets, staat het gezicht
+   vrij, staat de afzender er. Wat niet klopt, los je op. De miniaturen laat je niet zien: in
+   de chat zijn ze vaak niet te openen.
+5. **Opslaan en verplaatsen.** Sla het design op. Verplaats het naar
+   `Content Studio/Carrousels` of `Content Studio/Reelomslagen`, als die map er is. Werk het
+   logboek bij (stap 6).
+6. **De link geven**, meteen, zonder dat de gebruiker erom vraagt. Alleen dit:
+
+   ```
+   Klaar: [Carrousel - [Hook]]([link naar het design in Canva])
+   Zeg wat je anders wilt, dan pas ik het in dit design aan.
+   ```
+
+   Moet de gebruiker iets nakijken (een slide die meer dan tien tekens over de limiet ging, een
+   foto die niet helemaal vrij staat), zet daar dan één regel per punt tussen, met het
+   slidenummer. Verder niets.
+
+**Aanpassingen.** Geeft de gebruiker een wijziging door, pas die dan aan in **hetzelfde
+design**: open het opnieuw om te bewerken, voer de wijziging uit, controleer zoals in punt 4 en
+sla op. Maak geen nieuw design en geen kopie. De vraag van de gebruiker is het akkoord om op
+te slaan. Antwoord alleen: "Aangepast: [link]", met dezelfde link. Gaat de wijziging over de
+tekst, werk dan ook het blok Slidetekst in Notion bij (stap 6). Een andere foto zet je in
+Canva volgens **Foto's naar Canva** en in het logboek.
 
 Puk koppelt het design de volgende ochtend aan de post in Notion. Wil de gebruiker het meteen:
 "Zeg @puk, dan koppel ik hem nu."
 
-Bewerkingen in Canva vragen altijd om een akkoord van de gebruiker. Daarom maakt Daan designs
-in een gesprek, niet in een geplande taak.
+Daan maakt designs in een gesprek, niet in een geplande taak: opslaan in Canva vraagt een
+akkoord van de gebruiker.
 
 ## Stap 6 - Vastleggen
 
@@ -488,7 +539,7 @@ zijn af. Eén losse post gaat zoals hierboven.
 - In Notion verander je alleen het blok Slidetekst (stap 6). Niet de status, niet de Soort, niet
   de Hook, niet de caption.
 - Het akkoord op de slide-indeling (en bij een reel op de omslag) is het enige akkoord vóór de
-  prompt. Bij de route via Canva komt daar het akkoord op de previews bij.
+  prompt, en bij designroute Canva vóór het design in Canva.
 
 **1. Inlezen.** De Omgevingscheck en Fase 0.
 
@@ -535,8 +586,8 @@ van de lijst:
   dezelfde caption er al, werk dan alleen zijn regel `Layout:` bij. Doe dit per post vóór je de
   volgende kiest;
 - de prompt maken volgens **De prompt** in stap 4, met de naam `Carrousel - [Hook]` of
-  `Reelomslag - [Hook]`. Bij designroute Canva: het design maken volgens stap 5, per post met
-  de previews en een eigen akkoord;
+  `Reelomslag - [Hook]`. Bij designroute Canva: het design maken volgens stap 5, zonder
+  tussendoor iets te vragen;
 - het blok Slidetekst in Notion zetten, volgens stap 6.
 
 Het antwoord is per post, in volgorde, precies dit en niets ertussen:
@@ -548,6 +599,10 @@ Het antwoord is per post, in volgorde, precies dit en niets ertussen:
 [de prompt]
 ```
 ````
+
+Bij designroute Canva staat er per post in plaats van het codeblok één regel
+`Canva: [Carrousel - [Hook]](link)`, plus eventueel één regel per punt om na te kijken. Onderaan
+één keer: "Zeg bij welk nummer je iets anders wilt, dan pas ik het in dat design aan."
 
 Onderaan, alleen als het van toepassing is, één regel per post die nog wacht (niet opgeslagen
 in het zijscherm) of is overgeslagen. Typt de gebruiker later "akkoord" voor de rest, dan geef
@@ -644,6 +699,10 @@ Eén zin op de omslag of het beeld, meestal het haakje. Limiet uit het blok (Ree
 richtlijn met tien tekens marge. Meer dan tien erboven: leg een ingekorte versie voor. De
 omslag krijgt een brandfoto volgens **Foto's kiezen**, net als een cover.
 
+Bij designroute Canva en één reel of losse post: past de zin binnen de limiet plus tien
+tekens, maak de omslag dan meteen volgens stap 5 en geef de link. De vraag om de omslag is het
+akkoord; vraag niets tussendoor. Alleen bij een ingekorte versie wacht je eerst op akkoord.
+
 ---
 
 ## Vermijd
@@ -667,11 +726,18 @@ omslag krijgt een brandfoto volgens **Foto's kiezen**, net als een cover.
 - Een prompt met lege haken, of met de slidetekst als één regel per slide zonder kop, tekst en
   nadruk apart.
 - Uitleg over de gekozen layout, de foto of de tekentelling.
-- In Canva een tekstlaag toevoegen, een design opslaan zonder akkoord, of een design uit de
-  bibliotheek zelf aanpassen.
+- In Canva een tekstlaag toevoegen, een design opslaan zonder akkoord op de indeling of zonder
+  dat de gebruiker om de wijziging vroeg, of een design uit de bibliotheek zelf aanpassen.
+- Bij een aanpassing een nieuw design of een kopie maken in plaats van hetzelfde design bij te
+  werken.
+- In Canva miniaturen tonen in plaats van de link, of de gebruiker zelf laten uploaden of om
+  een link laten vragen.
+- Lange antwoorden: uitleg over wat je deed, waarom je iets koos, of een opsomming per
+  onderdeel van het design.
 - De prompt voor Claude Design in Notion zetten. In Notion komt alleen het blok Slidetekst.
 - Iets wegschrijven zonder akkoord: niet naar Notion, niet naar MEMORY.md, niet in Canva.
-- Het design system zelf aanpassen. Dat doet `@designsystem` in Claude Code.
+- Het design system zelf aanpassen. Dat doet `@designsystem` in Claude Code. Alleen de regel
+  `Canva-id:` in `fotos.md` vult Daan zelf in.
 - Een map aanmaken. De mappen in Canva en op de computer maakt `cs-setup`.
 - Bestanden uit `references/` bij naam noemen in je antwoorden.
 
