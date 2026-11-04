@@ -2,8 +2,8 @@
 
 Dertien Cowork-skills en één agent waarmee je je Instagram- en LinkedIn-content maakt met een
 team, op basis van je Business DNA. Viggo, Sam en Ruby leveren aan, Hanna maakt haakjes, Cato
-schrijft captions, Koen controleert, Daan maakt het design (via Claude Design of zelf in
-Canva) en Puk koppelt de designs en publiceert op Instagram (route A met Metricool, route B
+schrijft captions, Koen controleert, Daan maakt het design (met een
+prompt voor Claude Design) en Puk koppelt de designs en publiceert op Instagram (route A met Metricool, route B
 met Composio; de koper kiest één route). Het design system is een aparte
 plugin, `content-designsystem` (skill `cs-designsystem`), omdat die in Claude Code draait en
 Claude Code een eigen lijst heeft. De cijfers van je posts haalt Ruby, en de feedplanner, via
@@ -23,7 +23,7 @@ Composio uit Instagram; ze staan niet in Notion.
 | Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt designs uit Canva aan posts op naam en zet ze op Gepland; in de ochtendronde alleen bij een exacte naam |
 | Puk | `cs-publiceren-metricool` | `@publiceren-metricool` | route A: elke ochtend alles op Gepland in Metricool, Metricool gelijk houden aan Notion, gisteren geplaatst op Live |
 | Puk | `cs-publiceren` | `@publiceren` | route B: op je postmomenten de post van dat moment via Composio op Instagram, meteen op Live |
-| | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Canva), designroute kiezen, Content Pillars vullen, projectinstructies |
+| | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Canva), Content Pillars vullen, projectinstructies |
 | | `cs-save` | `@save` | een idee of opgehaalde post bewaren als Idee |
 | | `cs-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
 
@@ -75,7 +75,6 @@ CLAUDE/
 
 Canva/
 └── Content Studio/                cs-setup, na ja
-    ├── Bibliotheek/               de pagina's waar Daan uit bouwt (designroute Canva)
     ├── Carrousels/
     └── Reelomslagen/
 ```

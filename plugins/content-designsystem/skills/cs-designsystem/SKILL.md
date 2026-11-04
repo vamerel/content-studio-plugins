@@ -6,11 +6,11 @@ description: >
   Guidelines. Je echte posts gaan mee als voorbeeld; daarnaast kleuren, fonts, de compositie
   per layouttype, tekenlimieten als richtlijn, en een fotobibliotheek met wat er op elke
   brandfoto staat. Werkt zonder iets te installeren. Levert design-system.md en fotos.md voor
-  Daan (cs-design), de twee teksten voor het instelscherm van Claude Design, en als je wilt de
-  prompt voor je bibliotheek in Canva. Voor Instagram-carrousels en reels. TRIGGERS op
+  Daan (cs-design) en de twee teksten voor het instelscherm van Claude Design. Voor
+  Instagram-carrousels en reels. TRIGGERS op
   @designsystem, @cs-designsystem, @daan, de oude naam @content-designsystem, "design system
   maken", "werk mijn design system bij", "mijn huisstijl vastleggen", "tekenlimieten
-  bepalen", "layout van mijn carrousels", "maak mijn bibliotheek", of elke vraag over het
+  bepalen", "layout van mijn carrousels", of elke vraag over het
   vastleggen van je visuele stijl voor Claude Content Studio.
 ---
 
@@ -1017,70 +1017,6 @@ De uitleg wat ermee te doen komt in de slotmelding van stap 10, niet hier.
 
 ---
 
-## Stap 9b - De bibliotheek voor Canva (alleen designroute Canva)
-
-Daan kan in Cowork de designs ook zelf in Canva maken (designroute Canva). Daarvoor is in
-Canva één **bibliotheek** nodig: een design met per layouttype een pagina, waar Daan per post
-pagina's uit kopieert en invult. Staat in `Content Studio/README.md` de regel
-`Designroute: Canva`, of vraagt de gebruiker om de bibliotheek, dan hoort deze stap erbij.
-Anders noem je hem alleen in één regel in de slotmelding.
-
-Er zijn twee manieren om aan die bibliotheek te komen, en de gebruiker weet niet vanzelf welke
-voor haar geldt. Geef de prompts dus **nooit zomaar mee**. Stel eerst deze ene vraag, en
-wacht op het antwoord:
-
-> Staan er in Canva al carrousels die Claude Design voor je heeft gemaakt? En reelomslagen?
-
-**Ja, carrousels van Claude Design staan al in Canva.** Dan heeft ze geen prompt nodig: die
-designs hebben al aparte tekstlagen, en Daan bouwt de bibliotheek daaruit. Geef geen prompt,
-maar zet in de slotmelding het blok "Je bibliotheek in Canva" met route A (zie stap 10).
-Heeft ze wel carrousels maar geen reelomslagen van Claude Design, en maakt ze reels? Dan
-geef je alleen de prompt voor de reelomslagen, met route B voor dat deel.
-
-**Nee, of weet ik niet.** Carrousels die ze zelf in Canva maakte, of die alleen als
-afbeelding in Canva staan, tellen niet mee: daar zitten geen aparte tekstlagen in. Dan
-geef je de prompt hieronder (en die voor reelomslagen als ze reels maakt), met route B in de
-slotmelding.
-
-Zet de prompts in de slotmelding, onder route B, en nergens anders. Zet boven elke prompt
-één regel die zegt waarvoor hij is: "Prompt 1: je bibliotheek voor carrousels" en "Prompt 2:
-je bibliotheek voor reelomslagen".
-
-**De prompt**, in één codeblok, voor Claude Design:
-
-```
-Naam: Bibliotheek - Content Studio
-Exporteer het design onder precies deze naam naar Canva, als bewerkbaar ontwerp.
-
-Maak met mijn design system één bibliotheek voor mijn carrousels: een design van [breedte x
-hoogte] px met per layouttype één pagina, in elke kleurvariant. Lees eerst CLAUDE.md en
-applications/carrousels.md. Bouw elke pagina op het voorbeeld van dat layouttype uit mijn
-eigen posts.
-
-Pagina's, in deze volgorde:
-[per layouttype uit het design system, per kleurvariant of achtergrond één regel:
-"[n]. [layouttype] · [variant]"; bijvoorbeeld "1. Cover op foto · groen",
-"2. Cover met handschriftregel · oranje", "3. Tekstslide · groen", ... "[n]. CTA · zwart"]
-
-Regels:
-- Elke tekst is een aparte, bewerkbare tekstlaag: kop, lopende tekst, handschriftregel,
-  afzender. Nooit tekst in een afbeelding.
-- Zet in elke laag voorbeeldtekst van ongeveer de lengte van de limiet uit mijn design
-  system, zodat de lettergrootte klopt.
-- Een accentwoord in de lopende tekst staat als apart gekleurd tekstdeel in dezelfde laag.
-- Een foto is een vervangbare afbeelding, met de brandfoto uit het voorbeeld.
-- De afzender staat op elke pagina waar mijn posts hem hebben.
-- Geef elke pagina als titel het nummer, het layouttype en de variant, zoals hierboven.
-```
-
-Maakt de gebruiker ook reels, lever dan een tweede prompt op dezelfde manier, met de naam
-`Bibliotheek reelomslagen - Content Studio`, het formaat van de reelomslag en de
-omslagvarianten uit `applications/reels.md`.
-
-Wat er daarna gebeurt, staat in het blok "Je bibliotheek in Canva" van de slotmelding.
-
----
-
 ## Stap 10 - Slotmelding
 
 Begin met één regel: "Klaar. Je design system staat in Content Studio/Design System,
@@ -1123,40 +1059,6 @@ en stap 7 dan weg en hernummer.
 >
 > Pas je later je layout aan, zet dan de nieuwe posts in Brand Guidelines en roep me opnieuw
 > aan in Claude Code. Ik bouw de map dan opnieuw en jij uploadt hem opnieuw in Claude Design.
->
-> Wil je dat Daan je designs zelf in Canva maakt? Dan heb je een bibliotheek in Canva nodig.
-> Zeg "maak mijn bibliotheek", dan help ik je daarmee.
-
-Laat die laatste alinea weg als stap 9b erbij hoort. Zet dan in plaats daarvan het blok
-hieronder, met alleen de route die bij haar antwoord past (route A, route B, of route A met
-alleen prompt 2 bij route B voor de reelomslagen). Doe ze pas na het instellen en testen
-hierboven: de prompts werken alleen met een design system dat al in Claude Design staat.
-
-> **Je bibliotheek in Canva**
->
-> Daan maakt je designs in Canva door pagina's te kopiëren uit één bibliotheek: een design
-> met per soort slide een pagina. Die bibliotheek maak je één keer.
->
-> *Route A: je hebt al carrousels van Claude Design in Canva.* Je hebt geen prompt nodig.
-> 1. Open Cowork, in je project Content Studio, en zeg: "@daan, maak mijn bibliotheek uit
->    mijn bestaande carrousels".
-> 2. Daan zoekt je carrousels op en stelt de bibliotheek samen. Mist hij een soort slide of
->    een kleur, dan zegt hij dat. Roep mij dan opnieuw aan met "maak mijn bibliotheek voor
->    [wat hij mist]", dan krijg je een prompt voor alleen dat stuk.
->
-> *Route B: je hebt nog geen carrousels van Claude Design in Canva.*
-> 1. Open in Claude Design een nieuw project met je design system.
-> 2. Plak prompt 1 hieronder. Claude Design maakt de bibliotheek voor je carrousels.
-> 3. Exporteer hem naar Canva, als bewerkbaar ontwerp, onder de naam die in de prompt staat.
-> 4. Maak je reels? Doe hetzelfde met prompt 2 voor je reelomslagen.
-> 5. Zet in Canva beide designs in de map Content Studio > Bibliotheek.
->
-> *Daarna, bij beide routes:* zet je brandfoto's ook in Canva. De eerste keer dat Daan in
-> Cowork een design maakt, leest hij de bibliotheek, maakt hij de lijst met pagina's en vult
-> hij de Canva-id's van je foto's in fotos.md in.
->
-> [Alleen bij route B: "Prompt 1: je bibliotheek voor carrousels", met de prompt uit stap 9b
-> in een codeblok, en als ze reels maakt "Prompt 2: je bibliotheek voor reelomslagen".]
 
 ---
 

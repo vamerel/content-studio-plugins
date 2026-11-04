@@ -311,27 +311,17 @@ op de afvinklijst als openstaand.
 
 ## FASE 5B: DESIGNROUTE EN MAPPEN IN CANVA
 
-**De designroute.** Daan (`cs-design`) maakt het design van een post op een van twee manieren.
-Vraag welke de gebruiker wil, met een voorstel:
-
-> "Hoe wil je je designs maken?
-> 1. **In Claude Design.** Daan maakt per post een prompt; jij plakt die in Claude Design en
->    exporteert het design naar Canva. Werkt ook met Canva Gratis.
-> 2. **Daan maakt ze in Canva.** Daan bouwt elk design zelf uit een bibliotheek met je eigen
->    layouts in Canva; jij kijkt de previews na en geeft akkoord. Daarvoor heb je Canva Pro
->    nodig en één keer een bibliotheek, die je maakt met @designsystem.
-> Weet je het nog niet, begin dan met 1. Je kunt later wisselen."
-
-Zet het antwoord onderaan `Content Studio/README.md` als regel `Designroute: Claude Design` of
-`Designroute: Canva`. Staat er al een regel `Designroute:`, vraag dan alleen of die nog klopt.
+**De designroute.** Je designs maak je in Claude Design: Daan (`cs-design`) maakt per post een
+prompt, de gebruiker plakt die in Claude Design en stuurt het design naar Canva. Vraag hier
+niets over. Staat er onderaan `Content Studio/README.md` nog geen regel `Designroute:`, zet
+er dan `Designroute: Claude Design`. Staat er al een regel, laat die staan.
 
 **Mappen in Canva.** Is de Canva-connector gekoppeld, kijk dan of er in Canva een map
-`Content Studio` staat met daarin `Bibliotheek`, `Carrousels` en `Reelomslagen`. Ontbreekt er
-een, vraag dan:
+`Content Studio` staat met daarin `Carrousels` en `Reelomslagen`. Ontbreekt er een, vraag
+dan:
 
-> "Zal ik in je Canva een map Content Studio maken, met Bibliotheek, Carrousels en
-> Reelomslagen? Dan staan je designs bij elkaar, en zoekt Puk alleen daar naar het design bij
-> een post."
+> "Zal ik in je Canva een map Content Studio maken, met Carrousels en Reelomslagen? Dan
+> staan je designs bij elkaar; Puk zet ze erin als hij ze aan je posts koppelt."
 
 Maak alleen na ja aan wat ontbreekt. Verplaats geen bestaande designs zonder dat de gebruiker
 daar apart om vraagt. Is Canva niet gekoppeld, sla dit over en zet het op de afvinklijst.
@@ -464,8 +454,7 @@ KLAAR
 ✓ Business DNA gevonden
 ✓ Map Business Brand Guidelines aangemaakt met zeven submappen
 ✓ Map Content Studio aangemaakt (Design System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md)
-✓ Designroute: [Claude Design / Canva]
-✓ Mappen in Canva: Content Studio met Bibliotheek, Carrousels en Reelomslagen
+✓ Mappen in Canva: Content Studio met Carrousels en Reelomslagen
 ✓ Content Pillars gevuld: [namen]
 ✓ Gewenste verdeling ingevuld: [pillar %, pillar %, ...]
 ✓ Projectinstructies geleverd

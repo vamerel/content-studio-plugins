@@ -34,7 +34,7 @@ hier zelf niets neer te zetten; de skills vullen de map.
   Design System en Sam (de zoektermen van Sam). Elke skill leest en schrijft alleen zijn eigen sectie, maximaal
   tien regels, en alleen na jouw akkoord. Wil je een regel weg, haal hem er dan gewoon uit.
 - **README.md** - dit bestand. Onderaan staan de link naar het zijscherm (Slide-indeling) en
-  je designroute (Designroute: Claude Design of Canva).
+  je designroute (Designroute: Claude Design).
 
 ## Wat hier niet staat
 
