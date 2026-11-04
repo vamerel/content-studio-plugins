@@ -286,7 +286,17 @@ Noteer ook wat er als **afzender** op de slides staat (een handle, een woordmerk
 programmanaam) en waar. Kijk of die afwisselt: staat er in elke carrousel hetzelfde, verschilt
 het per carrousel, of wisselt het binnen één carrousel (andere tekst, boven of onder, soms
 geen)? Wat afwisselt leg je vast als afwisseling, met alle varianten letterlijk, nooit als één
-vaste standaard: anders zet Claude Design overal de standaard. De elementen van Instagram uit stap 1 (teller, geluidsicoon,
+vaste standaard: anders zet Claude Design overal de standaard.
+
+Noteer op dezelfde manier **elk ander element dat afwisselt** tussen de posts, met alle
+varianten letterlijk zoals je ze ziet: een overlay op de foto (geen, licht, donker), het logo of
+beeldmerk (kleurvariant, boven, onder of geen), tags of woorden in de hoeken, icoontjes boven-
+of onderaan, de vorm van het accent, de achtergrond. Dit wordt het **keuzepaneel** in Claude
+Design (stap 8, Weergave en export): per element één uitklapmenu met precies de varianten die
+op de posts staan, zodat de gebruiker ze wisselt zonder nieuwe prompt. Wat op alle posts gelijk
+is, komt niet in het paneel. Verzin geen varianten die niet op de posts staan.
+
+De elementen van Instagram uit stap 1 (teller, geluidsicoon,
 telefoonscherm, balken) laat je buiten elke meting: ze zijn geen tekst, geen kleur en geen
 layout. Meet de slide alsof ze er niet staan.
 
@@ -451,8 +461,8 @@ zwaarder dan alles wat jij afleidt. Leg het voorstel voor; de gebruiker beslist.
 
 Toon één overzicht, in gewone taal, en vraag per onderdeel of het klopt: layouttypes en hun
 limieten, de compositie per layouttype met het voorbeeld dat je koos, formats, kleuren,
-fonts, logo en afzender (vast of afwisselend), het aantal brandfoto's, en de
-reconciliatietabel als die er is. Vraag
+fonts, logo en afzender (vast of afwisselend), de uitklapmenu's voor het keuzepaneel (per
+element de varianten), het aantal brandfoto's, en de reconciliatietabel als die er is. Vraag
 concreet:
 
 > "Klopt dit? Wil je ergens ruimer of krapper zitten? En zijn er slides in je materiaal die
@@ -684,9 +694,15 @@ smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een ko
      achtergrondregels gelden alleen binnen de slides. (Zonder deze regel past Claude Design
      de kleurregels ook op het werkblad toe en wordt de hele pagina huisstijlkleur.)
    - Carrousels altijd naast elkaar van links naar rechts in één horizontale rij, zoals je op
-     Instagram swipet. Weergave zo geschaald dat ongeveer drie slides tegelijk in beeld
-     passen, met kleine ruimte ertussen en het slidenummer eronder. Horizontaal scrollen als
-     ze niet passen. Dit is alleen de weergave; het formaat van de slides verandert niet.
+     Instagram swipet, met kleine ruimte ertussen en het slidenummer eronder. Standaard zo
+     geschaald dat alle slides in het venster passen, zonder scrollbalk. Bovenaan knoppen om
+     in te zoomen, uit te zoomen en terug te gaan naar passend (ook met Ctrl en het
+     scrollwiel). Dit is alleen de weergave; het formaat van de slides verandert niet.
+   - Een keuzepaneel met uitklapmenu's, waarmee ik zonder nieuwe prompt per carrousel wissel
+     tussen de varianten die op mijn posts voorkomen: [per element uit stap 3 dat afwisselt
+     één regel: "[element]: [variant] / [variant] / ..."]. Een keuze geldt voor alle slides
+     van de carrousel, tenzij ik hem per slide wijzig. Alleen deze varianten; verzin er geen
+     bij. Het paneel staat naast de slides en gaat niet mee in een export.
    - Het design heet precies zoals de regel `Naam:` in de prompt, met een gewoon streepje:
      `Carrousel - [eerste zin van de caption]` of `Reelomslag - [eerste regel van de
      caption]`. Staat er geen regel `Naam:`, maak de naam dan zelf zo. Die naam wordt de
@@ -710,7 +726,8 @@ smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een ko
    de band? Staat de reeltekst binnen de veilige zone? Staan
    alleen de kleuren uit color.md erin? Is het logo onveranderd? Lijkt het op de echte posts
    in assets/templates? Staat er niets op dat van Instagram is? Staan de slides naast elkaar
-   van links naar rechts? Begint de tekst op elke tussenslide op de startlijn, zonder
+   van links naar rechts, passend in het venster, met zoomknoppen? Staat het keuzepaneel
+   ernaast met de varianten uit mijn posts? Begint de tekst op elke tussenslide op de startlijn, zonder
    verticaal te centreren? Is de lopende tekst op alle tussenslides even groot? Staat er
    tussen twee gedachten overal precies één witregel, en nergens twee of extra regelafstand? Staat elke
    zin en elke emoji uit de aangeleverde tekst erin, en staat elke foto die de prompt noemt op
@@ -970,7 +987,9 @@ echte posts in assets/templates de template zijn en dat er niets vanaf nul naget
 Zijn er schermafbeeldingen bij de voorbeelden, dan ook: welke elementen daarop van Instagram
 zijn en dat die nooit in een design komen.
 Neem altijd deze regels op: "Toon carrousels naast elkaar van links naar rechts, zoals op
-Instagram.", "De pagina om de slides heen is neutraal lichtgrijs, zonder huisstijlkleuren; de
+Instagram, passend in het venster zonder scrollbalk, met knoppen om in en uit te zoomen.", "Zet
+naast de slides een keuzepaneel met uitklapmenu's voor de varianten die op mijn posts
+afwisselen (zie CLAUDE.md); het paneel gaat niet mee in de export.", "De pagina om de slides heen is neutraal lichtgrijs, zonder huisstijlkleuren; de
 kleur- en fontregels gelden alleen binnen de slides.", "Tussenslides: de tekst begint altijd op de
 startlijn, nooit verticaal gecentreerd; de lopende tekst is op alle tussenslides even groot;
 tussen twee gedachten precies één witregel, niet meer, en tekst nooit oprekken; een slide
