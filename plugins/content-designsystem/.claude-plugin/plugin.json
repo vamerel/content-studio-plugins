@@ -1,14 +1,13 @@
 {
   "name": "content-designsystem",
-  "version": "1.4.1",
-  "description": "Content Design System: één skill voor Claude Code, cs-designsystem (@designsystem of @daan). Bouwt de map Content Studio/Design System die je in Claude Design uploadt, afgeleid uit je eigen carrousels, reelomslagen en brandfoto's. Hoort bij de plugin content-studio. Installeer hem alleen in Claude Code, niet in Chat & Cowork.",
+  "version": "1.5.0",
+  "description": "Content Design System: één skill voor Claude Code, cs-designsystem (@designsystem of @daan). Bouwt de map Content Studio/Design System uit je eigen carrousels, reelomslagen en brandfoto's, met huisstijl.json: kleuren, fonts, logo's, kleurthema's en een template per slidetype voor de Design Studio in je Content Studio. Daan (cs-design) zet die huisstijl in Cowork in de studio. Hoort bij de plugin content-studio. Installeer hem alleen in Claude Code, niet in Chat & Cowork.",
   "author": {
     "name": "VA-Merel"
   },
   "keywords": [
     "content studio",
     "design system",
-    "claude design",
     "huisstijl",
     "carrousel",
     "reel",

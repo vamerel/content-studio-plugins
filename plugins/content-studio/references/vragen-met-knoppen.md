@@ -20,8 +20,7 @@ plaats van te typen.
 | Moment | Vraag | Knoppen |
 |---|---|---|
 | Na een voorstel of overzicht | "Zal ik dit zo opslaan?" | Ja, opslaan · Aanpassen |
-| Zijscherm met de slide-indeling | "Heb je de indeling opgeslagen?" | Opgeslagen, maak het design · Ik pas nog aan |
-| Caption is af | "Verder met Daan voor het design?" | Ja, maak het design · Later |
+| Caption is goedgekeurd (Cato) | "Welke status mag ik erbij zetten?" | Design · Concept · Video, met het voorstel eerst: Design bij een carrousel of losse post, Video bij een reel. Alleen de statussen die in je Content Calendar staan |
 | Haakjes of verhalen klaar | "Zal ik dit aan Hanna geven?" | Ja, naar Hanna · Nee |
 | Een vraag met twee routes | de vraag zelf | per route één knop |
 

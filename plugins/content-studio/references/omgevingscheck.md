@@ -2,7 +2,8 @@
 
 Elke skill behalve `cs-setup`, `cs-publiceren` en `cs-publiceren-metricool`
 begint hiermee, vóór hij iets anders doet. De twee publiceerskills draaien als geplande taak
-zonder lokale bestanden en hebben een eigen check, die bij een fout mailt in plaats van een
+zonder lokale bestanden en hebben een eigen check (Notion, Google Drive, Gmail, en Composio of
+Metricool), die bij een fout mailt in plaats van een
 melding in het gesprek te geven. `cs-scrape` doet alleen de
 Apify-controle uit stap 4. Eén
 controle, één melding als er iets mist, en dan stoppen. Nooit doorwerken met een halve
@@ -31,7 +32,7 @@ Zoek beide databases op naam, met de varianten uit `notion-schema.md`. Eén van 
 gevonden:
 
 > "Ik vind je [Content Calendar / Content Pillars] niet in Notion. Draai eerst
-> `@setup`. Die controleert je Social Media Planner en zet
+> `@setup`. Die controleert je pagina Content Studio in Notion en zet
 > de rest klaar."
 
 Stop.
@@ -56,11 +57,10 @@ Stop.
 | cs-caption | map `Content Studio/Goedgekeurde captions` | "De map Goedgekeurde captions ontbreekt in Content Studio. Draai `@setup` opnieuw; die vult aan wat mist." |
 | cs-save | niets extra | |
 | cs-verhalen | niets extra | |
-| cs-controle | voor de designcheck: Canva-connector en `design-system.md` | zie de skill zelf |
+| cs-controle | voor de designcheck: Google Drive-connector en `design-system.md` | zie de skill zelf |
 | cs-speuren | Apify-connector | zie de skill zelf |
 | cs-analyse | Composio met Instagram; de map Content Studio is niet nodig | zie de skill zelf |
-| cs-canva-links | Canva-connector; de map Content Studio is niet nodig | zie de skill zelf |
-| cs-design | `design-system.md`; bij designroute Canva ook de Canva-connector en de bibliotheek | zie de skill zelf |
+| cs-design | `design-system.md` en de Google Drive-connector. Alleen de contentinbox verwerken: geen check, de contentinbox is genoeg | zie de skill zelf |
 | cs-scrape | Apify-connector | "Ik heb geen verbinding met Apify, en die heb ik nodig om de post op te halen. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors, zoek Apify en klik op Verbinden. Roep me daarna opnieuw aan." |
 
 Faalt een controle, dan stop je. Geen enkele skill behalve de twee setup-skills maakt een map

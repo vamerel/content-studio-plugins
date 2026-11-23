@@ -50,18 +50,18 @@ hoef je niets voor te doen.
 | Sam | `cs-speuren` | `@sam`, `@speuren` | zoekt via Apify wat werkt in je niche en geeft patronen door aan Hanna |
 | Ruby | `cs-analyse` | `@ruby`, `@analyse` | leest de cijfers van je posts en geeft door wat werkte |
 | Hanna | `cs-hookgenerator` | `@hanna`, `@haakjes` | haakjes, gecontroleerd door Koen, na je akkoord op Idee |
-| Cato | `cs-caption` | `@cato`, `@caption` | de caption, gecontroleerd door Koen, na je akkoord op Concept |
+| Cato | `cs-caption` | `@cato`, `@caption` | de caption, gecontroleerd door Koen, na je akkoord op Concept, Design of Video |
 | Koen | `cs-controle` | `@koen`, `@controle` | controleert haakjes, captions en designs; jij geeft akkoord |
-| Daan | `cs-design` | `@daan`, `@design` | de slide-indeling, layout, foto's en de prompt voor Claude Design, of het design in Canva |
-| Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt je designs uit Canva aan je posts en zet ze op Gepland |
-| Puk | `cs-publiceren-metricool` | `@publiceren-metricool` | route A: elke ochtend alles op Gepland in Metricool inplannen en gelijk houden aan Notion |
-| Puk | `cs-publiceren` | `@publiceren` | route B: je posts op vaste momenten via Composio op Instagram zetten |
+| Daan | `cs-design` | `@daan`, `@design` | de Design Studio in je Content Studio: zet hem neer, stelt je slides voor en kiest de foto's |
+| Puk | `cs-publiceren-metricool` | `@puk`, `@publiceren-metricool` | route A: elke ochtend wat af is van Klaar op Gepland, alles op Gepland in Metricool inplannen en gelijk houden aan Notion |
+| Puk | `cs-publiceren` | `@puk`, `@publiceren` | route B: elke ochtend wat af is van Klaar op Gepland, en je posts op vaste momenten via Composio op Instagram zetten |
 | | `cs-setup` | `@setup` | omgeving controleren, map Content Studio maken, pillars vullen, projectinstructies leveren |
 | | `cs-save` | `@save` | een idee uit het gesprek bewaren als Idee |
 | | `cs-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
 
-Je gebruikt één van de twee publiceerskills: die van de route die je kiest. De oude namen
-(zoals @content-caption of @hookgenerator) werken ook nog.
+Je gebruikt één van de twee publiceerskills: die van de route die je kiest. Met `@puk` kiest
+Puk zelf de goede; weet hij je route nog niet, dan vraagt hij het. De oude namen (zoals
+@content-caption of @hookgenerator) werken ook nog.
 
 ## Nieuwe versies
 

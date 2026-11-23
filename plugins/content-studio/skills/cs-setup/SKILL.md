@@ -2,11 +2,14 @@
 name: cs-setup
 description: >
   Zet de omgeving van Claude Content Studio klaar en controleert of alles er is: Notion
-  gekoppeld, de Social Media Planner met Content Calendar en Content Pillars gedupliceerd,
+  gekoppeld, de Notion-pagina Content Studio (vroeger Social Media Planner) met Content
+  Calendar, Content Pillars en Content Team gedupliceerd,
   Business DNA aanwezig. Maakt daarna de map Content Studio aan op het bureaublad (Design
   System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md) en de
   map Business Brand
-  Guidelines voor beeldmateriaal, vult de Content Pillars
+  Guidelines voor beeldmateriaal, maakt de mappen voor Content Studio in Google Drive
+  (Contentinbox, Fotobibliotheek, Carrousels, Reelomslagen), laat Daan je Content Studio
+  neerzetten, vult de Content Pillars
   pillar voor pillar uit Business DNA en levert de projectinstructies als plakblok. Wordt ook
   aangeroepen door de andere Content Studio-skills als de omgeving ontbreekt. TRIGGERS op
   @setup, @cs-setup, de oude naam @content-studio-setup of content-studio-setup,
@@ -40,8 +43,8 @@ Geen aannames over de doelgroep die niet uit Business DNA komen.
 1. **De gebruiker roept je direct aan.** Doorloop alle fasen.
 2. **Een andere skill vond de omgeving niet** en verwees naar jou. Die skill heeft al gemeld
    wat er mist. Herhaal dat niet, houd het kort, en geef de beurt terug zodra het gat gedicht
-   is. Zijn de pillars al gevuld en staat bij elke pillar een Gewenst %, sla Fase 6 dan over.
-3. **"Content studio controleren."** Doorloop Fase 1 tot 5B en Fase 8, sla het vullen van de
+   is. Zijn de pillars al gevuld en staat bij elke pillar een Gewenst-getal, sla Fase 6 dan over.
+3. **"Content studio controleren."** Doorloop Fase 1 tot 5C en Fase 8, sla het vullen van de
    pillars over als ze al gevuld zijn. Maak alleen aan wat ontbreekt. Ontbreekt de gewenste
    verdeling, doe dan alleen het deel Gewenste verdeling van Fase 6.
 
@@ -64,7 +67,7 @@ Probeer een zoekopdracht in Notion. Foutmelding of geen connector:
 > Zo koppel je Notion aan Claude:
 > 1. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors.
 > 2. Zoek Notion en klik op Verbinden.
-> 3. Log in bij Notion en geef Claude toegang tot de plek waar je Social Media Planner
+> 3. Log in bij Notion en geef Claude toegang tot de plek waar je pagina Content Studio
 >    staat. Twijfel je: geef toegang tot je hele workspace.
 > 4. Terug naar Claude, roep me opnieuw aan."
 
@@ -73,25 +76,29 @@ dat de exacte namen kunnen afwijken.
 
 ---
 
-## FASE 2: STAAT DE SOCIAL MEDIA PLANNER IN DE WORKSPACE?
+## FASE 2: STAAT DE NOTION-PAGINA CONTENT STUDIO IN DE WORKSPACE?
 
-Zoek een pagina **Social Media Planner**. Zoek daarnaast de twee databases op naam, met de
-varianten uit `references/notion-schema.md`: "Content Calendar" (ook "Content Kalender",
-"Contentkalender") en "Content Pillars" (ook "CONTENT PILLARS", "Pillars"). Zoek
-hoofdletterongevoelig.
+Zoek een pagina **Content Studio** (in een oudere kopie **Social Media Planner**). Zoek daarnaast
+de databases op naam, met de varianten uit `references/notion-schema.md`: "Content Calendar"
+(ook "Content Kalender", "Contentkalender"), "Content Pillars" (ook "CONTENT PILLARS",
+"Pillars") en "Content Team" (ook "Team"). Zoek hoofdletterongevoelig en sla treffers met
+"template" in de naam of het pad over.
 
-**Beide databases gevonden:** ga door naar Fase 3. De naam van de ouderpagina maakt dan niet
-uit.
+**Content Calendar en Content Pillars gevonden:** ga door naar Fase 3. De naam van de
+ouderpagina maakt dan niet uit. Content Team mag ontbreken (oudere kopie); meld dat dan in één
+regel: "Je hebt nog geen Content Team. Zonder werkt alles, alleen zie je de updates van je team
+dan niet in Notion en op het scherm Team." Ga door.
 
 **Niet gevonden:**
 
-> "Ik kan de Social Media Planner niet vinden in je Notion.
+> "Ik kan je pagina Content Studio niet vinden in je Notion.
 >
 > Die haal je binnen met de duplicatielink uit de leeromgeving. Open de template en klik
 > rechtsboven op 'Duplicate' om hem in je eigen workspace te zetten.
 >
 > Let op twee dingen:
-> - Laat de namen **Content Calendar** en **Content Pillars** staan. De skills zoeken erop.
+> - Laat de namen **Content Calendar**, **Content Pillars** en **Content Team** staan. De
+>   skills zoeken erop.
 > - Controleer of Claude toegang heeft tot de plek waar je hem neerzet.
 >
 > Zodra hij staat, roep je me opnieuw aan."
@@ -106,28 +113,50 @@ Hernoem nooit zelf iets in de workspace.
 
 ---
 
-## FASE 3: KLOPPEN DE TWEE DATABASES?
+## FASE 3: KLOPPEN DE DATABASES?
 
-Haal van beide databases het live schema op en vergelijk met `references/notion-schema.md`.
+Haal van elke gevonden database het live schema op en vergelijk met `references/notion-schema.md`.
 
 **Content Calendar** moet hebben: Hook (title), Fase (select), Pillar (select), Soort
-(select), Kanaal (select), Status (status), Publicatiedatum (date), Canva (url) voor de
-Canva-link en URL (url) voor de link naar de post op Instagram.
+(select), Kanaal (select), Status (status), Publicatiedatum (date), Design (url) voor de link
+naar de slides in Google Drive en URL (url) voor de link naar de post op Instagram.
 
-**Oudere kopie van de template:** staat er geen Canva maar wel URL en Instagram (beide url),
-dan is dat de oudere indeling: de Canva-link staat in URL, de postlink in Instagram. Dat werkt
-ook; meld het niet als fout. Zie **Welk veld is de Canva-link, welk de postlink?** in
-`references/notion-schema.md`. Ontbreken Canva én Instagram, noem dan alleen Canva (url) als
-ontbrekend veld.
+**Design, Drive of Canva.** Het linkveld heet in de huidige template Design. Staat er geen veld
+Design maar wel een veld Drive of Canva (url), dan is dat een oudere kalender. Dat werkt: de
+skills en je Content Studio zetten de link naar je slides dan in dat veld. Meld het in één regel
+en ga door:
 
-**Content Pillars** moet hebben: Content Pillar (title), Status (select), Laatst bijgewerkt
-(date), Gewenst % (number).
+> "Je Content Calendar heeft het veld [Drive / Canva] in plaats van Design. Dat werkt: de link
+> naar je slides komt daarin. Je mag het in Notion hernoemen naar Design, maar het hoeft niet."
 
-**Gewenst % ontbreekt:** dit veld zit pas sinds oktober 2026 in de template, dus oudere
-kopieën missen het. Dit is de enige uitzondering op "ik maak het niet zelf aan": vraag of je
-het mag toevoegen, en voeg na ja een kolom **Gewenst %** van het type number toe aan Content
-Pillars. Zegt de gebruiker nee, ga dan door en meld bij de afvinklijst dat de feedplanner
-zonder gewenste verdeling werkt.
+Ontbreken Design, Drive én Canva, noem dan Design (url) als ontbrekend veld. Zie voor nog
+oudere kopieën `references/notion-schema.md`.
+
+**Statussen.** Kijk of het veld Status de statussen **Design**, **Video** en **Klaar** heeft. In
+Design en Video zet Cato een post die klaar is voor je Design Studio; Klaar zet de studio als
+de slides in Drive staan. Ontbreekt er een, meld het dan en ga door:
+
+> "In je Content Calendar ontbreekt de status [Design / Video / Klaar]. Voeg hem toe in Notion:
+> klik in de Content Calendar op het veld Status, kies Nieuwe optie en typ [naam]. Zet Design
+> en Video tussen Concept en Klaar."
+
+Maak geen status aan.
+
+**Content Pillars** moet hebben: een titelkolom (Pillar, in oudere kopieën Content Pillar),
+Status (status of select), Laatst bijgewerkt (date) en Gewenst (number; in oudere kopieën
+Gewenst %).
+
+**Gewenst ontbreekt** (geen number-veld dat met Gewenst begint): dit veld zit pas sinds oktober
+2026 in de template, dus oudere kopieën missen het. Dit is de enige uitzondering op "ik maak het
+niet zelf aan": vraag of je het mag toevoegen, en voeg na ja een kolom **Gewenst** van het type
+number toe aan Content Pillars. Zegt de gebruiker nee, ga dan door en meld bij de afvinklijst
+dat Analyses in je Content Studio zonder gewenste verdeling werkt.
+
+**Content Team** (als die er is) moet hebben: Naam (title), Rol (text) en Laatste update (date
+of text). Ontbreekt Rol of Laatste update, meld het in één regel en ga door: zonder werkt het
+ook. Staat er voor een teamlid (Viggo, Sam, Ruby, Hanna, Cato, Koen, Daan, Puk) geen rij, noem
+de namen die missen en zeg dat de gebruiker ze in Notion toevoegt als nieuwe rij met alleen de
+naam. Maak geen rijen of velden aan.
 
 **Alles aanwezig:** meld het in één regel en ga door.
 
@@ -140,8 +169,8 @@ zonder gewenste verdeling werkt.
 > template. Zodra ze er staan, roep je me opnieuw aan."
 
 Stop bij een ontbrekend veld dat een skill nodig heeft om te schrijven: Hook, Status, Fase,
-Soort, Kanaal, Content Pillar. Bij Canva, URL of Publicatiedatum meld je het
-en ga je door; die zijn pas nodig voor de feedplanner en automatisch inplannen.
+Soort, Kanaal, de titelkolom van Content Pillars. Bij Design, URL of Publicatiedatum meld je het
+en ga je door; die zijn pas nodig voor je Content Studio en automatisch inplannen.
 
 **Verkeerd type** (bijvoorbeeld Publicatiedatum als tekst in plaats van datum): noem het, met wat het
 moet zijn. Zelfde afweging als hierboven.
@@ -151,7 +180,7 @@ staat er in het Pillar-veld van de Content Calendar een optie die niet overeenko
 pillar in Content Pillars (of andersom), meld dat dan:
 
 > "In je Content Calendar heet een pillar-optie '[optie]', maar in Content Pillars staat
-> '[naam]'. Trek die gelijk, anders kan de feedplanner ze niet koppelen."
+> '[naam]'. Trek die gelijk, anders kan Analyses in je Content Studio ze niet koppelen."
 
 Vergelijk op het eerste woord, hoofdletterongevoelig. "Autoriteit / Inspiratie" en
 "Autoriteit" zijn een match; "Authoriteit" en "Autoriteit" niet.
@@ -306,29 +335,74 @@ De drie submappen blijven leeg. `cs-designsystem` bouwt later de map `Design Sys
 `cs-hookgenerator` maakt
 `Goedgekeurde haakjes/goedgekeurde-haakjes.md` aan bij de eerste opgeslagen haakjes,
 `cs-caption` maakt `Goedgekeurde captions/goedgekeurde-captions.md` aan bij de eerste caption
-die de gebruiker goedkeurt, en `cs-design` maakt `fotogebruik.md` aan bij het eerste design.
+die de gebruiker goedkeurt, en `cs-design` maakt `fotogebruik.md` aan bij de eerste post die
+hij klaarzet en `content-studio.html` als hij je Content Studio neerzet (Fase 5C).
 
 Kan een map niet worden aangemaakt (rechten): meld het, ga door met Fase 5B, en zet de map
 op de afvinklijst als openstaand.
 
 ---
 
-## FASE 5B: DESIGNROUTE EN MAPPEN IN CANVA
+## FASE 5B: MAPPEN IN GOOGLE DRIVE
 
-**De designroute.** Je designs maak je in Claude Design: Daan (`cs-design`) maakt per post een
-prompt, de gebruiker plakt die in Claude Design en stuurt het design naar Canva. Vraag hier
-niets over. Staat er onderaan `Content Studio/README.md` nog geen regel `Designroute:`, zet
-er dan `Designroute: Claude Design`. Staat er al een regel, laat die staan.
+In Google Drive staan je foto's (de Fotobibliotheek), je contentinbox en de slides die je
+Design Studio maakt. De mappen liggen vast in sectie 6 van
+`references/content-studio-afspraken.md`.
 
-**Mappen in Canva.** Is de Canva-connector gekoppeld, kijk dan of er in Canva een map
-`Content Studio` staat met daarin `Carrousels` en `Reelomslagen`. Ontbreekt er een, vraag
-dan:
+**Werkt de Google Drive-koppeling?** Probeer een zoekopdracht met `search_files`. Lukt dat niet:
 
-> "Zal ik in je Canva een map Content Studio maken, met Carrousels en Reelomslagen? Dan
-> staan je designs bij elkaar; Puk zet ze erin als hij ze aan je posts koppelt."
+> "Ik heb geen verbinding met Google Drive. Daar komen je foto's en je slides te staan. Ga in de
+> Claude-app naar Aanpassingen (Customize) > Connectors, zoek Google Drive en klik op Verbinden.
+> Roep me daarna opnieuw aan, dan maak ik de mappen."
 
-Maak alleen na ja aan wat ontbreekt. Verplaats geen bestaande designs zonder dat de gebruiker
-daar apart om vraagt. Is Canva niet gekoppeld, sla dit over en zet het op de afvinklijst.
+Sla de rest van deze fase dan over, zet het op de afvinklijst en ga door.
+
+**Welke mappen zijn er al?** Zoek met `search_files` naar de map `Content Studio` in Mijn Drive
+(`title = 'Content Studio' and mimeType = 'application/vnd.google-apps.folder' and parentId =
+'root'`) en daarna naar de mappen erin (`parentId = '<id>'`), tot op het niveau van de submappen:
+
+```
+Content Studio/
+├── Contentinbox/   met Origineel, Niet bruikbaar en Video's
+├── Fotobibliotheek/   met Portret, Aan het werk, Werkplek, Onderweg, Met anderen en Details
+├── Carrousels/
+└── Reelomslagen/
+```
+
+Staat er al ergens een map waarvan de naam eindigt op `contentinbox` (van een eerdere versie),
+gebruik die dan als Contentinbox en maak geen tweede.
+
+**Ontbreekt er iets,** vraag dan met knoppen: "Zal ik in je Google Drive de mappen voor Content
+Studio maken?" met **Ja, maak de mappen** en **Nu niet**. Maak na ja alleen wat ontbreekt, met
+`create_file` (`title` de naam, `mimeType` `application/vnd.google-apps.folder`, `parentId` de
+bovenliggende map; `Content Studio` zelf in `root`). Bestaande mappen gebruik je opnieuw; je
+verplaatst, hernoemt en verwijdert niets. Daarna meld je in één regel welke mappen je maakte.
+
+**Onthoud de id's** van `Content Studio`, `Contentinbox`, `Fotobibliotheek`, `Carrousels` en
+`Reelomslagen`. Die geef je in Fase 5C mee aan Daan.
+
+**Je eigen foto's (contentinbox).** Niet nodig om te beginnen, dus vraag er niet naar. Het komt
+als laatste punt op de afvinklijst.
+
+---
+
+## FASE 5C: CONTENT STUDIO NEERZETTEN
+
+Je Content Studio is het dashboard waarin je je designs maakt en je feed, je cijfers en je team
+ziet. Daan zet hem neer.
+
+Roep Daan aan (`cs-design`, stap 1: **Content Studio neerzetten of bijwerken**), in hetzelfde
+gesprek, en geef de gevonden databases en de id's van de Drive-mappen mee. Daan publiceert de
+studio, zet de link onderaan `Content Studio/README.md` en vult de koppelingen.
+
+- **Is er nog geen design system,** dan zet Daan de studio neer met een neutrale starthuisstijl.
+  Feed View, Analyses en Team werken dan al. Zeg erbij: "Je huisstijl is nog neutraal. Daan vult
+  hem met je eigen kleuren, fonts en logo zodra je design system er is."
+- **Lukt het niet** (bijvoorbeeld omdat de Artifact-tool hier niet beschikbaar is), zet het dan
+  op de afvinklijst en ga door.
+
+Staat de regel `Content Studio:` al in de README, dan laat je Daan alleen bijwerken wat nieuwer
+is; hij publiceert geen tweede studio.
 
 ---
 
@@ -404,8 +478,8 @@ af is al in Notion; zeg welke pillars nog openstaan.
 
 ### Gewenste verdeling
 
-Zijn alle pillars gevuld, vraag dan welk deel van de posts over elke pillar moet gaan. De
-feedplanner vergelijkt dit met wat er gepost en gepland is.
+Zijn alle pillars gevuld, vraag dan welk deel van de posts over elke pillar moet gaan.
+Analyses in je Content Studio vergelijkt dit met wat er gepost en gepland is.
 
 Doe een voorstel in één blok, afgeleid uit Business DNA (wat het doel van de gebruiker is en
 waar het aanbod staat in de Product Ladder), en vraag of het klopt:
@@ -422,7 +496,7 @@ Samen        100%
 
 Hele getallen, samen precies 100. Komt het antwoord van de gebruiker niet op 100 uit, zeg dat
 en vraag welke pillar je aanpast; reken het niet zelf om. Schrijf daarna per pillar het getal
-in het veld **Gewenst %** (25, niet 0,25). Status en Laatst bijgewerkt laat je hierbij staan.
+in het veld **Gewenst** (of **Gewenst %** in een oudere kopie; 25, niet 0,25). Status en Laatst bijgewerkt laat je hierbij staan.
 
 ---
 
@@ -454,11 +528,12 @@ in gewone woorden.
 ```
 KLAAR
 ✓ Notion gekoppeld
-✓ Content Calendar en Content Pillars gevonden, alle velden aanwezig
+✓ Content Calendar en Content Pillars gevonden, alle velden en statussen aanwezig
 ✓ Business DNA gevonden
 ✓ Map Business Brand Guidelines aangemaakt met zeven submappen
 ✓ Map Content Studio aangemaakt (Design System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md)
-✓ Mappen in Canva: Content Studio met Carrousels en Reelomslagen
+✓ Google Drive gekoppeld, mappen klaar: Content Studio met Contentinbox, Fotobibliotheek, Carrousels en Reelomslagen
+✓ Content Studio neergezet: [link]
 ✓ Content Pillars gevuld: [namen]
 ✓ Gewenste verdeling ingevuld: [pillar %, pillar %, ...]
 ✓ Projectinstructies geleverd
@@ -468,8 +543,13 @@ NOG NIET
 ○ Je beeldmateriaal in Business Brand Guidelines zetten → carrousels, reelomslagen, brandfoto's, Brand Kit, lettertypes en logo in de submappen zetten; de checklist staat in de leeromgeving
 ○ [alleen als het ontbreekt] Tone of Voice voor social content maken → @businessdna-tone-of-voice aanroepen en social content kiezen
 ○ [alleen als het ontbreekt] Optie Persoonlijk bij Fase → in de Content Calendar op het veld Fase klikken, Nieuwe optie, Persoonlijk
-○ [alleen als Canva niet gekoppeld is] Canva koppelen → Aanpassingen (Customize) > Connectors, Canva, Verbinden; daarna @setup opnieuw voor de mappen in Canva
+○ [alleen als het ontbreekt] Status Design, Video of Klaar → in de Content Calendar op het veld Status klikken, Nieuwe optie, de naam typen; Design en Video tussen Concept en Klaar
+○ [alleen als het ontbreekt] Veld Design → een veld van het type URL met de naam Design toevoegen in de Content Calendar
+○ [alleen als Google Drive niet gekoppeld is] Google Drive koppelen → Aanpassingen (Customize) > Connectors, Google Drive, Verbinden; daarna @setup opnieuw voor de mappen
+○ [alleen als de studio niet neergezet is] Content Studio neerzetten → in Cowork @daan aanroepen en zeggen "zet mijn Content Studio neer"
+○ [alleen als het design system ontbreekt] Je eigen huisstijl in je Content Studio → in Claude Code @designsystem; daarna in Cowork @daan, die zet je huisstijl in je Content Studio
 ○ [alles wat in deze sessie is blijven liggen, met de reden]
+○ (Wanneer je wilt) Je eigen foto's vanaf je telefoon → zet ze in Google Drive in Content Studio/Contentinbox en zeg "verwerk mijn contentinbox"; Daan geeft ze een naam en zet ze in je Fotobibliotheek. Elke maandag vanzelf kan ook. Tip voor een iPhone: zet je camera op Meest compatibel (Instellingen, Camera, Formaten), dan worden het meteen JPEG's
 ```
 
 Ben je aangeroepen door een andere skill, houd het dan kort:
@@ -486,7 +566,7 @@ pillars die al zijn weggeschreven staan er; ga bij een nieuwe poging verder waar
 **De gebruiker zegt dat de template er staat, maar jij ziet hem niet.** Bijna altijd een
 rechtenkwestie:
 
-> "Volgens jou staat de Social Media Planner er, maar ik zie hem niet. Dat betekent meestal
+> "Volgens jou staat je pagina Content Studio er, maar ik zie hem niet. Dat betekent meestal
 > dat Notion Claude geen toegang geeft tot die plek. Ga in de Claude-app naar Aanpassingen
 > (Customize) > Connectors, open Notion en controleer welke pagina's gedeeld zijn."
 
@@ -518,6 +598,7 @@ keuze, niet iets wat jij hebt laten liggen.
 - Een nieuwe pillar of een nieuwe optie aanmaken.
 - Inhoudelijke merkvragen stellen. Daar is Business DNA voor.
 - Bestaande mappen of bestanden overschrijven.
+- Mappen in Google Drive maken zonder ja, of daar iets verplaatsen, hernoemen of verwijderen.
 - Bestanden in submappen zetten. Lege mappen blijven leeg.
 - Iets wegschrijven zonder akkoord.
 - Bestanden uit `references/` of `docs/` bij naam noemen in je antwoorden aan de gebruiker.
@@ -532,5 +613,6 @@ Staan in de map `references/` en `docs/` van deze plugin, twee niveaus boven dez
 |---|---|
 | `references/notion-schema.md` | de twee databases, properties, naamvarianten, pillar-kopjes |
 | `references/memory-regels.md` | de opbouw van MEMORY.md |
+| `references/content-studio-afspraken.md` | de mappen in Google Drive (sectie 6) en de statussen en velden in Notion (sectie 7) |
 | `docs/projectinstructies-content-studio.md` | het plakblok dat je in Fase 7 in zijn geheel levert |
 | `docs/readme-content-studio.md` | de README die je in Fase 5 in de map zet |

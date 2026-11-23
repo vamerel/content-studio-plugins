@@ -1,16 +1,18 @@
 ---
 name: cs-publiceren-metricool
 description: >
-  Puk via Metricool. Zet je geplande Instagram-posts vanuit je Content Calendar in Notion in
-  Metricool, op de minuut die jij in Notion kiest (bijvoorbeeld 14:30). Draait als geplande
-  taak in de ochtendronde van Puk, zonder dat jij iets hoeft te doen: wat gisteren live ging
-  komt op Live met de Instagram-link, alles wat nieuw op Gepland staat gaat meteen naar
-  Metricool (ook voor de dagen erna, caption uit Notion, slides uit Canva), en als je in Notion
-  een tijdstip of caption verandert, past hij het in Metricool aan. Metricool plaatst zelf op
-  het tijdstip. Je krijgt alleen een mail als er iets veranderd is of iets ontbreekt. Reels
-  plaats je zelf. Kent vier modi: inplannen, avondcheck, proefrun en vooruit. Voor wie
-  Metricool gebruikt; zonder Metricool is er de skill cs-publiceren. TRIGGERS op
-  @publiceren-metricool, @cs-publiceren-metricool, de oude naam @content-publiceren-metricool
+  Puk via Metricool (route A). Zet je geplande Instagram-posts vanuit je Content Calendar in
+  Notion in Metricool, op de minuut die jij in Notion kiest (bijvoorbeeld 14:30). Draait als
+  geplande taak in de ochtendronde van Puk, zonder dat jij iets hoeft te doen: wat gisteren
+  live ging komt op Live met de Instagram-link, posts die af zijn gaan van Klaar naar Gepland,
+  alles op Gepland gaat meteen naar Metricool (ook voor de dagen erna, caption uit Notion,
+  slides uit je Drive-map), en als je in Notion een tijdstip of caption verandert, past hij het
+  in Metricool aan. Metricool plaatst zelf op het tijdstip. Je krijgt alleen een mail als er
+  iets veranderd is of iets ontbreekt. Reels plaats je zelf. Kent vier modi: inplannen,
+  avondcheck, proefrun en vooruit. Voor wie Metricool gebruikt; zonder Metricool is er de skill
+  cs-publiceren. Bij @puk vraagt hij welke route je gebruikt als dat niet in je Content
+  Studio-README staat. TRIGGERS op @puk, @publiceren-metricool, @cs-publiceren-metricool, de
+  oude naam @content-publiceren-metricool
   of content-publiceren-metricool, "plan mijn posts in via Metricool", "plan ze ook in
   Metricool", "avondcheck Metricool", "proefrun Metricool", "pas aan in Metricool", of een
   geplande taak die deze skill aanroept.
@@ -21,14 +23,20 @@ description: >
 De Content Calendar in Notion is de planning. Metricool is de klok: de skill zet de post met
 datum en tijd in Metricool, en Metricool plaatst hem zelf via Instagram op dat moment. Er
 draait op het postmoment dus geen Claude-taak. De skill draait één keer per dag, in de
-ochtendronde van Puk: hij zet wat gisteren live ging op Live, plant alles wat nieuw op Gepland
-staat meteen in (ook voor de dagen erna), en houdt Metricool gelijk aan Notion. In een gesprek
+ochtendronde van Puk: hij zet wat gisteren live ging op Live, zet posts die af zijn van Klaar
+op Gepland, plant alles wat op Gepland staat meteen in (ook voor de dagen erna), en houdt
+Metricool gelijk aan Notion. Cijfers doet hij niet: die haalt Content Studio zelf op. In een gesprek
 kan de gebruiker posts ook direct laten inplannen (Modus vooruit). De avondcheck is er nog,
 maar is niet meer nodig.
 
 Een post in Metricool plaatsen is openbaar en niet terug te draaien zodra hij live is.
 Daarom zijn de controles hieronder hard: bij twijfel wordt er niets ingepland en krijgt de
 gebruiker een mail.
+
+De slides maakt de gebruiker in de Design Studio, een scherm in Content Studio. Die zet ze als
+JPEG's in Google Drive (`Content Studio/Carrousels/JJJJ-MM-DD - haakje/01.jpg`, `02.jpg` ...,
+of één bestand `Content Studio/Reelomslagen/JJJJ-MM-DD - haakje.jpg`), deelt ze, zet de link
+in het linkveld (Design, in oudere kalenders Drive of Canva) en de post op Klaar.
 
 **Gebruik één route.** Draait ook de skill `cs-publiceren` (Composio) voor dezelfde
 Content Calendar, dan staat elke post er twee keer. Zeg dat bij de proefrun, als je beide
@@ -37,6 +45,28 @@ skills ziet.
 **Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
 stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
 Laat de gebruiker niet "akkoord" of "ja" typen.
+
+---
+
+## @puk in een gesprek
+
+Roept de gebruiker in een gesprek @puk aan (of "plan mijn posts in"), dan gaat het om
+publiceren of inplannen, via de route die de gebruiker heeft.
+
+1. **Welke route?** Kijk onderaan `Content Studio/README.md` (als de map aan het project
+   gekoppeld is) naar de regel `Publiceren:`.
+   - `Publiceren: Metricool`: ga verder met deze skill.
+   - `Publiceren: Composio`: ga verder met `cs-publiceren`, sectie @puk in een gesprek.
+   - Geen regel, of de map is er niet: vraag met knoppen "Hoe plaats je je posts?", met
+     **Via Metricool (route A)** en **Via Composio (route B)**. Is er een Metricool-connector,
+     zet Metricool dan voorop; anders Composio. Na het antwoord vraag je met knoppen of je de
+     regel `Publiceren: Metricool` of `Publiceren: Composio` onderaan de README mag zetten.
+     Gebruik de skill die bij het antwoord hoort.
+2. **Klaar naar Gepland**, zoals in Modus inplannen stap 2, maar eerst tonen: per post het
+   haakje, wat het wordt (Gepland, of blijft Klaar met wat ontbreekt) en `Open de slides`.
+   Vraag één keer akkoord, met knoppen. Na ja zet je de statussen.
+3. **Inplannen:** vraag met knoppen of je de posts op Gepland nu in Metricool zet. Na ja ga je
+   verder met Modus vooruit, voor precies die posts. Bij nee pakt de ochtendronde ze op.
 
 ---
 
@@ -61,6 +91,7 @@ Lees uit de aanroep:
 | Tijdzone | een IANA-tijdzone | `Europe/Amsterdam` |
 | Standaardtijd | `UU:MM`: het tijdstip voor een post waarbij in Notion alleen een datum staat | `12:00` |
 | Ochtendrun | `UU:MM`: de starttijd van de ochtendtaak; alleen de avondcheck gebruikt hem | `07:00` |
+| Slidelinks | `drive` (de gewone Drive-link; Google Drive moet in Metricool gekoppeld zijn) of `direct` (de directe link, zie Slides naar Metricool) | `drive` |
 | Metricool-merk | de naam van het merk in Metricool, alleen nodig bij meer dan één merk | geen |
 | Content Calendar | optioneel: een omschrijving van welke database bedoeld is, bijvoorbeeld "de database onder de pagina [naam]" | geen: dan kies je zoals beschreven in de Omgevingscheck |
 
@@ -80,8 +111,11 @@ Aanpassen in een gesprek.
 
 - **Geen lokale bestanden.** Niet de map Content Studio, niet MEMORY.md. Een geplande taak
   die lokale bestanden nodig heeft, draait alleen als de computer aanstaat, en deze taak moet
-  ook draaien als de laptop dicht is. Alles wat de skill nodig heeft, staat in Notion, Canva
-  en Metricool.
+  ook draaien als de laptop dicht is. Alles wat de skill nodig heeft, staat in Notion, Google
+  Drive en Metricool. (De README lezen in een gesprek, bij @puk, is de enige uitzondering.)
+- **Geen cijfers.** Cijfers komen nooit in Notion. Content Studio haalt ze zelf op.
+- **Geen slides maken of aanpassen.** Ontbreken de slides in Drive, dan meldt Puk dat; de
+  gebruiker maakt ze in de Design Studio.
 - **Geen tekst aanpassen.** De caption gaat letterlijk zoals hij in Notion staat. Geen
   verbeteringen, geen hashtags erbij, geen emoji's eraf.
 - **Geen opties of properties aanmaken** in Notion. Ontbreekt er een status, dan stop je en
@@ -114,30 +148,38 @@ ontbreekt, en stop. Plan nooit in met een halve omgeving.
    omschrijving van de goede database.
 
    Haal daarna het live schema op.
-2. **Statussen en velden:** de Status-property moet de opties `Gepland`, `Bezig`, `Live` en
-   `Fout` hebben, en Publicatiedatum moet een datumveld zijn. Bepaal welk veld de Canva-link
-   is en welk de postlink, volgens **Welk veld is de Canva-link, welk de postlink?** in
-   `references/notion-schema.md`: met een URL-property `Canva` is dat `Canva` en `URL`,
-   zonder `Canva` is het `URL` en `Instagram`. Lees `URL` nooit als Canva-link zonder deze
-   controle. Mist er iets: noem het bij naam en zeg dat het met de hand in Notion toegevoegd
-   moet worden (Bezig en Fout in de groep In progress, Live in Complete; ontbreekt het
-   postlinkveld, dan een URL-property Canva voor de Canva-links, zodat de postlink in URL
-   komt).
+2. **Statussen en velden:** de Status-property moet de opties `Klaar`, `Gepland`, `Bezig`,
+   `Live` en `Fout` hebben, en Publicatiedatum moet een datumveld zijn. Bepaal welk veld de
+   Drive-link is en welk de postlink, volgens **Welk veld is de Drive-link, welk de
+   postlink?** in `references/notion-schema.md`: met een URL-property `Design` (huidige
+   template) is dat `Design` en `URL`; zonder `Design` maar met `Drive` is het `Drive` en
+   `URL`; zonder beide maar met `Canva` is het `Canva` (alleen als veldnaam) en `URL`; bij een
+   heel oude kopie `URL` en `Instagram`. Alleen een url-property telt; de status Design is geen
+   veld. Lees `URL` nooit als Drive-link zonder deze controle. Overal waar hieronder "het veld
+   Drive" of "het Drive-linkveld" staat, is dat het linkveld dat je hier vond. Mist er iets:
+   noem het bij naam en zeg dat het met de hand in Notion toegevoegd moet worden (Bezig en Fout
+   in de groep In progress, Live in Complete; ontbreekt het linkveld, dan een URL-property
+   Design).
 3. **Metricool-connector** beschikbaar. Haal met `getBrandSettings` de merken op. Kies het
    merk waar Instagram aan gekoppeld is (`networksData.instagramData` is gevuld). Is dat er
    precies één, gebruik dat. Zijn het er meer: gebruik het merk uit de instelling
    Metricool-merk; ontbreekt die of past er geen, dan stop je en noem je de merken in de mail.
    Is er geen merk met Instagram: stop, en zeg dat Instagram in Metricool gekoppeld moet
    worden. Onthoud het `id` van het merk: dat is de `blogId` voor alle Metricool-calls.
-4. **Canva-connector** beschikbaar (`resolve-shortlink`, `get-export-formats`,
-   `export-design`).
+4. **Google Drive-connector** beschikbaar (`search_files`, `get_file_metadata`,
+   `share_file`). Ontbreekt hij: "Ik heb geen verbinding met Google Drive, en daar staan je
+   slides. Ga in de Claude-app naar Aanpassingen (Customize) > Connectors, zoek Google Drive en
+   klik op Verbinden."
+   Metricool haalt de slides zelf uit Drive: met de gewone Drive-link moet Google Drive ook in
+   Metricool gekoppeld zijn, met de directe link (`Slidelinks: direct`) niet, want die opent de
+   afbeelding voor iedereen met de link.
 5. **Gmail-connector** beschikbaar om te mailen.
 
 Composio is voor deze skill niet nodig.
 
-In modus `avondcheck` zijn stap 4 alleen nodig voor het inplannen van vroege posts van
-morgen (zie Modus avondcheck). Ontbreekt Canva, dan slaat de avondcheck dat over en meldt het
-in de mail.
+In modus `avondcheck` is stap 4 alleen nodig voor het inplannen van vroege posts van
+morgen (zie Modus avondcheck). Ontbreekt Google Drive, dan slaat de avondcheck dat over en
+meldt het in de mail.
 
 ---
 
@@ -168,7 +210,7 @@ zodat de gebruiker kan kiezen.
 
 **Reels plaatst de gebruiker zelf.** Automatisch plaatsen van reels staat voorlopig uit. Een
 reel met Status Gepland en een Publicatiedatum plant de gebruiker zelf in Instagram of Edits,
-met een eigen omslag en eventueel muziek uit Instagram. De skill plant niets in, zet de
+met de reelomslag uit Drive en eventueel muziek uit Instagram. De skill plant niets in, zet de
 status niet op Bezig en ziet het niet als fout. Hij herinnert eraan in de ochtendmail (zie
 Zelf plaatsen).
 
@@ -185,23 +227,33 @@ afmaakt. Plan alleen stories in die een afbeelding zijn, zonder stickers.
 
 Doe deze controles in deze volgorde. Faalt er één, dan wordt de post niet ingepland.
 
-1. **Canva-link.** Het Canva-linkveld (`Canva`, of `URL` in een oudere kalender, zie de
-   Omgevingscheck) bevat een link naar canva.link of canva.com/design. Een
-   shortlink (`canva.link/<id>`) zet je om met `resolve-shortlink`; het ontwerp-ID begint
-   met `D` en staat na `/design/`.
-2. **Caption** (niet bij een Story). Haal de pagina op met `notion-fetch`. De caption is de
+1. **Slides in Drive.** Het Drive-linkveld (zie de Omgevingscheck) bevat een link naar
+   drive.google.com. Haal het id uit de link: bij een map staat het na `/folders/`, bij een
+   bestand na `/file/d/` of na `id=`. Is het geen Drive-link (bijvoorbeeld een Canva-link (canva.com of canva.link)
+   bij een oudere post), dan wordt de post niet ingepland: "ontwerp ontbreekt". De gebruiker
+   zet de post in de Design Studio op Klaar; dan komt de Drive-link er vanzelf in.
+   - **Carrousel** (de link wijst naar een map): zoek de slides met `search_files`, query
+     `parentId = '<map-id>' and mimeType = 'image/jpeg' and trashed = false`. Sorteer op
+     bestandsnaam: 01.jpg, 02.jpg ... is de volgorde van de slides. Er moeten 2 tot en met 10
+     JPEG's zijn.
+   - **Post** of **Story** (de link wijst naar een bestand): `get_file_metadata` met het id;
+     het bestand is een JPEG (`image/jpeg`). Wijst de link naar een map met precies één JPEG,
+     gebruik die.
+2. **Gedeeld met iedereen met de link.** De map (carrousel) of het bestand (post, story) moet
+   gedeeld zijn met iedereen met de link, als lezer. Controleer het met `get_file_metadata`
+   met `includeRichMetadata: true` (veld `visibility` is `anyoneWithLink` of `anyone`), of met
+   `search_files` en `visibility = 'anyoneWithLink'`. Is hij niet gedeeld, deel hem dan met
+   `share_file`: `fileId` het map- of bestands-id, `permissionId` `anyoneWithLink`, `role`
+   `reader`. In modus proefrun deel je niets: meld alleen dat een echte run hem deelt. Lukt
+   delen niet: de post wordt niet ingepland.
+3. **Caption** (niet bij een Story). Haal de pagina op met `notion-fetch`. De caption is de
    tekst binnen het codeblok in de body (zie `references/pagina-opbouw.md`). Staan er
    meerdere codeblokken, neem dan het laatste. Geen codeblok: oudere pagina's kunnen
    `## Caption` als kopje hebben; neem dan de tekst tussen dat kopje en het volgende `##`.
    Niets gevonden: geen caption, de post wordt niet ingepland.
-3. **Lengte.** Maximaal 2200 tekens en maximaal 30 hashtags. Tel tekens zoals Instagram:
+4. **Lengte.** Maximaal 2200 tekens en maximaal 30 hashtags. Tel tekens zoals Instagram:
    elk teken en elke emoji telt.
-4. **Formaat in Canva.** Vraag de exportformaten op met `get-export-formats`.
-   - **Carrousel** (Soort Carroussel of Carrousel, of meer dan één pagina): `jpg` moet
-     beschikbaar zijn. 2 tot en met 10 pagina's.
-   - **Post** met één pagina: `jpg` moet beschikbaar zijn.
-   - **Story:** `jpg` moet beschikbaar zijn, één pagina.
-5. **Nog niet gepubliceerd.** Het postlinkveld is leeg, en ook het Canva-linkveld bevat geen
+5. **Nog niet gepubliceerd.** Het postlinkveld is leeg, en ook het Drive-linkveld bevat geen
    instagram.com-link (oudere rijen). Staat er al een Instagram-link, dan is de post al
    geplaatst: zet de status op Live en sla hem over.
 6. **Tijd in de toekomst.** Het tijdstip van de post ligt minstens 10 minuten na het moment
@@ -235,7 +287,7 @@ week zijn ingepland.
 
 | Metricool zegt | Wat jij doet |
 |---|---|
-| `PUBLISHED`, met een `publicUrl` | Status `Live`, `publicUrl` in het postlinkveld (`URL`, in de API `userDefined:URL`; in een oudere kalender `Instagram`). De Canva-link en de Publicatiedatum blijven staan. Voeg de post toe aan de Live-mail. |
+| `PUBLISHED`, met een `publicUrl` | Status `Live`, `publicUrl` in het postlinkveld (`URL`, in de API `userDefined:URL`; in een heel oude kalender `Instagram`). De Drive-link en de Publicatiedatum blijven staan, zodat de slides vanuit Feed View in je Content Studio te openen blijven. Voeg de post toe aan de Live-mail. |
 | `PENDING` of `PUBLISHING`, en het tijdstip ligt in de toekomst of minder dan 15 minuten geleden | Niets. Hij komt nog. |
 | `PENDING` of `PUBLISHING`, maar het tijdstip is meer dan 15 minuten geleden | Status blijft `Bezig`. Noem de post in de mail onder Aandacht nodig, met de link naar Metricool. |
 | Een andere status (een fout) | Status `Fout`. Mail de `detailedStatus` letterlijk onder Technische melding. Voeg toe: zit je op je maandlimiet? Het gratis plan van Metricool plaatst 20 berichten per maand. |
@@ -257,15 +309,38 @@ in Metricool precies wat er in Notion op Gepland en Bezig staat, ook voor de dag
 Doe eerst het onderdeel Bevestigen hierboven. Zo komen de posts die gisteren live gingen op
 Live, met de Instagram-link.
 
-### 2. Kandidaten: alles wat nieuw op Gepland staat
+### 2. Klaar naar Gepland
+
+Zoek de rijen met Kanaal Instagram en Status `Klaar`. Zet een rij op **Gepland** als hij
+compleet is:
+
+- een Publicatiedatum;
+- een Drive-link met slides (Controle 1: bij een carrousel 2 tot en met 10 JPEG's in de map,
+  bij een post, story of reel één JPEG);
+- een caption in een codeblok (Controle 3; niet bij een Story);
+- geen regel met `[VUL AAN` in de caption.
+
+Is de map of het bestand nog niet gedeeld met iedereen met de link, deel hem dan (Controle 2).
+Mist er iets, laat de rij dan op Klaar en zet hem in de mail onder **Blijft op Klaar**, met
+wat er mist. Een rij op Klaar zonder Publicatiedatum is gewoon nog niet ingepland: noem hem
+alleen als er ook iets anders mist. Wijzig niets anders dan de status.
+
+Daarna: rijen met Kanaal Instagram, Status `Gepland` of `Bezig` en een Publicatiedatum binnen
+drie dagen (vandaag meegeteld) zonder slides in Drive (het Drive-linkveld is leeg, het is geen
+Drive-link, bijvoorbeeld nog een Canva-link (canva.com of canva.link), of de map is leeg). Zet ze in de mail onder
+**Ontwerp ontbreekt**, met de tip: "Maak de slides in de Design Studio en zet de post daar op
+Klaar." Pas de status niet aan; een rij op Gepland wordt bij de controles vanzelf
+tegengehouden.
+
+### 3. Kandidaten: alles wat op Gepland staat
 
 Zoek alle kandidaten met een Publicatiedatum van vandaag of later. Alleen rijen op `Gepland`
 zijn kandidaat: een rij op `Bezig` staat al in Metricool en wordt bevestigd en gelijk
-gehouden (stap 3), nooit opnieuw ingepland. Kandidaten met een datum vóór vandaag zijn
+gehouden (stap 4), nooit opnieuw ingepland. Kandidaten met een datum vóór vandaag zijn
 **gemist** (een run viel uit, of ze zijn te laat op Gepland gezet): zet ze op `Fout` met een
 mail, zie Controle 6.
 
-### 3. Gelijk houden met Notion
+### 4. Gelijk houden met Notion
 
 Voor elke rij op `Bezig` die nog niet live is: zoek de post in Metricool (zie Bevestigen,
 stap 3) en vergelijk.
@@ -279,7 +354,7 @@ nodig.
 | Wat anders is | Wat jij doet |
 |---|---|
 | Het tijdstip (datum of tijd in de Publicatiedatum) | Pas het aan in Metricool met `updateScheduledPost`, volgens **Aanpassen in een gesprek** stap 4, maar zonder te vragen. Het nieuwe tijdstip moet minstens 10 minuten in de toekomst liggen (Controle 6); anders status `Fout` en mail. |
-| De caption | Pas de tekst aan in Metricool, letterlijk zoals in Notion. Controle 3 (lengte) geldt. |
+| De caption | Pas de tekst aan in Metricool, letterlijk zoals in Notion. Controle 4 (lengte) geldt. |
 | Niets | Niets. |
 
 Zet elke aanpassing in de mail onder **Aangepast in Metricool**, oud tegenover nieuw.
@@ -290,11 +365,12 @@ bij geen enkele rij): verwijderen kan niet via de koppeling. Raak hem niet aan e
 mail onder Aandacht nodig: "Deze post staat nog in Metricool op [tijdstip], maar niet meer op
 Gepland in Notion. Haal hem zelf uit Metricool als hij niet moet plaatsen."
 
-**Een nieuw design in Canva** ziet de skill niet: Metricool heeft de slides van het moment van
-inplannen. Noem dat niet in elke mail; het staat in de les en de gebruiker zegt dan in een
-gesprek "pas aan in Metricool".
+**Nieuwe slides in Drive** ziet de skill niet: Metricool heeft de slides van het moment van
+inplannen. Zet de gebruiker in de Design Studio opnieuw een post op Klaar die al in Metricool
+staat, dan zegt de gebruiker in een gesprek "pas aan in Metricool". Noem dat niet in elke
+mail.
 
-### 4. Controleren en klaarzetten
+### 5. Controleren en klaarzetten
 
 Doe de controles per kandidaat. Faalt er een: status `Fout`, vermeld de reden in de mail, ga
 door met de volgende post.
@@ -302,14 +378,21 @@ door met de volgende post.
 Slaagt alles: zet de status op **`Bezig`**, vóór je iets naar Metricool stuurt. Zo kan een
 tweede run dezelfde post nooit nog een keer inplannen.
 
-### 5. Exporteren en inplannen
+### 6. Slides naar Metricool en inplannen
 
-Exporteer pas nu, zodat de laatste versie uit Canva meegaat. Metricool haalt de afbeeldingen
-zelf op en bewaart ze, dus de verlopende downloadlinks van Canva zijn geen probleem, maar
-roep `createScheduledPost` meteen na het exporteren aan.
+Lees de slides pas nu uit Drive (Controle 1), zodat de laatste versie meegaat. Metricool haalt
+de afbeeldingen zelf op en bewaart ze.
 
-1. `export-design` met `{"type": "jpg", "quality": 90, "width": 1080}`. Je krijgt één link per
-   pagina, in de goede volgorde.
+**Slides naar Metricool.** Per slide, in naamvolgorde (01.jpg, 02.jpg ...), één link in
+`media`:
+
+- **`Slidelinks: drive`** (standaard): de Drive-link van het bestand,
+  `https://drive.google.com/file/d/<bestands-id>/view`. Metricool haalt Drive-bestanden op als
+  Google Drive in Metricool gekoppeld is.
+- **`Slidelinks: direct`**: de directe link `https://lh3.googleusercontent.com/d/<bestands-id>`.
+  Dan hoeft Drive niet in Metricool gekoppeld te zijn. De proefrun test of deze link werkt.
+
+1. Zet per slide de link klaar zoals hierboven.
 2. Roep `createScheduledPost` aan met:
    - `blogId`: het merk uit de Omgevingscheck.
    - `date`: het tijdstip als ISO 8601 met de verschuiving van de tijdzone op die dag, bijvoorbeeld
@@ -331,7 +414,7 @@ roep `createScheduledPost` meteen na het exporteren aan.
   "publicationDate": {"dateTime": "2026-10-21T14:30:00", "timezone": "Europe/Amsterdam"},
   "instagramData": {"type": "POST"},
   "mediaAltText": [],
-  "media": ["<link pagina 1>", "<link pagina 2>"],
+  "media": ["<link slide 1>", "<link slide 2>"],
   "text": "<de caption, letterlijk>"
 }
 ```
@@ -347,16 +430,15 @@ roep `createScheduledPost` meteen na het exporteren aan.
 
 **De caption** geef je letterlijk door, zoals hij in Notion staat, met dezelfde witregels.
 
-### 6. Zelf plaatsen
+### 7. Zelf plaatsen
 
 Zoek de reels met Status Gepland en Publicatiedatum = vandaag. Ze komen in de mail onder
 Zelf plaatsen, met de stappen. Zet niets in Metricool en wijzig de status niet.
 
-### 7. Mail
+### 8. Mail
 
-Stuur één mail met alles van deze run (zie Mails). Kreeg je in dezelfde taak het verslag van
-de Canva-links mee (`cs-canva-links`, modus ochtend), zet dat bovenaan de mail. Geen mail als
-er niets te melden is: niets ingepland, niets aangepast, niets bevestigd en niets dat aandacht
+Stuur één mail met alles van deze run (zie Mails). Geen mail als er niets te melden is: niets
+op Gepland gezet, niets ingepland, niets aangepast, niets bevestigd en niets dat aandacht
 nodig heeft.
 
 ---
@@ -369,7 +451,7 @@ plant vroege posts van morgen in.
 1. Doe **Bevestigen**. Dit zet de posts die overdag live gingen op Live, met de Instagram-link.
 2. **Vroege posts van morgen.** De ochtendtaak start om `Ochtendrun` (standaard 07:00). Een
    post van morgen met een tijdstip eerder dan Ochtendrun plus 30 minuten haalt die taak niet
-   meer. Plan die posts nu in, op dezelfde manier als in Modus inplannen (stap 4 en 5), met
+   meer. Plan die posts nu in, op dezelfde manier als in Modus inplannen (stap 5 en 6), met
    datum morgen. Alles later dan dat blijft voor de ochtendtaak.
 3. **Aandacht nodig:** zoek rijen op `Fout`, rijen op `Bezig` met een tijdstip van vandaag
    dat al ruim voorbij is (komt uit Bevestigen), en rijen op Gepland met een datum vóór
@@ -388,14 +470,23 @@ niet te verwijderen.
 1. Neem de kandidaten van vandaag. Zijn die er niet, neem dan de eerstvolgende geplande
    datum en zeg dat erbij.
 2. Doe de controles, inclusief Controle 6 en 7. Leest de proefrun een tijdstip dat al voorbij
-   is, zeg dan dat een echte run die post zou markeren als gemist.
-3. Exporteer uit Canva en controleer dat de links bereikbaar zijn.
+   is, zeg dan dat een echte run die post zou markeren als gemist. Deel niets in Drive; meld
+   alleen of een echte run moet delen. Kijk ook welke posts stap 2 van Klaar op Gepland zou
+   zetten, en welke onder Ontwerp ontbreekt zouden komen.
+3. **Test eerst de directe link.** Vraag per slide de directe link
+   `https://lh3.googleusercontent.com/d/<bestands-id>` op (bijvoorbeeld met een HTTP-verzoek)
+   en kijk of er een afbeelding terugkomt (`image/jpeg`), zonder inlogpagina. Werkt die link,
+   zeg dan in de mail dat de taak de regel `Slidelinks: direct` krijgt en dat Google Drive dan
+   niet in Metricool gekoppeld hoeft te zijn. Werkt hij niet, zeg dan dat de taak de gewone
+   Drive-link gebruikt en dat de gebruiker Google Drive in Metricool koppelt (in Metricool bij
+   de koppelingen van het merk).
 4. Haal met `getBrandSettings` het merk op en bevestig dat Instagram eraan gekoppeld is. Lees
    met `getScheduledPosts` de komende week, zodat je kunt melden wat er al staat.
 5. Stuur één mail met het onderwerp `Proefrun publiceren via Metricool`. Daarin: welke post
-   het zou zijn, op welke dag en tijd, de uitkomst van elke controle, het aantal geëxporteerde
-   bestanden, en een voorbeeld van de ingepland-mail zoals die bij een echte run verstuurd zou
-   worden (zonder link naar Metricool, want de post bestaat nog niet).
+   het zou zijn, op welke dag en tijd, de uitkomst van elke controle, het aantal slides in
+   Drive, of de directe link werkt, wat de ochtendronde van Klaar op Gepland zou zetten, en een
+   voorbeeld van de ingepland-mail zoals die bij een echte run verstuurd zou worden (zonder
+   link naar Metricool, want de post bestaat nog niet).
 6. Staat ook de skill `cs-publiceren` in je lijst met geplande taken of skills? Zeg dan
    dat je één van de twee routes moet kiezen.
 
@@ -406,20 +497,20 @@ hetzelfde verslag ook in het gesprek.
 
 ## Modus vooruit
 
-In een gesprek, als de gebruiker zegt "plan ze ook in Metricool" (bijvoorbeeld nadat de
-Canva-links in Notion zijn gezet), of "plan [deze posts] nu in Metricool". Dan wacht je niet
+In een gesprek, als de gebruiker zegt "plan ze ook in Metricool" (bijvoorbeeld na @puk, als de
+posts net op Gepland zijn gezet), of "plan [deze posts] nu in Metricool". Dan wacht je niet
 op de ochtendtaak: je zet de genoemde posts nu in Metricool, ook als ze pas later in de week
 live gaan. Er is iemand om vragen aan te stellen; mailen hoeft niet.
 
-1. **Omgevingscheck**, stap 1 tot en met 3. Canva is ook nodig. Zonder `Mail naar` in de
+1. **Omgevingscheck**, stap 1 tot en met 4. Zonder `Mail naar` in de
    aanroep is Gmail niet nodig. Tijdzone `Europe/Amsterdam`, tenzij de gebruiker een andere
    noemt. Meer dan één merk met Instagram: vraag welk.
 2. **Bevestigen** (zie boven), zodat posts die al live staan op Live komen.
 3. **Welke posts.** Precies de posts die de gebruiker noemt, of die net in dit gesprek zijn
-   klaargezet (bijvoorbeeld de posts waar zojuist de Canva-link bij kwam). Noemt de gebruiker
+   klaargezet (bijvoorbeeld de posts die zojuist op Gepland kwamen). Noemt de gebruiker
    geen posts, vraag dan welke. Een post doet mee als:
    - Status `Gepland`;
-   - een Canva-link in het Canva-linkveld;
+   - een Drive-link met slides in het Drive-linkveld;
    - een Publicatiedatum **met tijd**, minstens 10 minuten na nu. Staat er alleen een datum,
      plan hem dan niet vooruit in: zeg dat er een tijd bij moet, of dat de ochtendtaak hem op
      die dag oppakt op de Standaardtijd;
@@ -429,11 +520,11 @@ live gaan. Er is iemand om vragen aan te stellen; mailen hoeft niet.
    die plan je niet nog een keer in.
 4. **Controles** 1 tot en met 7 per post, met de datum en tijd van die post.
 5. **Akkoord.** Heeft de gebruiker in dit gesprek al akkoord gegeven op precies deze posts,
-   met hun dag en tijd (bijvoorbeeld in het overzicht van de Canva-links), ga dan door. Anders
+   met hun dag en tijd (bijvoorbeeld in het overzicht bij @puk), ga dan door. Anders
    toon je eerst één lijst: per post het haakje, de dag en de tijd, en vraag je één keer om
    akkoord. Inplannen is openbaar zodra het tijdstip komt.
-6. **Inplannen** zoals in Modus inplannen, stap 3 en 4: per post eerst de status op `Bezig`,
-   dan exporteren uit Canva, `createScheduledPost` met de datum en tijd van die post, en
+6. **Inplannen** zoals in Modus inplannen, stap 5 en 6: per post eerst de status op `Bezig`,
+   dan de slides uit Drive, `createScheduledPost` met de datum en tijd van die post, en
    controleren met `getScheduledPosts`. Een post die faalt: status `Fout` en de reden in het
    gesprek.
 7. **Melden** in het gesprek, kort: per post het haakje, de dag en tijd, en de links `Open in
@@ -470,7 +561,7 @@ en zeg dat de status in Notion dan terug op Klaar moet.
 
 Altijd via Gmail, naar het adres uit de aanroep, in het Nederlands en in de je-vorm. De
 mails worden op de telefoon gelezen: in één oogopslag zie je welke post wanneer live gaat, en
-met één tik ben je in Notion, Canva, Metricool of Instagram.
+met één tik ben je in Notion, bij je slides in Drive, in Metricool of op Instagram.
 
 ### Opmaak
 
@@ -478,8 +569,8 @@ met één tik ben je in Notion, Canva, Metricool of Instagram.
 - **HTML:** alleen eenvoudige tags (`<p>`, `<b>`, `<a>`, `<br>`, `<ol>`, `<li>`), geen
   tabellen, geen kleuren, geen stylesheets. Kopjes zijn vetgedrukt (`<b>`).
 - **Links zijn klikbare tekst**, nooit een kale URL in de HTML-versie. Gebruik altijd deze
-  teksten: `Open in Notion`, `Open in Canva`, `Open in Metricool`, `Bekijk je post op
-  Instagram`. Meerdere links naast elkaar scheid je met ` | `.
+  teksten: `Open in Notion`, `Open de slides` (de Drive-link), `Open in Metricool`, `Bekijk je
+  post op Instagram`. Meerdere links naast elkaar scheid je met ` | `.
 - **In de platte-tekstversie** staat dezelfde tekst, met de URL achter de linktekst:
   `Open in Notion: https://...`.
 - **Het haakje** staat altijd op een eigen regel achter 🪝.
@@ -494,7 +585,7 @@ Eén mail per run. Per post die is ingepland:
 <b>[haakje]</b>
 Ingepland voor [dag en datum, of: vandaag] om [tijd] via Metricool
 [Soort], [n] slides
-Open in Metricool | Open in Notion | Open in Canva
+Open in Metricool | Open in Notion | Open de slides
 Aanpassen? Zeg in een gesprek met Claude: "pas aan in Metricool".
 Wil je muziek? Voeg die na [tijd] toe via Bewerken in de Instagram-app.   (alleen bij een carrousel)
 ```
@@ -506,6 +597,10 @@ Daarna alleen de kopjes die inhoud hebben, vetgedrukt:
 
 - **Live gegaan:** posts die de Bevestigen-stap op Live zette, met `Bekijk je post op
   Instagram` en `Open in Notion`.
+- **Blijft op Klaar:** posts op Klaar die niet op Gepland konden, met wat er mist.
+- **Ontwerp ontbreekt:** posts op Gepland of Bezig die binnen drie dagen live gaan en nog
+  geen slides in Drive hebben, met de tip: "Maak de slides in de Design Studio en zet de post
+  daar op Klaar."
 - **Niet ingepland:** posts die een controle niet haalden, of die gemist zijn, met de reden in
   gewone taal en wat de gebruiker moet doen ("de caption is 2.340 tekens, haal er 140 af in
   Notion", "de tijd 07:30 was al voorbij; kies een nieuwe tijd en zet de status terug op
@@ -516,25 +611,25 @@ Daarna alleen de kopjes die inhoud hebben, vetgedrukt:
 - **Aandacht nodig:** Fout, Bezig dat blijft hangen, en posts die nog in Metricool staan maar
   niet meer op Gepland in Notion, met per rij wat er aan de hand is.
 
-Het verslag van de Canva-links (als dat meekwam) staat bovenaan, vóór de ingeplande posts,
-onder het kopje **Canva-links**.
+Posts die stap 2 op Gepland zette en die in dezelfde run zijn ingepland, staan gewoon bij de
+ingeplande posts; noem ze niet twee keer.
 
 Bij **Zelf plaatsen** krijgt elke reel deze stappen:
 
 ```
 🪝 [haakje]
 Reel, vandaag om [tijd]
-Open in Notion | Open in Canva
+Open in Notion
 1. Open de Notion-pagina en kopieer de caption.
-2. Download de reelomslag via Canva.
+2. De reelomslag staat in Drive: [link als klikbare tekst "Open de reelomslag"]. Zet hem op je telefoon.
 3. Plaats je video in Instagram of Edits.
 4. Voeg de reelomslag toe.
 5. Plak je caption.
 6. Zet de status in Notion daarna op Live en plak de link van de reel in het veld [naam van het postlinkveld, meestal URL].
 ```
 
-Ontbreekt de Canva-link, laat dan `Open in Canva` en stap 2 weg en zeg dat er geen omslag in
-Notion staat.
+Staat er geen Drive-link, laat dan stap 2 weg en zeg dat de reelomslag nog niet in Drive
+staat: "Maak hem in de Design Studio en zet de post daar op Klaar."
 
 ### Mail van de avondcheck
 
@@ -561,7 +656,7 @@ verstuurd zou worden.
 | Proefrun | `Proefrun publiceren via Metricool` |
 
 Een foutmail noemt in gewone taal wat er met de post aan de hand is en wat de gebruiker moet
-doen, met `Open in Notion`. Foutmeldingen van Metricool of Canva komen letterlijk onder het
+doen, met `Open in Notion`. Foutmeldingen van Metricool of Google Drive komen letterlijk onder het
 vetgedrukte kopje **Technische melding**, na de uitleg.
 
 Schrijfregels: geen em-dashes, geen jargon zonder uitleg, geen "Helaas".
@@ -573,10 +668,11 @@ Schrijfregels: geen em-dashes, geen jargon zonder uitleg, geen "Helaas".
 Stories kunnen via deze skill automatisch, als je in Notion bij Soort de optie `Story` hebt
 toegevoegd (de skill maakt hem niet aan).
 
-- Een Story is **één afbeelding** uit Canva (jpg, formaat 1080 x 1920), zonder caption.
+- Een Story is **één JPEG in Drive** (formaat 1080 x 1920), zonder caption. De link in het
+  Drive-linkveld wijst naar dat bestand.
 - In `info`: `"instagramData": {"type": "STORY"}`, en laat `text` weg: een Story heeft geen
   tekst van zichzelf, en tekst bij een Story als enige netwerk wordt niet geplaatst.
-- Een Story heeft Controle 2 en 3 niet. Controle 1, 4 tot en met 7 wel.
+- Een Story heeft Controle 3 en 4 niet. Controle 1, 2 en 5 tot en met 7 wel.
 - Match een Story in Metricool op tijdstip en type, niet op caption.
 - De Instagram-link van een Story werkt zolang de Story zichtbaar is (24 uur). Zet hem toch
   in het postlinkveld.
@@ -599,12 +695,15 @@ toegevoegd (de skill maakt hem niet aan).
 - Bestanden uit `references/` bij naam noemen in mails of antwoorden.
 - Een kale URL in de HTML-versie van een mail, of de caption in een mail.
 - Een database met "template" in de naam of het pad als Content Calendar gebruiken.
-- `URL` lezen als Canva-link of `Instagram` als postlink zonder te kijken of er een property
-  `Canva` is.
+- `URL` lezen als Drive-link of `Instagram` als postlink zonder te kijken of er een property
+  `Design`, `Drive` of `Canva` is.
+- Slides uit een andere bron dan de Drive-map halen, of een Canva-link (canva.com of canva.link) gebruiken.
+- Een post op Gepland zetten zonder Publicatiedatum, zonder slides in Drive of met een
+  `[VUL AAN`-regel.
 - In Modus vooruit een post inplannen zonder tijd in de Publicatiedatum, of een post die niet
   op `Gepland` staat.
 
 ## Referentiebestanden
 
 In `references/` van deze plugin, twee niveaus boven deze skill: `notion-schema.md`,
-`pagina-opbouw.md`.
+`pagina-opbouw.md`, `content-studio-afspraken.md` (sectie 6 en 7: Drive en Notion).

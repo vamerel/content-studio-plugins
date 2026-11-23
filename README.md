@@ -4,7 +4,7 @@ Deze marketplace bevat twee plugins:
 
 | Plugin | Wat | Installeren in |
 |---|---|---|
-| `content-studio` | Claude Content Studio: je contentteam. Viggo (verhalen), Sam (speuren), Ruby (cijfers), Hanna (haakjes), Cato (captions), Koen (controle), Daan (designs via Claude Design of Canva) en Puk (Canva-links, inplannen via Metricool of publiceren via Composio) | Chat & Cowork |
+| `content-studio` | Claude Content Studio: je contentteam. Viggo (verhalen), Sam (speuren), Ruby (cijfers), Hanna (haakjes), Cato (captions), Koen (controle), Daan (je Content Studio met de Design Studio en je slides) en Puk (inplannen via Metricool of publiceren via Composio). Werkt met de Notion-template Content Studio | Chat & Cowork |
 | `content-designsystem` | De skill `cs-designsystem` (`@designsystem`) voor Claude Content Studio | **alleen** Claude Code |
 
 Content Studio werkt op basis van je Business DNA. Die plugin staat in een eigen marketplace:

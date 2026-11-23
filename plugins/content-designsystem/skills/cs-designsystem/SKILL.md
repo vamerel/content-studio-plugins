@@ -1,13 +1,14 @@
 ---
 name: cs-designsystem
 description: >
-  Daan in Claude Code. Bouwt de map Content Studio/Design System die je in Claude Design
-  uploadt, afgeleid uit je eigen carrousels, reelomslagen en brandfoto's in Business Brand
-  Guidelines. Je echte posts gaan mee als voorbeeld; daarnaast kleuren, fonts, de compositie
-  per layouttype, tekenlimieten als richtlijn, en een fotobibliotheek met wat er op elke
-  brandfoto staat. Werkt zonder iets te installeren. Levert design-system.md en fotos.md voor
-  Daan (cs-design) en de twee teksten voor het instelscherm van Claude Design. Voor
-  Instagram-carrousels en reels. TRIGGERS op
+  Daan in Claude Code. Bouwt de map Content Studio/Design System, afgeleid uit je eigen
+  carrousels, reelomslagen en brandfoto's in Business Brand Guidelines: kleuren, fonts, de
+  compositie per layouttype, tekenlimieten als richtlijn, een fotobibliotheek met wat er op
+  elke brandfoto staat, en huisstijl.json met kleurthema's en een template per slidetype voor
+  de Design Studio in je Content Studio. Je echte posts gaan mee als voorbeeld. Werkt zonder
+  iets te installeren. Levert ook design-system.md en fotos.md voor Cato (cs-caption) en Daan
+  (cs-design). Daan in Cowork zet de huisstijl daarna in je Content Studio; deze skill draait
+  alleen in Claude Code. Voor Instagram-carrousels en reels. TRIGGERS op
   @designsystem, @cs-designsystem, @daan, de oude naam @content-designsystem, "design system
   maken", "werk mijn design system bij", "mijn huisstijl vastleggen", "tekenlimieten
   bepalen", "layout van mijn carrousels", of elke vraag over het
@@ -19,21 +20,24 @@ description: >
 Deze skill draait in **Claude Code**, met de map CLAUDE als werkmap. Uit wat de gebruiker al
 heeft (carrousels, reelomslagen, brandfoto's, Canva Brand Kit, lettertypes, logo, website)
 leid je af hoe zijn content eruitziet en hoeveel tekst er per layouttype past. Daar bouw je
-een **map** van: het design system dat de gebruiker in Claude Design uploadt, zodat elk
-design dat daar gemaakt wordt op zijn echte posts lijkt. Eén bestand in die map,
-`design-system.md`, is de norm waar `content-caption` tegen schrijft.
+een **map** van: het design system. Designs worden gemaakt in de **Design Studio**, een scherm
+in het artifact Content Studio. Daan (`cs-design`, in Cowork) zet de huisstijl uit deze map in
+die studio, zodat elk design dat daar gemaakt wordt op de echte posts van de gebruiker lijkt.
+Drie bestanden in de map worden door anderen gelezen: `huisstijl.json` (de studio),
+`design-system.md` (de norm waar Cato en Daan tegen schrijven) en `fotos.md` (Daan).
 
-Waarom dit ertoe doet: zonder design system in Claude Design krijgt de gebruiker generieke
-slides in een willekeurige stijl. En schrijf je eerst en ontwerp je daarna, dan past de tekst
-niet in de slide. Met deze map ontwerpt Claude Design in zijn huisstijl en verdeelt Daan
-de tekst tegen een bekende limiet.
+Waarom dit ertoe doet: zonder design system krijgt de gebruiker generieke slides in een
+willekeurige stijl. En schrijf je eerst en ontwerp je daarna, dan past de tekst niet in de
+slide. Met deze map werkt de Design Studio in haar huisstijl en verdeelt Daan de tekst tegen
+een bekende limiet.
 
-De gebruiker is geen ontwerper en gaat niet zelf bijsturen. Wat uit Claude Design komt, moet
-dus in één keer lijken op haar eigen posts. Dat lukt alleen als Claude Design haar **echte
-posts als voorbeeld** ziet en de compositie daar afkijkt: hoe groot de tekst is, waar hij
-staat, en waar de persoon in beeld blijft. Beschrijvingen en regels vullen aan; ze vervangen
-de voorbeelden nooit. Teken nooit zelf slides of onderdelen voor haar: een nabouwsel maakt het
-resultaat slechter dan haar eigen werk.
+De gebruiker is geen ontwerper. In de Design Studio kan ze zelf schuiven, maar dat moet ze
+niet hoeven: wat Daan voorstelt, moet in één keer lijken op haar eigen posts. Dat lukt alleen
+als de templates in `huisstijl.json` **gemeten zijn op haar echte posts**: hoe groot de tekst
+is, waar hij staat, en waar de persoon in beeld blijft. Haar echte posts gaan als voorbeeld mee
+in de map; beschrijvingen en regels vullen aan, ze vervangen de voorbeelden nooit. Teken nooit
+zelf slides of onderdelen voor haar: een nabouwsel maakt het resultaat slechter dan haar eigen
+werk.
 
 De scope is **carrousels en reels** op Instagram. LinkedIn-carrousels alleen als er
 LinkedIn-materiaal is. Geen websites, geen decks, geen mails: daar gaat Content Studio niet
@@ -93,8 +97,8 @@ Notion is voor deze skill niet nodig.
 
 - `Content Studio/MEMORY.md`, alleen de sectie `## Design System`. Regels daar wegen zwaarder
   dan de richtlijnen hieronder.
-- `Business DNA/SAMENVATTING.md`: de kernzin, de doelgroep en de kernboodschap voor BRAND-SUMMARY.md
-  en voor veld 1 in stap 9.
+- `Business DNA/SAMENVATTING.md`: de kernzin, de doelgroep en de kernboodschap voor
+  BRAND-SUMMARY.md, en de bedrijfsnaam voor `huisstijl.json`.
 
 ---
 
@@ -151,7 +155,7 @@ label, niet als kleur, niet als logo, niet als tekstpositie. Noteer per beeld we
 staan, zodat je ze in stap 8 kunt benoemen in de map. Zeg de gebruiker één keer:
 
 > "Een deel van je carrousels zijn schermafbeeldingen met de interface van Instagram erop.
-> Ik kijk daar doorheen, maar Claude Design krijgt ze straks ook te zien. Beter is de export
+> Ik kijk daar doorheen, maar Daan krijgt ze straks ook als voorbeeld te zien. Beter is de export
 > van Instagram zelf: dezelfde beelden, zonder teller en
 > icoontjes. Vervang ze zodra je die hebt; ik bouw de map dan opnieuw."
 
@@ -257,18 +261,21 @@ Bekijk de carrousels en reelomslagen en deel elke slide in bij een **layouttype*
 een slidenummer. Slide 3 van de ene carrousel kan een quote zijn en van de andere een
 opsomming; het gaat om het type.
 
-De vijf layouttypes:
+De zes layouttypes, met tussen haakjes de id van het template in `huisstijl.json`:
 
 | Layouttype | Herken je aan |
 |---|---|
-| Cover | eerste slide, het haakje, vaak met foto, grote letter |
-| Tekstslide | kop plus één alinea, of alleen een alinea |
-| Quote | één uitspraak, vaak groter gezet, soms met naam |
-| Opsomming | genummerde of gebullete regels, of regels met een emoji ervoor |
-| CTA | laatste slide, één actie, vaak met logo of handle |
+| Cover (`cover`) | eerste slide, het haakje, vaak met foto, grote letter |
+| Tekstslide (`tekst`) | kop plus één alinea, of alleen een alinea |
+| Quote (`quote`) | één uitspraak, vaak groter gezet, soms met naam |
+| Opsomming (`lijst`) | genummerde of gebullete regels, of regels met een emoji ervoor, samen op één slide |
+| Stap (`stap`) | één stap uit een reeks, met een groot nummer, een korte kop en uitleg; elke stap een eigen slide |
+| CTA (`cta`) | laatste slide, één actie, vaak met logo of handle |
 
 Ziet de gebruiker andere types (bijvoorbeeld een lege kleurslide als adempauze), voeg die
-toe onder een eigen naam. Verzin er geen die niet in het materiaal voorkomen.
+toe onder een eigen naam. Verzin er geen die niet in het materiaal voorkomen. Komt een van de
+zes niet in het materiaal voor, dan krijgt hij in stap 8 een standaardtemplate; meten doe je
+alleen wat er is.
 
 Noteer per slide: layouttype, aantal tekens van de tekst inclusief spaties, aantal regels,
 of er een foto onder zit, of er een handschrift- of scriptregel op staat, en of er een accent
@@ -286,15 +293,20 @@ Noteer ook wat er als **afzender** op de slides staat (een handle, een woordmerk
 programmanaam) en waar. Kijk of die afwisselt: staat er in elke carrousel hetzelfde, verschilt
 het per carrousel, of wisselt het binnen één carrousel (andere tekst, boven of onder, soms
 geen)? Wat afwisselt leg je vast als afwisseling, met alle varianten letterlijk, nooit als één
-vaste standaard: anders zet Claude Design overal de standaard.
+vaste standaard: anders zet Daan overal de standaard.
 
 Noteer op dezelfde manier **elk ander element dat afwisselt** tussen de posts, met alle
 varianten letterlijk zoals je ze ziet: een overlay op de foto (geen, licht, donker), het logo of
 beeldmerk (kleurvariant, boven, onder of geen), tags of woorden in de hoeken, icoontjes boven-
-of onderaan, de vorm van het accent, de achtergrond. Dit wordt het **keuzepaneel** in Claude
-Design (stap 8, Weergave en export): per element één uitklapmenu met precies de varianten die
-op de posts staan, zodat de gebruiker ze wisselt zonder nieuwe prompt. Wat op alle posts gelijk
-is, komt niet in het paneel. Verzin geen varianten die niet op de posts staan.
+of onderaan, de vorm van het accent, de achtergrond. Dit wordt de **afwisseling** in de Design
+Studio (stap 8): wat over kleur gaat (welke achtergrond, welke textuur, wie de accentkleur
+krijgt) wordt een kleurthema in `huisstijl.json`, logovarianten worden logo's, en de rest komt
+in CLAUDE.md onder Afwisseling, zodat Daan ertussen wisselt. Wat op alle posts gelijk is, komt
+in de templates. Verzin geen varianten die niet op de posts staan.
+
+Noteer ten slotte per slide de **kleurcombinatie**: welke kleur de achtergrond heeft (en of dat
+een textuur is), welke de kop, welke de lopende tekst en welke het accent. Tel hoe vaak elke
+combinatie voorkomt. Daar komen in stap 8 de kleurthema's uit.
 
 De elementen van Instagram uit stap 1 (teller, geluidsicoon,
 telefoonscherm, balken) laat je buiten elke meting: ze zijn geen tekst, geen kleur en geen
@@ -307,9 +319,9 @@ overheen, en tekst die daar staat is in de feed onleesbaar.
 
 ### Compositie per layouttype
 
-Tekens tellen is niet genoeg. Wat een slide van haar maakt, is de compositie, en die moet
-Claude Design kunnen overnemen. Leg per layouttype vast, gemeten op haar posts, in
-verhouding tot de slide:
+Tekens tellen is niet genoeg. Wat een slide van haar maakt, is de compositie, en die wordt het
+template van dat layouttype in `huisstijl.json`. Leg per layouttype vast, gemeten op haar
+posts, in verhouding tot de slide:
 
 - **Tekstgrootte:** hoe hoog een hoofdletter van de kop en van de lopende tekst is, als deel
   van de slidehoogte ("kop ongeveer een twintigste van de slidehoogte"). Kapitalen of gewone
@@ -327,16 +339,23 @@ verhouding tot de slide:
   en, als hij in een band of vlak staat, hoeveel ruimte er binnen dat vlak rondom de tekst
   blijft (als deel van de slidebreedte). Tekst die tegen de rand van een band aan staat, komt
   op haar posts vrijwel nooit voor.
+- **Vakken:** van elk tekstblok (kop, tekst, quote, naam, opsomming, nummer, actie, afzender),
+  van de foto en van het logo: de linkerrand en de breedte als deel van de slidebreedte, de
+  bovenrand en de hoogte als deel van de slidehoogte, afgerond op twee decimalen. Neem de
+  hoogte zo dat de tekst van de volste slide van dat type erin past (stap 4). Noteer per
+  tekstblok ook de uitlijning (links, midden, rechts) en of het in kapitalen staat. Meet
+  zo ook elk gekleurd vlak achter de tekst. Dit worden de vakken en vlakken in
+  `huisstijl.json`.
 
 Kies per layouttype één echte post die dit het best laat zien. Die wordt het voorbeeld waar
-`applications/carrousels.md` naar verwijst.
+`applications/carrousels.md` naar verwijst, en de post waarop je het template meet.
 
 ### Startlijn en witruimte op de tussenslides
 
 Bij het swipen leest de tekst prettig als hij op elke slide op dezelfde ooghoogte begint: de
 lezer hoeft niet te zoeken en haakt minder snel af. Maar niet elke slide heeft evenveel tekst.
 Een slide met weinig tekst die op die hoogte begint, houdt onderin veel lege ruimte over. Dat
-lost Daan op door slides tot ongeveer de limiet te vullen, niet Claude Design door
+lost Daan op door slides tot ongeveer de limiet te vullen, niet de studio door
 tekst op te rekken. Wat je hier meet, zorgt dat beide dezelfde maat aanhouden.
 Meet over alle tussenslides (niet de cover en de CTA):
 
@@ -396,6 +415,7 @@ Heb je van een type geen voorbeeld, stel dan een startwaarde voor en markeer die
 | Tekstslide kop | 35, tekst 120 |
 | Quote | 90 |
 | Opsomming | 4 regels van 30 |
+| Stap | nummer 2, kop 35, tekst 120 |
 | CTA kop | 35, actie 50 |
 | Reelomslag | 40, scriptregel 20 |
 
@@ -432,10 +452,16 @@ Bronnen, in volgorde van betrouwbaarheid:
 
 Leg vast:
 
-- **Kleuren** met hexcode en een naam per kleur: primair, accent, tekst op donker,
-  achtergrond licht, en wat er verder in het materiaal terugkomt.
-- **Fonts:** de naam van het kopfont en het tekstfont, met gewicht als dat zichtbaar is.
-- **Logo:** welke variant op de slides staat en waar (bijvoorbeeld rechtsonder op de CTA).
+- **Kleuren** met hexcode en een rol per kleur: primair, accent, tekst op donker,
+  achtergrond licht, en wat er verder in het materiaal terugkomt. Geef elke kleur ook een
+  gewone naam zoals een mens hem zou noemen ("Donkergroen", "Oranje", "Zand"). Die naam staat
+  in de reconciliatietabel en straks in `huisstijl.json`.
+- **Fonts:** de naam van het kopfont en het tekstfont, met gewicht als dat zichtbaar is, en een
+  derde font als dat er is (een handschrift of script). Kijk per font of het op Google Fonts
+  staat: `curl -s -o /dev/null -w "%{http_code}" "https://fonts.googleapis.com/css2?family=<Naam+Met+Plussen>"`
+  geeft 200 als dat zo is.
+- **Logo:** welke variant op de slides staat en waar (bijvoorbeeld rechtsonder op de CTA), en
+  welke varianten er in `logo/` staan (wit, zwart, donker, in kleur).
   Het logo is wat het is: beschrijf het, verander er niets aan en stel geen "verbeterde"
   versie voor.
 
@@ -449,7 +475,7 @@ opbouw dan de carrousels. Verzwijg dat niet en kies niet stilzwijgend. Schrijf
 | Onderdeel | Website (gemeten) | Brand Kit | Carrousels | Voorstel |
 |---|---|---|---|---|
 | Kopfont | Montserrat | Montserrat | Montserrat Bold, kapitalen | Montserrat Bold, kapitalen op de cover |
-| Primair | #2B4C7E | #2A4A7A | #2B4C7E | #2B4C7E |
+| Primair | #2B4C7E | #2A4A7A | #2B4C7E | #2B4C7E, naam Nachtblauw |
 
 Volgorde bij twijfel: wat de gebruiker recent heeft gepubliceerd (carrousels, reelomslagen)
 weegt zwaarder dan de website, en een expliciete huisstijlregel van de gebruiker zelf weegt
@@ -460,13 +486,24 @@ zwaarder dan alles wat jij afleidt. Leg het voorstel voor; de gebruiker beslist.
 ## Stap 7 - Leg alles ter bevestiging voor
 
 Toon één overzicht, in gewone taal, en vraag per onderdeel of het klopt: layouttypes en hun
-limieten, de compositie per layouttype met het voorbeeld dat je koos, formats, kleuren,
-fonts, logo en afzender (vast of afwisselend), de uitklapmenu's voor het keuzepaneel (per
-element de varianten), het aantal brandfoto's, en de reconciliatietabel als die er is. Vraag
-concreet:
+limieten, de compositie per layouttype met het voorbeeld dat je koos, formats, kleuren met
+hun naam, fonts, logo en afzender (vast of afwisselend), wat er verder afwisselt (per element
+de varianten), het aantal brandfoto's, en de reconciliatietabel als die er is. Zet er voor de
+Design Studio ook bij:
 
-> "Klopt dit? Wil je ergens ruimer of krapper zitten? En zijn er slides in je materiaal die
-> ik verkeerd heb ingedeeld?"
+- **Kleurthema's:** per thema in één regel welke kleur de achtergrond, de kop, de tekst en het
+  accent krijgt, en op welke van haar posts het lijkt. Een thema dat niet op haar posts staat
+  maar dat je afleidde (zie stap 8), noem je zo.
+- **Templates:** één regel per template (cover, tekst, quote, lijst, stap, cta, reelomslag),
+  met de post waarop je hem meet. Komt een type niet in haar materiaal voor, zeg dan letterlijk:
+  "[Type]: komt niet in je posts voor. Ik zet er een standaardtemplate in, in jouw fonts,
+  kleuren en marges. Pas hem aan zodra je zo'n slide hebt gemaakt." Bij stap is dat meestal
+  het geval.
+
+Vraag concreet:
+
+> "Klopt dit? Wil je ergens ruimer of krapper zitten? Kloppen de namen van je kleuren? En zijn
+> er slides in je materiaal die ik verkeerd heb ingedeeld?"
 
 Vraag in hetzelfde bericht, met een voorstel:
 
@@ -481,10 +518,14 @@ Pas aan op wat de gebruiker zegt. Ga pas naar stap 8 als hij akkoord is.
 
 ## Stap 8 - Bouw de map Design System
 
-Het resultaat van deze skill is een **map**, geen tekstblok. Claude Design heeft in het
-instelscherm voor een design system een uploadveld waar je een hele map in zet; alles wat
-erin staat leest hij mee bij elk design dat hij daarna maakt. Deze map is dus het design
-system zelf. Daan leest er één bestand uit, `design-system.md`.
+Het resultaat van deze skill is een **map**, geen tekstblok. Deze map is het design system
+zelf. Wie wat leest:
+
+- **Daan (`cs-design`, in Cowork)** zet `huisstijl.json` in de database van Content Studio en
+  zet de logo's, de eigen fonts en de achtergronden als assets in de studio. Hij leest
+  `design-system.md`, `fotos.md`, `CLAUDE.md` en de applications als hij slides voorstelt.
+- **Cato (`cs-caption`)** leest `design-system.md` voor de tekenlimieten.
+- **De Design Studio** werkt met wat Daan uit `huisstijl.json` in de database zette.
 
 Bouw hem in `Content Studio/Design System/`, precies zo. Laat weg wat tussen haken als
 optioneel staat en er niet is; maak nooit een leeg bestand om de boom compleet te maken.
@@ -492,9 +533,10 @@ optioneel staat en er niet is; maak nooit een leeg bestand om de boom compleet t
 ```
 Content Studio/Design System/
 ├── design-system.md              blok A: formaten, tekenlimieten, kleuren, fonts, stijlregels
+├── huisstijl.json                de huisstijl voor de Design Studio: kleuren, fonts, logo's, thema's, templates
 ├── fotos.md                      de fotobibliotheek: per brandfoto wat erop staat en waar hij past
-├── README.md                     wat deze map is en hoe je hem in Claude Design zet
-├── CLAUDE.md                     leesvolgorde en harde regels voor Claude Design
+├── README.md                     wat deze map is en wat Daan ermee doet
+├── CLAUDE.md                     leesvolgorde en harde regels voor Daan in de Design Studio
 ├── BRAND-SUMMARY.md              het merk op één pagina, uit SAMENVATTING.md
 ├── foundations/
 │   ├── color.md                  elke kleur met hexcode, naam, rol, en waar hij niet komt
@@ -528,8 +570,10 @@ Content Studio/Design System/
 
 De carrousels en reelomslagen in Brand Guidelines zijn de beste versie van de huisstijl die
 bestaat. Je **kopieert** ze naar `assets/templates/`, je bouwt ze niet na, je tekent geen
-voorbeeldslides en je maakt geen "verbeterde" versie. Claude Design bouwt op de echte posts;
-een nabouwsel ernaast maakt het resultaat slechter, niet beter.
+voorbeeldslides en je maakt geen "verbeterde" versie. Daan bouwt op de echte posts; een
+nabouwsel ernaast maakt het resultaat slechter, niet beter. De templates in `huisstijl.json`
+zijn geen nabouwsel: elke maat erin is gemeten op een echte post (stap 3), behalve bij een
+type dat niet in het materiaal voorkomt, en dat zeg je dan.
 
 Hetzelfde geldt voor het logo: kopiëren uit `Brand Guidelines/logo/`, niets aan veranderen,
 geen variant verzinnen die er niet is. Ontbreekt een variant (bijvoorbeeld geen witte versie
@@ -546,8 +590,9 @@ uit haar eigen posts blijken. Deze map beschrijft haar huisstijl, niet de jouwe.
 
 ### Wat er in elk bestand staat
 
-**`design-system.md`** is blok A, in exact dit format. `content-caption` opent dit bestand en
-zoekt op de twee markeringsregels en op de labels; wijk daar niet van af.
+**`design-system.md`** is blok A, in exact dit format. Cato (`cs-caption`) en Daan
+(`cs-design`) openen dit bestand en zoeken op de twee markeringsregels en op de labels; wijk
+daar niet van af.
 
 ```
 === DESIGN SYSTEM ===
@@ -600,167 +645,118 @@ Startwaarden die niet aan eigen materiaal getoetst zijn krijgen `(startwaarde)` 
 getal.
 
 **`README.md`**: drie korte alinea's. Wat deze map is (het design system van [naam],
-afgeleid uit haar eigen posts en haar website op [datum]). Hoe je hem in Claude Design zet
-(het instelscherm, de map uploaden, de twee teksten uit stap 9 plakken). Hoe je hem bijwerkt
-(nieuwe posts in Brand Guidelines, skill opnieuw draaien). Daaronder de boom hierboven.
+afgeleid uit haar eigen posts en haar website op [datum]). Wat ermee gebeurt: Daan zet in
+Cowork de huisstijl uit `huisstijl.json` in haar Content Studio, met de logo's, eigen fonts en
+achtergronden; Cato en Daan lezen `design-system.md` en `fotos.md`. Hoe je hem bijwerkt (nieuwe
+posts in Brand Guidelines, de skill opnieuw draaien in Claude Code, daarna @daan in Cowork
+vragen de huisstijl in de studio bij te werken). Zijn er standaardtemplates (stap 7), zet dan
+een regel: "Deze templates komen niet uit je eigen posts: [ids]." Daaronder de boom hierboven.
 
-**`CLAUDE.md`**: het eerste bestand dat Claude Design leest. Begin met deze regel, letterlijk:
-"Wat ik in het gesprek vraag, gaat altijd voor. Deze map is het startpunt, geen grens. Vraag
-ik iets wat er niet in staat, voer het dan uit in mijn fonts en kleuren; weiger nooit omdat
-iets niet in het design system past, en zeg in één zin wat je anders deed." Daarna een blok
-Speelruimte en zes onderdelen.
+**`CLAUDE.md`**: de leesvolgorde en de harde regels voor Daan (`cs-design`) als hij in Cowork
+slides voorstelt voor de Design Studio, of antwoordt op Vraag Daan in de studio. Begin met deze
+regel, letterlijk: "Wat de gebruiker vraagt, in Cowork of met Vraag Daan in de Design Studio,
+gaat altijd voor. Deze map is het startpunt, geen grens. Vraagt ze iets wat er niet in staat,
+doe het dan in haar fonts, kleuren en templates; weiger nooit omdat iets niet in het design
+system past, en zeg in één zin wat je anders deed." Daarna een blok Speelruimte en zes
+onderdelen.
 
-**Speelruimte**, direct na de eerste regel, letterlijk zo, met de kleuren en het accent van de
-gebruiker ingevuld:
+**Speelruimte**, direct na de eerste regel, letterlijk zo, met de afwisseling van de gebruiker
+ingevuld:
 
 ```
 ## Speelruimte
 
-Je mag binnen dit design system zelf ontwerpkeuzes maken, zodat niet elke carrousel een kopie
-van een voorbeeld is. De voorbeelden blijven de basis; wat hieronder vrij staat, mag je anders
-doen dan op het voorbeeld.
+Daan mag binnen dit design system zelf keuzes maken, zodat niet elke carrousel een kopie van
+een voorbeeld is. De voorbeelden en de templates in huisstijl.json blijven de basis; wat
+hieronder vrij staat, mag hij anders doen dan op het voorbeeld.
 
 - **Ligt vast:** de kleuren, de fonts, de texturen, de tekst (letterlijk, geen woord erbij of
-  eraf), de startlijn, de tekenlimieten, het logo, de foto's die de prompt noemt, en dat gezicht
-  en lichaam vrij blijven.
-- **Mag je zelf kiezen:** de compositie binnen een slide, waar en in welke vorm het [accent]
-  staat, een grafisch element toevoegen in de huisstijlkleuren (een lijn, een pijl, een groot
-  cijfer, een kader), een foto anders uitsnijden, en een decoratief element van het voorbeeld
-  weglaten.
-- Zeg na het ontwerp in één zin wat je zelf hebt toegevoegd of weggelaten.
+  eraf), de startlijn, de tekenlimieten, het logo, de foto die de gebruiker zelf koos, en dat
+  gezicht en lichaam vrij blijven.
+- **Mag Daan zelf kiezen:** welk template elke slide krijgt (binnen de verdeling in
+  applications/carrousels.md), welk kleurthema uit huisstijl.json een carrousel krijgt (zodat
+  hij afwisselt met de posts ernaast in de feed), welke foto uit de fotobibliotheek (binnen de
+  fotoregels), en welke variant van [de elementen die afwisselen, uit stap 3].
+- Een template tekent Daan niet zelf na en hij verandert geen maten. "Andere layout" in de
+  studio betekent: een ander template uit huisstijl.json.
+- Zeg bij een voorstel in één zin wat je anders deed dan op de voorbeelden.
 ```
 
 De zes onderdelen:
 
-1. **Leesvolgorde**: BRAND-SUMMARY, dan foundations/color en typography, dan
-   applications/carrousels of reels (welke van toepassing is), dan de echte voorbeelden in
-   assets/templates. De voorbeelden wegen zwaarder dan de beschrijvingen: wijkt een
-   beschrijving af van wat op de posts staat, dan winnen de posts.
+1. **Leesvolgorde**: BRAND-SUMMARY, dan design-system.md en huisstijl.json, dan
+   foundations/color en typography, dan applications/carrousels of reels (welke van
+   toepassing is), dan fotos.md, dan de echte voorbeelden in assets/templates. De voorbeelden
+   wegen zwaarder dan de beschrijvingen: wijkt een beschrijving of een template af van wat op
+   de posts staat, dan winnen de posts. Zeg dat dan tegen de gebruiker; pas huisstijl.json niet
+   zelf aan, want die komt uit deze skill.
 2. **Harde regels**: de stijlregels uit blok A, de kleuren met hexcode, de fonts, de
    logoregel, de veilige zone van de reelomslag. Alleen wat bevestigd is in stap 7. Zijn er
    texturen in `assets/templates/achtergronden`, dan ook, letterlijk: "Een gekleurd vlak is
-   altijd een van de texturen uit assets/templates/achtergronden (noem de bestandsnamen),
-   paginavullend als achtergrondafbeelding onder de tekst. Nooit een effen kleurvlak in de
-   hexcode." Zonder die regel leest Claude Design "korrelig vlak" en tekent het een effen
-   vlak. Leverde stap 3 de regel op dat tekst of vlakken de persoon nooit
-bedekken, neem dan letterlijk op: "Een tekstvlak of tekst bedekt nooit het gezicht of het
-lichaam van de persoon op de foto. Zet de tekst in de vrije ruimte van de foto, of in een
-smalle band zoals op de voorbeelden." Plus altijd deze vier, letterlijk: "Een kop is altijd een zin uit de aangeleverde tekst, als kop gemarkeerd. Niet elke slide heeft een kop; staat er geen kop in de aanlevering, zet er dan geen. Verzin nooit een kop en vat een slide nooit samen in een kop.", "Emoji's in de aangeleverde tekst worden letterlijk overgenomen, op dezelfde plek, ook als opsommingsteken. Nooit vervangen door een streepje, bolletje of icoon, nooit weglaten.", "Een opsomming staat altijd in zijn geheel op één slide; splits hem nooit over twee slides." en "Gebruik precies de foto's die de prompt per slide noemt. Kies alleen zelf een foto als ik daarom vraag, en dan nooit een die de prompt al ergens anders noemt."
+   altijd een van de texturen uit assets/templates/achtergronden (noem de bestandsnamen). Kies
+   voor zo'n slide een thema met die textuur als achtergrondafbeelding. Nooit een effen
+   kleurvlak in de hexcode." Leverde stap 3 de regel op dat tekst of vlakken de persoon nooit
+   bedekken, neem dan letterlijk op: "Een tekstvlak of tekst bedekt nooit het gezicht of het
+   lichaam van de persoon op de foto. Kies een foto waarvan de vrije ruimte (fotos.md, Vrij voor
+   tekst) past bij de vakken van het template." Plus altijd deze vier, letterlijk: "Een kop is
+   altijd een zin uit de aangeleverde tekst. Niet elke slide heeft een kop; staat er geen zin in
+   die zich ervoor leent, laat het kopvak dan leeg. Verzin nooit een kop en vat een slide nooit
+   samen in een kop.", "Emoji's in de aangeleverde tekst worden letterlijk overgenomen, op
+   dezelfde plek, ook als opsommingsteken. Nooit vervangen door een streepje, bolletje of icoon,
+   nooit weglaten.", "Een opsomming staat altijd in zijn geheel op één slide (template lijst);
+   splits hem nooit over twee slides." en "Een foto die de gebruiker zelf koos, blijft staan.
+   Vervang hem alleen als ze daarom vraagt."
 3. **Standaarden bij twijfel**: het standaardaantal slides, welke slide de cover is en welke
-   de CTA, de verhouding, of er een foto op de cover hoort, waar de reeltekst staat. Altijd
-   ook deze twee, met de waarden uit stap 3 ingevuld: "**Startlijn en witruimte.** Op alle
-   tussenslides begint de eerste regel (kop of tekst) op de startlijn, [deel] van boven, zodat
-   de tekst bij het swipen op dezelfde ooghoogte staat. Centreer de tekst nooit verticaal en
-   laat hem nooit lager beginnen. De lopende tekst heeft op alle tussenslides van een
-   carrousel dezelfde grootte, zoals op het voorbeeld; pas die nooit per slide aan. Tekst
-   staat [links uitgelijnd / gecentreerd], zoals op de voorbeelden. **Witregels:** precies één
-   witregel tussen twee gedachten, [na de kop] en [voor de accentzin], op elke slide op
-   dezelfde manier. Nooit twee witregels achter elkaar, nooit extra regelafstand, en nooit
-   tekst oprekken om een slide te vullen. Woorden veranderen nooit. Blijft er onderin ruimte
-   over, laat die dan staan; is het meer dan [grootste witruimte], zeg dan dat die slide te
-   weinig tekst heeft en met een andere samen kan. Is de tekst te lang voor het gebied tot
-   [onderrand], meld het en maak de letter niet kleiner. Cover en CTA mogen afwijken." en, alleen als stap 3 een grote vorm opleverde: "**Grote
-   vorm.** Een slide die de prompt als Grote vorm aanduidt, zet je in de grote vorm
-   zoals op [voorbeeldpost]: de hele tekst groter, in [het kopfont / de quotestijl]. Dat mag
-   op [een tussenslide en de CTA], hooguit [n] keer per carrousel en nooit twee slides achter
-   elkaar." Zonder grote vorm op de posts laat je die tweede regel weg en eindigt de eerste
-   zonder die verwijzing. Neem ook altijd de coverregel op, met de waarden uit stap 3:
-   "**Cover.** De kop staat op hooguit [twee] regels, ongeveer [deel] van de slidehoogte, zoals
-   op het voorbeeld. Staat hij in een band of vlak, dan blijft er rondom minstens [binnenmarge]
-   ruimte binnen dat vlak; tekst raakt nooit de rand. Past de kop niet op [twee] regels, maak
-   hem dan kleiner; maak de band niet voller en voeg geen regel toe." En deze: de accentmaat uit stap 3, als "Accent (markeerbalk,
-   accentkleur) op ongeveer [aandeel] van de slides, zoals op de echte posts; één per slide.
-   Per achtergrond: [op de primaire kleur: …; op de accentkleur: …; op zwart: …; op een foto:
-   …]. Gebruik nooit een kleurcombinatie voor een accent die niet op de voorbeelden staat."
-   (viel er niets te meten, dan "spaarzaam, op hooguit een derde van de slides"); "Een
-   reelomslag staat op de brandfoto die de prompt noemt, nooit op een effen vlak of textuur,
-   tenzij ik daarom vraag." (tenzij stap 5 een kleurvlak als standaard opleverde); "Tekst
-   nooit kleiner dan op de echte posts. De tekenlimieten zijn een richtlijn: tot tien tekens
-   erboven moet passen, in dezelfde lettergrootte en zonder overlap. Past het toch niet, meld
-   het dan en maak de letter niet kleiner."; en de afzenderregel: bij een vaste afzender
-   "Afzender: [variant] [boven/onder], vanaf slide 2, nooit op de cover.", bij een afzender die
-   wisselt "Afzender: wissel af tussen [de varianten letterlijk][, boven of onder][, of geen],
-   [per carrousel / per slide], zoals op de voorbeelden. Nooit op de cover." Sluit af met: "Krijg je een hele caption in plaats van tekst per slide, verdeel
-   hem dan volgens applications/carrousels.md, Verdeling van de tekst over de slides."
-4. **Wat niet van het merk is**: alleen als er schermafbeeldingen tussen de voorbeelden
+   de CTA, of er een foto op de cover hoort, waar de reeltekst staat, en het standaardthema.
+   Altijd ook deze, met de waarden uit stap 3 ingevuld: "**Startlijn en witruimte.** De
+   templates laten de tekst op alle tussenslides op de startlijn beginnen, [deel] van boven, in
+   dezelfde grootte. Vul een tussenslide daarom tot ongeveer de limiet. Blijft er onderin meer
+   ruimte over dan [grootste witruimte], voeg die slide dan samen met een andere. Precies één
+   witregel tussen twee gedachten, [na de kop] en [voor de accentzin], op elke slide op dezelfde
+   manier. Nooit twee witregels achter elkaar, en nooit witregels om een slide te vullen. Woorden
+   veranderen nooit. Is een tekst te lang voor zijn vak, meld het; de letter wordt niet kleiner.
+   Cover en CTA mogen afwijken." en, alleen als stap 3 een grote vorm opleverde: "**Grote
+   vorm.** Een korte zin die niet bij een blok ervoor of erna past, krijgt het template
+   [quote / statement], zoals op [voorbeeldpost]. Dat mag op [een tussenslide en de CTA],
+   hooguit [n] keer per carrousel en nooit twee slides achter elkaar." Zonder grote vorm op de
+   posts laat je die tweede regel weg. Neem ook altijd de coverregel op, met de waarden uit
+   stap 3: "**Cover.** De kop is de eerste regel van de caption, letterlijk, op hooguit [twee]
+   regels. Past hij niet in het kopvak van de cover, meld het dan; de gebruiker maakt hem in de
+   studio kleiner." En deze: de accentmaat uit stap 3, als "Accent (markeerbalk, accentkleur)
+   op ongeveer [aandeel] van de slides, zoals op de echte posts; één per slide. Welke kleur het
+   accent op welke achtergrond krijgt, staat per thema in huisstijl.json: [op de primaire kleur:
+   …; op de accentkleur: …; op zwart: …; op een foto: …]. Gebruik nooit een kleurcombinatie die
+   niet in een thema staat." (viel er niets te meten, dan "spaarzaam, op hooguit een derde van
+   de slides"); "Een reelomslag staat op een brandfoto, nooit op een effen vlak of textuur,
+   tenzij de gebruiker daarom vraagt." (tenzij stap 5 een kleurvlak als standaard opleverde);
+   "De tekenlimieten zijn een richtlijn: tot tien tekens erboven past, in dezelfde lettergrootte
+   en zonder overlap."; en de afzenderregel: bij een vaste afzender "Afzender: [variant]
+   [boven/onder], vanaf slide 2, nooit op de cover.", bij een afzender die wisselt "Afzender:
+   wissel af tussen [de varianten letterlijk][, boven of onder][, of geen], [per carrousel / per
+   slide], zoals op de voorbeelden. Nooit op de cover." Sluit af met: "Een caption verdeel je
+   over de slides volgens applications/carrousels.md, Verdeling van de tekst over de slides."
+4. **Afwisseling**: per element uit stap 3 dat afwisselt en geen kleurthema of logo is, één
+   regel: "[element]: [variant] / [variant] / ...". Daaronder: "Wissel hiertussen zoals op de
+   voorbeelden. Alleen deze varianten; verzin er geen bij." Wisselt er verder niets, dan laat je
+   dit onderdeel weg en hernummer je.
+5. **Wat niet van het merk is**: alleen als er schermafbeeldingen tussen de voorbeelden
    zitten. Benoem letterlijk welke elementen op die beelden van Instagram zijn (de teller
    rechtsboven, het geluidsicoon rechtsonder, een telefoonscherm linksonder, balken boven of
-   onder) en dat die nooit in een design komen. Zonder deze regel bouwt Claude Design ze na
-   als onderdeel van de stijl.
-5. **Weergave en export**: altijd opnemen, letterlijk zo:
-   - De pagina om de slides heen (het werkblad, de titel, de toelichting) is neutraal:
-     lichtgrijs of de standaardachtergrond van Claude Design, met neutrale donkergrijze tekst.
-     Geen huisstijlkleuren en geen koppen in de accentkleur. De kleur-, font- en
-     achtergrondregels gelden alleen binnen de slides. (Zonder deze regel past Claude Design
-     de kleurregels ook op het werkblad toe en wordt de hele pagina huisstijlkleur.)
-   - Carrousels altijd naast elkaar van links naar rechts in één horizontale rij, zoals je op
-     Instagram swipet, met kleine ruimte ertussen en het slidenummer eronder. Standaard zo
-     geschaald dat alle slides in het venster passen, zonder scrollbalk. Bovenaan knoppen om
-     in te zoomen, uit te zoomen en terug te gaan naar passend (ook met Ctrl en het
-     scrollwiel). Dit is alleen de weergave; het formaat van de slides verandert niet.
-   - Een keuzepaneel met uitklapmenu's, waarmee ik zonder nieuwe prompt per carrousel wissel
-     tussen de varianten die op mijn posts voorkomen: [per element uit stap 3 dat afwisselt
-     één regel: "[element]: [variant] / [variant] / ..."]. Een keuze geldt voor alle slides
-     van de carrousel, tenzij ik hem per slide wijzig. Alleen deze varianten; verzin er geen
-     bij. Het paneel staat naast de slides en gaat niet mee in een export.
-   - Het design heet precies zoals de regel `Naam:` in de prompt, met een gewoon streepje:
-     `Carrousel - [eerste zin van de caption]` of `Reelomslag - [eerste regel van de
-     caption]`. Staat er geen regel `Naam:`, maak de naam dan zelf zo. Die naam wordt de
-     titel van het design, van het Canva-ontwerp en van het exportbestand.
-   - Binnen een carrousel heet elke slide slide-01, slide-02, enzovoort, in de volgorde van
-     de carrousel. Nooit de kop of de tekst als slidenaam.
-   - Reelomslagen los tonen.
-   - Bij "exporteer als png": elke slide als losse PNG op ware grootte (carrousel 1080 x 1350
-     px, reelomslag 1080 x 1920 px). Een carrousel wordt `[Naam].zip` met daarin slide-01.png,
-     slide-02.png enzovoort; een reelomslag wordt `[Naam].png`. Laat in bestandsnamen de
-     tekens ? : " / \ * < > | weg, want die mogen niet in een bestandsnaam. Geen PDF of
-     PowerPoint, tenzij daar zelf om gevraagd wordt.
-   - Bij "exporteer naar Canva": als bewerkbaar ontwerp met de naam uit `Naam:` (daar mogen
-     alle tekens in), één pagina per slide op ware grootte, zonder de weergave eromheen. Tekst
-     blijft echte tekst in losse tekstlagen, met de fontnaam precies zoals in het fontbestand;
-     achtergrond en foto worden losse afbeeldingen. Nooit één platte afbeelding.[ Staat een
-     font niet op Google Fonts, voeg toe: "[font] zit niet standaard in Canva. Zeg bij een
-     export naar Canva dat ik het daar moet uploaden, anders vervangt Canva het."]
-6. **Controle voor oplevering**: deze vragen. Past elke tekst binnen zijn limiet? Is het
-   coverkop even groot als op het voorbeeld, op hooguit [twee] regels, met ruimte rondom binnen
-   de band? Staat de reeltekst binnen de veilige zone? Staan
-   alleen de kleuren uit color.md erin? Is het logo onveranderd? Lijkt het op de echte posts
-   in assets/templates? Staat er niets op dat van Instagram is? Staan de slides naast elkaar
-   van links naar rechts, passend in het venster, met zoomknoppen? Staat het keuzepaneel
-   ernaast met de varianten uit mijn posts? Begint de tekst op elke tussenslide op de startlijn, zonder
-   verticaal te centreren? Is de lopende tekst op alle tussenslides even groot? Staat er
-   tussen twee gedachten overal precies één witregel, en nergens twee of extra regelafstand? Staat elke
-   zin en elke emoji uit de aangeleverde tekst erin, en staat elke foto die de prompt noemt op
-   de genoemde slide? Is de tekst even groot als op het voorbeeld van dat layouttype? Bedekt
-   geen tekst of vlak het gezicht of lichaam van de persoon? Staat elke opsomming heel op één
-   slide? Heet het design zoals de regel `Naam:`?
-   Is de pagina om de slides heen neutraal, en is elk gekleurd vlak een textuur uit
-   assets/templates/achtergronden (als die map er is)? Is het herkenbaar als de posts in
-   assets/templates, ook waar je speelruimte gebruikte, en heb je in één zin gezegd wat je zelf
-   toevoegde of wegliet? [Alleen met de varianten met kop en ondertitel:] Heeft in die varianten
-   elke tussenslide een kop en een ondertitel, en is een foto zo verdonkerd dat de tekst goed
-   leesbaar is? Sluit af met: "Deze controle doe je stil. Je meldt hem niet."
-7. **Na het maken: kort antwoorden**: altijd opnemen, letterlijk zo (met in de laatste regel
-   de exportroute naar Canva zoals die in Claude Design heet):
-
-   > Ik lees al veel tekst. Antwoord na het maken met hooguit vier korte regels, in deze vorm:
-   >
-   > ```
-   > Klaar: [naam van het design].
-   > [Alleen als een controle uit hoofdstuk 6 niet lukte: één regel per punt, met het slidenummer.]
-   > [Alleen als je zelf iets toevoegde of wegliet: één zin.]
-   > Naar Canva: Delen › Exporteren › Versturen naar › Canva.
-   > ```
-   >
-   > Geen lijst van wat je controleerde, geen maten in pixels, geen uitleg over je keuzes, geen
-   > opmerkingen over bestanden die je las of niet bijwerkte.
-
-   (Zonder deze regel meldt Claude Design elke controle met maten en elke keuze met uitleg: een
-   lap tekst die niemand leest.)
+   onder) en dat die nooit in een design komen. Zonder deze regel ziet Daan ze aan voor een
+   onderdeel van de stijl.
+6. **Controle voor het voorstel**: deze vragen. Past elke tekst binnen het maxTekens van zijn
+   vak? Staat elke zin en elke emoji uit de caption erin, letterlijk en in dezelfde volgorde? Is
+   de cover de eerste regel van de caption en de CTA de laatste oproep of vraag? Staat elke
+   opsomming heel op één slide? Ligt het aantal slides tussen het minimum en het maximum? Komen
+   alleen templates en thema's uit huisstijl.json voor? Past de vrije ruimte van elke gekozen
+   foto bij de vakken van het template, zodat geen vak het gezicht of lichaam bedekt? Is een
+   tussenslide niet leger dan de grootste witruimte toelaat? [Alleen met de varianten met kop en
+   ondertitel:] Heeft in die varianten elke tussenslide een kop en een ondertitel? Sluit af
+   met: "Deze controle doe je stil. Je meldt alleen wat niet lukte, met het slidenummer."
 
 **`fotos.md`**: de fotobibliotheek. Daan (`cs-design`) kiest hieruit per post de foto's, op
-onderwerp en op de ruimte die de tekst nodig heeft; Claude Design leest erin wat er op een
-foto staat. Bekijk elke foto en schrijf per foto één blok, in dit format:
+onderwerp en op de ruimte die de tekst nodig heeft. Bekijk elke foto en schrijf per foto één
+blok, in dit format:
 
 ```
 # Fotobibliotheek
@@ -774,11 +770,10 @@ Persoon: [links / midden / rechts], [van top tot teen / tot het middel / alleen 
 Vrij voor tekst: [boven / onder / links / rechts / geen]
 Staand of liggend: [staand / liggend]
 Past bij: [de pillars of onderwerpen waar hij bij past, uit SAMENVATTING.md of de Content Pillars]
-Canva-id: [leeg laten; Daan vult hem in als de foto in Canva staat]
 ```
 
-Staat er in een bestaande `fotos.md` al een regel `Canva-id:` met een waarde, neem die dan
-over bij een nieuwe bouw.
+Een `fotos.md` van een oudere versie kan per foto nog een regel hebben die hierboven niet meer
+staat. In een bestaand bestand mag die blijven staan; bij een nieuwe bouw schrijf je hem niet.
 
 Wees concreet: Daan kiest hierop, en "mooie foto" helpt hem niet. Een foto zonder
 vrije ruimte voor tekst is alleen bruikbaar voor een tussenslide met een vlak.
@@ -796,14 +791,14 @@ geschat).
 staat, en per layouttype de grootte zoals die op de posts staat (geschat in verhouding tot
 de slide: "cover ongeveer een tiende van de slidehoogte"), uit de compositiemeting van stap 3.
 Staat een font niet op Google Fonts, zeg dat hier en verwijs naar
-`assets/templates/lettertypes/`; zeg er dan ook bij dat Canva dat font niet kent en het bij
-een export vervangt, tenzij de gebruiker het in Canva heeft geüpload.
+`assets/templates/lettertypes/`; zeg er dan ook bij dat Daan het als asset in de Content
+Studio zet (in `huisstijl.json` met `"bron": "bestand"`), zodat de studio het kan tonen.
 
 **`foundations/imagery.md`**: wat er op de brandfoto's staat (persoon, omgeving, licht,
 kleurtoon), hoe ze op de slides en omslagen gebruikt worden (alleen cover, met of zonder
 overlay), en wat er nooit in komt. Alleen wat je in `brandfotos/` en op de posts ziet.
-Plus de regel: welke foto op welke slide komt, staat in de prompt; `fotos.md` beschrijft
-elke foto. Uploadt de gebruiker zelf een foto bij een prompt, dan gebruikt Claude Design die.
+Plus de regel: welke foto op welke slide komt, kiest Daan in zijn voorstel; `fotos.md`
+beschrijft elke foto. Kiest de gebruiker in de Design Studio zelf een foto, dan gaat die voor.
 
 **`foundations/voice.md`**: geen kopie van Tone of Voice. Vijf tot tien regels: aanspreekvorm,
 de verboden woorden volledig, twee signature-uitdrukkingen, en de zin dat de tekst altijd uit
@@ -834,10 +829,12 @@ slidebreedte als er niets anders blijkt), en de lijst wat nooit mag: vervormen, 
 draaien, een effect eroverheen, iets toevoegen dat er niet in zit.
 
 **`applications/carrousels.md`**: het hart van de map. Per layouttype (cover, tekstslide,
-quote, opsomming, CTA, en eigen types uit stap 3) wat erop staat, de compositie uit stap 3
+quote, opsomming, stap, CTA, en eigen types uit stap 3) wat erop staat, de compositie uit stap 3
 (tekstgrootte, plek en omvang van het tekstblok, vlak of niet, waar de persoon staat), de
 tekenlimiet, en **het voorbeeld**: het pad van de echte slide in `assets/templates/` die het
-het best laat zien, met de zin "Bouw dit type op dit voorbeeld." Daarna een sectie
+het best laat zien, met de zin "Het template [id] in huisstijl.json is op dit voorbeeld
+gemeten." Heeft een type geen voorbeeld, schrijf dan: "Hiervan staat nog geen slide in je
+posts. Het template [id] is een standaard in jouw fonts, kleuren en marges." Daarna een sectie
 **Startlijn en witruimte** met de regel uit CLAUDE.md, de gemeten waarden, en per
 plek voor een witregel (tussen gedachten, na de kop, voor de accentzin) en voor de grote vorm een verwijzing naar een echte slide waar
 je het ziet. Daarna: het
@@ -849,7 +846,8 @@ met de limieten en het minimum en maximum van de gebruiker ingevuld:
 ```
 ## Verdeling van de tekst over de slides
 
-Komt de tekst niet kant-en-klaar per slide uit Daan, verdeel hem dan zo:
+Zo verdeelt Daan een caption over de slides, in zijn voorstel en bij Vraag Daan in de Design
+Studio. Elke slide krijgt een template uit huisstijl.json (tussen haakjes hieronder).
 
 - **Eerst blokken, dan slides.** Deel de tekst eerst in blokken op betekenis: een opsomming
   (twee of meer regels achter elkaar die met hetzelfde teken of dezelfde aanhef beginnen), een
@@ -860,17 +858,21 @@ Komt de tekst niet kant-en-klaar per slide uit Daan, verdeel hem dan zo:
   niet meer bij past. Liever minder, vollere slides dan veel lege.
 - **Aantal slides:** volgt uit het vullen, binnen het minimum en maximum. Het maximum is hard:
   kom je erboven, meld dat dan; laat nooit stil tekst weg.
-- **Cover:** de eerste regel van de caption, letterlijk.
-- **CTA:** de laatste oproep of vraag uit de caption, letterlijk.
-- **Statement:** één korte, stellige zin die het omslagpunt van het verhaal is (een conclusie,
-  een one-liner), binnen de quote-limiet. Hooguit één per carrousel, niet op slide 2.
+- **Cover (cover):** de eerste regel van de caption, letterlijk.
+- **CTA (cta):** de laatste oproep of vraag uit de caption, letterlijk.
+- **Statement (quote):** één korte, stellige zin die het omslagpunt van het verhaal is (een
+  conclusie, een one-liner), binnen de quote-limiet. Hooguit één per carrousel, niet op slide 2.
 - **Weinig tekst:** een korte zin die niet bij een blok ervoor of erna past, of een korte CTA,
   krijgt de grote vorm uit CLAUDE.md (als die er is).
-- **Opsomming:** twee of meer opeenvolgende regels met hetzelfde teken ervoor (emoji, puntje,
-  streepje, cijfer) of dezelfde aanhef worden één opsommingsslide, met de tekens erbij. Is de
-  slide te vol, dan gaat de andere tekst naar een extra slide, nooit een deel van de
-  opsomming.
-- **Tekstslides:** de rest, in de volgorde van de caption. Evenveel tekst per slide telt alleen
+- **Opsomming (lijst):** twee of meer opeenvolgende regels met hetzelfde teken ervoor (emoji,
+  puntje, streepje, cijfer) of dezelfde aanhef worden één opsommingsslide, met de tekens erbij,
+  één regel per punt. Is de slide te vol, dan gaat de andere tekst naar een extra slide, nooit
+  een deel van de opsomming.
+- **Stappen (stap):** twee of meer genummerde stappen die elk een eigen uitleg van een of meer
+  zinnen hebben. Elke stap krijgt een eigen slide: het nummer in het nummervak, de eerste zin
+  als kop als die zich ervoor leent, de uitleg als tekst. Zijn de stappen maar één regel
+  lang, dan is het een opsomming.
+- **Tekstslides (tekst):** de rest, in de volgorde van de caption. Evenveel tekst per slide telt alleen
   als twee indelingen allebei de blokken heel laten. Een kop alleen als een zin uit die tekst zich ervoor leent,
   letterlijk; anders geen kop. Nooit een kop verzinnen.
 - **Nadruk:** één kernwoord of kernzin gemarkeerd op het deel van de slides dat de accentmaat
@@ -885,7 +887,7 @@ posts komt:
 
 - **[Primaire kleur] effen, kop en ondertitel:** alle tussenslides en de CTA op een effen vlak in
   de primaire kleur, zonder textuur. De cover is effen, een brandfoto of een foto die de
-  gebruiker aanlevert; de prompt zegt welke.
+  gebruiker zelf kiest; Daan stelt er een voor.
 - **Verdonkerde foto, kop en ondertitel:** één foto (een brandfoto of een foto die de gebruiker
   aanlevert) op alle slides, paginavullend en verdonkerd, ook op de cover en de CTA. Witte tekst
   in de vrije ruimte; het gezicht blijft vrij.
@@ -907,11 +909,17 @@ ook dan komen beide letterlijk uit de aanlevering." Voeg in de sectie Verdeling 
 over de slides deze regel toe: "In de varianten met kop en ondertitel is elke tussenslide een
 kopslide: een korte zin als kop en een zin als ondertitel, allebei letterlijk uit de caption."
 
-Sluit af met: "De tekst per slide komt kant-en-klaar uit Daan. Neem hem letterlijk
-over, herschrijf niets."
+Zet de varianten ook in `huisstijl.json`, na de zeven vaste templates: een template `kopslide`
+(vakken `kop` en `ondertitel`, met de maten hierboven, en de afzender zoals op het template
+tekst), een template `kopslide-foto` (hetzelfde, met daaronder een fotovak over de hele slide
+en een vlak over de hele slide in de kleur `achtergrond` met dekking 0,6), en een thema
+`effen` (achtergrond de primaire kleur, `achtergrondafbeelding` null).
+
+Sluit af met: "Daan neemt de tekst letterlijk uit de caption over en herschrijft niets."
 
 **`applications/reels.md`**: de reelomslag. Formaat 1080 x 1920, de veilige zone met maten,
-waar de tekst staat, de limiet, de standaard uit stap 5 (op de brandfoto die de prompt noemt),
+waar de tekst staat, de limiet, de standaard uit stap 5 (op een brandfoto die Daan kiest), het
+template `reelomslag` in huisstijl.json,
 de regel dat tekst de persoon niet bedekt, en hoe de omslag zich verhoudt tot de
 cover van een carrousel (zelfde haakje, ander formaat). Verwijs naar de echte omslagen in
 `assets/templates/reelomslagen/`. Sluit af met dezelfde zin over Daan.
@@ -923,10 +931,196 @@ README.md.
 **`assets/templates/README.md`**: opent met de zin "Dit zijn de echte posts van [naam], geen
 nabouwsels. Maak je een nieuw design, open dan het voorbeeld dat er het dichtst bij ligt en
 bouw daarop voort. Teken de look niet vanaf nul na." Daaronder per submap een regel wat erin
-zit, en per carrousel één regel welk layouttype op welke slide staat, zodat Claude Design
-weet welk voorbeeld hij pakt. Zijn er schermafbeeldingen bij, zet dan per carrousel welke
+zit, en per carrousel één regel welk layouttype op welke slide staat, zodat Daan weet welk
+voorbeeld hij pakt. Zijn er schermafbeeldingen bij, zet dan per carrousel welke
 elementen erop van Instagram zijn (teller, geluidsicoon, telefoonscherm, balken) en de zin:
 "Die horen niet bij het design. Neem ze nooit over."
+
+### huisstijl.json
+
+`huisstijl.json` is de huisstijl in een vorm die de Design Studio leest. Daan zet hem in
+Cowork in de database van de studio. Het formaat staat in `references/huisstijl-formaat.md`;
+volg dat precies: de veldnamen, de rollen, en de zeven template-id's in die volgorde. Alles in
+dit bestand komt uit wat je in stap 3 tot 6 mat en wat de gebruiker in stap 7 bevestigde. Elke
+kleur, elk font en elk bestand dat erin staat, staat ook in de rest van de map.
+
+Maten: `x` en `b` zijn een deel van de slidebreedte, `y` en `h` een deel van de slidehoogte, en
+`grootte` (de lettergrootte) een deel van de slidebreedte. Rond af op twee decimalen, de
+lettergrootte op drie.
+
+- **versie** 1, **bijgewerkt** vandaag (jjjj-mm-dd), **naam** de bedrijfsnaam uit
+  SAMENVATTING.md, **afzender** de afzender uit stap 3. Wisselt die, neem dan de variant die
+  het vaakst voorkomt; de andere staan in CLAUDE.md.
+- **kleuren:** elke kleur uit de reconciliatie, met de naam uit stap 7. `id` is die naam in
+  kleine letters, zonder accenten, met koppeltekens voor spaties ("Licht zand" wordt
+  `licht-zand`). `hex` als `#rrggbb` in kleine letters. Dezelfde kleuren als in
+  design-system.md en tokens.json, niet meer en niet minder.
+- **fonts:** `kop` en `tekst` uit stap 6, en `accent` voor het derde font (handschrift of
+  script). Is er geen derde font, neem bij `accent` dan hetzelfde als bij `kop`. `gewicht` als
+  getal (400 gewoon, 700 vet). Staat het font op Google Fonts (stap 6), dan
+  `"bron": "google"`; anders `"bron": "bestand"`, met bij `bestand` het pad van het
+  gekopieerde fontbestand in `assets/templates/lettertypes/`.
+- **logos:** elke variant in `logo/` (na het kopiëren), één regel per bestand: `id` is `logo-`
+  plus de variant (`logo-wit`, `logo-zwart`, `logo-donker`, `logo-kleur`), `naam` zoals "Logo
+  wit", `bestand` als `logo/<bestandsnaam>`. De variant zie je aan het bestand zelf: wit is voor
+  een donkere achtergrond, zwart en donker voor een lichte. Alleen varianten die er zijn. Geen
+  logo: een lege lijst.
+- **achtergronden:** elk bestand in `assets/templates/achtergronden/`, met als `id` de
+  bestandsnaam zonder extensie, een `naam` die zegt wat het is ("Groene textuur") en bij
+  `bestand` het pad. Geen texturen: een lege lijst.
+- **themas:** uit de kleurcombinaties van stap 3. Minstens twee: `donker` (de combinatie op
+  een donkere achtergrond die het vaakst voorkomt) en `licht` (hetzelfde op een lichte
+  achtergrond). Elke andere combinatie die op minstens twee posts staat, wordt een eigen thema,
+  met als id de naam van de achtergrondkleur. Per thema de kleur-id voor `achtergrond`, `kop`,
+  `tekst` en `accent`. Het accent volgt de regel per achtergrond uit stap 3: op een achtergrond
+  in de accentkleur krijgt het accent een andere kleur. Ligt er een textuur onder, dan is
+  `achtergrondafbeelding` de id van die achtergrond, anders `null`. Heeft het merk alleen
+  donkere of alleen lichte posts, leid het andere thema dan af door om te draaien: als
+  achtergrond de lichtste merkkleur en voor kop en tekst de donkerste (of andersom), het accent
+  gelijk. Zeg in stap 7 dat dat thema afgeleid is. `standaardThema` is het thema dat op de
+  meeste tussenslides staat.
+- **limieten:** uit stap 4, met dezelfde getallen als in design-system.md: `cover` (Cover),
+  `tekst` (Tekstslide tekst), `kop` (Tekstslide kop), `quote` (Quote), `lijst` als tekst
+  `"[regels]x[tekens]"` (Opsomming), `cta` (CTA actie) en `reelomslag` (Reelomslag).
+- **templates:** per layouttype één template, gemeten op het voorbeeld uit stap 3.
+  - **Vakken** zijn de tekstblokken, de foto en het logo uit de vakkenmeting van stap 3, elk
+    met een `rol` (`kop`, `ondertitel`, `tekst`, `quote`, `naam`, `lijst`, `nummer`, `actie`,
+    `afzender`, `foto`, `logo`) en een `id` (meestal gelijk aan de rol).
+  - Een tekstvak krijgt `font` (`kop`, `tekst` of `accent`), `grootte`, `kleur`, `uitlijning`,
+    `hoofdletters` en `maxTekens`. De **grootte** reken je uit de hoofdletter op het
+    voorbeeld, in pixels: grootte = hoofdletterhoogte ÷ breedte van het beeld ÷ 0,7 (bij de
+    meeste fonts is een hoofdletter ongeveer 0,7 van de lettergrootte). Een hoofdletter van
+    34 px op een beeld van 1080 px breed geeft 34 ÷ 1080 ÷ 0,7 = 0,045.
+  - **kleur** is een rol (`achtergrond`, `kop`, `tekst` of `accent`), zodat de slide
+    meeverandert met het thema. Een vaste kleur-id alleen als het merk dat element in elk thema
+    dezelfde kleur geeft (bijvoorbeeld een oranje nummer, ook op groen en op zand).
+  - **Startlijn en witruimte** zitten in de vakken. Op `tekst`, `lijst` en `stap` begint het
+    bovenste tekstvak op de startlijn (`y`) en loopt het onderste tot de onderrand
+    (`y + h`). Is er een kop, dan begint het tekstvak één witregel onder het kopvak. Alle
+    templates voor tussenslides hebben dezelfde `x`, `b` en lettergrootte voor de lopende
+    tekst, zoals op haar posts.
+  - **maxTekens** is de limiet uit stap 4 voor die rol (kop, tekst, quote, actie). Bij een
+    lijstvak is het het aantal regels maal de tekens per regel, bij een nummer 2, bij een
+    scriptregel de scriptlimiet, en bij de afzender de lengte van de langste variant.
+  - Een fotovak krijgt `uitsnede`: `vullen` (de foto vult het vak) of `passen` (de hele foto
+    zichtbaar). Een logovak krijgt `logo`: de id van de variant die op dat template staat, in
+    het standaardthema.
+  - **Vlakken** zijn de gekleurde vlakken achter de tekst uit stap 3 (een band, een kader),
+    met `kleur` (een rol of kleur-id) en `dekking` (1 is dicht). Is het vlak op de posts een
+    textuur, geef het dan de kleur van die textuur.
+  - **Reelomslag** (`formaat` `reel`): alle tekstvakken binnen de veilige zone, dus `y`
+    minstens 0,13, `y + h` hoogstens 0,87 en `x + b` hoogstens 0,86.
+  - Volgorde: `cover`, `tekst`, `quote`, `lijst`, `stap`, `cta`, `reelomslag`. Daarna eigen
+    types uit stap 3 (bijvoorbeeld `statement` voor de grote vorm) en de kopslide-varianten.
+
+**Komt een type niet in het materiaal voor** (bij `stap` meestal), maak dan een
+standaardtemplate. Neem `x`, `b`, de startlijn, de onderrand, de fonts, de groottes en de
+afzender over van het template `tekst`, zet de vakken zoals bij dat type in het voorbeeld
+hieronder, en neem de startwaarde uit stap 4 als `maxTekens`. Is er geen enkele tekstslide
+gemeten (geen carrousels), neem dan de maten uit het voorbeeld, met haar fonts en kleuren. Noem
+elk standaardtemplate in stap 7, in de README van de map en in de slotmelding.
+
+Voorbeeld: een merk met een groene textuur, een licht thema en een oranje thema. Het template
+`stap` is hier een standaard, met de maten van `tekst`.
+
+```json
+{
+  "versie": 1,
+  "naam": "Studio Voorbeeld",
+  "bijgewerkt": "2026-11-17",
+  "afzender": "@studiovoorbeeld",
+  "kleuren": [
+    {"id": "donkergroen", "naam": "Donkergroen", "hex": "#1f3f36"},
+    {"id": "oranje", "naam": "Oranje", "hex": "#ff6b00"},
+    {"id": "zand", "naam": "Zand", "hex": "#f4ede2"},
+    {"id": "wit", "naam": "Wit", "hex": "#ffffff"}
+  ],
+  "fonts": {
+    "kop":    {"familie": "Rajdhani", "gewicht": 700, "bron": "google"},
+    "tekst":  {"familie": "Arimo", "gewicht": 400, "bron": "google"},
+    "accent": {"familie": "Biro Script Plus", "gewicht": 400, "bron": "bestand", "bestand": "assets/templates/lettertypes/BiroScriptPlus.ttf"}
+  },
+  "logos": [
+    {"id": "logo-wit", "naam": "Logo wit", "bestand": "logo/logo-wit.png"},
+    {"id": "logo-donker", "naam": "Logo donkergroen", "bestand": "logo/logo-donkergroen.png"}
+  ],
+  "achtergronden": [
+    {"id": "achtergrond-groen-1", "naam": "Groene textuur", "bestand": "assets/templates/achtergronden/achtergrond-groen-1.png"}
+  ],
+  "themas": [
+    {"id": "donker", "naam": "Donker", "achtergrond": "donkergroen", "kop": "wit", "tekst": "wit", "accent": "oranje", "achtergrondafbeelding": "achtergrond-groen-1"},
+    {"id": "licht", "naam": "Licht", "achtergrond": "zand", "kop": "donkergroen", "tekst": "donkergroen", "accent": "oranje", "achtergrondafbeelding": null},
+    {"id": "oranje", "naam": "Oranje", "achtergrond": "oranje", "kop": "wit", "tekst": "wit", "accent": "donkergroen", "achtergrondafbeelding": null}
+  ],
+  "standaardThema": "donker",
+  "limieten": {"cover": 50, "tekst": 120, "kop": 35, "quote": 90, "lijst": "4x30", "cta": 50, "reelomslag": 40},
+  "templates": [
+    {
+      "id": "cover", "naam": "Cover", "formaat": "carrousel",
+      "vlakken": [{"x": 0, "y": 0.6, "b": 1, "h": 0.4, "kleur": "achtergrond", "dekking": 0.9}],
+      "vakken": [
+        {"id": "foto", "rol": "foto", "x": 0, "y": 0, "b": 1, "h": 1, "uitsnede": "vullen"},
+        {"id": "kop", "rol": "kop", "x": 0.08, "y": 0.66, "b": 0.84, "h": 0.22, "font": "kop", "grootte": 0.075, "kleur": "kop", "uitlijning": "links", "hoofdletters": true, "maxTekens": 50},
+        {"id": "afzender", "rol": "afzender", "x": 0.08, "y": 0.92, "b": 0.5, "h": 0.04, "font": "tekst", "grootte": 0.028, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 30}
+      ]
+    },
+    {
+      "id": "tekst", "naam": "Tekstslide", "formaat": "carrousel",
+      "vlakken": [],
+      "vakken": [
+        {"id": "kop", "rol": "kop", "x": 0.08, "y": 0.25, "b": 0.84, "h": 0.12, "font": "kop", "grootte": 0.06, "kleur": "kop", "uitlijning": "links", "hoofdletters": false, "maxTekens": 35},
+        {"id": "tekst", "rol": "tekst", "x": 0.08, "y": 0.39, "b": 0.84, "h": 0.46, "font": "tekst", "grootte": 0.04, "kleur": "tekst", "uitlijning": "links", "hoofdletters": false, "maxTekens": 120},
+        {"id": "afzender", "rol": "afzender", "x": 0.08, "y": 0.92, "b": 0.5, "h": 0.04, "font": "tekst", "grootte": 0.028, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 30}
+      ]
+    },
+    {
+      "id": "quote", "naam": "Quote", "formaat": "carrousel",
+      "vlakken": [],
+      "vakken": [
+        {"id": "quote", "rol": "quote", "x": 0.1, "y": 0.25, "b": 0.8, "h": 0.38, "font": "kop", "grootte": 0.07, "kleur": "kop", "uitlijning": "midden", "hoofdletters": false, "maxTekens": 90},
+        {"id": "naam", "rol": "naam", "x": 0.1, "y": 0.66, "b": 0.8, "h": 0.05, "font": "accent", "grootte": 0.045, "kleur": "accent", "uitlijning": "midden", "hoofdletters": false, "maxTekens": 30},
+        {"id": "afzender", "rol": "afzender", "x": 0.08, "y": 0.92, "b": 0.5, "h": 0.04, "font": "tekst", "grootte": 0.028, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 30}
+      ]
+    },
+    {
+      "id": "lijst", "naam": "Lijst", "formaat": "carrousel",
+      "vlakken": [],
+      "vakken": [
+        {"id": "kop", "rol": "kop", "x": 0.08, "y": 0.25, "b": 0.84, "h": 0.12, "font": "kop", "grootte": 0.06, "kleur": "kop", "uitlijning": "links", "hoofdletters": false, "maxTekens": 35},
+        {"id": "lijst", "rol": "lijst", "x": 0.08, "y": 0.39, "b": 0.84, "h": 0.46, "font": "tekst", "grootte": 0.042, "kleur": "tekst", "uitlijning": "links", "hoofdletters": false, "maxTekens": 120},
+        {"id": "afzender", "rol": "afzender", "x": 0.08, "y": 0.92, "b": 0.5, "h": 0.04, "font": "tekst", "grootte": 0.028, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 30}
+      ]
+    },
+    {
+      "id": "stap", "naam": "Stap", "formaat": "carrousel",
+      "vlakken": [],
+      "vakken": [
+        {"id": "nummer", "rol": "nummer", "x": 0.08, "y": 0.13, "b": 0.3, "h": 0.11, "font": "kop", "grootte": 0.14, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 2},
+        {"id": "kop", "rol": "kop", "x": 0.08, "y": 0.25, "b": 0.84, "h": 0.12, "font": "kop", "grootte": 0.06, "kleur": "kop", "uitlijning": "links", "hoofdletters": false, "maxTekens": 35},
+        {"id": "tekst", "rol": "tekst", "x": 0.08, "y": 0.39, "b": 0.84, "h": 0.46, "font": "tekst", "grootte": 0.04, "kleur": "tekst", "uitlijning": "links", "hoofdletters": false, "maxTekens": 120},
+        {"id": "afzender", "rol": "afzender", "x": 0.08, "y": 0.92, "b": 0.5, "h": 0.04, "font": "tekst", "grootte": 0.028, "kleur": "accent", "uitlijning": "links", "hoofdletters": false, "maxTekens": 30}
+      ]
+    },
+    {
+      "id": "cta", "naam": "CTA", "formaat": "carrousel",
+      "vlakken": [],
+      "vakken": [
+        {"id": "kop", "rol": "kop", "x": 0.1, "y": 0.3, "b": 0.8, "h": 0.15, "font": "kop", "grootte": 0.07, "kleur": "kop", "uitlijning": "midden", "hoofdletters": false, "maxTekens": 35},
+        {"id": "actie", "rol": "actie", "x": 0.1, "y": 0.48, "b": 0.8, "h": 0.1, "font": "tekst", "grootte": 0.045, "kleur": "accent", "uitlijning": "midden", "hoofdletters": false, "maxTekens": 50},
+        {"id": "logo", "rol": "logo", "x": 0.4, "y": 0.8, "b": 0.2, "h": 0.08, "logo": "logo-wit"}
+      ]
+    },
+    {
+      "id": "reelomslag", "naam": "Reelomslag", "formaat": "reel",
+      "vlakken": [{"x": 0.06, "y": 0.4, "b": 0.78, "h": 0.17, "kleur": "achtergrond", "dekking": 0.85}],
+      "vakken": [
+        {"id": "foto", "rol": "foto", "x": 0, "y": 0, "b": 1, "h": 1, "uitsnede": "vullen"},
+        {"id": "kop", "rol": "kop", "x": 0.1, "y": 0.42, "b": 0.7, "h": 0.13, "font": "kop", "grootte": 0.08, "kleur": "kop", "uitlijning": "links", "hoofdletters": true, "maxTekens": 40}
+      ]
+    }
+  ]
+}
+```
 
 ### Kopiëren
 
@@ -963,8 +1157,9 @@ Uit `Business Brand Guidelines/`:
   `assets/templates/lettertypes/`.
 - `achtergronden/` volledig naar `assets/templates/achtergronden/`, hernoemd naar wat erop
   staat: `achtergrond-<kleur>-<n>.png`, bijvoorbeeld achtergrond-groen-1.png of
-  achtergrond-zwart-grunge.png. Claude Design leest de bestandsnaam mee; een exportnaam als
-  "IG TEMPLATES (3).png" zegt niets. Noem de nieuwe namen in color.md en in CLAUDE.md.
+  achtergrond-zwart-grunge.png. Daan en de studio tonen de bestandsnaam; een exportnaam als
+  "IG TEMPLATES (3).png" zegt niets. Noem de nieuwe namen in color.md, in CLAUDE.md en in
+  huisstijl.json.
 
 Kopieer, verplaats niet. Brand Guidelines blijft zoals hij was.
 
@@ -979,104 +1174,131 @@ Bestaat de map al met inhoud, vraag dan of je hem mag vervangen. Zo ja, hernoem 
 eerst naar `Design System (vervangen [datum])` en bouw daarna de nieuwe. Overschrijf nooit
 zonder de oude te bewaren.
 
-Schrijf na akkoord alle bestanden en doe de kopieën. Meld daarna het volledige pad van de map
-en het aantal bestanden.
+Schrijf na akkoord alle bestanden en doe de kopieën. Schrijf `huisstijl.json` als laatste,
+want het verwijst naar de gekopieerde logo's, fonts en achtergronden. Ga daarna door naar de
+controle in stap 9.
 
 ---
 
-## Stap 9 - De twee teksten voor Claude Design
+## Stap 9 - Controleer huisstijl.json
 
-Het instelscherm van Claude Design heeft drie velden: een korte omschrijving van het bedrijf,
-een upload van je design system, en een vrij notitieveld. De map uit stap 8 gaat in het
-uploadveld. Voor de twee tekstvelden lever je twee blokken, elk in een eigen codeblok, in
-het Nederlands.
+De studio en Daan kunnen niets met een `huisstijl.json` die niet klopt. Controleer hem daarom
+direct na het schrijven, stil, met het script hieronder. Het kijkt of het geldige JSON is, of
+de eerste zeven templates `cover`, `tekst`, `quote`, `lijst`, `stap`, `cta` en `reelomslag`
+heten (in die volgorde), of er minstens twee thema's zijn en het standaardthema bestaat, of
+elk thema de vier kleurrollen heeft met een kleur-id die in `kleuren` staat, of elke kleur in
+een vak of vlak een rol of een bestaande kleur-id is, of fonts en logo's in de vakken bestaan,
+of elk vak en vlak binnen de slide valt, en of elk bestand bestaat.
 
-**Veld 1: bedrijfsnaam en omschrijving.** Maximaal 80 woorden, één alinea. De naam met een
-dubbele punt, wat ze doet, voor wie, in de woorden van SAMENVATTING.md (de kernzin uit Personal
-Brand). Sluit af met: "Ik ontwerp hiermee: Instagram-carrousels en reelomslagen." Voeg
-LinkedIn toe als dat in de map zit.
+Windows (PowerShell), vanuit de map CLAUDE:
 
-**Veld 3: notities.** 200 tot 300 woorden. Begin met: "Wat ik in het gesprek vraag, gaat altijd
-voor; deze map is het startpunt, geen grens. Lees eerst CLAUDE.md in de map; daar staat de
-leesvolgorde." Daarna in korte regels: de kleuren met hexcode, de fonts, de
-stijlregels uit blok A, de logoregel, de veilige zone van de reelomslag, en de zin dat de
-echte posts in assets/templates de template zijn en dat er niets vanaf nul nagetekend wordt.
-Zijn er schermafbeeldingen bij de voorbeelden, dan ook: welke elementen daarop van Instagram
-zijn en dat die nooit in een design komen.
-Neem altijd deze regels op: "Toon carrousels naast elkaar van links naar rechts, zoals op
-Instagram, passend in het venster zonder scrollbalk, met knoppen om in en uit te zoomen.", "Zet
-naast de slides een keuzepaneel met uitklapmenu's voor de varianten die op mijn posts
-afwisselen (zie CLAUDE.md); het paneel gaat niet mee in de export.", "De pagina om de slides heen is neutraal lichtgrijs, zonder huisstijlkleuren; de
-kleur- en fontregels gelden alleen binnen de slides.", "Tussenslides: de tekst begint altijd op de
-startlijn, nooit verticaal gecentreerd; de lopende tekst is op alle tussenslides even groot;
-tussen twee gedachten precies één witregel, niet meer, en tekst nooit oprekken; een slide
-die de prompt Grote vorm noemt zet je groot zoals op mijn posts.", "Cover: de kop op hooguit
-twee regels, met ruimte rondom binnen de band; past hij niet, dan kleiner.", "Tekst nooit kleiner dan op mijn posts; tot tien
-tekens boven de limiet moet passen.", "Een opsomming staat altijd heel op één slide.",
-"Gebruik precies de foto's die de prompt per slide noemt.", "Het design en elk exportbestand
-heten zoals de regel Naam: in de prompt; bij png wordt een carrousel [Naam].zip met
-slide-01.png enzovoort." en "Naar Canva altijd als bewerkbaar ontwerp, nooit als platte
-afbeelding." Uit stap 3 ook de afzenderregel en, als die gemeten is, "Tekst of een vlak
-bedekt nooit het gezicht of lichaam van de persoon."
-Zijn er texturen in `assets/templates/achtergronden`, dan ook: "Een gekleurd vlak is altijd een
-PNG uit assets/templates/achtergronden als paginavullende achtergrondafbeelding, nooit een
-effen kleurvlak."
-Sluit af met: "De tekst per slide komt letterlijk uit mijn caption. Neem die letterlijk over.
-Antwoord na het maken kort: de naam, alleen wat niet lukte, en hoe het naar Canva gaat."
+```powershell
+$map = 'Content Studio/Design System'
+$fout = @()
+try { $h = Get-Content "$map/huisstijl.json" -Raw -Encoding UTF8 | ConvertFrom-Json -ErrorAction Stop }
+catch { "FOUT: geen geldige JSON: $($_.Exception.Message)"; return }
+$rollen = @('achtergrond', 'kop', 'tekst', 'accent')
+$kleuren = @($h.kleuren | ForEach-Object { $_.id })
+foreach ($k in $h.kleuren) { if ($k.hex -notmatch '^#[0-9a-f]{6}$') { $fout += "kleur $($k.id): hex $($k.hex) is geen #rrggbb in kleine letters" } }
+$moet = 'cover,tekst,quote,lijst,stap,cta,reelomslag'
+$ids = (@($h.templates | ForEach-Object { $_.id }) | Select-Object -First 7) -join ','
+if ($ids -ne $moet) { $fout += "templates: de eerste zeven moeten $moet zijn, er staat $ids" }
+$themas = @($h.themas | ForEach-Object { $_.id })
+if ($themas.Count -lt 2) { $fout += "themas: minstens twee nodig, er zijn er $($themas.Count)" }
+if ($themas -notcontains $h.standaardThema) { $fout += "standaardThema $($h.standaardThema) bestaat niet" }
+$achtergronden = @($h.achtergronden | ForEach-Object { $_.id })
+foreach ($t in $h.themas) {
+  foreach ($r in $rollen) {
+    if (-not $t.$r) { $fout += "thema $($t.id): rol $r ontbreekt" }
+    elseif ($kleuren -notcontains $t.$r) { $fout += "thema $($t.id): kleur $($t.$r) bij $r bestaat niet in kleuren" }
+  }
+  if ($t.achtergrondafbeelding -and ($achtergronden -notcontains $t.achtergrondafbeelding)) { $fout += "thema $($t.id): achtergrond $($t.achtergrondafbeelding) bestaat niet" }
+}
+foreach ($f in 'kop', 'tekst', 'accent') { if (-not $h.fonts.$f.familie) { $fout += "fonts: $f ontbreekt" } }
+$logos = @($h.logos | ForEach-Object { $_.id })
+foreach ($t in $h.templates) {
+  foreach ($v in @($t.vakken) + @($t.vlakken)) {
+    $naam = "template $($t.id), $(if ($v.id) { "vak $($v.id)" } else { 'vlak' })"
+    if ($v.kleur -and ($rollen -notcontains $v.kleur) -and ($kleuren -notcontains $v.kleur)) { $fout += "${naam}: kleur $($v.kleur) bestaat niet" }
+    if ($v.font -and (@('kop', 'tekst', 'accent') -notcontains $v.font)) { $fout += "${naam}: font $($v.font) bestaat niet" }
+    if ($v.rol -eq 'logo' -and ($logos -notcontains $v.logo)) { $fout += "${naam}: logo $($v.logo) bestaat niet" }
+    foreach ($m in 'x', 'y', 'b', 'h') { if ($null -eq $v.$m -or $v.$m -lt 0 -or $v.$m -gt 1) { $fout += "${naam}: $m moet tussen 0 en 1 liggen" } }
+    if ($v.x + $v.b -gt 1.001 -or $v.y + $v.h -gt 1.001) { $fout += "${naam}: valt buiten de slide" }
+  }
+}
+foreach ($b in @($h.logos) + @($h.achtergronden) + @($h.fonts.kop, $h.fonts.tekst, $h.fonts.accent)) {
+  if ($b.bestand -and -not (Test-Path -LiteralPath "$map/$($b.bestand)")) { $fout += "bestand ontbreekt: $($b.bestand)" }
+}
+if ($fout.Count) { $fout | ForEach-Object { "FOUT: $_" } } else { 'IN ORDE' }
+```
 
-**Fontregel:** staat een font (kop, tekst of handschrift) niet op Google Fonts, zeg dan dat de
-fontbestanden in `assets/templates/lettertypes/` zitten en apart in het fontveld van Claude
-Design geüpload moeten worden, anders valt Claude Design terug op een ander font. Staat het
-font wel op Google Fonts, zeg dan dat de fontupload overgeslagen kan worden. Zo'n font kent
-Canva ook niet: dat komt als aparte stap in de handleiding van stap 10.
+macOS (zonder iets te installeren), vanuit de map CLAUDE:
 
-Lever de twee blokken elk in een eigen codeblok, met erboven alleen "Veld 1" en "Veld 3".
-De uitleg wat ermee te doen komt in de slotmelding van stap 10, niet hier.
+```bash
+osascript -l JavaScript <<'EOF'
+ObjC.import('Foundation');
+const map = 'Content Studio/Design System/';
+const s = $.NSString.stringWithContentsOfFileEncodingError(map + 'huisstijl.json', $.NSUTF8StringEncoding, $());
+const bestaat = p => $.NSFileManager.defaultManager.fileExistsAtPath(map + p);
+function controle(tekst, bestaat) {
+  let h; try { h = JSON.parse(tekst); } catch (e) { return 'FOUT: geen geldige JSON: ' + e.message; }
+  const fout = [], rollen = ['achtergrond', 'kop', 'tekst', 'accent'], ids = l => (l || []).map(x => x.id);
+  const kleuren = ids(h.kleuren), themas = ids(h.themas), logos = ids(h.logos), achtergronden = ids(h.achtergronden);
+  (h.kleuren || []).forEach(k => { if (!/^#[0-9a-f]{6}$/.test(k.hex)) fout.push(`kleur ${k.id}: hex ${k.hex} is geen #rrggbb in kleine letters`); });
+  const moet = 'cover,tekst,quote,lijst,stap,cta,reelomslag', staat = ids(h.templates).slice(0, 7).join(',');
+  if (staat !== moet) fout.push(`templates: de eerste zeven moeten ${moet} zijn, er staat ${staat}`);
+  if (themas.length < 2) fout.push(`themas: minstens twee nodig, er zijn er ${themas.length}`);
+  if (!themas.includes(h.standaardThema)) fout.push(`standaardThema ${h.standaardThema} bestaat niet`);
+  (h.themas || []).forEach(t => {
+    rollen.forEach(r => { if (!t[r]) fout.push(`thema ${t.id}: rol ${r} ontbreekt`); else if (!kleuren.includes(t[r])) fout.push(`thema ${t.id}: kleur ${t[r]} bij ${r} bestaat niet in kleuren`); });
+    if (t.achtergrondafbeelding && !achtergronden.includes(t.achtergrondafbeelding)) fout.push(`thema ${t.id}: achtergrond ${t.achtergrondafbeelding} bestaat niet`);
+  });
+  ['kop', 'tekst', 'accent'].forEach(f => { if (!(h.fonts && h.fonts[f] && h.fonts[f].familie)) fout.push(`fonts: ${f} ontbreekt`); });
+  (h.templates || []).forEach(t => [...(t.vakken || []), ...(t.vlakken || [])].forEach(v => {
+    const naam = `template ${t.id}, ${v.id ? 'vak ' + v.id : 'vlak'}`;
+    if (v.kleur && !rollen.includes(v.kleur) && !kleuren.includes(v.kleur)) fout.push(`${naam}: kleur ${v.kleur} bestaat niet`);
+    if (v.font && !['kop', 'tekst', 'accent'].includes(v.font)) fout.push(`${naam}: font ${v.font} bestaat niet`);
+    if (v.rol === 'logo' && !logos.includes(v.logo)) fout.push(`${naam}: logo ${v.logo} bestaat niet`);
+    ['x', 'y', 'b', 'h'].forEach(m => { if (typeof v[m] !== 'number' || v[m] < 0 || v[m] > 1) fout.push(`${naam}: ${m} moet tussen 0 en 1 liggen`); });
+    if (v.x + v.b > 1.001 || v.y + v.h > 1.001) fout.push(`${naam}: valt buiten de slide`);
+  }));
+  [...(h.logos || []), ...(h.achtergronden || []), ...Object.values(h.fonts || {})].forEach(b => { if (b.bestand && !bestaat(b.bestand)) fout.push(`bestand ontbreekt: ${b.bestand}`); });
+  return fout.length ? fout.map(f => 'FOUT: ' + f).join('\n') : 'IN ORDE';
+}
+s.isNil() ? 'FOUT: huisstijl.json niet gevonden' : controle(s.js, bestaat);
+EOF
+```
+
+**IN ORDE:** door naar stap 10. **FOUT:** herstel elke regel in `huisstijl.json` en draai de
+controle opnieuw, tot er IN ORDE staat. Een fout die je niet zelf kunt herstellen zonder te
+gokken (een bestand dat ontbreekt in Brand Guidelines, een kleur die de gebruiker nog moet
+kiezen), leg je in één zin aan de gebruiker voor. Meld de controle zelf niet.
+
+Kijk daarna nog zelf, zonder script, of de getallen kloppen met de rest van de map: dezelfde
+kleuren als in design-system.md, dezelfde limieten als in het blok TEKENLIMIETEN, en het
+`maxTekens` van elk vak gelijk aan de limiet voor die rol.
 
 ---
 
 ## Stap 10 - Slotmelding
 
-Begin met één regel: "Klaar. Je design system staat in Content Studio/Design System,
-[n] bestanden." Geef daarna deze handleiding, met de vier plekken tussen haken ingevuld uit
-wat je zojuist hebt gebouwd: de eerste woorden van veld 1, de eerste woorden van veld 3, en
-de fontsituatie uit de fontregel van stap 9. Geen font dat geüpload moet worden? Laat stap 4
-en stap 7 dan weg en hernummer.
+Kort, in deze vorm, met de plekken tussen haken ingevuld:
 
-> **Het design system instellen**
+> Klaar. Je design system staat in Content Studio/Design System, [n] bestanden.
 >
-> 1. **Open het instelscherm.** Ga in Claude Design naar het instellen van een design system.
->    Je ziet drie velden: een omschrijving van je bedrijf, een uploadveld en een notitieveld.
-> 2. **Eerste veld.** Plak de korte tekst die begint met "[de eerste woorden van veld 1]".
-> 3. **Uploadveld.** Sleep de map Design System erin vanuit Content Studio. De map research
->    mag je weglaten, want daar staat alleen werkmateriaal van mij in. Je brandfoto's zitten
->    er verkleind in; je hoeft ze per post niet meer apart te uploaden.
-> 4. **Font.** Zoek het fontveld en upload [bestandsnaam] uit de map
->    assets/templates/lettertypes/[submap]. [Eén bestand is genoeg, want je gebruikt alleen
->    het gewone gewicht / Upload elk gewicht dat je gebruikt.] [Naam van het andere font] hoef
->    je niet te uploaden, dat staat op Google Fonts.
-> 5. **Notitieveld.** Plak de lange tekst die begint met "[de eerste woorden van veld 3]".
-> 6. **Opslaan.** Kijk daarna wat Claude Design heeft opgepikt. Staan je kleuren er met de
->    goede hexcodes en herkent hij [kopfont] en [tekstfont]? Zo niet, zeg het hem direct in
->    het gesprek.
-> 7. **Canva.** [Alleen als een font niet op Google Fonts staat:] [Font] zit niet in Canva.
->    Exporteer je naar Canva, upload dan eerst [bestandsnaam] in Canva bij Merkpakket (Brand
->    Kit), onder Fonts. Daarvoor heb je Canva Pro nodig, en je fontlicentie moet uploaden
->    toestaan. Doe je dat niet, dan zet Canva er een ander font voor in de plaats.
+> [Alleen als er standaardtemplates zijn:] [Stap] komt nog niet in je posts voor. Daarvoor
+> staat er een standaardtemplate in, in jouw fonts, kleuren en marges.
 >
-> **Testen voordat je hem echt gebruikt**
->
-> 8. **Maak één proefcarrousel.** Neem een caption die je al hebt en laat Daan (@design) de
->    slides en de prompt maken. Plak de prompt in Claude Design.
-> 9. **Leg hem naast je eigen carrousel.** Open een van je eigen carrousels ernaast en check:
->    is de tekst even groot? Begint hij op elke tussenslide op dezelfde hoogte? Staat er
->    tussen zinnen nergens meer dan één witregel? Zijn de slides ongeveer zo vol als die van
->    jou? Staat de coverkop op twee regels, met ruimte rondom? Sta je zelf vrij in beeld, zonder
->    vlak of tekst over je heen? Staat elke opsomming heel op één slide? Zie je een verschil,
->    zeg het me dan; ik pas de map aan en jij uploadt hem opnieuw.
->
-> Pas je later je layout aan, zet dan de nieuwe posts in Brand Guidelines en roep me opnieuw
-> aan in Claude Code. Ik bouw de map dan opnieuw en jij uploadt hem opnieuw in Claude Design.
+> Ga nu in Cowork naar @daan. Die zet je huisstijl in je Content Studio, met je kleuren, fonts,
+> logo, achtergronden en templates.
+
+Gaat het om een nieuwe bouw van een bestaand design system, zeg dan in plaats van de laatste
+alinea: "Vraag in Cowork aan @daan om je huisstijl in je Content Studio bij te werken. Wat je
+zelf in de studio onder Instellingen aanpaste, blijft staan tot je daar kiest voor Terug naar
+mijn design system."
+
+Sluit af met één regel: "Pas je later je layout aan, zet dan de nieuwe posts in Brand
+Guidelines en roep me opnieuw aan in Claude Code."
 
 ---
 
@@ -1124,26 +1346,33 @@ staan.
 - Witregels inzetten om een slide op te vullen. Een witregel hoort tussen twee gedachten,
   meer niet.
 - Een limiet naar boven afronden.
-- Een voorbeeldslide, een logo-variant of een template zelf tekenen of nabouwen. Kopiëren
-  wat er is, meer niet.
+- Een voorbeeldslide of een logo-variant zelf tekenen of nabouwen. Kopiëren wat er is, meer
+  niet.
+- Een template verzinnen voor een type dat wel in het materiaal staat, in plaats van het te
+  meten. Een standaardtemplate alleen voor een type dat er niet is, en dat zeg je erbij.
 - Algemene designregels opleggen die niet uit het materiaal van de gebruiker blijken.
 - Iets wat op de posts afwisselt (afzender, foto, achtergrond) vastleggen als één vaste
   standaard.
 - Een regel alleen voor carrousels schrijven terwijl hij ook voor de reelomslag geldt.
 - Een tekenlimiet als harde grens neerzetten.
 - Het accent maar voor één achtergrond vastleggen: op een achtergrond in de accentkleur
-  verzint Claude Design dan zelf een kleur.
+  heeft het thema dan geen goede accentkleur.
 - Alleen "koppen op dezelfde hoogte" vastleggen zonder te zeggen wat er gebeurt bij weinig of
-  veel tekst: dan centreert Claude Design per slide en springt de tekst.
+  veel tekst: dan vult Daan slides ongelijk en springt de tekst.
 - Een foto een andere naam geven dan bij de vorige bouw, of een naam hergebruiken.
 - Iets in Business Brand Guidelines wijzigen, hernoemen of verplaatsen. Je kopieert eruit,
   en je zet er alleen iets bij (schermafbeeldingen, logo) als de map leeg was.
 - Een leeg bestand aanmaken om de boom compleet te maken.
-- Blok A in een ander format leveren dan hierboven.
+- Blok A in een ander format leveren dan hierboven, of `huisstijl.json` in een ander format
+  dan `references/huisstijl-formaat.md`. Een template-id hernoemen of de volgorde van de zeven
+  vaste templates veranderen.
+- Een kleur in een template als hexcode zetten in plaats van als rol of kleur-id.
+- Stap 10 afsluiten zonder dat de controle van stap 9 IN ORDE gaf.
 - Wegschrijven zonder akkoord, of een bestaande map Design System overschrijven zonder de
   oude te bewaren.
 - Bestanden uit `references/` of `scripts/` bij naam noemen in je antwoorden.
 
 ## Referentiebestanden
 
-In `references/` naast dit bestand: `memory-regels.md`.
+In `references/` naast dit bestand: `memory-regels.md` en `huisstijl-formaat.md` (het formaat
+van `huisstijl.json`, een kopie van de afspraak in de plugin content-studio).

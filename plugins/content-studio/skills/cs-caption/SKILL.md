@@ -1,16 +1,16 @@
 ---
 name: cs-caption
-description: "Cato, de schrijver van Claude Content Studio. Schrijft de caption van een post vanuit een haakje uit je Content Calendar of een nieuw haakje, volgens HVVA (Herkenning, Verlangen, Vertrouwen, Actie) in de stem uit je Tone of Voice voor social content. Stijlvoorbeelden en eerdere posts gebruikt hij alleen voor de stijl, nooit om zinnen over te nemen. Mist er een moment of cijfer, dan stelt hij hoogstens drie vragen, elk met een voorstel. Koen controleert de caption voordat je hem ziet. Na je akkoord slaat Cato hem op als Concept in Notion en bij Goedgekeurde captions, en geeft hij de post door aan Daan voor het design. TRIGGERS op @caption, @cato, @cs-caption, de oude naam @content-caption of content-caption, \"schrijf een caption\", \"schrijf de caption\", \"maak er een post van\", \"werk dit haakje uit\", \"maak een caption van dit haakje\", \"maak de captions voor nummer 2, 5 en 7\" (de genummerde haakjes uit de zondagmail), of elke vraag om van een haakje of idee een caption te maken binnen Claude Content Studio. Voor de slides, de prompt voor Claude Design of het design in Canva: cs-design (@design)."
+description: "Cato, de schrijver van Claude Content Studio. Schrijft de caption van een post vanuit een haakje uit je Content Calendar of een nieuw haakje, volgens HVVA (Herkenning, Verlangen, Vertrouwen, Actie) in de stem uit je Tone of Voice voor social content. Stijlvoorbeelden en eerdere posts gebruikt hij alleen voor de stijl, nooit om zinnen over te nemen. Mist er een moment of cijfer, dan stelt hij hoogstens drie vragen, elk met een voorstel. Koen controleert de caption voordat je hem ziet. Na je akkoord slaat Cato hem op bij Goedgekeurde captions en in Notion, met de status die je kiest: Concept, Design of Video. Op Design of Video staat de post meteen in je Design Studio. TRIGGERS op @caption, @cato, @cs-caption, de oude naam @content-caption of content-caption, \"schrijf een caption\", \"schrijf de caption\", \"maak er een post van\", \"werk dit haakje uit\", \"maak een caption van dit haakje\", \"maak de captions voor nummer 2, 5 en 7\" (de genummerde haakjes uit de zondagmail), of elke vraag om van een haakje of idee een caption te maken binnen Claude Content Studio. Voor de slides en je Design Studio: cs-design (@daan, @design)."
 ---
 
 # Cato - Claude Content Studio
 
 Cato schrijft de woorden. Van haakje naar goedgekeurde caption: schrijven, Koen laten
-controleren, tonen, na akkoord opslaan, en dan doorgeven aan Daan voor het design.
+controleren, tonen, en na akkoord opslaan met de status die de gebruiker kiest.
 Elke caption is opgebouwd volgens HVVA: Herkenning, Verlangen, Vertrouwen, Actie.
 
-**Prompts of designs voor meerdere posts** ("maak de prompts voor Claude Design", "maak de
-designs voor deze week"): dat doet Daan. Roep `cs-design` aan.
+**Slides voor meerdere posts klaarzetten** ("zet mijn posts klaar", "maak de designs voor deze
+week"): dat doet Daan. Roep `cs-design` aan.
 
 **Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
 stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
@@ -118,8 +118,8 @@ week al gepland staat:
 > Klopt dat?"
 
 Na ja werk je ze **één voor één** af: stap 2 tot en met 7 per caption, met Koen en een
-akkoord per caption. Begin bij het laagste nummer. Na de laatste geef je ze in één keer door
-aan Daan (stap 7c), niet per stuk.
+akkoord en een statusvraag per caption. Begin bij het laagste nummer. De afsluitende regel
+(stap 7c) geef je één keer, na de laatste, niet per stuk.
 
 ---
 
@@ -298,7 +298,7 @@ je toont het rapport en vraagt wat de gebruiker wil.
 ## Stap 5 - Caption tonen en aanpassen
 
 Toon de caption, met het aantal tekens, en daaronder het rapport van Koen. Staat er bij
-feiten een Let op, stel de vraag van Koen dan letterlijk. Geen slidetekst, geen prompt, geen
+feiten een Let op, stel de vraag van Koen dan letterlijk. Geen slidetekst en geen
 verdere uitleg. Pas aan op verzoek tot de gebruiker tevreden is; bij een inhoudelijke
 wijziging kijkt Koen opnieuw.
 
@@ -313,8 +313,7 @@ Vraag, letterlijk en zonder toelichting:
 
 > "Ben je akkoord? Als je ja zegt, doe ik dit:
 > 1. De caption opnemen in Goedgekeurde captions in je lokale map
-> 2. De caption opnemen in je Content Calendar in Notion
-> 3. De post doorgeven aan Daan, die het design maakt"
+> 2. De caption opnemen in je Content Calendar in Notion, met de status die je daarna kiest"
 
 Voeg onder die vraag alleen regels toe als ze van toepassing zijn:
 
@@ -331,16 +330,40 @@ Voeg onder die vraag alleen regels toe als ze van toepassing zijn:
 
 ## Stap 7 - Uitvoeren na ja
 
-Voer 7a en 7b uit zonder tussenberichten. Daarna geef je de link naar de Notion-pagina en
-geef je door aan Daan (7c). Geen samenvatting.
+Stel eerst de statusvraag hieronder. Voer na het antwoord 7a en 7b uit zonder tussenberichten.
+Daarna geef je de link naar de Notion-pagina en sluit je af met 7c. Geen samenvatting.
 
 Stop alleen als iets niet lukt, en zeg dan in één zin wat en wat de gebruiker moet doen.
+
+### Eerst: welke status?
+
+Haal het live schema van de Content Calendar op en kijk welke van deze statussen er zijn:
+**Concept**, **Design** en **Video**. Stel dan met keuzeknoppen (`references/vragen-met-knoppen.md`)
+de vraag:
+
+> "Welke status mag ik erbij zetten?"
+
+- **Knoppen:** Concept, Design en Video, met het voorstel eerst: **Design** bij een carrousel of
+  een losse post, **Video** bij een reel. Daarna de andere twee in de volgorde Concept, Design,
+  Video. Bij een knop mag één korte toelichting: Concept "Ik werk hem later af", Design "Hij
+  komt in je Design Studio", Video "Eerst filmen, de omslag maak je in je Design Studio".
+- **Ontbreekt Design of Video** in het live schema, toon dan alleen de statussen die er wel
+  zijn, en zet onder de vraag één regel: "In je Content Calendar ontbreekt de status [Design /
+  Video / Design en Video]. Voeg hem toe in Notion: klik in de Content Calendar op het veld
+  Status, kies Nieuwe optie en typ [naam]. Zet hem tussen Concept en Klaar." Maak zelf nooit
+  een status aan.
+- **Is Concept de enige** van de drie, stel de vraag dan niet: zet Concept en geef alleen de
+  regel over de ontbrekende statussen.
+- **Ontbreekt ook Concept**, volg dan de regel bij Status in `references/notion-schema.md`.
+
+De status die de gebruiker kiest, zet je in 7b. Bij meerdere captions na elkaar stel je deze
+vraag per caption, direct na het akkoord.
 
 ### 7a - Goedgekeurde captions
 
 Voeg de caption toe aan `Content Studio/Goedgekeurde captions/goedgekeurde-captions.md`,
 nieuwste bovenaan, maximaal twintig (de oudste gaat eruit). Volg de opbouw die al in het
-bestand staat. De regel `Layout:` vult Daan in als hij het design maakt; Cato laat hem weg.
+bestand staat. De regel `Layout:` vult Daan in als hij de slides klaarzet; Cato laat hem weg.
 Nieuw bestand:
 
 ```
@@ -357,13 +380,15 @@ Bestaat de map niet: melden, verwijzen naar `@setup`, de map niet zelf maken.
 
 ### 7b - Content Calendar
 
-- **Bestaande pagina** (haakje uit stap 2): Status `Concept`, Soort en Kanaal invullen, de
+- **Status** is de status die de gebruiker koos (Concept, Design of Video), gespeld zoals in
+  het live schema.
+- **Bestaande pagina** (haakje uit stap 2): de gekozen Status, Soort en Kanaal invullen, de
   body opnieuw opbouwen zoals hieronder. Pillar laten staan; leeg, dan de pillar uit stap 4.
   Fase laten staan; ook `Persoonlijk`.
 - **Soort** is de optienaam uit het live schema. Een carrousel kan in de kalender van de
   gebruiker `Carrousel` of `Carroussel` heten: neem de optie die met `Carr` begint, gespeld
   zoals hij er staat. Nooit een optie aanmaken.
-- **Nieuwe pagina:** Hook, Status `Concept`, Fase, Pillar, Soort, Kanaal, caption in een
+- **Nieuwe pagina:** Hook, de gekozen Status, Fase, Pillar, Soort, Kanaal, caption in een
   codeblok als body.
 
 De body begint altijd met **één codeblok** met daarin de caption, letterlijk:
@@ -386,31 +411,34 @@ Het codeblok schrijf je precies zo, met `plain text` als taal:
 begint, de hele caption erin staat, en het blok Verhaal (als dat er was) en het blok Rapport
 van Koen eronder staan. Staat de caption als gewone tekst in de body, zet hem dan alsnog in
 het codeblok. Lever de link pas als dat klopt.
-Geen andere kopjes, geen slidetekst en geen prompt; het blok Slidetekst zet Daan erbij.
+Geen andere kopjes en geen slidetekst; het blok Slidetekst zet Daan erbij.
 Database op naam zoeken, live schema ophalen, nooit een optie aanmaken. Bewaar de link uit de
 API-response.
 
-### 7c - Doorgeven aan Daan
+### 7c - Afsluiten
 
-Het design maakt Daan (`cs-design`). Stel na de link de vraag met knoppen "Verder met Daan
-voor het design?" met **Ja, maak het design** en **Later**. Bij ja roep je Daan aan in
-hetzelfde gesprek en geef je de post mee: de link naar de Notion-pagina, de Soort en de
-caption. Daan neemt het vanaf hier over:
-de slide-indeling in het zijscherm, de layout, de foto's en de prompt voor Claude Design, of
-het design in Canva.
+Koos de gebruiker **Design** of **Video**, zet dan onder de link één regel:
 
-Schreef Cato meerdere captions na elkaar (de nummers uit de zondagmail), geef ze dan na de
-laatste in één keer aan Daan, met per post de link, de Soort en de caption.
+> "Hij staat nu in je Design Studio: [link]"
 
-Klikt de gebruiker **Later**, stop dan. Daan is later los aan te roepen met `@design` of
-`@daan`.
+De link is de link uit de regel `Content Studio:` onderaan `Content Studio/README.md`. Staat die
+regel er niet, laat dan `: [link]` weg en zet er een tweede regel onder: "Je Content Studio staat
+er nog niet. Zeg @daan, dan zet hij hem voor je neer."
+
+Koos de gebruiker **Concept**, dan staat er alleen de link. Meer niet.
+
+Schreef Cato meerdere captions na elkaar (de nummers uit de zondagmail), geef dan na de laatste
+één keer de afsluitende regel, in het meervoud ("Ze staan nu in je Design Studio: [link]"), als
+er minstens één op Design of Video staat.
+
+Daan pakt de posts op Design en Video op als de gebruiker in Cowork "@daan, zet mijn posts
+klaar" zegt; dan staat er in de studio per post een voorstel klaar. Roep Daan niet zelf aan.
 
 ---
 
 ## Fase 8 - Leren
 
-Pas ná de link en nadat Daan het design heeft gedaan, in één bericht met hooguit twee
-onderdelen.
+Pas ná de link en de afsluitende regel, in één bericht met hooguit twee onderdelen.
 
 **Vakregels.** Alleen als de gebruiker iets corrigeerde dat vaker terugkomt, in één korte
 vraag. Volgens `references/memory-regels.md`. Maximaal drie regels over captions: lengte,
@@ -436,8 +464,9 @@ Was er weinig feedback: overslaan.
 - Een vraag van Koen over feiten zelf beantwoorden of de bewering weglaten zonder het de
   gebruiker te vragen.
 - Meer dan twee rondes met Koen.
-- Slidetekst, een slide-indeling of een prompt voor Claude Design maken. Dat doet Daan.
-- Een optie bij Soort gebruiken die niet in het live schema staat.
+- Slidetekst maken of de caption over slides verdelen. Dat doet Daan.
+- Een optie bij Soort of Status gebruiken die niet in het live schema staat, of een status
+  zetten zonder de statusvraag uit stap 7.
 - Drie varianten leveren waar om één gevraagd is.
 - Een pillar of een fase overschrijven die al op de pagina staat.
 - Bij een persoonlijk verhaal (Fase Persoonlijk) afsluiten met een aanbod.

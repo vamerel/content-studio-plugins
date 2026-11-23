@@ -10,7 +10,7 @@
     {
       "name": "content-studio",
       "source": "./plugins/content-studio",
-      "description": "Claude Content Studio: je contentteam (Viggo, Sam, Ruby, Hanna, Cato, Koen, Daan en Puk) voor haakjes, captions, designs via Claude Design of Canva en automatisch publiceren, op basis van je Business DNA. Installeren in Chat & Cowork."
+      "description": "Claude Content Studio: je contentteam (Viggo, Sam, Ruby, Hanna, Cato, Koen, Daan en Puk) voor haakjes, captions, je slides in je eigen Content Studio en automatisch publiceren, op basis van je Business DNA en de Notion-template Content Studio. Installeren in Chat & Cowork."
     },
     {
       "name": "content-designsystem",

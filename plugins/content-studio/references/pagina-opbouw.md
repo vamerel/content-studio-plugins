@@ -12,7 +12,7 @@ Kanaal.
 ▸ Rapport van Koen     (van Cato, na de controle door Koen)
 ```
 
-Geen andere kopjes, geen Claude Design-prompt, geen probleem of uitleg.
+Geen andere kopjes, geen prompt, geen probleem of uitleg.
 
 ---
 
@@ -29,7 +29,8 @@ Geen andere kopjes, geen Claude Design-prompt, geen probleem of uitleg.
 **Leeg, tenzij de gebruiker het vraagt.** Zegt de gebruiker bij `cs-hookgenerator` of
 `cs-save` specifiek "zet dit in de body", dan zet je precies dat erin en niets meer.
 
-**De Claude Design-prompt** komt alleen in het gesprek. Die schrijf je nergens in Notion weg.
+De slides zelf staan niet in Notion maar in Google Drive; de link staat in het linkveld
+(Design; in een oudere kalender Drive of Canva).
 
 ---
 
@@ -43,8 +44,8 @@ en zonder label bovenaan, zodat hij met één klik te kopiëren is.
 
 - **Verhaal:** het moment zoals de gebruiker het aan Viggo vertelde: waar, wanneer, wie, wat
   er gezegd werd, wat de gebruiker dacht. Hooguit 800 tekens. Cato gebruikt het als bron.
-- **Slidetekst:** per slide één regel `Slide [n] · [layouttype]: [tekst]`, zoals de gebruiker
-  de indeling opsloeg. Daan gebruikt het als hij het design opnieuw maakt.
+- **Slidetekst:** per slide één regel `Slide [n] · [layouttype]: [tekst]`. Terugval voor het
+  voorstel van Daan in de Design Studio; Daan gebruikt het als hij het design opnieuw maakt.
 - **Rapport van Koen:** het laatste rapport, één regel per check en de uitslag.
 
 Een ingeklapt blok is een toggle in Notion: de titel is de naam van het blok, de inhoud staat
@@ -57,7 +58,7 @@ erin. Bestaat het blok al, vervang dan de inhoud; maak geen tweede.
 - **cs-caption** bij een bestaande pagina: zet de caption in het codeblok bovenaan (vervang
   een oud codeblok of oude tekst), laat het blok Verhaal staan en vervang het blok Rapport van
   Koen. Staat er iets anders in, zeg dan in je aankondigingsregel dat dat vervangen wordt.
-- **cs-publiceren**, **cs-publiceren-metricool**, **cs-canva-links** en de feedplanner lezen
+- **cs-publiceren**, **cs-publiceren-metricool** en Content Studio (de studio) lezen
   de caption: de tekst binnen het codeblok. Staan er meerdere codeblokken, dan het laatste. De
   ingeklapte blokken hebben geen codeblok en tellen dus niet mee. Oudere pagina's kunnen nog
   met `## Caption` beginnen: lees dan de tekst tussen `## Caption` en het volgende `##`-kopje.

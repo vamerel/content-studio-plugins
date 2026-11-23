@@ -21,7 +21,7 @@ Ik ben coach, kennisondernemer of online dienstverlener. Ik ben niet technisch e
 
 CONTEXT
 Controleer eerst, voordat je iets vraagt:
-- Notion: de pagina Business DNA met Personal Brand, Ideal Client, Product Ladder, Brand Positioning en Tone of Voice (met de subpagina's Tone of Voice - Social content en Tone of Voice - Social content - voorbeelden), en de Social Media Planner met Content Pillars en Content Calendar.
+- Notion: de pagina Business DNA met Personal Brand, Ideal Client, Product Ladder, Brand Positioning en Tone of Voice (met de subpagina's Tone of Voice - Social content en Tone of Voice - Social content - voorbeelden), en de pagina Content Studio (in een oudere kopie Social Media Planner) met Content Pillars en Content Calendar.
 - Gmail: gekoppeld.
 - Composio, met een actieve koppeling met mijn Instagram-account. Daar komen de cijfers van mijn posts vandaan.
 Ontbreekt er een, zeg dan welke en hoe ik hem koppel: in de Claude-app via Aanpassingen (Customize) > Connectors, en dan de naam. Zonder Notion en Gmail ga je niet verder. Zonder Composio werkt de taak ook, maar dan zonder cijfers.
@@ -42,7 +42,7 @@ Maak de wekelijkse content-ideeën en haakjes voor [naam] ([bedrijfsnaam], [kana
 STAP 1: LEES IN NOTION (alleen lezen)
 Zoek pagina's en databases op naam en haal het actuele schema op; gebruik geen vaste ID's.
 - Business DNA: Tone of Voice, Tone of Voice - Social content (met de Stijlvoorbeelden), Ideal Client (angsten, verlangens, bezwaren, klanttaal), Product Ladder en Brand Positioning.
-- Social Media Planner: Content Pillars (de opties en de uitleg per pillar) en de Content Calendar. Uit de Content Calendar haal je: welke haakjes er al staan (geen dubbele maken), welke plekken nog open staan, welke ideeën ik bewaard heb (status Idee), en per geplaatste post (status Live) de Hook, Pillar, Fase en Soort. In de Content Calendar staan geen cijfers.
+- Content Studio (de Notion-pagina; in een oudere kopie Social Media Planner): Content Pillars (de opties en de uitleg per pillar) en de Content Calendar. Uit de Content Calendar haal je: welke haakjes er al staan (geen dubbele maken), welke plekken nog open staan, welke ideeën ik bewaard heb (status Idee), en per geplaatste post (status Live) de Hook, Pillar, Fase en Soort. In de Content Calendar staan geen cijfers.
 
 STAP 2: RUBY, WAT IK BEWAAR EN MIJN CIJFERS (alleen lezen)
 - Wat ik bewaard heb, laat zien wat mij aanspreekt. Gebruik het als stijlvoorbeeld en als richting, niet om te kopiëren.

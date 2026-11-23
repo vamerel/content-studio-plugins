@@ -1,13 +1,20 @@
 # Content Studio
 
-Dertien Cowork-skills en één agent waarmee je je Instagram- en LinkedIn-content maakt met een
-team, op basis van je Business DNA. Viggo, Sam en Ruby leveren aan, Hanna maakt haakjes, Cato
-schrijft captions, Koen controleert, Daan maakt het design (met een
-prompt voor Claude Design) en Puk koppelt de designs en publiceert op Instagram (route A met Metricool, route B
-met Composio; de koper kiest één route). Het design system is een aparte
-plugin, `content-designsystem` (skill `cs-designsystem`), omdat die in Claude Code draait en
-Claude Code een eigen lijst heeft. De cijfers van je posts haalt Ruby, en de feedplanner, via
+Twaalf Cowork-skills, één agent en een eigen Content Studio waarmee je je Instagram- en
+LinkedIn-content maakt met een team, op basis van je Business DNA. Viggo, Sam en Ruby leveren
+aan, Hanna maakt haakjes, Cato schrijft captions, Koen controleert, Daan zet je Content Studio
+neer en je slides klaar, en Puk plant in en publiceert op Instagram (route A met Metricool,
+route B met Composio; de koper kiest één route). Het design system is een aparte plugin,
+`content-designsystem` (skill `cs-designsystem`), omdat die in Claude Code draait en Claude
+Code een eigen lijst heeft. De cijfers van je posts haalt Ruby, en Content Studio zelf, via
 Composio uit Instagram; ze staan niet in Notion.
+
+**Content Studio** is een artifact (`references/content-studio.html`, gebouwd uit
+`studio-bron/`) met een menu links en een werkvlak rechts: Design Studio, Feed View, Analyses en
+Team, en onderaan Instellingen en Vernieuwen. Daan zet hem neer bij de gebruiker en werkt hem
+bij. In de Design Studio maak je carrousels en reelomslagen in je eigen huisstijl; met Klaar
+gaan de slides als JPEG naar Google Drive, komt de link in Notion en gaat de status naar Klaar.
+De afspraken tussen de skills en de studio staan in `references/content-studio-afspraken.md`.
 
 ## Het team
 
@@ -17,13 +24,12 @@ Composio uit Instagram; ze staan niet in Notion.
 | Sam | `cs-speuren` | `@sam`, `@speuren` | zoekt via Apify populaire posts in je niche, analyseert opening, opbouw, wat weggegeven wordt en het einde, geeft patronen door aan Hanna |
 | Ruby | `cs-analyse` | `@ruby`, `@analyse` | cijfers van je eigen posts via Composio, per 1.000 weergaven, per pillar, fase (Persoonlijk apart) en soort; geeft door aan Hanna |
 | Hanna | `cs-hookgenerator` | `@hanna`, `@haakjes` | vijf haakjes voor één probleem, één per fase; een verhaal van Viggo wordt één tot drie haakjes met Fase Persoonlijk; Koen controleert; na akkoord op Idee |
-| Cato | `cs-caption` | `@cato`, `@caption` | de caption volgens HVVA, hoogstens drie vragen met voorstel, Koen controleert als laatste stap, na akkoord op Concept met het Rapport van Koen; geeft door aan Daan |
-| Koen | `cs-controle` + agent `koen` | `@koen`, `@controle` | vijf checks (haakje, uniek, feiten, klank, klantreis), keurt feiten nooit af; controleert ook designs en stelt aanvullingen voor het design system voor |
-| Daan | `cs-design` | `@daan`, `@design` | slide-indeling in het zijscherm, layout en foto's met afwisseling op basis van de feed, de prompt voor Claude Design of het design zelf in Canva; ook voor meerdere posts |
-| Puk | `cs-canva-links` | `@puk`, `@canva-links` | koppelt designs uit Canva aan posts op naam en zet ze op Gepland; in de ochtendronde wat duidelijk past, twijfel in de ochtendmail |
-| Puk | `cs-publiceren-metricool` | `@publiceren-metricool` | route A: elke ochtend alles op Gepland in Metricool, Metricool gelijk houden aan Notion, gisteren geplaatst op Live |
-| Puk | `cs-publiceren` | `@publiceren` | route B: op je postmomenten de post van dat moment via Composio op Instagram, meteen op Live |
-| | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Canva), Content Pillars vullen, projectinstructies |
+| Cato | `cs-caption` | `@cato`, `@caption` | de caption volgens HVVA, hoogstens drie vragen met voorstel, Koen controleert als laatste stap; na akkoord vraagt ze welke status de post krijgt: Concept, Design of Video |
+| Koen | `cs-controle` + agent `koen` | `@koen`, `@controle` | vijf checks (haakje, uniek, feiten, klank, klantreis), keurt feiten nooit af; controleert ook de slides in Drive en stelt aanvullingen voor het design system voor |
+| Daan | `cs-design` | `@daan`, `@design`, `@inbox` | zet Content Studio neer en vult de huisstijl, zet voor posts op Design en Video de slides klaar (templates, tekst, foto's uit de Fotobibliotheek), verwerkt de contentinbox |
+| Puk | `cs-publiceren-metricool` | `@puk`, `@publiceren-metricool` | route A: elke ochtend Klaar naar Gepland, alles op Gepland in Metricool, Metricool gelijk houden aan Notion, gisteren geplaatst op Live |
+| Puk | `cs-publiceren` | `@puk`, `@publiceren` | route B: elke ochtend Klaar naar Gepland, op je postmomenten de post van dat moment via Composio op Instagram, meteen op Live |
+| | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Google Drive), Content Studio laten neerzetten, Content Pillars vullen, projectinstructies |
 | | `cs-save` | `@save` | een idee of opgehaalde post bewaren als Idee |
 | | `cs-scrape` | `@scrape` | een post van Instagram, LinkedIn of YouTube ophalen via Apify |
 
@@ -32,16 +38,20 @@ trigger in de beschrijvingen, zodat bestaande geplande taken de skills blijven v
 
 ## Hoe het samenhangt
 
-- **Notion is de bron van waarheid voor content:** haakjes, captions, status, fase,
-  publicatiedatum, de Canva-link (veld Canva) en de link naar de post op Instagram (veld URL)
-  staan in de Content Calendar. Een oudere kopie van de template met de Canva-link in URL en
-  de postlink in Instagram werkt ook. Cijfers staan niet in Notion.
-- **De status zegt wie aan de beurt is:** Idee (Hanna klaar, Cato aan de beurt), Concept (Cato
-  en Koen klaar, Daan aan de beurt), Gepland (Puk koppelde het design), Bezig en Live (Puk),
+- **Notion is de bron van waarheid voor content:** de Notion-pagina Content Studio (in een
+  oudere kopie Social Media Planner) heeft drie databases: Content Calendar, Content Pillars en
+  Content Team. Haakjes, captions, status, fase, publicatiedatum, de link naar de slides in
+  Google Drive (veld Design) en de link naar de post op Instagram (veld URL) staan in de Content
+  Calendar. Een oudere kalender met het veld Drive of Canva in plaats van Design werkt ook: dan
+  komt de Drive-link in dat veld. In Content Team heeft elk teamlid een eigen pagina met zijn
+  updates. Cijfers staan niet in Notion.
+- **De status zegt wie aan de beurt is:** Idee (Hanna klaar, Cato aan de beurt), Concept (nog
+  bijschaven), Design of Video (klaar om te designen of eerst filmen; staat in de Design
+  Studio), Klaar (slides in Drive), Gepland (Puk, in de ochtendronde), Bezig en Live (Puk),
   daarna leest Ruby de cijfers terug.
 - **De pagina van een post** begint met de caption in één codeblok. Daaronder alleen
-  ingeklapte blokken: Verhaal, Slidetekst en Rapport van Koen. Publiceren en de feedplanner
-  lezen de caption uit het codeblok.
+  ingeklapte blokken: Verhaal, Slidetekst en Rapport van Koen. Puk en Content Studio lezen de
+  caption uit het codeblok.
 - **Fase Persoonlijk** is een zesde optie naast de klantreisfases, voor persoonlijke
   verhalen. Een ander veld dan Pillar Persoonlijk.
 - **Koen controleert met frisse ogen.** Zijn instructies staan op één plek, `agents/koen.md`.
@@ -53,7 +63,7 @@ trigger in de beschrijvingen, zodat bestaande geplande taken de skills blijven v
   System en Sam. Elke skill leest en schrijft alleen zijn eigen sectie, na akkoord.
 - **Alleen de twee setup-skills maken mappen aan.** `businessdna-setup` maakt Business DNA en
   Business Copybank; `cs-setup` maakt Business Brand Guidelines en Content Studio, en na ja de
-  mappen in Canva.
+  mappen in Google Drive. De studio maakt alleen een map per carrousel en zet daar de slides in.
 - **Elke skill controleert bij de start** of de omgeving er is, en zegt anders precies wat
   ontbreekt en wat je moet doen. Skills noemen geen lesnamen, zodat de leeromgeving kan
   veranderen zonder de plugin te herbouwen. Het menu voor connectors heet overal
@@ -71,12 +81,18 @@ CLAUDE/
     ├── Goedgekeurde haakjes/
     ├── Goedgekeurde captions/
     ├── MEMORY.md
-    └── README.md
+    ├── README.md                  met de regels Content Studio en Publiceren
+    └── content-studio.html        de kopie die Daan publiceert
 
-Canva/
+Google Drive/
 └── Content Studio/                cs-setup, na ja
-    ├── Carrousels/
-    └── Reelomslagen/
+    ├── Contentinbox/              de gebruiker zet er foto's in; Daan (@inbox) verwerkt ze
+    │   ├── Origineel/             iPhone-foto's (HEIC) na het omzetten door de studio
+    │   ├── Niet bruikbaar/
+    │   └── Video's/
+    ├── Fotobibliotheek/           Portret, Aan het werk, Werkplek, Onderweg, Met anderen, Details
+    ├── Carrousels/                per post een map JJJJ-MM-DD - haakje met 01.jpg, 02.jpg ...
+    └── Reelomslagen/              per post JJJJ-MM-DD - haakje.jpg
 ```
 
 De twee setup-skills draaien in een gewoon gesprek met de map **CLAUDE** gekoppeld. Het
@@ -90,14 +106,17 @@ alleen-lezen.
 content-studio/
 ├── .claude-plugin/plugin.json
 ├── agents/koen.md                 de controleur, met tools Read en Grep
-├── skills/<skill>/SKILL.md        dertien skills
+├── skills/<skill>/SKILL.md        twaalf skills
 ├── references/                    gedeeld door de skills
-│   ├── notion-schema.md           de twee databases, naamvarianten, Fase Persoonlijk
+│   ├── content-studio.html        het artifact Content Studio (gebouwd, niet met de hand aanpassen)
+│   ├── content-studio-afspraken.md  database, huisstijl.json, Drive-mappen en Notion: de afspraak met de studio
+│   ├── notion-schema.md           de twee databases, naamvarianten, statussen, Fase Persoonlijk
 │   ├── pagina-opbouw.md           de body van een kalenderpagina
 │   ├── koen-aanroepen.md          hoe een skill Koen laat meekijken
-│   ├── slide-indeling.html        het zijscherm voor de slide-indeling van een carrousel
 │   ├── memory-regels.md           MEMORY.md: secties, grens van tien regels, wel en niet
 │   ├── schrijfkwaliteit.md        zwarte lijst, test tegen generiek, stemcheck, stemcorrecties
+│   ├── contentinbox.md            persoonlijke foto's in Drive: verwerken, naam en beschrijving
+│   ├── vragen-met-knoppen.md      vragen met keuzeknoppen in de chat
 │   └── omgevingscheck.md          de startcontrole en de meldingen per skill
 └── docs/                          plakblokken voor de koper
     ├── installatie.md
@@ -106,10 +125,21 @@ content-studio/
     ├── geplande-taken-metricool.md  prompt voor de ochtendronde van Puk, route A (Metricool)
     ├── geplande-taken.md          prompt voor de taken van route B (Composio)
     ├── prompt-haakjesmail.md      prompt voor de taak Elke week haakjes in je inbox
-    └── prompt-contentmedewerker.md  prompt voor de zondagtaak: tien haakjes en een update van het team
+    ├── prompt-contentmedewerker.md  prompt voor de zondagtaak: tien haakjes en een update van het team
+    └── prompt-contentinbox.md     prompt voor de weektaak: Daan verwerkt de contentinbox
 ```
 
-Let op bij publiceren: `publiceer-marketplace.ps1` neemt de map `agents/` mee.
+Let op bij publiceren: `publiceer-marketplace.ps1` neemt de map `agents/` mee, en niet de map
+`studio-bron/`.
+
+## Content Studio aanpassen
+
+De studio wordt gebouwd uit `studio-bron/`: `kop.html` (opmaak en menu), `js/*.js` (de code per
+scherm), `lib/fabric.min.js` (Fabric.js 5.3.0, MIT) en `team/*.jpg` (de teamportretten). Na een
+wijziging: verhoog `content-studio-versie` in `kop.html` als bestaande studio's bijgewerkt moeten
+worden, en draai `python studio-bron/bouw.py`. Dat schrijft `references/content-studio.html` en,
+om lokaal te bekijken, `studio-bron/lokaal-bekijken.html` (voorbeeldweergave zonder koppelingen;
+staat in `.gitignore`).
 
 ## Installeren
 

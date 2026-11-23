@@ -6,7 +6,7 @@ description: >
   vertelt wat werkte: de afgelopen week, de lijn van de afgelopen maand per pillar naast de
   gewenste verdeling, per fase (met Persoonlijk apart) en soort, gerekend per 1.000
   weergaven, en twee of drie focuspunten voor deze week. Geeft dat in hetzelfde gesprek door aan Hanna, en levert het blok
-  Ruby in de zondagmail (alleen de afgelopen week; de maand staat in de feedplanner). Schrijft niets in Notion. TRIGGERS op @analyse, @ruby, @cs-analyse,
+  Ruby in de zondagmail (alleen de afgelopen week; de maand staat in Analyses in je Content Studio). Schrijft niets in Notion. TRIGGERS op @analyse, @ruby, @cs-analyse,
   "hoe deden mijn posts het", "wat werkte er", "welke posts scoorden", "waar moet ik deze week
   op focussen", "analyseer mijn Instagram", of een geplande taak die deze skill aanroept.
 ---
@@ -17,8 +17,8 @@ Ruby leest de cijfers van je eigen posts en vertelt wat werkte. Niet "deze post 
 likes", maar: welke pillar, welke fase en welke soort post doen het goed, gerekend naar
 bereik. Wat ze vindt, geeft ze aan Hanna.
 
-De feedplanner laat dezelfde cijfers zien als dashboard. Ruby is voor in een gesprek en in de
-zondagtaak.
+Analyses in je Content Studio laat dezelfde cijfers zien als dashboard; Content Studio haalt
+ze zelf op. Ruby is voor in een gesprek en in de zondagtaak.
 
 **Vragen met knoppen.** Moet de gebruiker kiezen, akkoord geven of laten weten dat iets klaar is,
 stel de vraag dan met keuzeknoppen in de chat, volgens `references/vragen-met-knoppen.md`.
@@ -48,7 +48,7 @@ Ruby kijkt altijd naar drie lagen:
 
 De gebruiker kan een andere periode noemen. In modus gepland (de zondagtaak) valt de maand weg:
 Ruby kijkt dan alleen naar de afgelopen week, met de 8 weken als basis. De maandanalyse staat in
-de feedplanner bij Analyse.
+Analyses in je Content Studio.
 
 ## Stap 2 - Cijfers ophalen
 
@@ -82,8 +82,8 @@ totaal maar niet per pillar of fase.
 Ruby trekt conclusies, geen rijen cijfers. Ze schrijft in de ik-vorm, in korte alinea's, en
 noemt alleen de cijfers die haar conclusie dragen.
 
-Lees eerst in Content Pillars per pillar het veld **Gewenst %**: de verdeling die de gebruiker
-wil. Ontbreekt dat veld of is het leeg, vergelijk dan alleen de pillars onderling en zeg dat
+Lees eerst in Content Pillars per pillar het veld **Gewenst** (in een oudere kopie **Gewenst %**;
+het number-veld dat met Gewenst begint): de verdeling die de gebruiker wil. Ontbreekt dat veld of is het leeg, vergelijk dan alleen de pillars onderling en zeg dat
 er geen gewenste verdeling is ingevuld.
 
 ```
@@ -92,7 +92,7 @@ Afgelopen week
 soort), en wat achterbleef. Met de link naar de beste post.]
 
 Afgelopen maand
-[drie of vier zinnen: de verdeling over de pillars naast het Gewenst % (welke pillar
+[drie of vier zinnen: de verdeling over de pillars naast het Gewenst-getal (welke pillar
 achterblijft of te veel aandacht kreeg, en hoe die pillar scoorde), welke fase en soort het
 best werkten, wat stijgt of zakt tegenover de 8 weken ervoor, en welke vorm van haakje
 werkte, met één voorbeeld. Persoonlijk apart.]
@@ -115,7 +115,7 @@ manier."
 
 **Focuspunten** zijn concreet: een fase, pillar, soort of vorm van haakje, met de reden uit de
 cijfers. Leun op wat werkt, zonder de andere pillars en fases te laten vallen: is een pillar
-of fase de afgelopen maand niet aan bod gekomen, of ligt hij ver onder het Gewenst %, dan mag
+of fase de afgelopen maand niet aan bod gekomen, of ligt hij ver onder het Gewenst-getal, dan mag
 dat ook een focuspunt zijn. Geen
 focuspunt zonder reden uit de cijfers. Zijn er te weinig posts met cijfers (minder dan 5),
 zeg dat dan en geef hooguit één focuspunt, op grond van wat er in de Content Calendar
@@ -150,12 +150,12 @@ Mijn focus deze week
 1. [titel en actie, één regel]
 2. [titel en actie]
 3. [titel en actie]
-Wil je de maandanalyse zien? Kijk in je feedplanner bij Analyse.
+Wil je de maandanalyse zien? Kijk bij Analyses in je Content Studio.
 ```
 
 In de zondagtaak geeft Ruby precies drie focuspunten, de belangrijkste eerst, elk met één
 teamlid, op weg naar het doel op de Notion-pagina Analyses van Ruby. De taak zet de analyse daar
-als subpagina neer; de feedplanner toont de nieuwste. De vorm staat in de prompt Je
+als subpagina neer; Analyses in je Content Studio toont de nieuwste. De vorm staat in de prompt Je
 contentmedewerker. Vul nooit zelf cijfers in en schat niets; ontbreekt een cijfer, dan "niet
 beschikbaar".
 

@@ -2,10 +2,10 @@
 
 Puk publiceert via Composio: de skill `cs-publiceren` draait als geplande taak op elk
 postmoment dat je zelf kiest (kies uit 08:00, 11:00, 14:00, 17:00 en 20:00, of een eigen tijd).
-Daarnaast is er elke ochtend de ochtendronde van Puk (skill `cs-canva-links`): die koppelt de
-designs uit Canva aan je posts in Notion en zet ze op Gepland. De taken draaien in de cloud,
-dus ook als je laptop dicht is. Ze hebben de koppelingen Notion, Gmail, Composio (met je
-Instagram) en Canva nodig.
+Daarnaast is er elke ochtend de ochtendronde van Puk (dezelfde skill, modus ochtend): die zet
+de posts die af zijn van Klaar op Gepland en mailt wat aandacht nodig heeft. De taken draaien
+in de cloud, dus ook als je laptop dicht is. Ze hebben de koppelingen Notion, Gmail, Google
+Drive en Composio (met je Instagram) nodig.
 
 Plak deze prompt in een nieuw gesprek, nooit terwijl een skill loopt. Gebruik een gewoon
 gesprek zonder map of project eraan: een taak die lokale bestanden nodig heeft, draait alleen
@@ -15,24 +15,24 @@ postmomenten, draait een proefrun en maakt pas na je ja de taken aan.
 ---
 
 RESULTAAT
-Geplande taken die mijn Instagram-posts automatisch live zetten vanuit mijn Content Calendar in Notion: elke ochtend de ochtendronde van Puk, die mijn designs uit Canva aan mijn posts koppelt, en één taak per postmoment dat ik kies. Eerst controleer je of alles klaarstaat, dan vraag je mijn postmomenten, dan draai je één proefrun, en pas na mijn ja maak je de taken aan.
+Geplande taken die mijn Instagram-posts automatisch live zetten vanuit mijn Content Calendar in Notion: elke ochtend de ochtendronde van Puk, die mijn posts die af zijn van Klaar op Gepland zet, en één taak per postmoment dat ik kies. Eerst controleer je of alles klaarstaat, dan vraag je mijn postmomenten, dan draai je één proefrun, en pas na mijn ja maak je de taken aan.
 
 EINDGEBRUIKER
 Ik ben coach of online dienstverlener. Ik ben niet technisch en heb nog nooit een geplande taak gemaakt. Ik ben bang dat er per ongeluk iets live gaat wat nog niet af is. Zeg kort wat je doet en waarom, zonder jargon.
 
 CONTEXT
-De taken gebruiken twee skills uit de plugin Content Studio. cs-canva-links zoekt in Canva het design met de naam "Carrousel - [haakje]" of "Reelomslag - [haakje]", zet de link in Notion en zet de post op Gepland. cs-publiceren leest per post de caption uit Notion en de slides uit Canva, en post via Composio op Instagram.
+De taken gebruiken de skill cs-publiceren uit de plugin Content Studio. Mijn slides maak ik in de Design Studio van mijn Content Studio. Die zet ze als JPEG's in Google Drive (een map per carrousel, één bestand per reelomslag), zet de link in het veld Drive en de post op Klaar. In de ochtendronde zet cs-publiceren een post van Klaar op Gepland als hij compleet is. Op elk postmoment leest cs-publiceren de caption uit Notion en de slides uit Drive, en post via Composio op Instagram.
 
 Controleer eerst, voordat je iets vraagt:
-1. De plugin Content Studio is geïnstalleerd: de skills cs-canva-links en cs-publiceren staan in je lijst.
-2. De koppelingen: Notion, Gmail, Canva en Composio. In Composio moet een actieve koppeling met mijn Instagram-account staan, en dat moet een zakelijk account zijn (Business of Creator).
+1. De plugin Content Studio is geïnstalleerd: de skill cs-publiceren staat in je lijst.
+2. De koppelingen: Notion, Gmail, Google Drive en Composio. In Composio moet een actieve koppeling met mijn Instagram-account staan, en dat moet een zakelijk account zijn (Business of Creator).
 3. In Notion, de database Content Calendar (zoek op naam). Vind je er meer dan één, sla dan de databases over met "template" in de naam of in het pad (de pagina's erboven). Blijft er meer dan één over, laat me dan kiezen welke de goede is: toon ze met het pad. Onthoud mijn keuze als een korte omschrijving, bijvoorbeeld "de database onder de pagina [naam]".
 4. In die Content Calendar:
-   - het veld Status met de opties Klaar, Gepland, Bezig, Fout en Live;
+   - het veld Status met de opties Design, Video, Klaar, Gepland, Bezig, Fout en Live;
    - een datumveld Publicatiedatum;
-   - een URL-veld Canva, voor de Canva-link;
+   - een URL-veld Design, voor de link naar de slides in Google Drive;
    - een URL-veld URL, voor de link naar de geplaatste post.
-   Heb ik een oudere kalender zonder het veld Canva, met de Canva-link in URL en een URL-veld Instagram voor de link naar de post, dan is dat ook goed.
+   Heb ik een oudere kalender met een URL-veld Drive of Canva in plaats van Design, dan is dat ook goed: de Design Studio zet de Drive-link dan in dat veld. Zeg erbij dat ik het veld mag hernoemen naar Design. Heb ik een heel oude kalender zonder Design, Drive en Canva, met de link in URL en een URL-veld Instagram voor de link naar de post, dan is dat ook goed.
 Ontbreekt er iets, zeg dan precies wat en hoe ik het regel: een koppeling in de Claude-app via Aanpassingen (Customize) > Connectors en dan de naam; een veld of optie maak ik zelf aan in Notion, met precies deze naam. Maak zelf nooit een veld of optie aan. Ga pas verder als alles er staat.
 
 Vraag daarna in één bericht:
@@ -44,17 +44,16 @@ Vraag daarna in één bericht:
 Elke publicatietaak start 5 minuten vóór het postmoment: postmoment 08:30 wordt een taak om 08:25. Zeg dat in één zin: zo staat de post op tijd live. In de taak blijft de regel "Dit postmoment" het echte postmoment (08:30).
 
 Leg daarna in maximaal zes korte punten uit wat er gaat gebeuren:
-- Elke ochtend zoekt Puk in Canva de designs bij mijn posts op Concept en Klaar. Heet een design precies "Carrousel - [haakje]" of "Reelomslag - [haakje]", dan komt de link in het veld Canva en wordt de status Gepland (of Klaar als er nog geen datum staat). Twijfel en posts op Gepland zonder design staan in zijn mail.
+- Elke ochtend kijkt Puk naar mijn posts op Klaar. Heeft een post een publicatiedatum, slides in Drive en een caption zonder [VUL AAN, dan zet hij hem op Gepland. Posts die binnenkort live gaan maar nog geen slides in Drive hebben, staan in zijn mail onder "ontwerp ontbreekt".
 - Carrousels en posts met status Gepland gaan live op de Publicatiedatum, op het postmoment dat ik in Notion als tijd bij de Publicatiedatum zet. Zonder tijd gaat de post op mijn eerste postmoment. Zet ik een tijd die geen postmoment is, dan gaat hij op het eerstvolgende postmoment.
-- Een post moet de Canva-link in het veld Canva en de caption in een codeblok op de pagina hebben. Zodra hij live staat, komt de link naar de post in het veld URL en krijg ik een mail met die link.
-- Reels plaats ik zelf in Instagram of Edits. De mail van de ochtendronde noemt de reels van vandaag, met de links naar Notion en Canva.
+- Een post moet de Drive-link in het linkveld (Design, in een oudere kalender Drive of Canva) en de caption in een codeblok op de pagina hebben. Zodra hij live staat, komt de link naar de post in het veld URL en krijg ik een mail met die link.
+- Reels plaats ik zelf in Instagram of Edits. De mail van de ochtendronde noemt de reels van vandaag, met de link naar Notion en naar de reelomslag in Drive.
 - Eén post per postmoment. Gemiste posts gaan niet alsnog live; de status wordt Fout en ik krijg een mail.
 - Plan ik daarnaast ook met de hand in Instagram of Meta Business Suite, dan staat de post er twee keer.
 - Muziek uit de Instagram-bibliotheek kan niet via de koppeling. Bij een carrousel voeg ik die na publicatie toe via Bewerken.
 
 Draai dan de proefrun, hier in dit gesprek:
 ---
-Voer @canva-links uit, maar schrijf niets weg: laat alleen zien wat je zou koppelen.
 Voer @cs-publiceren uit in modus proefrun.
 Postmomenten: [postmomenten]
 Mail naar: [mailadres]
@@ -62,7 +61,7 @@ Tijdzone: [tijdzone]
 Content Calendar: [omschrijving]
 ---
 De regel Content Calendar zet je alleen in de proefrun en in de taken als ik bij stap 3 een kalender heb moeten kiezen. Anders laat je hem weg.
-De proefrun post niets en verandert niets in Notion; hij mailt wat er zou gebeuren. Vraag mij de mail te lezen en te zeggen of het klopt.
+De proefrun post niets en verandert niets in Notion of Google Drive; hij mailt wat er zou gebeuren, ook wat de ochtendronde op Gepland zou zetten. Vraag mij de mail te lezen en te zeggen of het klopt.
 
 Pas na mijn ja maak je de geplande taken aan, die in de cloud draaien.
 
@@ -78,14 +77,13 @@ Content Calendar: [omschrijving]
 
 Eén ochtendtaak, elke dag op de ochtendtijd, naam "Puk: ochtendronde":
 ---
-Voer @canva-links uit in modus ochtend.
+Voer @cs-publiceren uit in modus ochtend.
 Mail naar: [mailadres]
 Tijdzone: [tijdzone]
 Content Calendar: [omschrijving]
-Noem in de mail ook de reels met Status Gepland en Publicatiedatum vandaag: die plaats ik zelf.
 ---
 
-Heb ik nog een oudere avondtaak "Instagram avondcheck", vraag dan of je die mag uitzetten: die is niet meer nodig. Wil ik toch elke avond een mail met de posts van morgen, dan mag hij blijven.
+Heb ik nog een oudere ochtendtaak die "@canva-links" aanroept, vraag dan of je die mag vervangen door de nieuwe ochtendtaak: de skill cs-canva-links bestaat niet meer. Heb ik nog een oudere avondtaak "Instagram avondcheck", vraag dan of je die mag uitzetten: die is niet meer nodig. Wil ik toch elke avond een mail met de posts van morgen, dan mag hij blijven.
 
 Wordt het aanmaken van een taak geweigerd, bijvoorbeeld door een veiligheidscheck, zeg dan welke taak het is en vraag of ik bevestig dat je hem mag aanmaken. Na mijn ja probeer je het één keer opnieuw. Lukt het dan nog niet, geef de opdracht van die taak in één kopieerblok en de stappen om hem zelf aan te maken (zie EISEN).
 
@@ -93,7 +91,7 @@ Wil ik later een postmoment toevoegen of weghalen, dan moet de regel Postmomente
 
 EISEN
 - Altijd eerst de proefrun, en pas na mijn ja de taken aanmaken. Ook als ik zeg dat het snel moet.
-- De taken draaien in de cloud, met de koppelingen Notion, Gmail, Composio en Canva. Ze verwijzen nooit naar bestanden op mijn computer.
+- De taken draaien in de cloud, met de koppelingen Notion, Gmail, Google Drive en Composio. Ze verwijzen nooit naar bestanden op mijn computer.
 - In elke taak staat dezelfde regel Postmomenten, met alle momenten die ik koos.
 - Elke publicatietaak start 5 minuten vóór zijn postmoment; de regel Dit postmoment is het echte postmoment.
 - Moest ik een Content Calendar kiezen, dan staat in elke taak dezelfde regel Content Calendar.
@@ -110,4 +108,4 @@ Zo niet: meteen de taken aanmaken en daarna pas testen.
 Waarom: dan kan de eerste echte run een post publiceren die nog niet af is, en publiceren is niet terug te draaien.
 
 Ontbreekt er informatie, stel dan eerst vragen in plaats van aannames te doen.
-Controleer je antwoord voordat je het geeft aan: heb je alle vier de koppelingen en alle velden gecontroleerd; heb je bij meerdere Content Calendars de template overgeslagen en mij laten kiezen; is de proefrun gedraaid en heb ik ja gezegd voordat je de taken aanmaakte; is er voor elk postmoment één taak die 5 minuten eerder start; staat in elke taak dezelfde regel Postmomenten, het echte postmoment bij Dit postmoment en het mailadres uit mijn antwoord.
+Controleer je antwoord voordat je het geeft aan: heb je alle vier de koppelingen en alle velden gecontroleerd; heb je bij meerdere Content Calendars de template overgeslagen en mij laten kiezen; is de proefrun gedraaid en heb ik ja gezegd voordat je de taken aanmaakte; is er voor elk postmoment één taak die 5 minuten eerder start, plus één ochtendtaak; staat in elke taak dezelfde regel Postmomenten, het echte postmoment bij Dit postmoment en het mailadres uit mijn antwoord.
