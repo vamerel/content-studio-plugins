@@ -1,6 +1,6 @@
 {
   "name": "content-studio",
-  "version": "0.30.0",
+  "version": "0.31.0",
   "description": "Claude Content Studio: je contentteam in twaalf Cowork-skills en één agent, op basis van je Business DNA, met je eigen Content Studio (Design Studio, Feed View, Analyses en Team). Viggo (verhalen), Sam (speuren), Ruby (cijfers), Hanna (haakjes), Cato (captions), Koen (controle), Daan (je Design Studio en je slides) en Puk (inplannen via Metricool of Composio), plus setup, bewaren en ophalen. Slides als JPEG in Google Drive. Werkt met de Notion-template Content Studio (Content Calendar, Content Pillars en Content Team, met een eigen pagina per teamlid). Design system: aparte plugin content-designsystem, voor Claude Code.",
   "author": {
     "name": "VA-Merel"

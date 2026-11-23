@@ -42,16 +42,21 @@ hier zelf niets neer te zetten; de skills vullen de map.
 
 Je foto's en je slides staan in Google Drive, in de map **Content Studio**:
 
-- **Contentinbox/** - zet hier vanaf je telefoon je eigen foto's en video's in. Daan (@inbox)
-  geeft elke foto een naam en een beschrijving en zet hem in je Fotobibliotheek. Video's gaan
-  naar Contentinbox/Video's, onbruikbare foto's naar Contentinbox/Niet bruikbaar. Er wordt
-  nooit iets verwijderd. Een iPhone-foto zet je Content Studio om naar JPEG; het origineel komt
-  in Contentinbox/Origineel.
-- **Fotobibliotheek/** - al je foto's, in de mappen Portret, Aan het werk, Werkplek, Onderweg,
-  Met anderen en Details. Daan kiest hieruit, en in de Design Studio kies je hier zelf een foto.
-- **Carrousels/** - per carrousel een map met de slides als JPEG (01.jpg, 02.jpg ...). Die zet
-  je Design Studio erin als je op Klaar klikt; de link komt in Notion bij de post.
-- **Reelomslagen/** - per reel de omslag als JPEG.
+- **1. Contentinbox/** - zet hier vanaf je telefoon je eigen foto's en video's in. Daan
+  (@inbox) geeft elk bestand een naam en een beschrijving, zet foto's in je Bibliotheek foto's en
+  video's in je Bibliotheek video's. Onbruikbare foto's gaan naar Niet bruikbaar. Er wordt nooit
+  iets verwijderd. Een iPhone-foto zet je Content Studio om naar JPEG; het origineel komt in
+  Origineel.
+- **2. Bibliotheek foto's/** - al je foto's, in de mappen Portret, Aan het werk, Werkplek,
+  Onderweg, Met anderen en Details. Daan kiest hieruit, en in de Design Studio kies je hier zelf
+  een foto.
+- **3. Bibliotheek video's/** - al je video's, met een naam en een beschrijving.
+- **4. Designs en edits/** - wat je Design Studio maakt als je op Klaar klikt; de link komt in
+  Notion bij de post.
+  - **Carrousels/** - per carrousel een map met de slides als JPEG (01.jpg, 02.jpg ...).
+  - **Reels/** - per reel een map met de omslag (omslag.jpg). Zet je video in dezelfde map.
+
+De nummers zorgen dat Google Drive de mappen in deze volgorde toont.
 
 ## Wat hier niet staat
 

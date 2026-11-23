@@ -34,8 +34,10 @@ Daarom zijn de controles hieronder hard: bij twijfel wordt er niets ingepland en
 gebruiker een mail.
 
 De slides maakt de gebruiker in de Design Studio, een scherm in Content Studio. Die zet ze als
-JPEG's in Google Drive (`Content Studio/Carrousels/JJJJ-MM-DD - haakje/01.jpg`, `02.jpg` ...,
-of één bestand `Content Studio/Reelomslagen/JJJJ-MM-DD - haakje.jpg`), deelt ze, zet de link
+JPEG's in Google Drive (`Content Studio/4. Designs en edits/Carrousels/JJJJ-MM-DD - haakje/01.jpg`,
+`02.jpg` ..., of bij een reel `Content Studio/4. Designs en edits/Reels/JJJJ-MM-DD - haakje/omslag.jpg`,
+naast de video die de gebruiker erbij zet; in een oudere opbouw `Content Studio/Carrousels/...` en
+`Content Studio/Reelomslagen/JJJJ-MM-DD - haakje.jpg`), deelt ze, zet de link
 in het linkveld (Design, in oudere kalenders Drive of Canva) en de post op Klaar.
 
 **Gebruik één route.** Draait ook de skill `cs-publiceren` (Composio) voor dezelfde
@@ -621,7 +623,7 @@ Bij **Zelf plaatsen** krijgt elke reel deze stappen:
 Reel, vandaag om [tijd]
 Open in Notion
 1. Open de Notion-pagina en kopieer de caption.
-2. De reelomslag staat in Drive: [link als klikbare tekst "Open de reelomslag"]. Zet hem op je telefoon.
+2. De map van je reel staat in Drive, met de omslag (omslag.jpg) en je video als je die erin zette: [link als klikbare tekst "Open de map van je reel"]. Zet ze op je telefoon. Wijst de link naar één JPEG (een oudere reel), noem het dan "Open de reelomslag".
 3. Plaats je video in Instagram of Edits.
 4. Voeg de reelomslag toe.
 5. Plak je caption.

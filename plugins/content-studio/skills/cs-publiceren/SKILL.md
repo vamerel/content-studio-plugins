@@ -21,8 +21,10 @@ alleen direct publiceren. Deze skill doet dat op het geplande moment: hij leest 
 moment, dus de laatste versie van de caption en van de slides in Drive gaat mee.
 
 De slides maakt de gebruiker in de Design Studio, een scherm in Content Studio. Die zet ze als
-JPEG's in Google Drive (`Content Studio/Carrousels/JJJJ-MM-DD - haakje/01.jpg`, `02.jpg` ...,
-of één bestand `Content Studio/Reelomslagen/JJJJ-MM-DD - haakje.jpg`), deelt ze, zet de link
+JPEG's in Google Drive (`Content Studio/4. Designs en edits/Carrousels/JJJJ-MM-DD - haakje/01.jpg`,
+`02.jpg` ..., of bij een reel `Content Studio/4. Designs en edits/Reels/JJJJ-MM-DD - haakje/omslag.jpg`,
+naast de video die de gebruiker erbij zet; in een oudere opbouw `Content Studio/Carrousels/...` en
+`Content Studio/Reelomslagen/JJJJ-MM-DD - haakje.jpg`), deelt ze, zet de link
 in het linkveld (Design, in oudere kalenders Drive of Canva) en de post op Klaar.
 
 Publiceren is openbaar en niet terug te draaien. Daarom zijn de controles hieronder hard: bij
@@ -192,7 +194,7 @@ Posts op verschillende postmomenten van dezelfde dag gaan allemaal.
 
 **Reels plaatst de gebruiker zelf.** Automatisch publiceren van reels staat voorlopig uit.
 Een reel met Status Gepland en een Publicatiedatum plant de gebruiker zelf in Instagram of
-Edits, met de reelomslag die als JPEG in Drive staat en eventueel muziek uit Instagram. De
+Edits, met de reelomslag en de video uit de map van de reel in Drive en eventueel muziek uit Instagram. De
 skill publiceert niets, zet de status niet op Bezig en ziet het niet als fout. Hij herinnert
 eraan in de ochtendmail en de avondmail (zie
 Zelf plaatsen) en koppelt de reel aan Notion zodra hij live staat (zie Zelf geplaatste posts
@@ -223,8 +225,9 @@ Doe deze controles in deze volgorde. Faalt er één, dan gaat de post niet live.
    - **Post met één afbeelding** (de link wijst naar een bestand): `get_file_metadata` met het
      id; het bestand is een JPEG (`image/jpeg`). Wijst de link naar een map met precies één
      JPEG, gebruik die.
-   - **Reel:** de skill publiceert hem niet, dus deze controle vervalt. De reelomslag is één
-     JPEG in Drive; die gebruikt de gebruiker zelf.
+   - **Reel:** de skill publiceert hem niet, dus deze controle vervalt. De reelomslag staat als
+     omslag.jpg in de map van de reel in Drive (in een oudere opbouw: één JPEG); die gebruikt de
+     gebruiker zelf, met de video uit dezelfde map.
 2. **Gedeeld met iedereen met de link.** De map (carrousel) of het bestand (post) moet gedeeld
    zijn met iedereen met de link, als lezer. Anders kan Instagram de slides niet ophalen.
    Controleer het met `get_file_metadata` met `includeRichMetadata: true` (veld `visibility`
@@ -553,7 +556,7 @@ Bij **Zelf plaatsen** krijgt elke reel deze stappen:
 Reel, morgen om [postmoment]
 Open in Notion
 1. Open de Notion-pagina en kopieer de caption.
-2. De reelomslag staat in Drive: [link als klikbare tekst "Open de reelomslag"]. Zet hem op je telefoon.
+2. De map van je reel staat in Drive, met de omslag (omslag.jpg) en je video als je die erin zette: [link als klikbare tekst "Open de map van je reel"]. Zet ze op je telefoon. Wijst de link naar één JPEG (een oudere reel), noem het dan "Open de reelomslag".
 3. Plaats je video in Instagram of Edits.
 4. Voeg de reelomslag toe.
 5. Plak je caption.

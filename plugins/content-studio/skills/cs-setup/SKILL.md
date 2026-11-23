@@ -8,7 +8,8 @@ description: >
   System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md) en de
   map Business Brand
   Guidelines voor beeldmateriaal, maakt de mappen voor Content Studio in Google Drive
-  (Contentinbox, Fotobibliotheek, Carrousels, Reelomslagen), laat Daan je Content Studio
+  (1. Contentinbox, 2. Bibliotheek foto's, 3. Bibliotheek video's, 4. Designs en edits met
+  Carrousels en Reels), laat Daan je Content Studio
   neerzetten, vult de Content Pillars
   pillar voor pillar uit Business DNA en levert de projectinstructies als plakblok. Wordt ook
   aangeroepen door de andere Content Studio-skills als de omgeving ontbreekt. TRIGGERS op
@@ -345,7 +346,7 @@ op de afvinklijst als openstaand.
 
 ## FASE 5B: MAPPEN IN GOOGLE DRIVE
 
-In Google Drive staan je foto's (de Fotobibliotheek), je contentinbox en de slides die je
+In Google Drive staan je foto's en video's (de twee bibliotheken), je contentinbox en de slides die je
 Design Studio maakt. De mappen liggen vast in sectie 6 van
 `references/content-studio-afspraken.md`.
 
@@ -363,23 +364,40 @@ Sla de rest van deze fase dan over, zet het op de afvinklijst en ga door.
 
 ```
 Content Studio/
-├── Contentinbox/   met Origineel, Niet bruikbaar en Video's
-├── Fotobibliotheek/   met Portret, Aan het werk, Werkplek, Onderweg, Met anderen en Details
-├── Carrousels/
-└── Reelomslagen/
+├── 1. Contentinbox/          met Origineel en Niet bruikbaar
+├── 2. Bibliotheek foto's/    met Portret, Aan het werk, Werkplek, Onderweg, Met anderen en Details
+├── 3. Bibliotheek video's/
+└── 4. Designs en edits/      met Carrousels en Reels
 ```
 
-Staat er al ergens een map waarvan de naam eindigt op `contentinbox` (van een eerdere versie),
-gebruik die dan als Contentinbox en maak geen tweede.
+De nummers zorgen dat Google Drive de mappen in deze volgorde toont. Staat er al ergens een map
+waarvan de naam eindigt op `contentinbox` (van een eerdere versie), gebruik die dan als
+Contentinbox en maak geen tweede.
+
+**Oudere opbouw.** Staan er mappen uit een eerdere versie (`Contentinbox`, `Fotobibliotheek`,
+`Carrousels` of `Reelomslagen` direct in `Content Studio`, of een submap `Video's` in de
+Contentinbox), dan werkt alles daarmee. Vraag met knoppen: "Je mappen in Google Drive hebben nog
+de oude indeling. Zal ik ze omzetten naar de nieuwe?" met **Ja, zet ze om** en **Laat ze zo**.
+Na ja: hernoem `Contentinbox` naar `1. Contentinbox` en `Fotobibliotheek` naar `2. Bibliotheek
+foto's`, maak `3. Bibliotheek video's` en `4. Designs en edits` met daarin `Reels`, verplaats
+`Carrousels` naar `4. Designs en edits`, zet elke reelomslag uit `Reelomslagen` in een eigen map
+(dezelfde naam zonder `.jpg`) in `Reels` met de naam `omslag.jpg`, en verplaats de video's uit
+`Video's` naar `3. Bibliotheek video's`. Hernoemen en verplaatsen doe je met `update_file`
+(`title`, `parentId`); een map houdt zo zijn id. Zet de links in Notion van de verplaatste
+reelomslagen op de link naar hun nieuwe map, en deel die map met `anyoneWithLink`. Lege oude
+mappen (`Reelomslagen`, `Video's`) laat je staan; zeg dat de gebruiker ze zelf mag weghalen.
+Verwijder niets.
 
 **Ontbreekt er iets,** vraag dan met knoppen: "Zal ik in je Google Drive de mappen voor Content
 Studio maken?" met **Ja, maak de mappen** en **Nu niet**. Maak na ja alleen wat ontbreekt, met
 `create_file` (`title` de naam, `mimeType` `application/vnd.google-apps.folder`, `parentId` de
 bovenliggende map; `Content Studio` zelf in `root`). Bestaande mappen gebruik je opnieuw; je
-verplaatst, hernoemt en verwijdert niets. Daarna meld je in één regel welke mappen je maakte.
+verplaatst, hernoemt en verwijdert niets, behalve na ja bij **Oudere opbouw**. Daarna meld je in
+één regel welke mappen je maakte.
 
-**Onthoud de id's** van `Content Studio`, `Contentinbox`, `Fotobibliotheek`, `Carrousels` en
-`Reelomslagen`. Die geef je in Fase 5C mee aan Daan.
+**Onthoud de id's** van `Content Studio`, de Contentinbox, `2. Bibliotheek foto's`,
+`3. Bibliotheek video's`, `4. Designs en edits`, `Carrousels` en `Reels`. Die geef je in Fase 5C
+mee aan Daan.
 
 **Je eigen foto's (contentinbox).** Niet nodig om te beginnen, dus vraag er niet naar. Het komt
 als laatste punt op de afvinklijst.
@@ -532,7 +550,7 @@ KLAAR
 ✓ Business DNA gevonden
 ✓ Map Business Brand Guidelines aangemaakt met zeven submappen
 ✓ Map Content Studio aangemaakt (Design System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md)
-✓ Google Drive gekoppeld, mappen klaar: Content Studio met Contentinbox, Fotobibliotheek, Carrousels en Reelomslagen
+✓ Google Drive gekoppeld, mappen klaar: Content Studio met 1. Contentinbox, 2. Bibliotheek foto's, 3. Bibliotheek video's en 4. Designs en edits
 ✓ Content Studio neergezet: [link]
 ✓ Content Pillars gevuld: [namen]
 ✓ Gewenste verdeling ingevuld: [pillar %, pillar %, ...]
@@ -549,7 +567,7 @@ NOG NIET
 ○ [alleen als de studio niet neergezet is] Content Studio neerzetten → in Cowork @daan aanroepen en zeggen "zet mijn Content Studio neer"
 ○ [alleen als het design system ontbreekt] Je eigen huisstijl in je Content Studio → in Claude Code @designsystem; daarna in Cowork @daan, die zet je huisstijl in je Content Studio
 ○ [alles wat in deze sessie is blijven liggen, met de reden]
-○ (Wanneer je wilt) Je eigen foto's vanaf je telefoon → zet ze in Google Drive in Content Studio/Contentinbox en zeg "verwerk mijn contentinbox"; Daan geeft ze een naam en zet ze in je Fotobibliotheek. Elke maandag vanzelf kan ook. Tip voor een iPhone: zet je camera op Meest compatibel (Instellingen, Camera, Formaten), dan worden het meteen JPEG's
+○ (Wanneer je wilt) Je eigen foto's vanaf je telefoon → zet ze in Google Drive in Content Studio/1. Contentinbox en zeg "verwerk mijn contentinbox"; Daan geeft ze een naam en zet ze in je Bibliotheek foto's (video's in je Bibliotheek video's). Elke maandag vanzelf kan ook. Tip voor een iPhone: zet je camera op Meest compatibel (Instellingen, Camera, Formaten), dan worden het meteen JPEG's
 ```
 
 Ben je aangeroepen door een andere skill, houd het dan kort:

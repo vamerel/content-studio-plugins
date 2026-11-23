@@ -58,7 +58,7 @@ niet kan openen, ziet ook de database niet. Paden: collectie/document.
 | `huisstijl/basis` | Daan | `{versie, bijgewerkt, huisstijl}`; `huisstijl` volgt sectie 4, met per bestand ook `asset` (de url van het geüploade asset) |
 | `huisstijl/eigen` | de studio | dezelfde vorm; wat de gebruiker onder Instellingen aanpaste. Bestaat dit document, dan gebruikt de studio dit. "Terug naar mijn design system" verwijdert het |
 | `instellingen/profiel` | de studio | `{naam, foto}` (`foto` = asset-url) |
-| `instellingen/koppelingen` | Daan, setup, de studio | `{kalender, kalenderDb, kalenderView, pillars, pillarsDb, pillarsView, team, teamDb, teamView, analysesPagina, drive: {contentStudio, contentinbox, fotobibliotheek, carrousels, reelomslagen}, instagramId}`. `kalender`, `pillars` en `team` zijn `collection://...`-adressen; `analysesPagina` en de Drive-waarden zijn id's |
+| `instellingen/koppelingen` | Daan, setup, de studio | `{kalender, kalenderDb, kalenderView, pillars, pillarsDb, pillarsView, team, teamDb, teamView, analysesPagina, drive: {contentStudio, contentinbox, fotobibliotheek, videobibliotheek, designs, carrousels, reels}, instagramId}`. `kalender`, `pillars` en `team` zijn `collection://...`-adressen; `analysesPagina` en de Drive-waarden zijn id's |
 | `instellingen/doel` | de studio | het doel van de gebruiker: `{doel, maanddoel: {id: n}, tekst, cijfer, getal, fases, uitleg}` |
 | `analyses/afgevinkt` | de studio | de focuspunten van Ruby die de gebruiker afvinkte |
 | `voorstellen/p<notion-id zonder streepjes>` | Daan | voorstel voor een post op Design of Video, zie sectie 5 |
@@ -235,30 +235,43 @@ slide: `x` en `b` van de breedte, `y` en `h` van de hoogte.
 
 ```
 Content Studio/
-├── Contentinbox/          de gebruiker zet hier zelf foto's in
-│   ├── Origineel/         iPhone-foto's (HEIC) nadat de studio er een JPEG van maakte
-│   ├── Niet bruikbaar/
-│   └── Video's/           video's blijven hier tot de Reel Editor er is
-├── Fotobibliotheek/
+├── 1. Contentinbox/              de gebruiker zet hier zelf foto's en video's in
+│   ├── Origineel/                iPhone-foto's (HEIC) nadat de studio er een JPEG van maakte
+│   └── Niet bruikbaar/
+├── 2. Bibliotheek foto's/
 │   ├── Portret/
 │   ├── Aan het werk/
 │   ├── Werkplek/
 │   ├── Onderweg/
 │   ├── Met anderen/
 │   └── Details/
-├── Carrousels/
-│   └── JJJJ-MM-DD - haakje/   01.jpg, 02.jpg ...
-└── Reelomslagen/
-    └── JJJJ-MM-DD - haakje.jpg
+├── 3. Bibliotheek video's/       video's uit de Contentinbox, met naam en beschrijving
+└── 4. Designs en edits/
+    ├── Carrousels/
+    │   └── JJJJ-MM-DD - haakje/  01.jpg, 02.jpg ...
+    └── Reels/
+        └── JJJJ-MM-DD - haakje/  omslag.jpg en de video van de reel
 ```
 
+- **Nummers:** de nummers voor de mapnamen zorgen dat Google Drive ze in deze volgorde toont. Zoek
+  een map altijd op de nieuwe naam en daarna op de oude naam: `1. Contentinbox` (oud
+  `Contentinbox` of `0.contentinbox`), `2. Bibliotheek foto's` (oud `Fotobibliotheek`). In een
+  oudere opbouw staan `Carrousels` en `Reelomslagen` direct in `Content Studio`; die blijven
+  werken. Een nieuwe map maak je altijd met de nieuwe naam op de nieuwe plek.
+- **Koppelingen:** de id's staan in `instellingen/koppelingen` onder `drive`: `contentStudio`,
+  `contentinbox`, `fotobibliotheek`, `videobibliotheek`, `designs`, `carrousels`, `reels` (en in
+  een oudere opbouw `reelomslagen`). Een map die hernoemd of verplaatst is, houdt zijn id.
+- **Een reel** krijgt een eigen map in `Reels`, net als een carrousel. Daarin zet de studio
+  `omslag.jpg`; de gebruiker zet de video in dezelfde map. Maakt de studio de omslag opnieuw, dan
+  vervangt hij alleen `omslag.jpg` en laat hij de video staan. De link in Notion is de link naar
+  de map. Een oudere reel heeft een link naar één JPEG in `Reelomslagen`; die blijft werken.
 - **Datum:** de Publicatiedatum, of vandaag als die er nog niet is.
 - **Haakje in een naam:** hoogstens 60 tekens, zonder emoji en zonder `/ \ : * ? " < > |`.
 - **Fotonamen:** `wie-wat-waar-stemming-jjjj-mm-dd-nn.jpg`, kleine letters, koppeltekens, zoals
   `merel-laptop-cafe-lachend-2026-11-14-01.jpg`. De beschrijving (vrij voor tekst, staand of
   liggend, persoon links/midden/rechts) staat in het veld Beschrijving van het bestand in Drive.
-- **Delen:** de map van een carrousel en een reelomslag deelt de studio met `anyoneWithLink`, rol
-  `reader`. De link in Notion is de link naar de map (carrousel) of het bestand (reelomslag).
+- **Delen:** de map van een carrousel of reel deelt de studio met `anyoneWithLink`, rol `reader`.
+  De link in Notion is de link naar die map (bij een oudere reel: naar het bestand).
 - **Links voor Instagram:** per slide `https://lh3.googleusercontent.com/d/<id>`, met als terugval
   `https://drive.google.com/uc?export=download&id=<id>`. Getest op 14 en 17 november 2026.
 - **JPEG's:** kwaliteit 0,9, verlaagd tot het bestand onder 700 kB is (een aanroep vanuit een

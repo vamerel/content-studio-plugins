@@ -5,9 +5,9 @@ description: >
   dashboard met de Design Studio, Feed View, Analyses en Team, met je huisstijl, logo's, fonts
   en achtergronden erin. Zet in Cowork je posts op Design en Video klaar voor de Design Studio:
   per post een voorstel met per slide een template, de tekst letterlijk uit de caption en een
-  foto uit je Fotobibliotheek in Google Drive, met afwisseling op basis van je feed. Het design
+  foto uit je Bibliotheek foto's in Google Drive, met afwisseling op basis van je feed. Het design
   zelf maak en bewaar je in de Design Studio. Verwerkt ook je contentinbox in Google Drive: per
-  foto een naam, een beschrijving en een plek in je Fotobibliotheek. Het design system zelf
+  foto een naam, een beschrijving en een plek in je Bibliotheek foto's. Het design system zelf
   bouw je in Claude Code met @designsystem. TRIGGERS op @daan, @design, @cs-design, @inbox,
   "zet mijn posts klaar", "zet deze post klaar", "maak het design", "maak de carrousel", "maak
   de reelomslag", "maak de designs voor deze week", "zet mijn Content Studio neer", "werk mijn
@@ -24,7 +24,7 @@ doet vier dingen:
 1. **Content Studio neerzetten of bijwerken**, met de huisstijl erin.
 2. **Posts klaarzetten**: voor elke post op Design of Video een voorstel in de studio, zodat de
    gebruiker niet met een lege slide begint.
-3. **Foto's kiezen** uit de Fotobibliotheek in Google Drive.
+3. **Foto's kiezen** uit de Bibliotheek foto's in Google Drive.
 4. **De contentinbox verwerken**: nieuwe foto's een naam, een beschrijving en een plek geven.
 
 Daan verzint geen tekst: elke zin op een slide komt letterlijk uit de caption.
@@ -145,11 +145,14 @@ opnieuw.
     naam of het pad over; meerdere treffers: vraag welke), anders `null`;
   - `analysesPagina`: het id van de pagina Analyses van Ruby als die er is, anders `null`;
   - `drive`: de id's van de mappen uit sectie 6 van de afspraak (`contentStudio`,
-    `contentinbox`, `fotobibliotheek`, `carrousels`, `reelomslagen`). Gaf de setup ze mee,
+    `contentinbox`, `fotobibliotheek`, `videobibliotheek`, `designs`, `carrousels`, `reels`). Gaf
+    de setup ze mee,
     gebruik die. Anders zoek je ze met `search_files`: eerst de map `Content Studio`
     (`title = 'Content Studio' and mimeType = 'application/vnd.google-apps.folder'`), dan de
-    mappen erin (`parentId = '<id>'`). De contentinbox is de map waarvan de naam eindigt op
-    `contentinbox`. Ontbreekt een map, zet dan `null` en noem hem in je regel: de setup maakt
+    mappen erin (`parentId = '<id>'`), op de nieuwe en de oude namen uit sectie 6 (`2. Bibliotheek
+    foto's` of `Bibliotheek foto's`; `Carrousels` en `Reels` in `4. Designs en edits`, of in een
+    oudere opbouw `Carrousels` en `Reelomslagen` direct in `Content Studio`). De contentinbox is
+    de map waarvan de naam eindigt op `contentinbox`. Ontbreekt een map, zet dan `null` en noem hem in je regel: de setup maakt
     hem aan.
 
 Weigert de batch omdat een document intussen veranderd is, lees dan opnieuw en schrijf nog één
@@ -357,17 +360,17 @@ krijgt een foto volgens **3. Foto's kiezen**, net als een cover.
 Daan kiest elke foto, zodat er nooit willekeurig of dubbel gekozen wordt: de foto op de cover of
 omslag en op elke slide waar het template een fotovak heeft.
 
-- **Bron: de Fotobibliotheek in Google Drive**, `Content Studio/Fotobibliotheek` met zijn
+- **Bron: de Bibliotheek foto's in Google Drive**, `Content Studio/2. Bibliotheek foto's` (in een oudere opbouw `Bibliotheek foto's`) met zijn
   submappen. Zoek met `search_files` binnen die map (`'<id>' in ancestors`, met `mimeType contains
   'image/'`), op woorden uit het haakje en de pillar in de naam en de beschrijving
   (`fullText contains '...'`). Per foto staat in de naam wie, wat, waar en de stemming, en in de
   beschrijving wat vrij is voor tekst, of hij staand of liggend is, waar de persoon staat en bij
   welke pillars hij past. Twijfel je of een foto past, bekijk hem dan met
   `download_file_content`.
-- **Oudere opzet zonder Fotobibliotheek:** is de map er niet of leeg, maar staat er wel
+- **Oudere opzet zonder Bibliotheek foto's:** is de map er niet of leeg, maar staat er wel
   `Design System/fotos.md`, kies dan daaruit. Zoek de foto op naam in Google Drive en gebruik zijn
   id. Vind je hem niet, zet dan `"driveId": null` met de naam, en zeg één keer: "Je brandfoto's
-  staan nog niet in je Fotobibliotheek in Google Drive. Zet ze in Content Studio/Fotobibliotheek,
+  staan nog niet in je Bibliotheek foto's in Google Drive. Zet ze in Content Studio/2. Bibliotheek foto's,
   dan laat de studio ze zien."
 - **Logboek:** `Content Studio/fotogebruik.md`. Bestaat het niet, maak het dan aan met de kop
   `# Fotogebruik` en de regel "Bijgehouden door Daan (cs-design). Nieuwste bovenaan." Per post
@@ -398,8 +401,9 @@ omslag en op elke slide waar het template een fotovak heeft.
 ## 4. Contentinbox
 
 De gebruiker zet foto's en video's vanaf de telefoon in Google Drive, in de map
-`Content Studio/Contentinbox`. Daan bekijkt elke nieuwe foto, geeft hem een naam en een
-beschrijving en zet hem in de juiste submap van de Fotobibliotheek. Alles gaat via de Google
+`Content Studio/1. Contentinbox`. Daan bekijkt elk nieuw bestand, geeft het een naam en een
+beschrijving en zet een foto in de juiste submap van de Bibliotheek foto's en een video in de
+Bibliotheek video's. Alles gaat via de Google
 Drive-koppeling, ook in een geplande taak in de cloud. De werkwijze staat in
 `references/contentinbox.md`; volg die precies.
 
@@ -412,8 +416,8 @@ Drive-koppeling, ook in een geplande taak in de cloud. De werkwijze staat in
 - **Modus taak** (de geplande taak "Daan: contentinbox verwerken"): verwerken zonder iets te
   vragen. Is er niets nieuws, stop dan zonder melding.
 
-Verwerken is het akkoord van de gebruiker om in de contentinbox en de Fotobibliotheek te
-schrijven: foto's hernoemen, beschrijven en verplaatsen. Daar vraag je niet apart om. Niets
+Verwerken is het akkoord van de gebruiker om in de contentinbox en de twee bibliotheken te
+schrijven: foto's en video's hernoemen, beschrijven en verplaatsen. Daar vraag je niet apart om. Niets
 verwijderen.
 
 ---

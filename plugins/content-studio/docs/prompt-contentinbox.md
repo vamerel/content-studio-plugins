@@ -1,8 +1,9 @@
 # Prompt: elke week je contentinbox verwerken
 
 Daan (`cs-design`) verwerkt je contentinbox: de foto's en video's die je vanaf je telefoon in
-Google Drive zet, in de map `Content Studio/Contentinbox`. Hij geeft elke foto een naam en een
-beschrijving en zet hem in de juiste map van je Fotobibliotheek. Daaruit kiest hij foto's voor
+Google Drive zet, in de map `Content Studio/1. Contentinbox`. Hij geeft elk bestand een naam en een
+beschrijving en zet een foto in de juiste map van je Bibliotheek foto's, een video in je
+Bibliotheek video's. Daaruit kiest hij foto's voor
 je posts, en je ziet ze in je Design Studio bij "Kies foto". Met deze prompt gebeurt dat elke
 maandag vanzelf. Los kan altijd: zeg in je project "verwerk mijn contentinbox".
 
@@ -20,12 +21,12 @@ EINDGEBRUIKER
 Ik ben coach of online dienstverlener en niet technisch. Ik zet foto's vanaf mijn telefoon in Google Drive en wil daar verder niet naar omkijken. Zeg kort wat je doet, zonder jargon.
 
 CONTEXT
-De plugin Content Studio heeft de skill cs-design (Daan). Die verwerkt de map Content Studio/Contentinbox in mijn Google Drive: elke nieuwe foto krijgt een naam, een beschrijving en een plek in een submap van Content Studio/Fotobibliotheek. Video's gaan naar Contentinbox/Video's, onbruikbare foto's naar Contentinbox/Niet bruikbaar. iPhone-foto's (HEIC) blijven staan tot mijn Content Studio ze omzet. Er wordt nooit iets verwijderd.
+De plugin Content Studio heeft de skill cs-design (Daan). Die verwerkt de map Content Studio/1. Contentinbox in mijn Google Drive: elke nieuwe foto of video krijgt een naam, een beschrijving en een plek: een foto in een submap van Content Studio/2. Bibliotheek foto's, een video in Content Studio/3. Bibliotheek video's. Onbruikbare foto's gaan naar 1. Contentinbox/Niet bruikbaar. iPhone-foto's (HEIC) blijven staan tot mijn Content Studio ze omzet. Er wordt nooit iets verwijderd.
 
 Controleer eerst, voordat je iets vraagt:
 1. De plugin Content Studio is geïnstalleerd: de skill cs-design staat in je lijst.
 2. Google Drive is gekoppeld: probeer een zoekopdracht in Google Drive. Lukt dat niet, zeg dan dat ik Google Drive koppel in de Claude-app via Aanpassingen (Customize) > Connectors. Ga pas verder als het werkt.
-3. In mijn Google Drive staat een map waarvan de naam eindigt op contentinbox, en een map Fotobibliotheek in Content Studio. Ontbreken ze, zeg dan dat ik @setup aanroep; die maakt de mappen aan. Ga pas verder als ze er staan.
+3. In mijn Google Drive staat een map waarvan de naam eindigt op contentinbox, en een map 2. Bibliotheek foto's (in een oudere opbouw Fotobibliotheek) in Content Studio. Ontbreken ze, zeg dan dat ik @setup aanroep; die maakt de mappen aan. Ga pas verder als ze er staan.
 
 Vraag daarna in één bericht:
 1. Op welke dag en welk tijdstip? Stel maandag 08:30 voor: dan staan mijn foto's van het weekend klaar voor de week.
@@ -34,7 +35,7 @@ Draai dan één keer hier in het gesprek: "Verwerk mijn contentinbox" (Daan, cs-
 
 Pas na mijn ja maak je de geplande taak aan, in de cloud, met de koppeling met Google Drive en Notion aan, wekelijks op het moment dat ik koos, naam "Daan: contentinbox verwerken":
 ---
-Voer @inbox uit (cs-design, Daan) in modus taak: verwerk mijn contentinbox in Google Drive volgens de werkwijze van de plugin Content Studio. Verwijder niets en maak geen nieuwe mappen in de Fotobibliotheek. Is er niets nieuws, stop dan zonder melding.
+Voer @inbox uit (cs-design, Daan) in modus taak: verwerk mijn contentinbox in Google Drive volgens de werkwijze van de plugin Content Studio. Verwijder niets en maak geen nieuwe mappen in de Bibliotheek foto's. Is er niets nieuws, stop dan zonder melding.
 ---
 
 Wordt het aanmaken van de taak geweigerd, zeg dan waarom en vraag of ik bevestig dat je hem mag aanmaken. Na mijn ja probeer je het één keer opnieuw. Lukt het dan nog niet, geef de opdracht in één kopieerblok en de stappen om hem zelf aan te maken onder Scheduled in de zijbalk van de Claude-app: wekelijks, op het moment dat ik koos, met de koppeling met Google Drive en Notion aan.

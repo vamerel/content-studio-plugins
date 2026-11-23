@@ -1,5 +1,5 @@
 <title>Content Studio</title>
-<meta name="content-studio-versie" content="2">
+<meta name="content-studio-versie" content="3">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:ital@0;1&display=swap">
@@ -1405,6 +1405,24 @@ CS.drive = {
     const p = payload(await roep('Google Drive', 'create_file', invoer));
     return p.id;
   },
+  /* Zoekt een map onder een van de namen (eerste naam is de huidige, de rest oudere namen) en maakt
+     hem met de eerste naam aan als hij er niet is. Zie content-studio-afspraken.md, sectie 6. */
+  async vindMap(namen, ouder, maak = true){
+    for (const naam of namen){
+      const q = `title = '${naam.replace(/'/g, "\\'")}' and mimeType = 'application/vnd.google-apps.folder' and trashed = false` + (ouder ? ` and parentId = '${ouder}'` : '');
+      const gevonden = await CS.drive.zoek(q, 5);
+      if (gevonden.length) return gevonden[0].id;
+    }
+    return maak ? CS.drive.map(namen[0], ouder) : null;
+  },
+  namen: {
+    contentinbox: ['1. Contentinbox', 'Contentinbox'],
+    fotobibliotheek: ["2. Bibliotheek foto's", 'Fotobibliotheek'],
+    videobibliotheek: ["3. Bibliotheek video's"],
+    designs: ['4. Designs en edits'],
+    carrousels: ['Carrousels'],
+    reels: ['Reels']
+  },
   async upload(titel, ouder, base64, mime = 'image/jpeg'){
     return payload(await roep('Google Drive', 'create_file', {title: titel, parentId: ouder, base64Content: base64, contentMimeType: mime, disableConversionToGoogleType: true}));
   },
@@ -2419,12 +2437,12 @@ async function bewaarAlsTemplate(){
 }
 DS.bewaarAlsTemplate = bewaarAlsTemplate;
 
-/* ---------- foto's uit de Fotobibliotheek ---------- */
+/* ---------- foto's uit de Bibliotheek foto's (vroeger Fotobibliotheek) ---------- */
 async function bibliotheekId(){
   const k = CS.staat.koppelingen; k.drive = k.drive || {};
   if (k.drive.fotobibliotheek) return k.drive.fotobibliotheek;
-  const res = await CS.drive.zoek("title = 'Fotobibliotheek' and mimeType = 'application/vnd.google-apps.folder' and trashed = false", 5);
-  if (res.length){ k.drive.fotobibliotheek = res[0].id; CS.bewaarKoppelingen(); return res[0].id; }
+  const id = await CS.drive.vindMap(CS.drive.namen.fotobibliotheek, k.drive.contentStudio || null, false);
+  if (id){ k.drive.fotobibliotheek = id; CS.bewaarKoppelingen(); return id; }
   return null;
 }
 DS.bibliotheekId = bibliotheekId;
@@ -2760,33 +2778,39 @@ async function klaar(){
     const k = CS.staat.koppelingen; k.drive = k.drive || {};
     if (!k.drive.contentStudio) k.drive.contentStudio = await CS.drive.map('Content Studio');
     const reel = ED.design.soort === 'reelomslag';
-    const soortMap = reel ? 'reelomslagen' : 'carrousels';
-    if (!k.drive[soortMap]) k.drive[soortMap] = await CS.drive.map(reel ? 'Reelomslagen' : 'Carrousels', k.drive.contentStudio);
+    const soortMap = reel ? 'reels' : 'carrousels';
+    if (!k.drive[soortMap]){
+      if (!k.drive.designs) k.drive.designs = await CS.drive.vindMap(CS.drive.namen.designs, k.drive.contentStudio);
+      k.drive[soortMap] = await CS.drive.vindMap(CS.drive.namen[soortMap], k.drive.designs);
+    }
     await CS.bewaarKoppelingen();
-    let doelMap = k.drive[soortMap], deelId, link;
-    if (!reel){
-      if (ED.design.driveMap){
-        const oud = await CS.drive.zoek(`parentId = '${ED.design.driveMap}' and trashed = false`, 50).catch(() => null);
-        if (oud){ doelMap = ED.design.driveMap; for (const f of oud) await CS.drive.prullenbak(f.id).catch(() => null); }
-        else doelMap = await CS.drive.map(mapNaam(), k.drive.carrousels);
-      } else doelMap = await CS.drive.map(mapNaam(), k.drive.carrousels);
-      deelId = doelMap; link = 'https://drive.google.com/drive/folders/' + doelMap;
-    } else {
-      const bestaand = await CS.drive.zoek(`parentId = '${doelMap}' and title = '${mapNaam().replace(/'/g, "\\'")}.jpg' and trashed = false`, 5).catch(() => []);
+    let doelMap = null, deelId, link;
+    // Een carrousel en een reel krijgen elk een eigen map JJJJ-MM-DD - haakje (sectie 6 van de
+    // afspraken). In de map van een reel staan omslag.jpg en de video van de gebruiker; de video blijft staan.
+    if (ED.design.driveMap){
+      const oud = await CS.drive.zoek(`parentId = '${ED.design.driveMap}' and trashed = false`, 50).catch(() => null);
+      if (oud){
+        doelMap = ED.design.driveMap;
+        for (const f of oud){ if (!reel || /^omslag/i.test(f.title || f.name || '')) await CS.drive.prullenbak(f.id).catch(() => null); }
+      }
+    }
+    if (!doelMap) doelMap = await CS.drive.map(mapNaam(), k.drive[soortMap]);
+    if (reel){
+      const bestaand = await CS.drive.zoek(`parentId = '${doelMap}' and title contains 'omslag' and trashed = false`, 5).catch(() => []);
       for (const f of bestaand) await CS.drive.prullenbak(f.id).catch(() => null);
     }
+    deelId = doelMap; link = 'https://drive.google.com/drive/folders/' + doelMap;
     zet('map', 'klaar');
     stap = 'upload'; zet('upload', 'bezig');
     for (let i = 0; i < plaatjes.length; i++){
       zet('upload', 'bezig', `${i + 1} van ${plaatjes.length}`);
-      const titel = reel ? mapNaam() + '.jpg' : String(i + 1).padStart(2, '0') + '.jpg';
-      const f = await CS.drive.upload(titel, doelMap, base64Van(plaatjes[i]));
-      if (reel){ deelId = f.id; link = f.viewUrl || ('https://drive.google.com/file/d/' + f.id + '/view'); }
+      const titel = reel ? 'omslag.jpg' : String(i + 1).padStart(2, '0') + '.jpg';
+      await CS.drive.upload(titel, doelMap, base64Van(plaatjes[i]));
     }
     zet('upload', 'klaar', plaatjes.length + ' geüpload');
     stap = 'delen'; zet('delen', 'bezig');
     const gedeeld = await CS.drive.deel(deelId);
-    if (gedeeld && gedeeld.shareableLink && !reel) link = gedeeld.shareableLink;
+    if (gedeeld && gedeeld.shareableLink) link = gedeeld.shareableLink;
     zet('delen', 'klaar');
     stap = 'notion'; zet('notion', 'bezig');
     const veld = CS.staat.schema && CS.staat.schema.linkVeld;
@@ -2794,10 +2818,10 @@ async function klaar(){
     if (veld) props[veld] = link;
     await CS.notion.zetVelden(ED.post.id, props);
     zet('notion', 'klaar', veld ? 'veld ' + veld + ' en status Klaar' : 'status Klaar');
-    ED.design.klaarOp = new Date().toISOString(); ED.design.driveMap = reel ? null : doelMap; ED.design.driveLink = link;
+    ED.design.klaarOp = new Date().toISOString(); ED.design.driveMap = doelMap; ED.design.driveLink = link;
     await bewaar();
     ED.post.status = 'Klaar'; ED.post.link = link;
-    uitkomst.appendChild(el('div', {class:'banner goed'}, el('div', {}, el('b', {text:'Klaar. '}), 'De slides staan in Google Drive en de post staat in Notion op Klaar. Puk plant hem in zodra er een publicatiedatum is.')));
+    uitkomst.appendChild(el('div', {class:'banner goed'}, el('div', {}, el('b', {text:'Klaar. '}), (reel ? 'De reelomslag staat in Google Drive, in de map van deze reel onder Designs en edits/Reels. Zet je video in dezelfde map. De post staat in Notion op Klaar.' : 'De slides staan in Google Drive en de post staat in Notion op Klaar. Puk plant hem in zodra er een publicatiedatum is.'))));
     if (!veld) uitkomst.appendChild(el('div', {class:'banner let-op', text:'Je Content Calendar heeft geen veld Design (of Drive). Voeg in Notion een URL-veld Design toe, dan zet de studio de link er voortaan in.'}));
     uitkomst.appendChild(el('div', {class:'rij'}, el('a', {href: link, target:'_blank', rel:'noopener', class:'knop'}, icoon('link'), 'Open in Google Drive'), knop('Terug naar Te designen', {soort:'hoofd', klik: () => { v.sluit(); CS.toonScherm('design', {lijst: true}); }})));
   }catch(e){
@@ -3130,7 +3154,7 @@ async function toonVarianten(post, werk){
   await vul(false);
   status.textContent = 'Foto\'s worden erbij gezocht';
   fotos = await haalFotoKeuzes();
-  status.textContent = fotos.length ? '' : 'Geen foto\'s gevonden in je Fotobibliotheek. Je kiest er straks een in de editor.';
+  status.textContent = fotos.length ? '' : 'Geen foto\'s gevonden in je Bibliotheek foto\'s. Je kiest er straks een in de editor.';
   if (fotos.length && document.body.contains(raster)) await vul(false);
 }
 DS.toonLijst = toonLijst; DS.toonVarianten = toonVarianten;
@@ -3473,7 +3497,7 @@ function tabFotos(p){
   const zoekveld = el('input', {type:'search', placeholder:'Zoek een foto', 'aria-label':'Zoek een foto'});
   const mappen = el('div', {class:'ds-chips'});
   const raster = el('div', {class:'ds-foto-raster'}, el('div', {class:'laden', text:'Foto\'s worden gezocht'}));
-  p.append(slideDeel, blok('Fotobibliotheek', el('div', {class:'ds-invoer-rij'}, zoekveld, knop('Zoek', {soort:'klein', klik: () => zoek()})), mappen, raster));
+  p.append(slideDeel, blok('Bibliotheek foto\'s', el('div', {class:'ds-invoer-rij'}, zoekveld, knop('Zoek', {soort:'klein', klik: () => zoek()})), mappen, raster));
   vulFotoSlide(slideDeel);
   let lib = null, submappen = [], gekozenMap = null;
   const kijker = 'IntersectionObserver' in window ? new IntersectionObserver(items => {
@@ -3489,7 +3513,7 @@ function tabFotos(p){
   };
   const toon = lijst => {
     raster.innerHTML = '';
-    if (!lijst.length){ raster.appendChild(el('div', {class:'leeg'}, el('b', {text:'Geen foto\'s gevonden'}), el('span', {class:'klein-tekst', text:'Zet foto\'s in Content Studio/Contentinbox in Google Drive.'}))); return; }
+    if (!lijst.length){ raster.appendChild(el('div', {class:'leeg'}, el('b', {text:'Geen foto\'s gevonden'}), el('span', {class:'klein-tekst', text:'Zet foto\'s in Content Studio/1. Contentinbox in Google Drive.'}))); return; }
     for (const f of lijst){
       const beeld = el('div', {class:'beeld', 'data-id': f.id, text:'Laden'});
       const foto = CS.staat.demo ? Object.assign({}, f) : f;
@@ -3525,7 +3549,7 @@ function tabFotos(p){
       if (CS.staat.demo) toonMappen(['Portret','Aan het werk','Werkplek']);
       else {
         lib = await DS.bibliotheekId();
-        if (!lib){ raster.innerHTML = ''; raster.appendChild(el('div', {class:'leeg'}, el('b', {text:'Geen Fotobibliotheek gevonden'}), el('span', {class:'klein-tekst', text:'Maak in Google Drive de map Content Studio/Fotobibliotheek.'}))); return; }
+        if (!lib){ raster.innerHTML = ''; raster.appendChild(el('div', {class:'leeg'}, el('b', {text:'Geen Bibliotheek foto\'s gevonden'}), el('span', {class:'klein-tekst', text:'Maak in Google Drive de map Content Studio/2. Bibliotheek foto\'s, of zeg @setup.'}))); return; }
         submappen = await CS.drive.zoek(`parentId = '${lib}' and mimeType = 'application/vnd.google-apps.folder' and trashed = false`, 30);
         toonMappen(submappen.map(m => m.title).sort());
       }

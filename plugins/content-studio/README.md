@@ -26,7 +26,7 @@ De afspraken tussen de skills en de studio staan in `references/content-studio-a
 | Hanna | `cs-hookgenerator` | `@hanna`, `@haakjes` | vijf haakjes voor één probleem, één per fase; een verhaal van Viggo wordt één tot drie haakjes met Fase Persoonlijk; Koen controleert; na akkoord op Idee |
 | Cato | `cs-caption` | `@cato`, `@caption` | de caption volgens HVVA, hoogstens drie vragen met voorstel, Koen controleert als laatste stap; na akkoord vraagt ze welke status de post krijgt: Concept, Design of Video |
 | Koen | `cs-controle` + agent `koen` | `@koen`, `@controle` | vijf checks (haakje, uniek, feiten, klank, klantreis), keurt feiten nooit af; controleert ook de slides in Drive en stelt aanvullingen voor het design system voor |
-| Daan | `cs-design` | `@daan`, `@design`, `@inbox` | zet Content Studio neer en vult de huisstijl, zet voor posts op Design en Video de slides klaar (templates, tekst, foto's uit de Fotobibliotheek), verwerkt de contentinbox |
+| Daan | `cs-design` | `@daan`, `@design`, `@inbox` | zet Content Studio neer en vult de huisstijl, zet voor posts op Design en Video de slides klaar (templates, tekst, foto's uit de Bibliotheek foto's), verwerkt de contentinbox |
 | Puk | `cs-publiceren-metricool` | `@puk`, `@publiceren-metricool` | route A: elke ochtend Klaar naar Gepland, alles op Gepland in Metricool, Metricool gelijk houden aan Notion, gisteren geplaatst op Live |
 | Puk | `cs-publiceren` | `@puk`, `@publiceren` | route B: elke ochtend Klaar naar Gepland, op je postmomenten de post van dat moment via Composio op Instagram, meteen op Live |
 | | `cs-setup` | `@setup` | omgeving controleren, mappen maken (ook in Google Drive), Content Studio laten neerzetten, Content Pillars vullen, projectinstructies |
@@ -86,13 +86,14 @@ CLAUDE/
 
 Google Drive/
 └── Content Studio/                cs-setup, na ja
-    ├── Contentinbox/              de gebruiker zet er foto's in; Daan (@inbox) verwerkt ze
+    ├── 1. Contentinbox/           de gebruiker zet er foto's en video's in; Daan (@inbox) verwerkt ze
     │   ├── Origineel/             iPhone-foto's (HEIC) na het omzetten door de studio
-    │   ├── Niet bruikbaar/
-    │   └── Video's/
-    ├── Fotobibliotheek/           Portret, Aan het werk, Werkplek, Onderweg, Met anderen, Details
-    ├── Carrousels/                per post een map JJJJ-MM-DD - haakje met 01.jpg, 02.jpg ...
-    └── Reelomslagen/              per post JJJJ-MM-DD - haakje.jpg
+    │   └── Niet bruikbaar/
+    ├── 2. Bibliotheek foto's/     Portret, Aan het werk, Werkplek, Onderweg, Met anderen, Details
+    ├── 3. Bibliotheek video's/    video's uit de contentinbox, met naam en beschrijving
+    └── 4. Designs en edits/
+        ├── Carrousels/            per post een map JJJJ-MM-DD - haakje met 01.jpg, 02.jpg ...
+        └── Reels/                 per post een map JJJJ-MM-DD - haakje met omslag.jpg en de video
 ```
 
 De twee setup-skills draaien in een gewoon gesprek met de map **CLAUDE** gekoppeld. Het
