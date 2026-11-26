@@ -1,18 +1,6 @@
 ---
 name: cs-design
-description: >
-  Daan, de ontwerper van Claude Content Studio. Zet je Content Studio neer en houdt hem bij: het
-  dashboard met de Design Studio, Feed View, Analyses en Team, met je huisstijl, logo's, fonts
-  en achtergronden erin. Zet in Cowork je posts op Design en Video klaar voor de Design Studio:
-  per post een voorstel met per slide een template, de tekst letterlijk uit de caption en een
-  foto uit je Bibliotheek foto's in Google Drive, met afwisseling op basis van je feed. Het design
-  zelf maak en bewaar je in de Design Studio. Verwerkt ook je contentinbox in Google Drive: per
-  foto een naam, een beschrijving en een plek in je Bibliotheek foto's. Het design system zelf
-  bouw je in Claude Code met @designsystem. TRIGGERS op @daan, @design, @cs-design, @inbox,
-  "zet mijn posts klaar", "zet deze post klaar", "maak het design", "maak de carrousel", "maak
-  de reelomslag", "maak de designs voor deze week", "zet mijn Content Studio neer", "werk mijn
-  Content Studio bij", "open mijn Content Studio", "verwerk mijn contentinbox", "ik heb foto's
-  in mijn contentinbox gezet", of setup die de Content Studio laat neerzetten.
+description: "Daan, de ontwerper van Claude Content Studio. Zet je Content Studio neer en houdt hem bij: het dashboard met de Design Studio, Feed View, Analyses en Team, met je huisstijl, logo's, fonts en achtergronden erin. Zet in Cowork je posts op Design en Video klaar voor de Design Studio: per slide een template, de tekst letterlijk uit de caption en een foto uit je Bibliotheek foto's in Google Drive, met afwisseling op basis van je feed. Verwerkt ook je contentinbox in Google Drive: per foto een naam, een beschrijving en een plek in je Bibliotheek foto's. Het design system bouw je in Claude Code met @designsystem. TRIGGERS op @daan, @design, @cs-design, @inbox, \"zet mijn posts klaar\", \"zet deze post klaar\", \"maak het design\", \"maak de carrousel\", \"maak de reelomslag\", \"maak de designs voor deze week\", \"zet mijn Content Studio neer\", \"werk mijn Content Studio bij\", \"open mijn Content Studio\", \"verwerk mijn contentinbox\", \"ik heb foto's in mijn contentinbox gezet\", of setup die de Content Studio laat neerzetten."
 ---
 
 # Daan - Claude Content Studio

@@ -1,22 +1,6 @@
 ---
 name: cs-setup
-description: >
-  Zet de omgeving van Claude Content Studio klaar en controleert of alles er is: Notion
-  gekoppeld, de Notion-pagina Content Studio (vroeger Social Media Planner) met Content
-  Calendar, Content Pillars en Content Team gedupliceerd,
-  Business DNA aanwezig. Maakt daarna de map Content Studio aan op het bureaublad (Design
-  System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md) en de
-  map Business Brand
-  Guidelines voor beeldmateriaal, maakt de mappen voor Content Studio in Google Drive
-  (1. Contentinbox, 2. Bibliotheek foto's, 3. Bibliotheek video's, 4. Designs en edits met
-  Carrousels en Reels), laat Daan je Content Studio
-  neerzetten, vult de Content Pillars
-  pillar voor pillar uit Business DNA en levert de projectinstructies als plakblok. Wordt ook
-  aangeroepen door de andere Content Studio-skills als de omgeving ontbreekt. TRIGGERS op
-  @setup, @cs-setup, de oude naam @content-studio-setup of content-studio-setup,
-  "content studio opzetten", "content studio controleren", "content
-  studio omgeving", "content pillars vullen", "social media planner controleren", of elke
-  vraag over het klaarzetten of nakijken van de Content Studio-omgeving.
+description: "Zet de omgeving van Claude Content Studio klaar en controleert of alles er is: Notion gekoppeld, de Notion-pagina Content Studio (vroeger Social Media Planner) met Content Calendar, Content Pillars en Content Team gedupliceerd, Business DNA aanwezig. Maakt de map Content Studio op het bureaublad (Design System, Goedgekeurde haakjes, Goedgekeurde captions, MEMORY.md, README.md), de map Business Brand Guidelines en de mappen in Google Drive (1. Contentinbox, 2. Bibliotheek foto's, 3. Bibliotheek video's, 4. Designs en edits). Laat Daan je Content Studio neerzetten, vult de Content Pillars uit Business DNA en levert de projectinstructies als plakblok. Draait ook als een andere skill de omgeving mist. TRIGGERS op @setup, @cs-setup, de oude naam @content-studio-setup of content-studio-setup, \"content studio opzetten\", \"content studio controleren\", \"content studio omgeving\", \"content pillars vullen\", \"social media planner controleren\", of elke vraag over het klaarzetten of nakijken van de Content Studio-omgeving."
 ---
 
 # Setup - De omgeving van Content Studio klaarzetten

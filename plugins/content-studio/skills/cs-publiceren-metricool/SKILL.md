@@ -1,21 +1,6 @@
 ---
 name: cs-publiceren-metricool
-description: >
-  Puk via Metricool (route A). Zet je geplande Instagram-posts vanuit je Content Calendar in
-  Notion in Metricool, op de minuut die jij in Notion kiest (bijvoorbeeld 14:30). Draait als
-  geplande taak in de ochtendronde van Puk, zonder dat jij iets hoeft te doen: wat gisteren
-  live ging komt op Live met de Instagram-link, posts die af zijn gaan van Klaar naar Gepland,
-  alles op Gepland gaat meteen naar Metricool (ook voor de dagen erna, caption uit Notion,
-  slides uit je Drive-map), en als je in Notion een tijdstip of caption verandert, past hij het
-  in Metricool aan. Metricool plaatst zelf op het tijdstip. Je krijgt alleen een mail als er
-  iets veranderd is of iets ontbreekt. Reels plaats je zelf. Kent vier modi: inplannen,
-  avondcheck, proefrun en vooruit. Voor wie Metricool gebruikt; zonder Metricool is er de skill
-  cs-publiceren. Bij @puk vraagt hij welke route je gebruikt als dat niet in je Content
-  Studio-README staat. TRIGGERS op @puk, @publiceren-metricool, @cs-publiceren-metricool, de
-  oude naam @content-publiceren-metricool
-  of content-publiceren-metricool, "plan mijn posts in via Metricool", "plan ze ook in
-  Metricool", "avondcheck Metricool", "proefrun Metricool", "pas aan in Metricool", of een
-  geplande taak die deze skill aanroept.
+description: "Puk via Metricool (route A). Zet je geplande Instagram-posts vanuit je Content Calendar in Notion in Metricool, op de minuut die jij in Notion kiest. Draait als geplande taak in de ochtendronde van Puk: wat gisteren live ging komt op Live met de Instagram-link, posts die af zijn gaan van Klaar naar Gepland, alles op Gepland gaat naar Metricool (caption uit Notion, slides uit je Drive-map), en verander je in Notion een tijdstip of caption, dan past hij het in Metricool aan. Je krijgt alleen een mail als er iets veranderd is of ontbreekt. Reels plaats je zelf. Vier modi: inplannen, avondcheck, proefrun en vooruit. Zonder Metricool: cs-publiceren. TRIGGERS op @puk, @publiceren-metricool, @cs-publiceren-metricool, de oude naam @content-publiceren-metricool of content-publiceren-metricool, \"plan mijn posts in via Metricool\", \"plan ze ook in Metricool\", \"avondcheck Metricool\", \"proefrun Metricool\", \"pas aan in Metricool\", of een geplande taak die deze skill aanroept."
 ---
 
 # Puk via Metricool - Claude Content Studio
