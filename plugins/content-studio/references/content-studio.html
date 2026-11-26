@@ -1,5 +1,5 @@
 <title>Content Studio</title>
-<meta name="content-studio-versie" content="3">
+<meta name="content-studio-versie" content="4">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:ital@0;1&display=swap">
@@ -470,6 +470,14 @@ button.info,.info-houder,.fv-info{display:none!important}
 .thema-rollen{grid-template-columns:repeat(4,auto);justify-content:start;gap:10px}
 .thema-rollen{grid-template-columns:1fr;gap:6px}
 .thema-rol{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+/* Brandkit en Home (26 nov 2026) */
+.kleurrij{grid-template-columns:34px minmax(0,260px) 110px auto;justify-content:start}
+.voornaam-rij{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.voornaam-rij h2{font-size:20px;text-transform:uppercase;letter-spacing:.02em;margin:0;min-width:120px}
+.voornaam-rij input{width:260px;max-width:100%}
+.voornaam-rij .instel-voet{margin:0 0 0 auto}
+.home-item.team .home-teamtekst .home-wanneer{display:inline;font-weight:400;font-size:inherit;color:var(--zacht)}
+.update-veld b{font-weight:600}
 </style>
 <div id="app">
   <aside class="rail" aria-label="Menu">
@@ -1030,6 +1038,7 @@ button.info,.info-houder,.fv-info{display:none!important}
 .ds-begonnen{justify-self:start;font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-zacht);border-radius:999px;padding:1px 8px}
 .ds-verder{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--vlak);border-radius:14px;padding:10px 14px;max-width:980px;margin-bottom:6px}
 .ds-verder > span{flex:1 1 240px;min-width:0}
+.ds-leeg-tekst{margin:4px 2px;font-size:14px;max-width:640px}
 .ds-leeg{background:var(--vlak);border-radius:var(--r);padding:28px;display:grid;gap:10px;justify-items:start;max-width:640px}
 .ds-varianten{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:18px 14px;background:var(--vlak);border-radius:var(--r);padding:18px}
 .ds-varianten.reel{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
@@ -3038,10 +3047,8 @@ function toonLijst(werk){
       knop('Verder', {soort:'hoofd klein', klik: () => toonEditor(werk)})));
   }
   if (!posts.length){
-    werk.appendChild(el('div', {class:'ds-leeg'},
-      el('h2', {text:'Alles is gedesignd'}),
-      el('p', {class:'zacht-tekst', text:'Er wacht nu geen post op een design. Zet een post in Notion op Design (of Video voor een reel), dan staat hij hier.'}),
-      knop('Naar Planning', {klik: () => CS.toonScherm('feed')})));
+    // Geen kaart en geen knop: gewoon een neutrale regel tekst (26 nov 2026)
+    werk.appendChild(el('p', {class:'zacht-tekst ds-leeg-tekst', text:'Alles is gedesignd. Er wacht nu geen post op een design. Zet een post in Notion op Design (of Video voor een reel), dan staat hij hier.'}));
     return;
   }
   const vandaag = CS.vandaag();
@@ -5619,8 +5626,17 @@ const sectionOf = (content, name) => (content.match(new RegExp('(?:^|\\n)## ' + 
 const cleanMd = s => String(s).replace(/<page[\s\S]*?<\/page>/g, '').replace(/<br\s*\/?>/gi, '\n').replace(/<code>([\s\S]*?)<\/code>/g, '$1').replace(/<[^>]+>/g, '').replace(/\*\*/g, '').replace(/`/g, '').replace(/\\$/gm, '').replace(/\\([.\-*_#>()[\]!+])/g, '$1').trim();
 function parseFolder(text){
   const content = pageText(text), doelRaw = sectionOf(content, 'Doel').trim();
-  const pages = [...content.matchAll(/<page url="([^"]+)"[^>]*>\s*([\s\S]*?)\s*<\/page>/g)].map(m => ({url: m[1], title: cleanMd(m[2])}));
-  return {doel: /^nog geen doel/i.test(cleanMd(doelRaw)) ? '' : cleanMd(doelRaw), doelRaw, latest: pages[pages.length - 1] || null};
+  const pages = [...content.matchAll(/<page url="([^"]+)"[^>]*>\s*([\s\S]*?)\s*<\/page>/g)].map((m, i) => ({url: m[1], title: cleanMd(m[2]), i, datum: titelDatum(cleanMd(m[2]))}));
+  // De nieuwste: de subpagina met de nieuwste datum in de titel; zonder datums de onderste
+  const opDatum = pages.filter(p => p.datum).sort((a, b) => b.datum.localeCompare(a.datum) || b.i - a.i);
+  return {doel: /^nog geen doel/i.test(cleanMd(doelRaw)) ? '' : cleanMd(doelRaw), doelRaw, latest: opDatum[0] || pages[pages.length - 1] || null};
+}
+const MAANDEN = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+function titelDatum(s){
+  const t = String(s || '').toLowerCase();
+  let m = t.match(/(\d{4})-(\d{2})-(\d{2})/); if (m) return m[0];
+  m = t.match(new RegExp('(\\d{1,2})\\s+(' + MAANDEN.join('|') + ')\\s+(\\d{4})'));
+  return m ? m[3] + '-' + String(MAANDEN.indexOf(m[2]) + 1).padStart(2, '0') + '-' + m[1].padStart(2, '0') : null;
 }
 function parseAnalysis(text){
   const content = pageText(text);
@@ -5641,8 +5657,21 @@ function parseAnalysis(text){
   }).filter(Boolean);
   return {analyse: cleanMd(sectionOf(content, 'Analyse')), focus, datum: when ? when[1] : null, tijd: when ? when[2] || null : null};
 }
+/* Waar de analyses van Ruby staan. Nieuwe template (Content Studio): op haar eigen pagina in Content Team,
+   onder Analyses. Oudere kopie (Social Media Planner): de pagina Analyses van Ruby. */
 async function rubyPagina(){
   const k = CS.staat.koppelingen || (CS.staat.koppelingen = {});
+  if (k.rubyTeamPagina) return k.rubyTeamPagina;
+  try{
+    const v = await CS.zorgVoorWeergave('team');
+    const rijen = v ? await CS.notion.view(v, 50) : [];
+    const r = rijen.find(x => String(x.Naam || x.Name || x.Teamlid || '').replace(/<[^>]+>/g, '').trim().split(/\s+/)[0].toLowerCase() === 'ruby');
+    if (r && r.url){
+      const id = CS.idUitUrl(r.url) || r.url;
+      const tekst = (await CS.notion.haal(id)).text || '';
+      if (/<page url=|##\s*(Doel|Analyses)/.test(pageText(tekst))){ k.rubyTeamPagina = id; CS.bewaarKoppelingen(); return id; }
+    }
+  }catch(e){ console.warn('Ruby in Content Team zoeken lukte niet', e); }
   if (k.analysesPagina) return k.analysesPagina;
   const res = await CS.notion.zoek('Analyses van Ruby');
   const r = res.find(x => x.type !== 'database' && /analyses van ruby/i.test(x.title || ''));
@@ -6208,20 +6237,67 @@ const zonderTags = t => String(t || '').replace(/<[^>]+>/g, '').replace(/\n{3,}/
 
 /* ---------- Team ---------- */
 const rond = naam => { const f = gezicht(naam); return el('div', {class:'rond'}, f ? el('img', {src: f, alt: ''}) : String(naam || '?')[0]); };
-/* De pagina van een teamlid: de nieuwste update staat bovenaan, met de datum als kopje.
-   We tonen alleen die update, als gewone tekst met kopjes en opsommingen. */
-function laatsteUpdate(tekst){
-  let t = String(tekst || '');
-  const c = t.match(/<content>([\s\S]*?)<\/content>/);
-  if (!c || /This page is blank/i.test(t)) return []; // geen inhoud: niets tonen, ook geen technische tekst
-  t = c[1];
-  t = t.replace(/<database[\s\S]*?<\/database>/g, '').replace(/<\/?(callout|toggle|details|summary|columns?|div|span|p|br\/?)[^>]*>/g, '\n').replace(/<page[^>]*>([^<]*)<\/page>/g, '$1').replace(/<[^>]+>/g, '');
-  const regels = t.split('\n').map(r => r.replace(/\s+$/, '')).filter((r, i, a) => r.trim() || (a[i - 1] && a[i - 1].trim()));
-  const koppen = regels.map((r, i) => /^#{1,3}\s/.test(r) ? i : -1).filter(i => i >= 0);
-  if (koppen.length >= 2) return regels.slice(koppen[0], koppen[1]);
-  return regels;
+/* De pagina van een teamlid. Updates staan er op twee manieren:
+   - als kopje met de datum op de pagina zelf (de zondagtaak, nieuwste bovenaan), of
+   - als subpagina met de datum in de titel (Ruby: Analyse 22 november 2026, onder Analyses, nieuwste onderaan).
+   We nemen de update met de nieuwste datum. Het kopje Doel is geen update en tonen we niet. */
+const MAANDEN = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+const twee = n => String(n).padStart(2, '0');
+const datumUit = s => {
+  const t = String(s || '').toLowerCase();
+  let m = t.match(/(\d{4})-(\d{2})-(\d{2})/); if (m) return m[0];
+  m = t.match(new RegExp('(\\d{1,2})\\s+(' + MAANDEN.join('|') + ')\\s+(\\d{4})')); if (m) return m[3] + '-' + twee(MAANDEN.indexOf(m[2]) + 1) + '-' + twee(m[1]);
+  return null;
+};
+const inhoudVan = tekst => { const t = String(tekst || ''); const c = t.match(/<content>([\s\S]*?)<\/content>/); return !c || /This page is blank/i.test(t) ? '' : c[1]; };
+const isKop = r => /^#{1,3}\s/.test(String(r).trim());
+const kopNiveau = r => (String(r).trim().match(/^#+/) || [''])[0].length;
+function naarRegels(inhoud){
+  const t = inhoud.replace(/<database[\s\S]*?<\/database>/g, '').replace(/<\/?(callout|toggle|details|summary|columns?|div|span|p|br\/?)[^>]*>/g, '\n')
+    .replace(/<page[^>]*>([^<]*)<\/page>/g, '$1').replace(/<[^>]+>/g, '').replace(/\\([.\-*_#>()[\]!+])/g, '$1');
+  return t.split('\n').map(r => r.replace(/\s+$/, '')).filter((r, i, a) => r.trim() || (a[i - 1] && a[i - 1].trim()));
 }
-CS.laatsteUpdate = t => laatsteUpdate(t); // ook voor Home
+/* Haal een blok (kopje met wat eronder staat) weg, zoals Doel */
+function zonderBlok(regels, naam){
+  const i = regels.findIndex(r => isKop(r) && new RegExp('^#+\\s*' + naam + '\\s*$', 'i').test(r.trim()));
+  if (i < 0) return regels;
+  let j = i + 1; while (j < regels.length && !(isKop(regels[j]) && kopNiveau(regels[j]) <= kopNiveau(regels[i]))) j++;
+  return regels.slice(0, i).concat(regels.slice(j));
+}
+const GEEN_UPDATE = /^#+\s*(doel|analyses|updates?|eerdere updates)\s*$/i;
+async function teamUpdate(url){
+  const inhoud = inhoudVan(await CS.paginaTekst(url));
+  if (!inhoud) return null;
+  const subs = [...inhoud.matchAll(/<page url="([^"]+)"[^>]*>\s*([\s\S]*?)\s*<\/page>/g)].map((m, i) => ({soort:'sub', url: m[1], titel: m[2].replace(/<[^>]+>/g, '').trim(), i}));
+  subs.forEach(s => { s.datum = datumUit(s.titel); });
+  const regels = naarRegels(inhoud);
+  const koppen = regels.map((r, i) => ({r, i})).filter(x => isKop(x.r) && !GEEN_UPDATE.test(x.r.trim()))
+    .map(x => ({soort:'kop', i: x.i, titel: x.r.replace(/^#+\s*/, '').trim(), datum: datumUit(x.r)}));
+  // De nieuwste: eerst op datum; zonder datum de onderste subpagina, anders het bovenste kopje
+  const metDatum = subs.concat(koppen).filter(x => x.datum).sort((a, b) => b.datum.localeCompare(a.datum) || (a.soort === 'sub' ? b.i - a.i : a.i - b.i));
+  const keuze = metDatum[0] || subs[subs.length - 1] || koppen[0] || null;
+  if (!keuze){ const rest = zonderBlok(regels, 'doel').filter(r => !GEEN_UPDATE.test(r.trim())); return rest.some(r => r.trim()) ? {regels: rest, titel: '', datum: null, sleutel: url} : null; }
+  if (keuze.soort === 'sub'){
+    let r = naarRegels(inhoudVan(await CS.paginaTekst(keuze.url)));
+    r = zonderBlok(r, 'doel').filter(x => !/^\s*Gemaakt:\s*\d{4}-\d{2}-\d{2}/.test(x) && !/^#+\s*Analyse\s*$/i.test(x.trim()));
+    return {regels: ['## ' + keuze.titel].concat(r), titel: keuze.titel, datum: keuze.datum, url: keuze.url, sleutel: keuze.url};
+  }
+  let j = keuze.i + 1; while (j < regels.length && !(isKop(regels[j]) && kopNiveau(regels[j]) <= kopNiveau(regels[keuze.i]))) j++;
+  return {regels: regels.slice(keuze.i, j), titel: keuze.titel, datum: keuze.datum, sleutel: url + '#' + (keuze.datum || keuze.titel)};
+}
+CS.teamUpdate = teamUpdate; // ook voor Home
+CS.datumKort = iso => { if (!iso) return ''; const [, m, d] = iso.split('-'); return Number(d) + ' ' + MAANDEN[Number(m) - 1]; };
+/* Gelezen updates: wat je op Home of op Team opende, staat niet meer onder Nieuwe update van je team */
+let gelezen = null;
+CS.gelezenUpdates = async () => { if (gelezen) return gelezen; try{ gelezen = (await CS.dbHaal('instellingen/team-gelezen')) || {}; }catch(e){ gelezen = {}; } return gelezen; };
+CS.markeerGelezen = async (naam, sleutel) => {
+  if (!naam || !sleutel) return;
+  const g = await CS.gelezenUpdates();
+  if (g[naam] === sleutel) return;
+  g[naam] = sleutel;
+  if (!CS.staat.demo){ try{ await CS.dbZet('instellingen/team-gelezen', g); }catch(e){ console.warn('Gelezen bewaren lukte niet', e); } }
+};
+CS.openTeamlid = naam => { gekozenLid = naam; return CS.toonScherm('team'); };
 function tekstNaarBlokken(regels){
   const uit = el('div', {class:'update-tekst'});
   let lijst = null;
@@ -6232,7 +6308,10 @@ function tekstNaarBlokken(regels){
     if (/^#{1,3}\s/.test(s)){ lijst = null; uit.appendChild(inline(el('h3'), s.replace(/^#+\s*/, ''))); continue; }
     if (/^([-*•]|\d+[.)])\s/.test(s)){ if (!lijst){ lijst = el('ul'); uit.appendChild(lijst); } lijst.appendChild(inline(el('li'), s.replace(/^([-*•]|\d+[.)])\s*/, ''))); continue; }
     if (/^---+$/.test(s)){ lijst = null; continue; }
-    lijst = null; uit.appendChild(inline(el('p'), s.replace(/^>\s*/, '')));
+    lijst = null;
+    const label = s.match(/^(Waarom|Actie|Teamlid|Opdracht):\s*(.*)$/); // de focuspunten van Ruby
+    if (label){ uit.appendChild(inline(el('p', {class:'update-veld'}, el('b', {text: label[1] + ': '})), label[2])); continue; }
+    uit.appendChild(inline(el('p'), s.replace(/^>\s*/, '')));
   }
   return uit;
 }
@@ -6285,10 +6364,10 @@ async function toonLid(lid, d){
   if (!lid.rij){ inhoud.appendChild(el('p', {class:'zacht-tekst', text: lid.naam + ' staat nog niet in je teamdatabase in Notion. Zodra er een rij voor ' + lid.naam + ' is, staat de laatste update hier.'})); return; }
   inhoud.appendChild(el('div', {class:'laden', text:'De laatste update laden'}));
   try{
-    const regels = laatsteUpdate(await CS.paginaTekst(lid.rij.url));
+    const u = await teamUpdate(lid.rij.url);
     inhoud.innerHTML = '';
-    if (!regels.some(r => r.trim())) inhoud.appendChild(el('p', {class:'zacht-tekst', text:'Er staat nog geen update op deze pagina.'}));
-    else inhoud.appendChild(tekstNaarBlokken(regels));
+    if (!u || !u.regels.some(r => r.trim())) inhoud.appendChild(el('p', {class:'zacht-tekst', text:'Er staat nog geen update op deze pagina.'}));
+    else { inhoud.appendChild(tekstNaarBlokken(u.regels)); CS.markeerGelezen(lid.naam, u.sleutel); }
   }catch(e){ inhoud.innerHTML = ''; inhoud.appendChild(el('div', {class:'banner let-op', text: CS.foutTekst(e, 'Notion')})); }
 }
 
@@ -6397,8 +6476,17 @@ function tekenStudio(kolom){
   const hs = concept;
   hs.studio = hs.studio || {};
   vullers = [];
+  // Voornaam staat in een eigen witte balk boven Studio (26 nov 2026)
   const voornaam = el('input', {type:'text', value: (CS.staat.profiel || {}).voornaam || '', placeholder:'Je voornaam', 'aria-label':'Je voornaam'});
-  const naamRij = el('div', {class:'studio-rol'}, el('b', {text:'Voornaam'}), voornaam, el('span', {class:'zacht-tekst klein-tekst studio-uitleg', text:'Voor de groet op Home'}));
+  const bewaarNaam = async () => {
+    CS.staat.profiel = Object.assign({}, CS.staat.profiel || {}, {voornaam: voornaam.value.trim()});
+    if (!CS.staat.demo) await CS.dbZet('instellingen/profiel', CS.staat.profiel);
+    melding('Opgeslagen');
+  };
+  const naamOpslaan = knop('Opslaan', {icoon:'opslaan', soort:'klein', klik: async e => { const b = e.currentTarget; b.disabled = true; try{ await bewaarNaam(); }finally{ b.disabled = false; } }});
+  voornaam.addEventListener('keydown', e => { if (e.key === 'Enter') bewaarNaam(); });
+  kolom.appendChild(el('section', {class:'kaart instel-blok'}, el('div', {class:'voornaam-rij'},
+    el('h2', {text:'Voornaam'}), voornaam, el('span', {class:'zacht-tekst klein-tekst', text:'Voor de groet op Home'}), el('div', {class:'instel-voet'}, naamOpslaan))));
   const rijen = ROLLEN.map(([id, naam, uitleg]) => {
     const kiezer = kleurKiezer(hs, hs.studio[id] || '', {label: naam, standaard: true, standaardTekst: 'Standaard', standaardHex: () => huidig(id)}, w => {
       if (w) hs.studio[id] = w; else delete hs.studio[id];
@@ -6408,9 +6496,7 @@ function tekenStudio(kolom){
     vullers.push(() => kiezer.ververs()); setTimeout(() => kiezer.ververs(), 0);
     return el('div', {class:'studio-rol'}, el('b', {text: naam}), kiezer, el('span', {class:'zacht-tekst klein-tekst studio-uitleg', text: uitleg}));
   });
-  kolom.appendChild(blok('Studio', 'Kies per rol een kleur uit je palet. Je ziet het meteen; Opslaan bewaart het.', [el('div', {class:'studio-rollen'}, naamRij, ...rijen)], async () => {
-    CS.staat.profiel = Object.assign({}, CS.staat.profiel || {}, {voornaam: voornaam.value.trim()});
-    if (!CS.staat.demo) await CS.dbZet('instellingen/profiel', CS.staat.profiel);
+  kolom.appendChild(blok('Studio', null, [el('div', {class:'studio-rollen'}, ...rijen)], async () => {
     await slaHuisstijlOp(); CS.pasUIaan(CS.huisstijl());
   }, null, null, true));
 }
@@ -6695,7 +6781,8 @@ CS.aandacht = {
 
 /* Content Studio - Home: het beginscherm.
    Vier blokken: Deze week (je posts per dag), Eerst doen (de drie dringendste punten van Koen),
-   Nieuw van je team (één regel per teamlid uit de update van zondag) en Cijfers deze week. */
+   Nieuwe update van je team (de nieuwste update per teamlid die je nog niet opende, nieuwste eerst)
+   en Cijfers deze week (maandag tot en met zondag). */
 'use strict';
 (function(){
 const {el} = CS;
@@ -6754,42 +6841,54 @@ function eerstDoen(){
 }
 
 /* ---------- Nieuw van je team ---------- */
+/* De eerste zin onder de kopjes, als korte samenvatting */
 const eersteRegel = regels => {
   const tekst = (regels || []).map(r => r.trim()).filter(r => r && !/^#{1,3}\s/.test(r) && !/^---+$/.test(r))[0] || '';
-  return tekst.replace(/^([-*•]|\d+[.)])\s*/, '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\*([^*]+)\*/g, '$1').slice(0, 140);
+  const schoon = tekst.replace(/^([-*•]|\d+[.)])\s*/, '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\*([^*]+)\*/g, '$1');
+  const zin = (schoon.match(/^.+?[.!?](?=\s|$)/) || [schoon])[0];
+  return zin.length <= 150 ? zin : zin.slice(0, 147).replace(/\s+\S*$/, '') + '…';
 };
-const kopRegel = regels => { const k = (regels || []).find(r => /^#{1,3}\s/.test(r.trim())); return k ? k.replace(/^#+\s*/, '').trim().slice(0, 40) : ''; };
+/* Per teamlid de nieuwste update (subpagina of kopje met datum), zes uur bewaard */
 async function teamUpdates(){
-  if (CS.staat.demo) return TEAM_OP_HOME.map(naam => ({naam, tekst: 'Voorbeeld: hier staat de eerste regel uit de update van ' + naam + '.', wanneer: 'zondag'}));
-  const bewaard = await CS.dbHaal('cache/team');
+  if (CS.staat.demo) return TEAM_OP_HOME.map((naam, i) => ({naam, tekst: 'Voorbeeld: hier staat de eerste zin uit de nieuwste update van ' + naam + '.', wanneer: '22 november', datum: '2026-11-2' + (2 - i), sleutel: 'voorbeeld-' + naam}));
+  const bewaard = await CS.dbHaal('cache/team-v2');
   if (bewaard && bewaard.tijd && Date.now() - new Date(bewaard.tijd).getTime() < ZES_UUR && Array.isArray(bewaard.leden)) return bewaard.leden;
   const v = await CS.zorgVoorWeergave('team');
   if (!v) return [];
   const rijen = await CS.notion.view(v, 50);
-  const leden = [];
-  for (const naam of TEAM_OP_HOME){
-    const r = rijen.find(x => String(x.Naam || x.Name || '').replace(/<[^>]+>/g, '').trim().split(/\s+/)[0].toLowerCase() === naam.toLowerCase());
-    if (!r || !r.url) continue;
+  const uitkomst = await Promise.all(rijen.map(async r => {
+    const naam = String(r.Naam || r.Name || r.Teamlid || '').replace(/<[^>]+>/g, '').trim().split(/\s+/)[0];
+    if (!naam || !r.url || !CS.teamUpdate) return null;
     try{
-      const regels = CS.laatsteUpdate ? CS.laatsteUpdate(await CS.paginaTekst(r.url)) : [];
-      const tekst = eersteRegel(regels);
-      if (tekst) leden.push({naam, tekst, wanneer: kopRegel(regels), url: r.url});
-    }catch(e){ /* één teamlid dat niet laadt, houdt de rest niet tegen */ }
-  }
-  try{ await CS.dbZet('cache/team', {tijd: new Date().toISOString(), leden}); }catch(e){}
+      const u = await CS.teamUpdate(r.url);
+      const tekst = u ? eersteRegel(u.regels) : '';
+      return tekst ? {naam, tekst, wanneer: u.datum ? CS.datumKort(u.datum) : u.titel.slice(0, 40), datum: u.datum || '', sleutel: u.sleutel} : null;
+    }catch(e){ return null; /* één teamlid dat niet laadt, houdt de rest niet tegen */ }
+  }));
+  const leden = uitkomst.filter(Boolean).sort((a, b) => (b.datum || '').localeCompare(a.datum || ''));
+  try{ await CS.dbZet('cache/team-v2', {tijd: new Date().toISOString(), leden}); }catch(e){}
   return leden;
 }
+/* Werkt als een melding: wat je opende, verdwijnt hier. Lees je het op Team, dan ook. */
 function teamKaart(){
   const lijst = el('div', {class:'home-lijst'}, el('div', {class:'laden', text:'De updates van je team laden'}));
-  teamUpdates().then(leden => {
+  Promise.all([teamUpdates(), CS.gelezenUpdates ? CS.gelezenUpdates() : {}]).then(([leden, gelezen]) => {
     lijst.innerHTML = '';
+    const nieuw = leden.filter(l => gelezen[l.naam] !== l.sleutel);
     if (!leden.length){ lijst.appendChild(el('p', {class:'home-leeg', text:'Nog geen updates. Je team schrijft ze op zondag, samen met de zondagmail.'})); return; }
-    for (const l of leden){
+    if (!nieuw.length){ lijst.appendChild(el('p', {class:'home-leeg', text:'Je hebt alle updates gelezen. Op Team lees je ze terug.'})); return; }
+    for (const l of nieuw.slice(0, 4)){
       const f = (CS.TEAMFOTOS || {})[l.naam.toLowerCase()];
-      lijst.appendChild(el('button', {type:'button', class:'home-item team', onclick: () => CS.toonScherm('team')},
+      const knopje = el('button', {type:'button', class:'home-item team', onclick: async () => {
+        knopje.remove();
+        if (CS.markeerGelezen) await CS.markeerGelezen(l.naam, l.sleutel);
+        if (CS.openTeamlid) CS.openTeamlid(l.naam); else CS.toonScherm('team');
+      }},
         f ? el('img', {src: f, alt: ''}) : el('span', {class:'home-initiaal', text: l.naam[0]}),
-        el('span', {class:'home-teamtekst'}, el('b', {text: l.naam + (l.wanneer ? ' · ' + l.wanneer : '')}), el('span', {text: l.tekst}))));
+        el('span', {class:'home-teamtekst'}, el('b', {}, l.naam, l.wanneer ? el('span', {class:'home-wanneer', text: ' · ' + l.wanneer}) : null), el('span', {text: l.tekst})));
+      lijst.appendChild(knopje);
     }
+    if (nieuw.length > 4) lijst.appendChild(el('p', {class:'home-leeg', text: '+' + (nieuw.length - 4) + ' meer op Team'}));
   }).catch(e => { lijst.innerHTML = ''; lijst.appendChild(el('p', {class:'home-leeg', text: CS.foutTekst(e, 'Notion')})); });
   return kaart('Nieuwe update van je team', lijst, el('div', {class:'home-voet'}, CS.knop('Naar Team', {soort:'klein', klik: () => CS.toonScherm('team')})));
 }
@@ -6800,8 +6899,8 @@ function cijferKaart(){
   const teken = data => {
     vak.innerHTML = '';
     if (!data){ vak.appendChild(el('p', {class:'home-leeg', text:'Je cijfers komen uit Instagram via Composio. Klik op Vernieuwen als ze er nog niet staan.'})); return; }
-    const sinds = new Date(); sinds.setDate(sinds.getDate() - 7);
-    const grens = isoDag(sinds);
+    // Deze week = maandag tot en met zondag, net als Content deze week (26 nov 2026)
+    const grens = isoDag(maandag());
     const dagen = Object.entries((data.account && data.account.dagen) || {}).filter(([d]) => d >= grens);
     const som = k => dagen.reduce((t, [, v]) => t + (typeof v[k] === 'number' ? v[k] : 0), 0);
     const heeft = k => dagen.some(([, v]) => typeof v[k] === 'number');

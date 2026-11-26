@@ -213,7 +213,9 @@ kopjes telt als niet gevuld: meld dat en verwijs naar `@setup`.
 
 Eén rij per teamlid: Viggo, Sam, Ruby, Hanna, Cato, Koen, Daan en Puk. Elke rij is de eigen
 pagina van dat teamlid. Daar zet het team zijn updates op, de nieuwste bovenaan, onder een kopje
-met de datum. Content Studio toont op het scherm Team de bovenste update en de Rol.
+met de datum. Ruby zet haar analyses als subpagina onder Analyses, met de datum in de titel.
+Content Studio toont op Team en Home de update met de nieuwste datum (kopje of subpagina) en de Rol;
+het kopje Doel is geen update.
 
 | Property | Type | Wat erin staat |
 |---|---|---|
